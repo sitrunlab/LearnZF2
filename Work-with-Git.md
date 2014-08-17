@@ -2,9 +2,11 @@
 **Code :** 
 
  _1. Fork repository_
+
 Sebelum memulai pertama, kita fork dulu repository ini dari button "fork" di menu sebelah kanan atas ke akun github kita masing2.
 
  _2. PRs_
+
 Selalu mengajukan rancangan coding dengan PR ( Pull Request ). Langkah2 : 
  * Clone ke local komputer kita dari forked repository di akun kita.
 ```
