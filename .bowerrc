@@ -1,0 +1,7 @@
+{
+    "directory": "public/js/dependencies",
+    "json": "bower.json",
+    "searchpath": [
+        "https://bower.herokuapp.com"
+    ]
+}
