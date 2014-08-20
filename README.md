@@ -10,7 +10,7 @@ Installation
 ------------
  1.menggunakan bower untuk menginstall assets dependency. Install NodeJs dan run :
 ```
-npm install -g bower
+sudo npm install -g bower
 bower install
 ```
  2.Dan kita akan dapat run installed dependency
@@ -38,6 +38,22 @@ bower sifter#0.3.x                 new version for git://github.com/brianreavis/
 bower sifter#0.3.x             resolve git://github.com/brianreavis/sifter.js.git#0.3.x
 bower sifter#0.3.x            download https://github.com/brianreavis/sifter.js/archive/v0.3.4.tar.gz
 ...
+```
+
+Check apakah bower telah terinstall sempurna :
+```
+bower -version
+```
+
+Apabila bower telah terinstall sempurna, kita akan dapat melihat hasi return seperti ini :
+```
+bower -version
+1.3.3
+```
+
+Namun apabila tidak di dapati return apapun, coba dengan meng-install nodejs-legacy
+```
+sudo apt-get install nodejs-legacy
 ```
 
  3.run composer update
