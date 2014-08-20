@@ -1,0 +1,11 @@
+.idea/
+.nbproject/
+.settings/
+.buildpath
+.project
+vendor/
+composer.lock
+composer.phar
+public/js/dependencies/
+public/css/.sass-cache/
+/nbproject
