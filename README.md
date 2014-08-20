@@ -51,7 +51,7 @@ bower -version
 1.3.3
 ```
 
-Namun apabila tidak di dapati return apapun, coba dengan meng-install nodejs-legacy
+[optional] Namun apabila tidak di dapati return apapun, coba dengan meng-install nodejs-legacy
 ```
 sudo apt-get install nodejs-legacy
 ```
