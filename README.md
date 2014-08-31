@@ -89,3 +89,54 @@ interface.
             Allow from all
         </Directory>
     </VirtualHost>
+
+### Nginx Setup
+
+Buat sebuah file learnzf2.localhost
+
+    sudo gedit /etc/nginx/sites-available/learnzf2.localhost
+
+lalu isikan dengan script di bawah ini
+
+    server {
+          listen      80;
+          server_name learnzf2.localhost;
+          root        /path/to/LearnZF2/public;
+          index       index.html index.htm index.php;
+
+          location / {
+            try_files $uri $uri/ /index.php$is_args$args;
+          }
+
+          location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php5-fpm.sock;
+            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+          }
+    }
+
+lalu buat symlink ke dalam sites-enabled
+
+   sudo ln -s /etc/nginx/sites-available/learnzf2.localhost /etc/nginx/sites-enabled/learnzf2.localhost
+
+lalu restart nginx service
+
+   sudo service nginx restart
+
+
+** NOTE : **
+Dan jangan lupa untuk menambahkan virtual host ke dalam file hosts. buka file hosts
+
+lokasi file hosts windows :
+
+    C:\Windows\System32\Drivers\etc\hosts
+
+
+lokasi file hosts linux :
+
+    sudo gedit /etc/hosts
+
+
+lalu tambahkan :
+
+    127.0.0.1 learnzf2.localhost
