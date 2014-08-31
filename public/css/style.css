@@ -1,37 +1,91 @@
 body {
     padding-top: 60px;
-    padding-bottom: 40px;
+    background-color: #b4b4b4;
 }
 
-.zf-green {
-    color: #68b604;
+.container-main{
+    min-height: 450px;
 }
 
-.btn-success {
-  background-color: #57a900;
-  background-image: -moz-linear-gradient(top, #70d900, #57a900);
-  background-image: -ms-linear-gradient(top, #70d900, #57a900);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#70d900), to(#57a900));
-  background-image: -webkit-linear-gradient(top, #70d900, #57a900);
-  background-image: -o-linear-gradient(top, #70d900, #57a900);
-  background-image: linear-gradient(top, #70d900, #57a900);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70d900', endColorstr='#57a900', GradientType=0);
+.navbar-inverse {
+    background-color: #404040;
+    border-bottom: 5px solid #FF9B31;
 }
 
-.btn-success:hover,
-.btn-success:active,
-.btn-success.active,
-.btn-success.disabled,
-.btn-success[disabled] {
-  background-color: #57a900;
+.jumbo-home{
+    background-color: #676767;
+    height: auto;
+    margin-top: -10px;
+    margin-bottom: 50px;
+    border-bottom: 8px solid #919191;
 }
 
-.btn-success:active, .btn-success.active {
-  background-color: #57a900;
+.jumbotron{
+    background-color: #747474;
+    color: #f9f9f9;
+}
+
+.jumbotron p{
+    color: #bdbdbd;
+}
+
+.jumbotron .btn-success{
+    background: #00BC9E;
+    border: 1px solid #00806b;
+}
+
+.link-module{
+    display: inline-table;
+    float: right;
+    font-size: 20px;
+}
+
+.link-module a{
+    color: #404040;
+}
+
+
+.link-module a:hover{
+    color: #FF9B31;
+}
+
+thead{
+    background-color: #939393;
+    border-bottom: 3px solid #FF9B31;
+    color: #fff;
+}
+
+
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #c9c9c9;
+    border-bottom: 1px solid #a9a9a9;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td, .table-striped>tbody>tr:nth-child(even)>th {
+    border-bottom: 1px solid #a9a9a9;
 }
 
 div.container a.brand {
     background: url("../img/zf2-logo.png") no-repeat scroll 0 10px transparent;
     margin-left: 0;
     padding: 8px 20px 12px 40px;
+}
+
+.pagination>li>a, .pagination>li>span {
+    color: #bdbdbd;
+    background-color: #747474;
+    border: 1px solid #575757;
+}
+
+.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
+    color: #575757;
+    background-color: #FF9B31;
+    border-color: #575757;
+}
+
+.footer{
+    border-top: 4px solid #676767;
+    background-color: #404040;
+    color: #bdbdbd;
+    padding: 50px 0;
 }
