@@ -117,14 +117,14 @@ lalu isikan dengan script di bawah ini
 
 lalu buat symlink ke dalam sites-enabled
 
-   sudo ln -s /etc/nginx/sites-available/learnzf2.localhost /etc/nginx/sites-enabled/learnzf2.localhost
+    sudo ln -s /etc/nginx/sites-available/learnzf2.localhost /etc/nginx/sites-enabled/learnzf2.localhost
 
 lalu restart nginx service
 
-   sudo service nginx restart
+    sudo service nginx restart
 
 
-** NOTE : **
+**NOTE :**
 Dan jangan lupa untuk menambahkan virtual host ke dalam file hosts. buka file hosts
 
 lokasi file hosts windows :
