@@ -3,22 +3,10 @@
     "version": "alpha1",
     "description": "Sitrun Lab",
     "homepage": "http://learnzf2.sitrun-tech.com/",
-    "extra": {
-        "installer-paths": {
-            "module/LearnZF2Application": ["sitrunlab/learnzf2application"]
-        }
-    },
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.3.*",
         "zendframework/zftool": "dev-master",
-        "zendframework/zend-developer-tools": "dev-master",
-        "sitrunlab/learnzf2application": "dev-master"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:sitrunlab/LearnZF2Application.git"
-        }
-    ]
+        "zendframework/zend-developer-tools": "dev-master"
+    }
 }
