@@ -13,7 +13,6 @@
         <!-- Le styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
                         ->prependStylesheet($this->basePath() . '/css/style.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
                         ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
 
         <!-- Scripts -->
@@ -43,13 +42,26 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
-        <div class="container">
+        <div class="container-fluid jumbo-home">
+            <div class="container">
+                <div class="jumbotron">
+                    <h2><?php echo sprintf($this->translate('Welcome to %sLearnZF2%s site'), '<span class="zf-green">', '</span>') ?></h2>
+                    <p><?php echo sprintf($this->translate('We provide you real live example in using Zend framework 2'), '<a href="https://github.com/zendframework/ZendSkeletonApplication" target="_blank">', '</a>', \Zend\Version\Version::VERSION) ?></p>
+                    <p><a class="btn btn-success btn-lg" href="https://github.com/zendframework/zf2" target="_blank"><?php echo $this->translate('Fork us on GitHub') ?> &raquo;</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="container container-main">
             <?php echo $this->content; ?>
-            <hr>
-            <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
-            </footer>
         </div> <!-- /container -->
+
+        <div class="container-fluid footer">
+            <div class="container">
+                <footer>
+                    <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+                </footer>
+            </div>
+        </div>
         <?php echo $this->inlineScript() ?>
     </body>
 </html>
