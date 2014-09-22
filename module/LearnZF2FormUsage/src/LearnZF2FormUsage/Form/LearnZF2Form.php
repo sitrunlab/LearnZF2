@@ -9,7 +9,7 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
 {
    public function __construct()
    {
-
+        parent::__construct('formname');
    }
    
    public function init()
