@@ -128,16 +128,16 @@
         },
         {
             "name": "zendframework/zendframework",
-            "version": "2.3.2",
+            "version": "2.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf2.git",
-                "reference": "0b74b66dc07ff88140287bdf67d230c1bd32ee0c"
+                "reference": "88c9b6f566fc1097f64ead155625db9bdfee531e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/0b74b66dc07ff88140287bdf67d230c1bd32ee0c",
-                "reference": "0b74b66dc07ff88140287bdf67d230c1bd32ee0c",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/88c9b6f566fc1097f64ead155625db9bdfee531e",
+                "reference": "88c9b6f566fc1097f64ead155625db9bdfee531e",
                 "shasum": ""
             },
             "require": {
@@ -199,7 +199,7 @@
             },
             "require-dev": {
                 "doctrine/annotations": ">=1.0",
-                "fabpot/php-cs-fixer": "dev-master",
+                "fabpot/php-cs-fixer": "dev-master#fcbb09b5204",
                 "ircmaxell/random-lib": "dev-master",
                 "ircmaxell/security-lib": "dev-master",
                 "mikey179/vfsstream": "1.2.*",
@@ -242,7 +242,7 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2014-08-12 16:48:34"
+            "time": "2014-09-16 22:58:11"
         },
         {
             "name": "zendframework/zendxml",

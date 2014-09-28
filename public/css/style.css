@@ -5,6 +5,7 @@ body {
 
 .container-main{
     min-height: 450px;
+    padding-bottom: 100px;
 }
 
 .navbar-inverse {
@@ -147,4 +148,99 @@ div.container a.brand {
     background-color: #404040;
     color: #bdbdbd;
     padding: 50px 0;
+}
+
+.download-button-lg{
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.fb-wrap{
+    margin-top: 0 ;
+    display: inline-table;
+    position: absolute;
+}
+
+.zf2-sidebar{
+    margin-bottom: 50px;
+}
+
+.box-sidebar {
+    position: relative;
+    margin-bottom: 40px;
+    padding: 40px;
+    background-color: #96a5be;
+}
+
+.box-sidebar h5.title{
+    top:8px;
+    left: 8px;
+    position: absolute;
+    text-transform: uppercase;
+    color: #b4c7e4;
+}
+
+.box-sidebar:last-child {
+    margin-bottom: 0;
+}
+
+.box-sidebar ul{
+    margin:0;
+    padding: 0;
+    list-style: none;
+}
+
+.box-sidebar ul li{
+    border-bottom: 1px dashed #b4c7e4;
+    padding: 8px 10px;
+}
+
+.box-sidebar ul li a{
+    color: #fff;
+}
+
+.box-sidebar:before, .box-sidebar:after {
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 0;
+    content: "";
+}
+.box-sidebar:before {
+    border-top: solid 20px #D0D0D0;
+    border-right: solid 20px #D0D0D0;
+    border-left: solid 20px transparent;
+    border-bottom: solid 20px transparent;
+
+}
+.box-sidebar:after {
+    border-bottom: solid 20px #5b7093;
+    border-left: solid 20px #5b7093;
+    border-right: solid 20px transparent;
+    border-top: solid 20px transparent;
+}
+
+.demo-box{
+    padding: 50px 10px;
+    background: #dddddd;
+    margin-bottom: 50px;
+}
+
+.demo-box:before{
+    content: "Demo";
+    padding: 5px 15px;
+    background: #00BC9E;
+    margin-top: -60px;
+    position: absolute;
+    margin-bottom: 40px;
+    border-radius: 10px;
+}
+
+.border-radius {
+    border-radius: 10px;
+}
+.border-radius:after {
+    border-radius: 0 0 0 10px;
 }
