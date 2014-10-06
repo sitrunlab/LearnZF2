@@ -124,7 +124,8 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
         return array(
             array(
                 'name'     => 'id',
-                'required' => true,
+                'required' => false,
+                'allow_empty' => true,
                 'filters'  => array(
                     array('name' => 'Int'),
                 ),
