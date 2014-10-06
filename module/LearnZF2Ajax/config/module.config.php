@@ -37,6 +37,9 @@ return array(
             'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Controller\IndexController'
         ),
     ),
+    'strategies' => array(
+        'ViewJsonStrategy',
+    ),
     'view_manager' => array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
