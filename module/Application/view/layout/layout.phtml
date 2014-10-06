@@ -1,66 +1,7 @@
-<?php echo $this->doctype(); ?>
+<?php include('header.phtml'); ?>
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <?php echo $this->headTitle('Real Live ZF2 Examples in LearnZF2')->setSeparator(' - ')->setAutoEscape(false) ?>
-
-        <?php echo $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-        ?>
-
-        <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath() . '/css/style.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
-
-        <!-- Scripts -->
-        <?php echo $this->headScript()
-            ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-            ->prependFile($this->basePath() . '/js/jquery.min.js')
-            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
-        ; ?>
-
-    </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Learn ZF2"/>&nbsp;Learn ZF2</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </nav>
-        <div class="container-fluid jumbo-home">
-            <div class="container">
-                <div class="jumbotron">
-                    <h2><?php echo sprintf($this->translate('Welcome to %sLearnZF2%s site'), '<span class="zf-green">', '</span>') ?></h2>
-                    <p><?php echo sprintf($this->translate('We provide you real live example in using Zend framework 2'), '<a href="https://github.com/zendframework/ZendSkeletonApplication" target="_blank">', '</a>', \Zend\Version\Version::VERSION) ?></p>
-                    <p><a class="btn btn-success btn-lg" href="https://github.com/zendframework/zf2" target="_blank"><?php echo $this->translate('Fork us on GitHub') ?> &raquo;</a></p>
-                </div>
-            </div>
-        </div>
         <div class="container container-main">
             <?php echo $this->content; ?>
         </div> <!-- /container -->
 
-        <div class="container-fluid footer">
-            <div class="container">
-                <footer>
-                </footer>
-            </div>
-        </div>
-        <?php echo $this->inlineScript() ?>
-    </body>
-</html>
+<?php include('footer.phtml'); ?>
