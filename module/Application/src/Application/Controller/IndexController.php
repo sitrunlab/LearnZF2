@@ -11,11 +11,31 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel();
+        $paginator = new Paginator(new ArrayAdapter(array(
+            0 => array(
+                'module_name' => 'LearnZF2Ajax',
+                'module_desc' => 'Learn Ajax with ZF2',
+                'module_route' => 'learnZF2Ajax'
+            ),
+            1 => array(
+                'module_name' => 'LearnZF2FormUsage',
+                'module_desc' => 'Learn Form Usage with ZF2',
+                'module_route' => 'learn-zf2-form-usage'
+            )
+        )));
+
+        $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+        $paginator->setItemCountPerPage(10);
+
+        return new ViewModel(array(
+            'paginator' => $paginator
+        ));
     }
 }

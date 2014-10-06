@@ -42,6 +42,8 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
+
+        <?php if ($this->layout()->matchroutename == 'home') : ?>
         <div class="container-fluid jumbo-home">
             <div class="container">
                 <div class="jumbotron">
@@ -51,6 +53,8 @@
                 </div>
             </div>
         </div>
+        <?php endif; ?>
+
         <div class="container container-main">
             <?php echo $this->content; ?>
         </div> <!-- /container -->
