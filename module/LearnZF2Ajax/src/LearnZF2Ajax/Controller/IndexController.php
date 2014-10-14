@@ -18,10 +18,10 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController {
 
-    protected $acceptCriteria = array(
+    protected $acceptCriteria = [
         'Zend\View\Model\JsonModel' => ['application/json'],
         'Zend\View\Model\ViewModel' => ['text/html'],
-    );
+    ];
 
     public function indexAction()
     {

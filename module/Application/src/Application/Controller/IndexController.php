@@ -20,24 +20,24 @@ class IndexController extends AbstractActionController
     {
         $this->layout('layout/home.phtml');
 
-        $paginator = new Paginator(new ArrayAdapter(array(
-            0 => array(
+        $paginator = new Paginator(new ArrayAdapter([
+            0 => [
                 'module_name' => 'LearnZF2Ajax',
                 'module_desc' => 'Learn Ajax with ZF2',
                 'module_route' => 'learnZF2Ajax'
-            ),
-            1 => array(
+            ],
+            1 => [
                 'module_name' => 'LearnZF2FormUsage',
                 'module_desc' => 'Learn Form Usage with ZF2',
                 'module_route' => 'learn-zf2-form-usage'
-            )
-        )));
+            ]
+        ]));
 
         $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
         $paginator->setItemCountPerPage(10);
 
-        return new ViewModel(array(
+        return new ViewModel([
             'paginator' => $paginator
-        ));
+        ]);
     }
 }

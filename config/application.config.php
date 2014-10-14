@@ -5,21 +5,21 @@
  *
  * @see https://github.com/zendframework/ZFTool
  */
-return array(
-    'modules' => array(
+return [
+    'modules' => [
         'Application',
         'LearnZF2Ajax',
         'LearnZF2FormUsage',
         'ZendDeveloperTools',
         'ZFTool',
-    ),
-    'module_listener_options' => array(
-        'module_paths' => array(
+    ],
+    'module_listener_options' => [
+        'module_paths' => [
             './module',
             './vendor'
-        ),
-        'config_glob_paths' => array(
+        ],
+        'config_glob_paths' => [
             'config/autoload/{,*.}{global,local}.php'
-        )
-    )
-);
+        ]
+    ]
+];
