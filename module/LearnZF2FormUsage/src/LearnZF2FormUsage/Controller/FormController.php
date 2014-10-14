@@ -18,6 +18,6 @@ class FormController extends AbstractActionController
             } 
         }
 
-        return new ViewModel(array('form' => $form));
+        return new ViewModel(['form' => $form]);
     }
 }

@@ -1,29 +1,29 @@
 <?php
 
-return array(
-    'router' => array(
-        'routes' => array(
-            'learn-zf2-form-usage' => array(
+return [
+    'router' => [
+        'routes' => [
+            'learn-zf2-form-usage' => [
                 'type'    => 'Literal',
-                'options' => array(
+                'options' => [
                     'route'    => '/learn-zf2-form-usage',
-                    'defaults' => array(
+                    'defaults' => [
                         '__NAMESPACE__' => 'LearnZF2FormUsage\Controller',
                         'controller'    => 'Form',
                         'action'        => 'index',
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'controllers' => array(
-        'invokables' => array(
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'controllers' => [
+        'invokables' => [
             'LearnZF2FormUsage\Controller\Form' => 'LearnZF2FormUsage\Controller\FormController'
-        ),
-    ),
-    'view_manager' => array(
-        'template_path_stack' => array(
+        ],
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
             'learnzf2usage' => __DIR__ . '/../view',
-        ),
-    ),
-);
+        ],
+    ],
+];
