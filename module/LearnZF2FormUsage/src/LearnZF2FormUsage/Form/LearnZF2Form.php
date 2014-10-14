@@ -19,7 +19,7 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
 
    public function getInputFilterSpecification()
    {
-       return array();
+       return [];
    }
 }
 

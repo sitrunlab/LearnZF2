@@ -1,45 +1,45 @@
 <?php
 
-return array(
-    'router' => array(
-        'routes' => array(
+return [
+    'router' => [
+        'routes' => [
 
-            'learnZF2Ajax' => array(
+            'learnZF2Ajax' => [
                 'type'    => 'Literal',
-                'options' => array(
+                'options' => [
                     'route'    => '/learn-zf2-ajax',
-                    'defaults' => array(
+                    'defaults' => [
                         '__NAMESPACE__' => 'LearnZF2Ajax\Controller',
                         'controller'    => 'Index',
                         'action'        => 'index',
-                    ),
-                ),
+                    ],
+                ],
                 'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
+                'child_routes' => [
+                    'default' => [
                         'type'    => 'Segment',
-                        'options' => array(
+                        'options' => [
                             'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
+                            'constraints' => [
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'controllers' => array(
-        'invokables' => array(
+                            ],
+                            'defaults' => [
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'controllers' => [
+        'invokables' => [
             'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Controller\IndexController'
-        ),
-    ),
-    'view_manager' => array(
-        'template_path_stack' => array(
+        ],
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
             __DIR__ . '/../view',
-        ),
-    ),
-);
+        ],
+    ],
+];
