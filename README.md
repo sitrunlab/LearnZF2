@@ -3,17 +3,19 @@ LearnZF2 repository
 
 Introduction
 ------------
-Ini adalah repository untuk website belajar ZF2. Berisi real "LIVE" module yang bisa diview oleh user, bisa didownload kalau berminat.
+This is a repository for the "Learning Zend Framework" website and contains live modules that you can view or download directly.
 
 
 Installation
 ------------
- 1.menggunakan bower untuk menginstall assets dependency. Install NodeJs dan run :
+ 1. Use Bower to install asset dependencies. Install NodeJs dan run :
+
 ```
 sudo npm install -g bower
 bower install
 ```
- 2.Dan kita akan dapat run installed dependency
+
+ 2. This is the output of the Bower installation process.
 
 ```
 bower install
@@ -40,18 +42,21 @@ bower sifter#0.3.x            download https://github.com/brianreavis/sifter.js/
 ...
 ```
 
-Check apakah bower telah terinstall sempurna :
+Check that Bower was installed successfully :
+
 ```
 bower -version
 ```
 
-Apabila bower telah terinstall sempurna, kita akan dapat melihat hasi return seperti ini :
+The output should look like this:
+
 ```
 bower -version
 1.3.3
 ```
 
-[optional] Namun apabila tidak di dapati return apapun, coba dengan meng-install nodejs-legacy
+[optional] If there was no output, try installing nodejs-legacy
+
 ```
 sudo apt-get install nodejs-legacy
 ```
@@ -67,14 +72,13 @@ Web Server Setup
 
 ### PHP CLI Server
 
-Cara paling mudah untuk memulai jika kita menggunakan PHP 5.4 atau di atas untuk memulai PHP internal yang cli-server di direktori root:
+The easiest way to begin in PHP 5.4 or higher is by running this script:
 
     php -S 0.0.0.0:8080 -t public/ public/index.php
 
-Ini akan memulai cli-server pada port 8080, dan mengikat ke semua jaringan
-interface.
+The script above will start "cli-server" on port 8080 and affect all network interfaces.
 
-**Catatan: ** The built-in CLI server hanya untuk *development*.
+**Warning:** The built in CLI-Server is for development only!.
 
 ### Apache Setup
 
@@ -92,11 +96,11 @@ interface.
 
 ### Nginx Setup
 
-Buat sebuah file learnzf2.localhost
+Create a new file named "learnzf2.localhost"
 
     sudo gedit /etc/nginx/sites-available/learnzf2.localhost
 
-lalu isikan dengan script di bawah ini
+And filled it with these scripts.
 
     server {
           listen      80;
@@ -115,28 +119,28 @@ lalu isikan dengan script di bawah ini
           }
     }
 
-lalu buat symlink ke dalam sites-enabled
+Create a symlink to the "sites-enabled" directory
 
     sudo ln -s /etc/nginx/sites-available/learnzf2.localhost /etc/nginx/sites-enabled/learnzf2.localhost
 
-lalu restart nginx service
+Restart the Nginx service.
 
     sudo service nginx restart
 
 
 **NOTE :**
-Dan jangan lupa untuk menambahkan virtual host ke dalam file hosts. buka file hosts
+Don't forget to add a "virtual hostname" to the host file.
 
-lokasi file hosts windows :
+The host file location in Windows is :
 
     C:\Windows\System32\Drivers\etc\hosts
 
 
-lokasi file hosts linux :
+The host file location in Linux is :
 
     sudo gedit /etc/hosts
 
 
-lalu tambahkan :
+And add this line :
 
     127.0.0.1 learnzf2.localhost
