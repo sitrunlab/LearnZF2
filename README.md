@@ -8,14 +8,14 @@ This is a repository for the "Learning Zend Framework" website and contains live
 
 Installation
 ------------
- 1. Use Bower to install asset dependencies. Install NodeJs dan run :
+ 1.Use Bower to install asset dependencies. Install NodeJs dan run :
 
 ```
 sudo npm install -g bower
 bower install
 ```
 
- 2. This is the output of the Bower installation process.
+ 2.This is the output of the Bower installation process.
 
 ```
 bower install
@@ -78,7 +78,7 @@ The easiest way to begin in PHP 5.4 or higher is by running this script:
 
 The script above will start "cli-server" on port 8080 and affect all network interfaces.
 
-**Warning:** The built in CLI-Server is for development only!.
+**Warning:** The built in CLI-Server is for development only!
 
 ### Apache Setup
 
