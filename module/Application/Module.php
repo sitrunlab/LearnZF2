@@ -21,11 +21,18 @@ class Module  implements
     public function onBootstrap(EventInterface $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch']);
+
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-        $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch']);
     }
 
+    /**
+     * Handle layout on 'dispatch' event
+     *
+     * @param MvcEvent $e
+     * @return void
+     */
     public function onDispatch(MvcEvent $e) {
         $routeMatch = $e->getRouteMatch();
         $activeController = $routeMatch->getParam('controller');
@@ -36,11 +43,17 @@ class Module  implements
         }
     }
 
+    /**
+     * @return array|mixed|\Traversable
+     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
+    /**
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return [
