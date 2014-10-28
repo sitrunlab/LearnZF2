@@ -33,8 +33,8 @@ return [
         ],
     ],
     'controllers' => [
-        'invokables' => [
-            'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Controller\IndexController'
+        'factories' => [
+            'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Factory\Controller\IndexControllerFactory'
         ],
     ],
 
