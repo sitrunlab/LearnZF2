@@ -8,11 +8,10 @@
  * Email : rifkimuhammad89@gmail.com
  */
 namespace LearnZF2Ajax\Controller;
-ini_set('display_errors',1);
-
 
 use LearnZF2Ajax\Form\LoginForm;
 use LearnZF2Ajax\Model\LoginInputFilter;
+use Zend\Form\FormInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -23,35 +22,42 @@ class IndexController extends AbstractActionController {
         'Zend\View\Model\ViewModel' => ['text/html'],
     ];
 
+    /**
+     * @var FormInterface
+     */
+    protected $loginForm;
+
+    public function __construct(FormInterface $loginForm)
+    {
+        $this->loginForm = $loginForm;
+    }
+
     public function indexAction()
     {
-        return new ViewModel();
+        return new ViewModel(array(
+            'form' => $this->loginForm,
+        ));
     }
 
     public function formAjaxAction()
     {
         $viewModel = $this->acceptableviewmodelselector($this->acceptCriteria);
         $dataDemo = ['username' => 'admin','password' => 'admin'];
-        $form = new LoginForm();
 
         $request = $this->getRequest();
         if ($request->isPost()) {
             $login = new LoginInputFilter();
-            $form->setInputFilter($login->getInputFilter());
-            $form->setData($request->getPost());
+            $this->loginForm->setInputFilter($login->getInputFilter());
+            $this->loginForm->setData($request->getPost());
 
             if ($form->isValid()) {
-                $login->exchangeArray($form->getData());
-                $this->getAlbumTable()->saveAlbum($album);
+                $login->exchangeArray($this->loginForm->getData());
             }
         }
 
-        // Potentially vary execution based on model returned
-//        if ($viewModel instanceof JsonModel)
-
         $viewModel->setVariables(['form' => $form]);
-        return $viewModel;
 
+        return $viewModel;
     }
 
-} 
+}
