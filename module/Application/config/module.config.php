@@ -50,6 +50,17 @@ return [
                     ],
                 ],
             ],
+            'download' => [
+                'type'    => 'Segment',
+                'options' => [
+                    'route'    => '/download[:/module]',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Download',
+                        'action'        => 'learnmodule',
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
@@ -73,7 +84,13 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Download' => 'Application\Controller\DownloadController'
+        ],
+    ],
+    'view_helpers' => [
+        'invokables' => [
+            'downloadbuttonlink' => 'Application\View\Helper\DownloadButtonLink',
         ],
     ],
     'view_manager' => [
