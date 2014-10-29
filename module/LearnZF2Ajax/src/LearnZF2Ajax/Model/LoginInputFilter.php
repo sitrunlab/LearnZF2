@@ -13,8 +13,8 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
-class LoginInputFilter implements InputFilterAwareInterface {
-
+class LoginInputFilter implements InputFilterAwareInterface
+{
     public $username;
     public $password;
     protected $inputFilter;
@@ -94,4 +94,4 @@ class LoginInputFilter implements InputFilterAwareInterface {
         return $this->inputFilter;
     }
 
-} 
+}

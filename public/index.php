@@ -3,7 +3,6 @@
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.
  */
-ini_set('display_errors',1);
 chdir(dirname(__DIR__));
 
 // Decline static file requests back to the PHP built-in webserver

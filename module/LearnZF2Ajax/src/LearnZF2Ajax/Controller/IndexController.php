@@ -9,15 +9,12 @@
  */
 namespace LearnZF2Ajax\Controller;
 
-use LearnZF2Ajax\Form\LoginForm;
 use LearnZF2Ajax\Model\LoginInputFilter;
 use Zend\Form\FormInterface;
-use Zend\Debug\Debug;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController {
-
+class IndexController extends AbstractActionController
+{
     protected $acceptCriteria = [
         'Zend\View\Model\JsonModel' => ['application/json'],
         'Zend\View\Model\ViewModel' => ['text/html'],
@@ -31,7 +28,7 @@ class IndexController extends AbstractActionController {
     public function __construct(FormInterface $loginForm)
     {
         $this->loginForm = $loginForm;
-    } 
+    }
 
     public function indexAction()
     {
@@ -56,4 +53,4 @@ class IndexController extends AbstractActionController {
     }
 
 
-} 
+}
