@@ -23,10 +23,11 @@ class LoginForm extends Form  {
             'name' => 'username',
             'attributes' => [
                 'type'  => 'text',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Username is admin'
             ],
             'options' => [
-                'label' => 'Username',
+                'label' => 'Username'
             ],
         ]);
 
@@ -34,7 +35,8 @@ class LoginForm extends Form  {
             'name' => 'password',
             'attributes' => [
                 'type'  => 'password',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Password is admin'
             ],
             'options' => [
                 'label' => 'Password',

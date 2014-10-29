@@ -12,6 +12,7 @@ namespace LearnZF2Ajax\Controller;
 use LearnZF2Ajax\Form\LoginForm;
 use LearnZF2Ajax\Model\LoginInputFilter;
 use Zend\Form\FormInterface;
+use Zend\Debug\Debug;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -30,19 +31,12 @@ class IndexController extends AbstractActionController {
     public function __construct(FormInterface $loginForm)
     {
         $this->loginForm = $loginForm;
-    }
+    } 
 
     public function indexAction()
     {
-        return new ViewModel(array(
-            'form' => $this->loginForm,
-        ));
-    }
-
-    public function formAjaxAction()
-    {
         $viewModel = $this->acceptableviewmodelselector($this->acceptCriteria);
-        $dataDemo = ['username' => 'admin','password' => 'admin'];
+        $result = ['result' => false,'message' => ''];
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -50,14 +44,16 @@ class IndexController extends AbstractActionController {
             $this->loginForm->setInputFilter($login->getInputFilter());
             $this->loginForm->setData($request->getPost());
 
-            if ($form->isValid()) {
-                $login->exchangeArray($this->loginForm->getData());
+            if ($this->loginForm->isValid()) {
+                $result = ['result' => true,'message' => 'Ajax request success'];
+            } else {
+                $result = ['result' => false,'message' => $this->loginForm->getMessages()];
             }
         }
 
-        $viewModel->setVariables(['form' => $form]);
-
+        $viewModel->setVariables(['form' => $this->loginForm,'data' => $result]);
         return $viewModel;
     }
 
-}
+
+} 
