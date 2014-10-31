@@ -53,7 +53,7 @@ return [
             'download' => [
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => [
-                    'route'    => '/download[/:module]',
+                    'route'    => '/download[/:module][/:compress]',
                     'defaults' => [
                         'controller' => 'Application\Controller\Download',
                         'action'     => 'learnmodule',
@@ -84,7 +84,9 @@ return [
     'controllers' => [
         'invokables' => [
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Download' => 'Application\Controller\DownloadController'
+        ],
+        'factories' => [
+            'Application\Controller\Download' => 'Application\Factory\Controller\DownloadControllerFactory'
         ],
     ],
     'view_helpers' => [

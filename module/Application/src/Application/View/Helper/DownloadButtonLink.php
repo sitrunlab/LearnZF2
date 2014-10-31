@@ -22,7 +22,7 @@ final class DownloadButtonLink extends AbstractHelper
 
     /**
      * Download link
-     * @param string $compress 'zip' | 'tgz' | other to make option
+     * @param string $compress 'zip' | 'bz2' | other to make option
      * @return string
      */
     public function __invoke($compress = 'zip')
