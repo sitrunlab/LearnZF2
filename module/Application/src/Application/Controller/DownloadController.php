@@ -11,7 +11,7 @@ class DownloadController extends AbstractActionController
 {
     public function learnmoduleAction()
     {
-        $module = $this->params()->fromQuery('module', '');
-        
+        $module = $this->params()->fromRoute('module', '');
+
     }
 }
