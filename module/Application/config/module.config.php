@@ -51,13 +51,12 @@ return [
                 ],
             ],
             'download' => [
-                'type'    => 'Segment',
+                'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => [
-                    'route'    => '/download[:/module]',
+                    'route'    => '/download[/:module]',
                     'defaults' => [
-                        '__NAMESPACE__' => 'Application\Controller',
-                        'controller'    => 'Download',
-                        'action'        => 'learnmodule',
+                        'controller' => 'Application\Controller\Download',
+                        'action'     => 'learnmodule',
                     ],
                 ],
             ],
@@ -89,8 +88,8 @@ return [
         ],
     ],
     'view_helpers' => [
-        'invokables' => [
-            'downloadbuttonlink' => 'Application\View\Helper\DownloadButtonLink',
+        'factories' => [
+            'downloadbuttonlink' => 'Application\Factory\View\Helper\DownloadButtonLinkFactory',
         ],
     ],
     'view_manager' => [
