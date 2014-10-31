@@ -8,3 +8,6 @@ php:
 install:
   - sudo apt-get install parallel
   - composer install --dev --prefer-source
+  
+notifications:
+  email: false
