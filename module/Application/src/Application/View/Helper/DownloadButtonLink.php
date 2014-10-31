@@ -25,10 +25,12 @@ final class DownloadButtonLink extends AbstractHelper
      * @param string $compress 'zip' | 'bz2' | other to make option
      * @return string
      */
-    public function __invoke($compress = 'zip')
+    public function __invoke($compress = 'zip', $moduleNamespace = '')
     {
-        $controller = $this->mvcEvent->getRouteMatch()->getParam('controller');
-        $moduleNamespace = substr($controller, 0, strpos($controller, '\\'));
+        if ($moduleNamespace === '') {
+            $controller = $this->mvcEvent->getRouteMatch()->getParam('controller');
+            $moduleNamespace = substr($controller, 0, strpos($controller, '\\'));
+        }
 
         return $this->view->url('download', array(
             'module'   => $moduleNamespace,
