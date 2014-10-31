@@ -1,6 +1,12 @@
 LearnZF2 repository
 =======================
 
+Master:
+[![Build Status](https://secure.travis-ci.org/sitrunlab/LearnZF2.png?branch=master)](http://travis-ci.org/sitrunlab/LearnZF2)
+Develop:
+[![Build Status](https://secure.travis-ci.org/sitrunlab/LearnZF2.png?branch=develop)](http://travis-ci.org/sitrunlab/LearnZF2)
+
+
 Introduction
 ------------
 This is a repository for the "Learning Zend Framework" website and contains live modules that you can view or download directly.
