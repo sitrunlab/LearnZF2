@@ -1,11 +1,12 @@
 <?php echo $this->render('layout/header'); ?>
 
+
 <div class="container container-main">
 
     <!-- sidebar -->
 
     <div class="col-lg-3 zf2-sidebar">
-        <a class="download-button-lg btn btn-success btn-lg">Download</a>
+        <a href="<?php echo $this->downloadbuttonlink('zip'); ?>" class="download-button-lg btn btn-success btn-lg">Download</a>
         <br />
         <iframe src="http://ghbtns.com/github-btn.html?user=mdo&repo=github-buttons&type=fork&count=true"
                 allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
