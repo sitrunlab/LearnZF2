@@ -1,41 +1,42 @@
 <?php echo $this->render('layout/header'); ?>
 
-        <div class="container container-main">
 
-            <!-- sidebar -->
+<div class="container container-main">
 
-            <div class="col-lg-3 zf2-sidebar">
-                <a class="download-button-lg btn btn-success btn-lg">Download</a>
-                <br />
-                <iframe src="http://ghbtns.com/github-btn.html?user=mdo&repo=github-buttons&type=fork&count=true"
-                        allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
-                <div class="fb-wrap">
-                    <div class="fb-share-button" data-layout="button_count" data-href="https://developers.facebook.com/docs/plugins/"></div>
-                </div>
-                <br />
-                <br />
+    <!-- sidebar -->
 
-                <div class="box-sidebar border-radius">
-                    <h5 class="title">Other demos</h5>
-                    <ul>
-                        <li><a href=""> Learn ajax form </a> </li>
-                        <li><a href=""> Learn ajax Upload </a> </li>
-                    </ul>
-                </div>
+    <div class="col-lg-3 zf2-sidebar">
+        <a href="<?php echo $this->downloadbuttonlink('zip'); ?>" class="download-button-lg btn btn-success btn-lg">Download</a>
+        <br />
+        <iframe src="http://ghbtns.com/github-btn.html?user=mdo&repo=github-buttons&type=fork&count=true"
+                allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+        <div class="fb-wrap">
+            <div class="fb-share-button" data-layout="button_count" data-href="https://developers.facebook.com/docs/plugins/"></div>
+        </div>
+        <br />
+        <br />
 
-                <div class="box-sidebar border-radius">
-                    <h5 class="title">Other demos</h5>
-                    <ul>
-                        <li><a href=""> Learn ajax form </a> </li>
-                        <li><a href=""> Learn ajax Upload </a> </li>
-                    </ul>
-                </div>
+        <div class="box-sidebar border-radius">
+            <h5 class="title">Other demos</h5>
+            <ul>
+                <li><a href=""> Learn ajax form </a> </li>
+                <li><a href=""> Learn ajax Upload </a> </li>
+            </ul>
+        </div>
 
-            </div>
+        <div class="box-sidebar border-radius">
+            <h5 class="title">Other demos</h5>
+            <ul>
+                <li><a href=""> Learn ajax form </a> </li>
+                <li><a href=""> Learn ajax Upload </a> </li>
+            </ul>
+        </div>
 
-            <!-- sidebar -->
+    </div>
 
-            <?php echo $this->content; ?>
-        </div> <!-- /container -->
+    <!-- sidebar -->
+
+    <?php echo $this->content; ?>
+</div> 
 
 <?php echo $this->render('layout/footer'); ?>

@@ -10,7 +10,19 @@ install:
   - composer install --dev --prefer-source
 
 script:
-  - phpunit --configuration module/Application/test/phpunit.xml module/Application/test/ApplicationTest/
+  - ls -d module/* | parallel --gnu --keep-order 'echo "Running {} CS checks"; ./vendor/bin/php-cs-fixer fix {} -v --dry-run --config-file=.php_cs;' || exit 1
+  - mkdir -p build/coverage
+  - phpunit --coverage-clover build/coverage/clover-application.xml --configuration module/Application/test/phpunit.xml module/Application/test/ApplicationTest/
+
+after_script:
+  # Merges the individual clover reports of each component into a single clover.xml
+  - php vendor/bin/coveralls -v
+
+after_success:
+  coveralls
 
 notifications:
   email: false
+
+matrix:
+  fast_finish: true
