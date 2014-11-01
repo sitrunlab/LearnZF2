@@ -15,7 +15,7 @@ class FormController extends AbstractActionController
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 echo 'Success';
-            } 
+            }
         }
 
         return new ViewModel(['form' => $form]);
