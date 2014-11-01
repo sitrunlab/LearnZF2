@@ -8,3 +8,6 @@ php:
 install:
   - sudo apt-get install parallel
   - composer install --dev --prefer-source
+
+script:
+  - phpunit --configuration module/Application/test/phpunit.xml module/Application/test/ApplicationTest/
