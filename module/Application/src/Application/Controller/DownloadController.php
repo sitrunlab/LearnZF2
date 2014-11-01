@@ -5,7 +5,6 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Paginator\Paginator;
-use Zend\Paginator\Adapter\ArrayAdapter;
 use Zend\Filter\Compress;
 
 class DownloadController extends AbstractActionController
@@ -34,12 +33,14 @@ class DownloadController extends AbstractActionController
     {
         $module = $this->params()->fromRoute('module', '');
         $compress = $this->params()->fromRoute('compress', '');
-
-        $applicationConfig = $this->getServiceLocator()->get('ApplicationConfig');
-        $modules           = $applicationConfig['modules'];
+        $modules           = $this->applicationConfig['modules'];
 
         if (in_array($module, $modules)) {
-            $archive    =  $module . '.' . (($compress == 'zip') ? 'zip' : 'bz2');
+
+            $currDateTime = date('Y-m-dHis');
+
+            $fileToArchive  = $module . '.' . (($compress == 'zip') ? 'zip' : 'bz2');
+            $archive        = $fileToArchive . '-' . $currDateTime;
             $filter     = new Compress(array(
                 'adapter' => ($compress == 'zip') ? 'Zip' : 'Bz2',
                 'options' => array(
@@ -47,14 +48,13 @@ class DownloadController extends AbstractActionController
                 ),
             ));
             $compressed = $filter->filter('./module/' . $module);
-
             $response = $this->getResponse();
 
             //setting response header....
-            $response->getHeaders()->addHeaderLine('Content-Disposition', 'attachment; filename="'. $archive  .'"');
-            $response->getHeaders()->addHeaderLine('Content-Length', filesize('./data/' . $archive));
+            $response->getHeaders()->addHeaderLine('Content-Disposition', 'attachment; filename="'. $fileToArchive  .'"');
+            $response->getHeaders()->addHeaderLine('Content-Length', filesize($compressed));
             // set response with get content of file
-            $response->setContent(file_get_contents('./data/' . $archive));
+            $response->setContent(file_get_contents($compressed));
 
             //remove file after no need
             @unlink('./data/' . $archive);

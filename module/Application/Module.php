@@ -9,7 +9,6 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
-
 class Module  implements
     AutoloaderProviderInterface,
     BootstrapListenerInterface,
@@ -30,14 +29,15 @@ class Module  implements
     /**
      * Handle layout on 'dispatch' event
      *
-     * @param MvcEvent $e
+     * @param  MvcEvent $e
      * @return void
      */
-    public function onDispatch(MvcEvent $e) {
+    public function onDispatch(MvcEvent $e)
+    {
         $routeMatch = $e->getRouteMatch();
         $activeController = $routeMatch->getParam('controller');
 
-        if($activeController!='Application\Controller\Index') {
+        if ($activeController!='Application\Controller\Index') {
             $controller = $e->getTarget();
             $controller->layout('layout/2columns');
         }
