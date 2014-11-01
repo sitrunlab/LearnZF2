@@ -12,6 +12,7 @@ namespace LearnZF2Ajax\Controller;
 use LearnZF2Ajax\Model\LoginInputFilter;
 use Zend\Form\FormInterface;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\JsonModel;
 
 class IndexController extends AbstractActionController
 {
@@ -32,8 +33,8 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        $viewModel = $this->acceptableviewmodelselector($this->acceptCriteria);
         $result = ['result' => false,'message' => ''];
+        $viewModel = $this->acceptableviewmodelselector($this->acceptCriteria);
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -46,6 +47,10 @@ class IndexController extends AbstractActionController
             } else {
                 $result = ['result' => false,'message' => $this->loginForm->getMessages()];
             }
+        }
+
+        if (!$viewModel instanceof JsonModel && $request->isXmlHttpRequest()) {
+            $viewModel = new JsonModel();
         }
 
         $viewModel->setVariables(['form' => $this->loginForm,'data' => $result]);
