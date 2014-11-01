@@ -11,7 +11,6 @@
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "dev-master#fcbb09b5204",
-        "satooshi/php-coveralls": "dev-master",
-        "sebastianbergmann/phpcov": "1.1.0"
+        "satooshi/php-coveralls": "dev-master"
     }
 }

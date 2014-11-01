@@ -11,12 +11,12 @@ install:
 
 script:
   - ls -d module/* | parallel --gnu --keep-order 'echo "Running {} CS checks"; ./vendor/bin/php-cs-fixer fix {} -v --dry-run --config-file=.php_cs;' || exit 1
-  - phpunit --configuration module/Application/test/phpunit.xml module/Application/test/ApplicationTest/ --coverage-php build/coverage/coverage-application.cov
+  - mkdir -p build/coverage
+  - phpunit --coverage-clover build/coverage/clover-application.xml --configuration module/Application/test/phpunit.xml module/Application/test/ApplicationTest/
 
 after_script:
   # Merges the individual clover reports of each component into a single clover.xml
-  - php vendor/bin/phpcov.php --merge --clover build/logs/clover.xml --whitelist library build/coverage
-  - php vendor/bin/coveralls
+  - php vendor/bin/coveralls -v
 
 after_success:
   coveralls
