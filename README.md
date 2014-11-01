@@ -1,5 +1,5 @@
 LearnZF2 repository
-=======================
+===================
 
 [![Build Status](https://secure.travis-ci.org/sitrunlab/LearnZF2.png?branch=develop)](http://travis-ci.org/sitrunlab/LearnZF2)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sitrunlab/LearnZF2/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/sitrunlab/LearnZF2/?branch=develop)
