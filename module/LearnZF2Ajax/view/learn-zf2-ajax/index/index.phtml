@@ -25,3 +25,37 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    jQuery('document').ready(function(){
+        jQuery('#login').submit(function(e){
+            var postData = $(this).serializeArray();
+            var formURL = $(this).attr("action");
+            var mess = '';
+            $.ajax(
+                {
+                    url : formURL,
+                    type: "POST",
+                    dataType: "json",
+                    data : postData,
+                    success:function(data, textStatus, jqXHR)
+                    {
+                        console.log(data);
+                        if(!data.data.result) {
+                            jQuery.each(data.data.message,function(k,v){
+                                jQuery.each(v,function(kk,vv){
+                                   mess += vv + '\n';
+                                });
+                                alert(k + ' : ' + '\n'  + mess);
+                                mess = '';
+                            });
+                        } else {
+                            alert(data.data.message);
+                        }
+                    }
+                });
+            e.preventDefault(); //STOP default action
+            return false;
+        });
+    });
+</script>

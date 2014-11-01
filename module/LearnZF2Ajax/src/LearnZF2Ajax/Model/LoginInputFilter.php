@@ -11,9 +11,10 @@ namespace LearnZF2Ajax\Model;
 use Zend\InputFilter\Factory as InputFactory;     // <-- Add this import
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface;
 
-class LoginInputFilter implements InputFilterAwareInterface {
-
+class LoginInputFilter implements InputFilterAwareInterface
+{
     public $username;
     public $password;
     protected $inputFilter;
@@ -48,10 +49,16 @@ class LoginInputFilter implements InputFilterAwareInterface {
                         'name'    => 'StringLength',
                         'options' => [
                             'encoding' => 'UTF-8',
-                            'min'      => 8,
+                            'min'      => 4,
                             'max'      => 10,
                         ],
                     ],
+                    [
+                        'name' => 'Regex',
+                        'options' => [
+                            'pattern' => '/admin/'
+                        ]
+                    ]
                 ],
             ]));
 
@@ -67,10 +74,16 @@ class LoginInputFilter implements InputFilterAwareInterface {
                         'name'    => 'StringLength',
                         'options' => [
                             'encoding' => 'UTF-8',
-                            'min'      => 8,
+                            'min'      => 4,
                             'max'      => 10,
                         ],
                     ],
+                    [
+                        'name' => 'Regex',
+                        'options' => [
+                            'pattern' => '/admin/'
+                        ]
+                    ]
                 ],
             ]));
 
@@ -81,4 +94,4 @@ class LoginInputFilter implements InputFilterAwareInterface {
         return $this->inputFilter;
     }
 
-} 
+}

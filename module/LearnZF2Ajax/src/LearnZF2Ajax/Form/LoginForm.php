@@ -11,8 +11,8 @@ namespace LearnZF2Ajax\Form;
 
 use Zend\Form\Form;
 
-class LoginForm extends Form  {
-
+class LoginForm extends Form
+{
     public function __construct($name = null)
     {
         // we want to ignore the name passed
@@ -23,10 +23,11 @@ class LoginForm extends Form  {
             'name' => 'username',
             'attributes' => [
                 'type'  => 'text',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Username is admin'
             ],
             'options' => [
-                'label' => 'Username',
+                'label' => 'Username'
             ],
         ]);
 
@@ -34,7 +35,8 @@ class LoginForm extends Form  {
             'name' => 'password',
             'attributes' => [
                 'type'  => 'password',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Password is admin'
             ],
             'options' => [
                 'label' => 'Password',
@@ -43,4 +45,4 @@ class LoginForm extends Form  {
 
     }
 
-} 
+}
