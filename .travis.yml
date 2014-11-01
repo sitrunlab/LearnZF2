@@ -15,7 +15,7 @@ script:
   - phpunit --coverage-clover build/coverage/clover-application.xml --configuration module/Application/test/phpunit.xml module/Application/test/ApplicationTest/
 
 after_script:
-  # Merges the individual clover reports of each component into a single clover.xml
+  # todo ? : Merges the individual clover reports of each component into a single clover.xml
   - php vendor/bin/coveralls -v
 
 after_success:

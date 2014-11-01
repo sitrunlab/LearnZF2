@@ -1,0 +1,11 @@
+tools:
+    external_code_coverage:
+        timeout: 600
+        runs: 3
+checks:
+    php:
+        code_rating: true
+        duplication: true
+filter:
+    excluded_paths: ["vendor/*","public/*","data/*","config/*"]
+    
