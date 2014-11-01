@@ -9,17 +9,15 @@ install:
   - sudo apt-get install parallel
   - composer install --dev --prefer-source
 
+before_script:
+  - mkdir -p build/logs
+
 script:
   - ls -d module/* | parallel --gnu --keep-order 'echo "Running {} CS checks"; ./vendor/bin/php-cs-fixer fix {} -v --dry-run --config-file=.php_cs;' || exit 1
-  - mkdir -p build/coverage
-  - phpunit --coverage-clover build/coverage/clover-application.xml --configuration module/Application/test/phpunit.xml module/Application/test/ApplicationTest/
+  - phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
-  # todo ? : Merges the individual clover reports of each component into a single clover.xml
   - php vendor/bin/coveralls -v
-
-after_success:
-  coveralls
 
 notifications:
   email: false
