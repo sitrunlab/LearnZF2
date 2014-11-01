@@ -7,15 +7,17 @@ php:
 
 install:
   - sudo apt-get install parallel
+  - sudo pear install -a phpunit/PHP_CodeCoverage
+  - sudo sudo pear install -a ezc/eZComponents
   - composer install --dev --prefer-source
 
 before_script:
   - mkdir -p build/coverage
   - mkdir -p build/logs
+  - wget https://phar.phpunit.de/phpcov.phar
 
 script:
   - ls -d module/* | parallel --gnu --keep-order 'echo "Running {} CS checks"; ./vendor/bin/php-cs-fixer fix {} -v --dry-run --config-file=.php_cs;' || exit 1
-  - mkdir -p build/coverage
   - phpunit --coverage-clover build/coverage/clover-application.xml --configuration module/Application/test/phpunit.xml module/Application/test/ApplicationTest/
 
 after_script:
