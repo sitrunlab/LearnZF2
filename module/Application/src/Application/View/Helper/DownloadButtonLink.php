@@ -5,6 +5,9 @@ namespace Application\View\Helper;
 use Zend\Mvc\MvcEvent;
 use Zend\View\Helper\AbstractHelper;
 
+/**
+ * Download Button Link View Helper
+ */
 final class DownloadButtonLink extends AbstractHelper
 {
     /**
