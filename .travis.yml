@@ -10,18 +10,14 @@ install:
   - composer install --dev --prefer-source
 
 before_script:
-  - mkdir -p build/coverage
   - mkdir -p build/logs
-  - wget https://phar.phpunit.de/phpcov.phar
 
 script:
   - ls -d module/* | parallel --gnu --keep-order 'echo "Running {} CS checks"; ./vendor/bin/php-cs-fixer fix {} -v --dry-run --config-file=.php_cs;' || exit 1
-  - phpunit --coverage-clover build/coverage/clover-application.xml --configuration module/Application/test/phpunit.xml module/Application/test/ApplicationTest/
+  - phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
-  # Merges the individual clover reports of each component into a single clover.xml
-  - php phpcov.phar merge --clover build/logs/clover.xml build/coverage/
-  - php vendor/bin/coveralls
+  - php vendor/bin/coveralls -v
 
 notifications:
   email: false
