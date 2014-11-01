@@ -21,8 +21,8 @@ class LoginForm extends Form
 
         $this->add([
             'name' => 'username',
+            'type'  => 'Text',
             'attributes' => [
-                'type'  => 'text',
                 'class' => 'form-control',
                 'placeholder' => 'Username is admin'
             ],
@@ -33,8 +33,8 @@ class LoginForm extends Form
 
         $this->add([
             'name' => 'password',
+            'type'  => 'Password',
             'attributes' => [
-                'type'  => 'password',
                 'class' => 'form-control',
                 'placeholder' => 'Password is admin'
             ],
