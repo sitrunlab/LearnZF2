@@ -7,8 +7,6 @@ php:
 
 install:
   - sudo apt-get install parallel
-  - sudo pear install -a phpunit/PHP_CodeCoverage
-  - sudo sudo pear install -a ezc/eZComponents
   - composer install --dev --prefer-source
 
 before_script:
@@ -22,7 +20,7 @@ script:
 
 after_script:
   # Merges the individual clover reports of each component into a single clover.xml
-  - php vendor/bin/phpcov.php --merge --clover build/logs/clover.xml --whitelist module build/coverage
+  - php phpcov.phar merge --clover build/logs/clover.xml build/coverage/
   - php vendor/bin/coveralls
 
 notifications:
