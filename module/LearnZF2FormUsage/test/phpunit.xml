@@ -1,0 +1,5 @@
+<phpunit bootstrap="Bootstrap.php" colors="true">
+    <testsuite name="LearnZF2FormUsage" >
+        <directory>./LearnZF2FormUsageTest</directory>
+    </testsuite>
+</phpunit>
