@@ -8,7 +8,7 @@ use Zend\ServiceManager\ServiceManager;
 use RuntimeException;
 
 error_reporting(E_ALL | E_STRICT);
-
+chdir(__DIR__);
 
 /**
  * Test bootstrap, for setting up autoloading
@@ -35,9 +35,7 @@ class Bootstrap
                 'module_paths' => $zf2ModulePaths,
             ),
             'modules' => array(
-                'Application',
-                'LearnZF2Ajax',
-                'LearnZF2FormUsage',
+                'LearnZF2FormUsage'
             )
         );
 
