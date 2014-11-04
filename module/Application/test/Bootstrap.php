@@ -104,6 +104,7 @@ class Bootstrap
             }
             $previousDir = $dir;
         }
+
         return $dir . '/' . $path;
     }
 }
