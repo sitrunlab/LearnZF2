@@ -2,4 +2,9 @@
     <testsuite name="LearnZF2FormUsage" >
         <directory>./LearnZF2FormUsageTest</directory>
     </testsuite>
+    <filter>
+        <blacklist>
+            <directory suffix=".php">./../test/</directory>
+        </blacklist>
+    </filter>
 </phpunit>

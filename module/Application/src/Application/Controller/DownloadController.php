@@ -31,9 +31,10 @@ class DownloadController extends AbstractActionController
     public function learnmoduleAction()
     {
         $module = $this->params()->fromRoute('module', '');
-        $compress = $this->params()->fromRoute('compress', '');
+        $compress = $this->params()->fromRoute('compress', 'zip');
         $modules           = $this->applicationConfig['modules'];
 
+        $response = $this->getResponse();
         if (in_array($module, $modules)) {
 
             $currDateTime = date('Y-m-dHis');
@@ -47,7 +48,6 @@ class DownloadController extends AbstractActionController
                 ),
             ));
             $compressed = $filter->filter('./module/' . $module);
-            $response = $this->getResponse();
 
             //setting response header....
             $response->getHeaders()->addHeaderLine('Content-Disposition', 'attachment; filename="'. $fileToArchive  .'"');
