@@ -17,8 +17,8 @@ return [
         ],
     ],
     'controllers' => [
-        'invokables' => [
-            'LearnZF2FormUsage\Controller\Form' => 'LearnZF2FormUsage\Controller\FormController'
+        'factories' => [
+            'LearnZF2FormUsage\Controller\Form' => 'LearnZF2FormUsage\Factory\Controller\FormControllerFactory'
         ],
     ],
     'view_manager' => [

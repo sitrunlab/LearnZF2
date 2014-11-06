@@ -2,22 +2,41 @@
 
 namespace LearnZF2FormUsage\Controller;
 
+use Zend\Form\FormInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 class FormController extends AbstractActionController
 {
+    /**
+     * @var FormInterface
+     */
+    protected $form;
+
+    /**
+     * Construct form property
+     *
+     * @param FormInterface $form
+     */
+    public function __construct(FormInterface $form)
+    {
+        $this->form = $form;
+    }
+
     public function indexAction()
     {
-        $form = $this->getServiceLocator()->get('FormElementManager')->get('LearnZF2FormUsage\Form\LearnZF2Form');
         $request = $this->getRequest();
+        $formMessages = array();
+
         if ($request->isPost()) {
-            $form->setData($request->getPost());
-            if ($form->isValid()) {
-                echo 'Success';
-            }
+            $this->form->setData($request->getPost());
+            $this->form->isValid();
+            $formMessages = $this->form->getMessages();
         }
 
-        return new ViewModel(['form' => $form]);
+        return new ViewModel([
+            'form' => $this->form,
+            'formMessages' => $formMessages,
+        ]);
     }
 }

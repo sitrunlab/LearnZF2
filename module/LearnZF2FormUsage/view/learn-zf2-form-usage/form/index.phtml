@@ -18,3 +18,8 @@ echo $this->formRow($form->get('address'));
 echo $this->formRow($form->get('direction'));
 echo $this->formRow($form->get('submit'));
 echo $this->form()->closeTag();
+?>
+
+<?php if (empty($this->formMessages)) : ?>
+    <h3>Success!</h3>
+<?php endif; ?>
