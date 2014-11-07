@@ -6,7 +6,22 @@
     <!-- sidebar -->
 
     <div class="col-lg-3 zf2-sidebar">
-        <a href="<?php echo $this->downloadbuttonlink('zip'); ?>" class="download-button-lg btn btn-success btn-lg">Download</a>
+
+        <div class="donation-box">
+            <a href="" class="download-button-lg btn-donate btn btn-info btn-lg">
+                <img src="<?php echo $this->basePath('img/cup.png') ?>" alt="donate" style="width: 32px; height: 32px;" />
+                Buy us a cup of coffee
+            </a>
+            <div class="donation-desc">
+                Our service is free. But your donation can help us keep running.
+                To rent a server and domain, to buy us a cup of coffee, to reduce our activity in paid stuff and make this service better.
+                You can send us a donation to {Bank Account} in the name of {Name} with Swifcode {SwiftCode}
+            </div>
+        </div>
+        <a href="<?php echo $this->downloadbuttonlink('zip'); ?>" class="download-button-lg btn btn-success btn-lg">
+            <img src="<?php echo $this->basePath('img/download.png') ?>" alt="download" style="width: 32px; height: 32px;" />
+            Download module &nbsp; &nbsp; &nbsp;
+        </a>
         <br />
         <iframe src="http://ghbtns.com/github-btn.html?user=mdo&repo=github-buttons&type=fork&count=true"
                 allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
@@ -15,6 +30,7 @@
         </div>
         <br />
         <br />
+
 
         <div class="box-sidebar border-radius">
             <h5 class="title">Other demos</h5>

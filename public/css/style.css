@@ -2,6 +2,16 @@ body {
   padding-top: 60px;
   background-color: #d0d0d0; }
 
+.donation-box {
+  text-align: center;
+  height: auto;
+  padding-bottom: 10px; }
+  .donation-box .donation-desc {
+    text-align: left;
+    background: #dfdfdf;
+    padding: 10px;
+    display: none; }
+
 .container-main {
   min-height: 450px;
   padding-top: 40px;
