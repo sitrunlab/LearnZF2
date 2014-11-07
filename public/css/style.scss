@@ -4,6 +4,7 @@ $third-color  : #676767;
 $fourth-color : #919191;
 $fifth-color  : #a9a9a9;
 $sixth-color  : #c9c9c9;
+$seventh-color  : #dfdfdf;
 
 $main-orange  : #FF9B31;
 
@@ -21,6 +22,19 @@ body {
   padding-top: 60px;
   background-color: $main-color;
 }
+
+.donation-box{
+  text-align: center;
+  height: auto;
+  padding-bottom: 10px;
+  .donation-desc{
+    text-align: left;
+    background: $seventh-color;
+    padding: 10px;
+    display: none;
+  }
+}
+
 
 
 .container-main{
