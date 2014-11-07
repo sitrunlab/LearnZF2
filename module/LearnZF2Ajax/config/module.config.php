@@ -33,11 +33,20 @@ return [
         ],
     ],
     'controllers' => [
-        'invokables' => [
-            'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Controller\IndexController'
+        'factories' => [
+            'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Factory\Controller\IndexControllerFactory'
         ],
     ],
     'view_manager' => [
+        'factories' => [
+            'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Factory\Controller\IndexControllerFactory'
+        ],
+    ],
+
+    'view_manager' => [
+        'strategies' => [
+            'ViewJsonStrategy',
+        ],
         'template_path_stack' => [
             __DIR__ . '/../view',
         ],

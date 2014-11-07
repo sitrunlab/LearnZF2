@@ -10,65 +10,32 @@
     </tr>
     </thead>
     <tbody>
+    <?php foreach($this->paginator as $row) : ?>
     <tr>
         <td>
-            Lorem ipsum sadsadasdsa
+            <?php echo $row['module_name']; ?>
             <div class="link-module">
-                <a href="#" class="glyphicon glyphicon-new-window"></a> &nbsp;
-                <a href="#" class="glyphicon glyphicon-cloud-download"></a>
+                <a href="<?php echo $this->url($row['module_route']); ?>" class="glyphicon glyphicon-new-window"></a> &nbsp;
+                <a href="<?php echo $this->downloadbuttonlink('zip', $row['module_name']); ?>" class="glyphicon glyphicon-cloud-download"></a>
             </div>
         </td>
-        <td>Applies the hover color to a particular row or cell</td>
+        <td><?php echo $row['module_desc']; ?></td>
     </tr>
-    <tr>
-        <td>
-            Lorem ipsum sadsadasdsa
-            <div class="link-module">
-                <a href="#" class="glyphicon glyphicon-new-window"></a> &nbsp;
-                <a href="#" class="glyphicon glyphicon-cloud-download"></a>
-            </div>
-        </td>
-        <td>Applies the hover color to a particular row or cell</td>
-    </tr>
-    <tr>
-        <td>
-            Lorem ipsum sadsadasdsa
-            <div class="link-module">
-                <a href="#" class="glyphicon glyphicon-new-window"></a> &nbsp;
-                <a href="#" class="glyphicon glyphicon-cloud-download"></a>
-            </div>
-        </td>
-        <td>Applies the hover color to a particular row or cell</td>
-    </tr>
-    <tr>
-        <td>
-            Lorem ipsum sadsadasdsa
-            <div class="link-module">
-                <a href="#" class="glyphicon glyphicon-new-window"></a> &nbsp;
-                <a href="#" class="glyphicon glyphicon-cloud-download"></a>
-            </div>
-        </td>
-        <td>Applies the hover color to a particular row or cell</td>
-    </tr>
-    <tr>
-        <td>
-            Lorem ipsum sadsadasdsa
-            <div class="link-module">
-                <a href="#" class="glyphicon glyphicon-new-window"></a> &nbsp;
-                <a href="#" class="glyphicon glyphicon-cloud-download"></a>
-            </div>
-        </td>
-        <td>Applies the hover color to a particular row or cell</td>
-    </tr>
+    <?php endforeach; ?>
     </tbody>
 </table>
 
-<ul class="pagination">
-    <li><a href="#">&laquo;</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">&raquo;</a></li>
-</ul>
+		<?php
+					// add at the end of the file after the table
+					echo $this->paginationControl(
+					    // the paginator object
+					    $this->paginator,
+					    // the scrolling style
+					    'sliding',
+					    array('pager.phtml', 'Application'),
+					    // the route to link to when a user clicks a control link
+					    array(
+						             'route' => 'home'
+					    )
+					);
+					?>

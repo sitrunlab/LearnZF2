@@ -1,0 +1,17 @@
+<?php echo $this->render('layout/header'); ?>
+
+        <div class="container-fluid jumbo-home">
+            <div class="container">
+                <div class="jumbotron">
+                    <h2><?php echo sprintf($this->translate('Welcome to %sLearnZF2%s site'), '<span class="zf-green">', '</span>') ?></h2>
+                    <p><?php echo sprintf($this->translate('We provide you real live example in using Zend framework 2'), '<a href="https://github.com/zendframework/ZendSkeletonApplication" target="_blank">', '</a>', \Zend\Version\Version::VERSION) ?></p>
+                    <p><a class="btn btn-success btn-lg" href="https://github.com/zendframework/zf2" target="_blank"><?php echo $this->translate('Fork us on GitHub') ?> &raquo;</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container container-main">
+            <?php echo $this->content; ?>
+        </div> <!-- /container -->
+
+<?php echo $this->render('layout/footer'); ?>

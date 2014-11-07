@@ -1,0 +1,25 @@
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'learn-zf2-form-usage',
+    array(
+        'action'     => 'index'
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formRow($form->get('name'));
+echo $this->formRow($form->get('gender'));
+echo $this->formRow($form->get('hobby'));
+echo $this->formRow($form->get('email'));
+echo $this->formRow($form->get('birth'));
+echo $this->formRow($form->get('address'));
+echo $this->formRow($form->get('direction'));
+echo $this->formRow($form->get('submit'));
+echo $this->form()->closeTag();
+?>
+
+<?php if (empty($this->formMessages)) : ?>
+    <h3>Success!</h3>
+<?php endif; ?>

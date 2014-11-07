@@ -50,6 +50,16 @@ return [
                     ],
                 ],
             ],
+            'download' => [
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => [
+                    'route'    => '/download[/:module][/:compress]',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Download',
+                        'action'     => 'learnmodule',
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
@@ -73,7 +83,15 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+        ],
+        'factories' => [
+            'Application\Controller\Download' => 'Application\Factory\Controller\DownloadControllerFactory'
+        ],
+    ],
+    'view_helpers' => [
+        'factories' => [
+            'downloadbuttonlink' => 'Application\Factory\View\Helper\DownloadButtonLinkFactory',
         ],
     ],
     'view_manager' => [
