@@ -1,0 +1,10 @@
+<phpunit bootstrap="Bootstrap.php" colors="true">
+    <testsuite name="LearnZF2Ajax" >
+        <directory>./LearnZF2AjaxTest</directory>
+    </testsuite>
+    <filter>
+        <blacklist>
+            <directory suffix=".php">./../test/</directory>
+        </blacklist>
+    </filter>
+</phpunit>

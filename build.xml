@@ -3,7 +3,7 @@
     <target name="phpunit">
         <parallel threadCount="2">
             <echo message="Running tests" />
-            
+
             <exec executable="phpunit" failonerror="true">
                 <arg line="-c ${basedir}/module/Application/test/phpunit.xml" />
                 <arg line="--coverage-php build/coverage/coverage-application.cov" />
@@ -13,7 +13,12 @@
                 <arg line="-c ${basedir}/module/LearnZF2FormUsage/test/phpunit.xml" />
                 <arg line="--coverage-php build/coverage/coverage-learnzf2formusage.cov" />
             </exec>
-            
+
+            <exec executable="phpunit" failonerror="true">
+                <arg line="-c ${basedir}/module/LearnZF2Ajax/test/phpunit.xml" />
+                <arg line="--coverage-php build/coverage/coverage-learnzf2ajax.cov" />
+            </exec>
+
         </parallel>
     </target>
 </project>
