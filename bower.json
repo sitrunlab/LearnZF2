@@ -5,6 +5,7 @@
     "bootstrap": "3.0.3",
     "jquery": "1.10.2",
     "jquery-ui": "1.10.3",
-    "selectize": "0.8.5"
+    "selectize": "0.8.5",
+    "prism": "gh-pages"
   }
 }
