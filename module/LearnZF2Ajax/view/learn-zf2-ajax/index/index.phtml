@@ -1,5 +1,7 @@
 <div class="col-lg-9">
 
+    <h1>Ajax example with Zend Framework 2</h1>
+
     <div class="demo-box">
         <div class="col-lg-4">
             <?php
@@ -23,6 +25,62 @@
             ?>
         </div>
     </div>
+
+    <p>
+        This example contains about <strong>How to use Ajax in Zend framework 2</strong> codes,
+        The most important parts of using Ajax in Zend Framework are these things:
+    </p>
+
+    1. <code>ViewJsonStrategy</code> to your config.
+    <pre>
+        <code class="language-php">
+            <?php echo htmlentities("
+                'view_manager' => [
+                    'strategies' => [
+                        'ViewJsonStrategy',
+                    ],
+                    'template_path_stack' => [
+                        __DIR__ . '/../view',
+                    ],
+                ],
+            ");
+            ?>
+        </code>
+    </pre>
+
+
+    2. <code>acceptableviewmodelselector</code> controller plugin.
+    <pre>
+        <code class="language-php">
+            <?php echo htmlentities("
+                'view_manager' => [
+                    'strategies' => [
+                        'ViewJsonStrategy',
+                    ],
+                    'template_path_stack' => [
+                        __DIR__ . '/../view',
+                    ],
+                ],
+            ");
+            ?>
+        </code>
+    </pre>
+
+    3. <code>JsonModel</code>.
+        <pre>
+        <code class="language-php">
+            <?php echo htmlentities('
+                if (!$viewModel instanceof JsonModel && $request->isXmlHttpRequest()) {
+                    $viewModel = new JsonModel();
+                }
+            ');
+            ?>
+        </code>
+    </pre>
+
+    <p>
+        By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
+    </p>
 
 </div>
 

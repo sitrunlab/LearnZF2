@@ -1,25 +1,45 @@
-<?php
-$form = $this->form;
-$form->setAttribute('action', $this->url(
-    'learn-zf2-form-usage',
-    array(
-        'action'     => 'index'
-    )
-));
-$form->prepare();
 
-echo $this->form()->openTag($form);
-echo $this->formRow($form->get('name'));
-echo $this->formRow($form->get('gender'));
-echo $this->formRow($form->get('hobby'));
-echo $this->formRow($form->get('email'));
-echo $this->formRow($form->get('birth'));
-echo $this->formRow($form->get('address'));
-echo $this->formRow($form->get('direction'));
-echo $this->formRow($form->get('submit'));
-echo $this->form()->closeTag();
-?>
+<div class="col-lg-9">
 
-<?php if (empty($this->formMessages)) : ?>
-    <h3>Success!</h3>
-<?php endif; ?>
+    <h1>Ajax example with Zend Framework 2</h1>
+
+    <div class="demo-box">
+        <div class="col-lg-4">
+            <?php
+            $form = $this->form;
+            $form->setAttribute('action', $this->url(
+                'learn-zf2-form-usage',
+                array(
+                    'action'     => 'index'
+                )
+            ));
+            $form->prepare();
+
+            echo $this->form()->openTag($form);
+            echo $this->formRow($form->get('name'));
+            echo $this->formRow($form->get('gender'));
+            echo $this->formRow($form->get('hobby'));
+            echo $this->formRow($form->get('email'));
+            echo $this->formRow($form->get('birth'));
+            echo $this->formRow($form->get('address'));
+            echo $this->formRow($form->get('direction'));
+            echo $this->formRow($form->get('submit'));
+            echo $this->form()->closeTag();
+            ?>
+
+            <?php if (empty($this->formMessages)) : ?>
+                <h3>Success!</h3>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <p>
+        This example contains about <strong>How to use Ajax in Zend framework 2</strong> codes,
+        The most important parts of using Ajax in Zend Framework are these things:
+    </p>
+
+    <p>
+        By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
+    </p>
+
+</div>

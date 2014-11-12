@@ -13,10 +13,15 @@
     <!-- Le styles -->
     <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
         ->prependStylesheet($this->basePath() . '/css/style.css')
-        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
+        ->prependStylesheet($this->basePath() . '/js/dependencies/prism/themes/prism-okaidia.css')
+    ?>
 
     <!-- Scripts -->
     <?php echo $this->headScript()
+        ->prependFile($this->basePath() . '/js/dependencies/prism/components/prism-php.js')
+        ->prependFile($this->basePath() . '/js/dependencies/prism/components.js')
+        ->prependFile($this->basePath() . '/js/dependencies/prism/prism.js')
         ->prependFile($this->basePath() . '/js/javascript.js')
         ->prependFile($this->basePath() . '/js/bootstrap.min.js')
         ->prependFile($this->basePath() . '/js/jquery.min.js')
