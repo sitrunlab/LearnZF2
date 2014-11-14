@@ -8,6 +8,7 @@ use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\View\Model\JsonModel;
 
 class Module  implements
     AutoloaderProviderInterface,
@@ -51,7 +52,9 @@ class Module  implements
 
             $controllerClass = get_class($controller);
             $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
-            $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
+            if (!$e->getViewModel() instanceof JsonModel) {
+                $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
+            }
         }
     }
 
@@ -63,7 +66,9 @@ class Module  implements
      */
     public function onRender(MvcEvent $e)
     {
-        $e->getViewModel()->setVariable('modules_list', $this->services->get('Config')['modules_list']);
+        if (!$e->getViewModel() instanceof JsonModel) {
+            $e->getViewModel()->setVariable('modules_list', $this->services->get('Config')['modules_list']);
+        }
     }
 
     /**
