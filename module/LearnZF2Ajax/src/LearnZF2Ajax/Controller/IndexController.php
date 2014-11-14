@@ -53,9 +53,8 @@ class IndexController extends AbstractActionController
             $viewModel = new JsonModel();
         }
 
-        $viewModel->setVariables(['form' => $this->loginForm,'data' => $result]);
+        $viewModel->setVariables(['form' => $this->loginForm, 'data' => $result]);
+
         return $viewModel;
     }
-
-
 }

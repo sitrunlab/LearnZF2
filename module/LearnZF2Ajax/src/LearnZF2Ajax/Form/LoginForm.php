@@ -8,7 +8,6 @@
 
 namespace LearnZF2Ajax\Form;
 
-
 use Zend\Form\Form;
 
 class LoginForm extends Form
@@ -24,10 +23,10 @@ class LoginForm extends Form
             'type'  => 'Text',
             'attributes' => [
                 'class' => 'form-control',
-                'placeholder' => 'Username is admin'
+                'placeholder' => 'Username is admin',
             ],
             'options' => [
-                'label' => 'Username'
+                'label' => 'Username',
             ],
         ]);
 
@@ -36,13 +35,11 @@ class LoginForm extends Form
             'type'  => 'Password',
             'attributes' => [
                 'class' => 'form-control',
-                'placeholder' => 'Password is admin'
+                'placeholder' => 'Password is admin',
             ],
             'options' => [
                 'label' => 'Password',
             ],
         ]);
-
     }
-
 }

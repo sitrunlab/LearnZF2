@@ -36,27 +36,26 @@ class DownloadController extends AbstractActionController
 
         $response = $this->getResponse();
         if (in_array($module, $modules)) {
-
             $currDateTime = date('Y-m-dHis');
 
-            $fileToArchive  = $module . '.' . (($compress == 'zip') ? 'zip' : 'bz2');
-            $archive        = $fileToArchive . '-' . $currDateTime;
+            $fileToArchive  = $module.'.'.(($compress == 'zip') ? 'zip' : 'bz2');
+            $archive        = $fileToArchive.'-'.$currDateTime;
             $filter     = new Compress(array(
                 'adapter' => ($compress == 'zip') ? 'Zip' : 'Bz2',
                 'options' => array(
-                    'archive' =>  './data/' . $archive,
+                    'archive' =>  './data/'.$archive,
                 ),
             ));
-            $compressed = $filter->filter('./module/' . $module);
+            $compressed = $filter->filter('./module/'.$module);
 
             //setting response header....
-            $response->getHeaders()->addHeaderLine('Content-Disposition', 'attachment; filename="'. $fileToArchive  .'"');
+            $response->getHeaders()->addHeaderLine('Content-Disposition', 'attachment; filename="'.$fileToArchive.'"');
             $response->getHeaders()->addHeaderLine('Content-Length', filesize($compressed));
             // set response with get content of file
             $response->setContent(file_get_contents($compressed));
 
             //remove file after no need
-            @unlink('./data/' . $archive);
+            @unlink('./data/'.$archive);
 
             return $response;
         }

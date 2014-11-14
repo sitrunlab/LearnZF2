@@ -1,7 +1,7 @@
 
 <div class="col-lg-9">
 
-    <h1>Ajax example with Zend Framework 2</h1>
+    <h1>Form with Zend\Form sample usage</h1>
 
     <div class="demo-box">
         <div class="col-lg-4">
@@ -14,29 +14,298 @@
                 )
             ));
             $form->prepare();
-
             echo $this->form()->openTag($form);
-            echo $this->formRow($form->get('name'));
-            echo $this->formRow($form->get('gender'));
-            echo $this->formRow($form->get('hobby'));
-            echo $this->formRow($form->get('email'));
-            echo $this->formRow($form->get('birth'));
-            echo $this->formRow($form->get('address'));
-            echo $this->formRow($form->get('direction'));
-            echo $this->formRow($form->get('submit'));
-            echo $this->form()->closeTag();
             ?>
 
-            <?php if (empty($this->formMessages)) : ?>
+            <div class="form-group">
+                <label><?php echo $form->get('name')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('name'));
+                echo $this->formElementErrors($form->get('name'));
+                 ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('gender')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('gender'));
+                echo $this->formElementErrors($form->get('gender')); ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('hobby')->getLabel(); ?></label>
+                <?php echo $this->formMultiCheckbox($form->get('hobby'));
+                echo $this->formElementErrors($form->get('hobby')); ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('email')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('email'));
+                echo $this->formElementErrors($form->get('email'));?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('birth')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('birth'));
+                echo $this->formElementErrors($form->get('birth')); ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('address')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('address'));
+                echo $this->formElementErrors($form->get('address')); ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('direction')->getLabel(); ?></label>
+                <?php echo $this->formRadio($form->get('direction'));
+                echo $this->formElementErrors($form->get('direction')); ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('submit')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('submit')) ?>
+            </div>
+
+            <?php echo $this->form()->closeTag(); ?>
+
+            <?php if (empty($this->formMessages) && $this->isPost === true) : ?>
                 <h3>Success!</h3>
             <?php endif; ?>
         </div>
     </div>
 
     <p>
-        This example contains about <strong>How to use Ajax in Zend framework 2</strong> codes,
-        The most important parts of using Ajax in Zend Framework are these things:
+        This example contains about <strong>How to use Form with Zend\Form  in Zend framework 2</strong> codes,
+        This demo demonstrate to use Zend\Form via Form class that extends Zend\Form use LearnZF2Form like below :
     </p>
+
+    <code>LearnZF2FormUsage\Form\LearnZF2Form</code>
+    <pre>
+        <code class="language-php">
+namespace LearnZF2FormUsage\Form;
+
+use Zend\Form\Form;
+use Zend\InputFilter\InputFilterProviderInterface;
+
+class LearnZF2Form extends Form implements InputFilterProviderInterface
+{
+    public function __construct()
+    {
+        parent::__construct('formname');
+    }
+
+    public function init()
+    {
+        $this->setAttribute('method', 'post');
+
+        $this->add([
+            'name' => 'id',
+            'attributes' => [
+                'type'  => 'hidden',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'name',
+            'attributes' => [
+                'type'  => 'text',
+                'class' => 'form-control',
+            ],
+            'options' => [
+                'label' => 'Name',
+            ],
+        ]);
+
+        $this->add([
+            'type' => 'Zend\Form\Element\Select',
+            'name' => 'gender',
+            'options' => [
+                'label' => 'Gender',
+                'value_options' => [
+                    '1' => 'Select your gender',
+                    '2' => 'Female',
+                    '3' => 'Male',
+                ],
+            ],
+            'attributes' => [
+                'class' => 'form-control',
+                'value' => '1', //set selected to '1'
+            ],
+        ]);
+
+        $this->add([
+            'type' => 'Zend\Form\Element\MultiCheckbox',
+            'name' => 'hobby',
+            'options' => [
+                'label' => 'Please choose one/more of the hobbies',
+                'value_options' => [
+                    '1' => 'Cooking',
+                    '2' => 'Writing',
+                    '3' => 'Others',
+                ],
+            ],
+            'attributes' => [
+                'class' => 'form-control',
+                'value' => '1', //set checked to '1'
+            ],
+        ]);
+
+        $this->add([
+            'type' => 'Zend\Form\Element\Email',
+            'name' => 'email',
+            'options' => [
+                'label' => 'Email',
+            ],
+            'attributes' => [
+                'placeholder' => 'you@domain.com',
+            ],
+        ]);
+
+        $this->add([
+            'type' => 'Zend\Form\Element\Date',
+            'name' => 'birth',
+            'options' => [
+                'label' => 'Birth ( Y/m/d )',
+            ],
+            'attributes' => [
+                'class' => 'form-control',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'address',
+            'attributes' => [
+                'class' => 'form-control',
+                'type' => 'textarea',
+            ],
+            'options' => [
+                'label' => 'Address',
+            ],
+        ]);
+
+        $this->add([
+            'type' => 'Zend\Form\Element\Radio',
+            'name' => 'direction',
+            'options' => [
+                'label' => 'Please choose one of the directions',
+                'value_options' => [
+                    '1' => 'Programming',
+                    '2' => 'Design',
+                ],
+            ],
+            'attributes' => [
+                'class' => 'form-control',
+                'value' => '1', //set checked to '1'
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'submit',
+            'attributes' => [
+                'class' => 'form-control',
+                'type'  => 'submit',
+                'value' => 'Go',
+                'id' => 'submitbutton',
+            ],
+        ]);
+    }
+
+    public function getInputFilterSpecification()
+    {
+        return [
+            [
+                'name'     => 'id',
+                'required' => false,
+                'allow_empty' => true,
+                'filters'  => [
+                    ['name' => 'Int'],
+                ],
+            ],
+            [
+                'name'     => 'name',
+                'required' => true,
+                'filters'  => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+                'validators' => [
+                    [
+                        'name'    => 'StringLength',
+                        'options' => [
+                            'encoding' => 'UTF-8',
+                            'min'      => 5,
+                            'max'      => 255,
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'name'     => 'gender',
+                'validators' => [
+                    [
+                        'name'    => 'InArray',
+                        'options' => [
+                            'haystack' => [2,3],
+                            'messages' => [
+                                'notInArray' => 'Please select your gender !',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'name'     => 'hobby',
+                'required' => true
+            ],
+            [
+                'name'     => 'email',
+                'validators' => [
+                    [
+                        'name'    => 'EmailAddress',
+                    ],
+                ],
+            ],
+            [
+                'name'     => 'birth',
+                'validators' => [
+                    [
+                        'name'    => 'Between',
+                        'options' => [
+                            'min' => '1970-01-01',
+                            'max' => date('Y-m-d'),
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'name'     => 'address',
+                'required' => true,
+                'filters'  => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+                'validators' => [
+                    [
+                        'name'    => 'StringLength',
+                        'options' => [
+                            'encoding' => 'UTF-8',
+                            'min'      => 5,
+                            'max'      => 255,
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'name'     => 'direction',
+                'required' => true
+            ]
+        ];
+    }
+}
+</code>
+    </pre>
+
+    We can define elements in <code>init()</code> funtion, and define filters and validations in <code>getInputFilterSpecification</code> function.
+
 
     <p>
         By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)

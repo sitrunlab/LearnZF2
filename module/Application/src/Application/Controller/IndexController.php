@@ -16,28 +16,32 @@ use Zend\Paginator\Adapter\ArrayAdapter;
 
 class IndexController extends AbstractActionController
 {
+    /**
+     * @var array
+     */
+    private $config;
+
+    /**
+     * Construct applicationConfig
+     *
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        $this->config = $config;
+    }
+
     public function indexAction()
     {
         $this->layout('layout/home.phtml');
 
-        $paginator = new Paginator(new ArrayAdapter([
-            0 => [
-                'module_name' => 'LearnZF2Ajax',
-                'module_desc' => 'Learn Ajax with ZF2',
-                'module_route' => 'learnZF2Ajax'
-            ],
-            1 => [
-                'module_name' => 'LearnZF2FormUsage',
-                'module_desc' => 'Learn Form Usage with ZF2',
-                'module_route' => 'learn-zf2-form-usage'
-            ]
-        ]));
+        $paginator = new Paginator(new ArrayAdapter($this->config['modules_list']));
 
         $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
         $paginator->setItemCountPerPage(10);
 
         return new ViewModel([
-            'paginator' => $paginator
+            'paginator' => $paginator,
         ]);
     }
 }

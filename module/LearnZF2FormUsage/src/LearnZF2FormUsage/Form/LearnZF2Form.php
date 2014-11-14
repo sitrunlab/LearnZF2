@@ -7,13 +7,13 @@ use Zend\InputFilter\InputFilterProviderInterface;
 
 class LearnZF2Form extends Form implements InputFilterProviderInterface
 {
-   public function __construct()
-   {
+    public function __construct()
+    {
         parent::__construct('formname');
-   }
+    }
 
-   public function init()
-   {
+    public function init()
+    {
         $this->setAttribute('method', 'post');
 
         $this->add([
@@ -27,6 +27,7 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
             'name' => 'name',
             'attributes' => [
                 'type'  => 'text',
+                'class' => 'form-control',
             ],
             'options' => [
                 'label' => 'Name',
@@ -41,12 +42,13 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
                 'value_options' => [
                     '1' => 'Select your gender',
                     '2' => 'Female',
-                    '3' => 'Male'
+                    '3' => 'Male',
                 ],
             ],
             'attributes' => [
-                'value' => '1' //set selected to '1'
-            ]
+                'class' => 'form-control',
+                'value' => '1', //set selected to '1'
+            ],
         ]);
 
         $this->add([
@@ -55,39 +57,44 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
             'options' => [
                 'label' => 'Please choose one/more of the hobbies',
                 'value_options' => [
-                    '1' =>'Cooking',
-                    '2'=>'Writing',
-                    '3'=>'Others'
+                    '1' => 'Cooking',
+                    '2' => 'Writing',
+                    '3' => 'Others',
                 ],
             ],
             'attributes' => [
-                'value' => '1' //set checked to '1'
-            ]
+                'class' => 'form-control',
+                'value' => '1', //set checked to '1'
+            ],
         ]);
 
         $this->add([
             'type' => 'Zend\Form\Element\Email',
             'name' => 'email',
             'options' => [
-                'label' => 'Email'
+                'label' => 'Email',
             ],
             'attributes' => [
-                'placeholder' => 'you@domain.com'
-            ]
+                'placeholder' => 'you@domain.com',
+            ],
         ]);
 
         $this->add([
             'type' => 'Zend\Form\Element\Date',
             'name' => 'birth',
             'options' => [
-                'label' => 'Birth'
-            ]
+                'label' => 'Birth ( Y/m/d )',
+            ],
+            'attributes' => [
+                'class' => 'form-control',
+            ],
         ]);
 
         $this->add([
             'name' => 'address',
-            'attributes'=>[
-                'type'=>'textarea'
+            'attributes' => [
+                'class' => 'form-control',
+                'type' => 'textarea',
             ],
             'options' => [
                 'label' => 'Address',
@@ -105,22 +112,24 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
                 ],
             ],
             'attributes' => [
-                'value' => '1' //set checked to '1'
-            ]
+                'class' => 'form-control',
+                'value' => '1', //set checked to '1'
+            ],
         ]);
 
         $this->add([
             'name' => 'submit',
             'attributes' => [
+                'class' => 'form-control',
                 'type'  => 'submit',
                 'value' => 'Go',
                 'id' => 'submitbutton',
             ],
         ]);
-   }
+    }
 
-   public function getInputFilterSpecification()
-   {
+    public function getInputFilterSpecification()
+    {
         return [
             [
                 'name'     => 'id',
@@ -156,7 +165,7 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
                         'options' => [
                             'haystack' => [2,3],
                             'messages' => [
-                                'notInArray' => 'Please select your gender !'
+                                'notInArray' => 'Please select your gender !',
                             ],
                         ],
                     ],
@@ -170,7 +179,7 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
                 'name'     => 'email',
                 'validators' => [
                     [
-                        'name'    => 'EmailAddress'
+                        'name'    => 'EmailAddress',
                     ],
                 ],
             ],
@@ -181,7 +190,7 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
                         'name'    => 'Between',
                         'options' => [
                             'min' => '1970-01-01',
-                            'max' => date('Y-m-d')
+                            'max' => date('Y-m-d'),
                         ],
                     ],
                 ],
@@ -209,5 +218,5 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
                 'required' => true
             ]
         ];
-   }
+    }
 }

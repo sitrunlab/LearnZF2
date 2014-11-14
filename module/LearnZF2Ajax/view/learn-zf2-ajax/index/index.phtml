@@ -12,12 +12,12 @@
             ?>
 
             <div class="form-group">
-                <label><?= $form->get('username')->getLabel(); ?></label>
-                <?= $this->formText($form->get('username')) ?>
+                <label><?php echo $form->get('username')->getLabel(); ?></label>
+                <?php echo $this->formText($form->get('username')) ?>
             </div>
             <div class="form-group">
-                <label><?= $form->get('password')->getLabel(); ?></label>
-                <?= $this->formPassword($form->get('password')) ?>
+                <label><?php echo $form->get('password')->getLabel(); ?></label>
+                <?php echo $this->formPassword($form->get('password')) ?>
             </div>
             <input type="submit" value="Login" class="btn btn-success btn-lg" />
             <?php
