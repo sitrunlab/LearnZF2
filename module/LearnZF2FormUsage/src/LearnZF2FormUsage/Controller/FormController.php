@@ -26,7 +26,7 @@ class FormController extends AbstractActionController
     public function indexAction()
     {
         $request = $this->getRequest();
-        $formMessages = array();
+        $formMessages = [];
         $isPost = false;
 
         if ($request->isPost()) {

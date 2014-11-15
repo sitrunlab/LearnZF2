@@ -9,7 +9,7 @@ class FormControllerTest extends AbstractHttpControllerTestCase
     public function setUp()
     {
         $this->setApplicationConfig(
-            include dirname(dirname(dirname(dirname(dirname(__DIR__))))) . '/config/application.config.php'
+            include dirname(dirname(dirname(dirname(dirname(__DIR__))))).'/config/application.config.php'
         );
         parent::setUp();
     }
@@ -32,12 +32,12 @@ class FormControllerTest extends AbstractHttpControllerTestCase
             'name' => 'ikhsan',
             'gender' => 2,
             'hobby' => [
-                0 => 1
+                0 => 1,
             ],
             'email' => 'foo@bar.com',
             'birth' => '2008-10-01',
             'address' => 'jalan jalan',
-            'direction' => 1
+            'direction' => 1,
         ];
         $this->dispatch('/learn-zf2-form-usage', 'POST', $postData);
         $this->assertQueryContentContains('h3', 'Success!');
@@ -50,12 +50,12 @@ class FormControllerTest extends AbstractHttpControllerTestCase
             'name' => null,
             'gender' => 2,
             'hobby' => [
-                0 => 1
+                0 => 1,
             ],
             'email' => 'foo@bar.com',
             'birth' => '2008-10-01',
             'address' => 'jalan jalan',
-            'direction' => 1
+            'direction' => 1,
         ];
         $this->dispatch('/learn-zf2-form-usage', 'POST', $postData);
         $this->assertQueryContentContains('li', 'Value is required and can\'t be empty');
