@@ -26,17 +26,20 @@ class FormController extends AbstractActionController
     public function indexAction()
     {
         $request = $this->getRequest();
-        $formMessages = array();
+        $formMessages = [];
+        $isPost = false;
 
         if ($request->isPost()) {
             $this->form->setData($request->getPost());
             $this->form->isValid();
             $formMessages = $this->form->getMessages();
+            $isPost = true;
         }
 
         return new ViewModel([
             'form' => $this->form,
             'formMessages' => $formMessages,
+            'isPost' => $isPost,
         ]);
     }
 }

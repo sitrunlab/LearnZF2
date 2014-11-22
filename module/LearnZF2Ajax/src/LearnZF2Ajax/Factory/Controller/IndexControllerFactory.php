@@ -16,6 +16,7 @@ class IndexControllerFactory implements FactoryInterface
         $controller = new IndexController(
             $sl->getServiceLocator()->get('FormElementManager')->get('LearnZF2Ajax\Form\LoginForm')
         );
+
         return $controller;
     }
 }

@@ -33,7 +33,6 @@ class LoginInputFilter implements InputFilterAwareInterface
     public function getInputFilter()
     {
         if (!$this->inputFilter) {
-
             $inputFilter = new InputFilter();
             $factory     = new InputFactory();
 
@@ -56,9 +55,9 @@ class LoginInputFilter implements InputFilterAwareInterface
                     [
                         'name' => 'Regex',
                         'options' => [
-                            'pattern' => '/admin/'
+                            'pattern' => '/admin/',
                         ]
-                    ]
+                    ],
                 ],
             ]));
 
@@ -81,17 +80,15 @@ class LoginInputFilter implements InputFilterAwareInterface
                     [
                         'name' => 'Regex',
                         'options' => [
-                            'pattern' => '/admin/'
+                            'pattern' => '/admin/',
                         ]
-                    ]
+                    ],
                 ],
             ]));
-
 
             $this->inputFilter = $inputFilter;
         }
 
         return $this->inputFilter;
     }
-
 }

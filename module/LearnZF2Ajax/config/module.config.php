@@ -34,12 +34,12 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Factory\Controller\IndexControllerFactory'
+            'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Factory\Controller\IndexControllerFactory',
         ],
     ],
     'view_manager' => [
         'factories' => [
-            'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Factory\Controller\IndexControllerFactory'
+            'LearnZF2Ajax\Controller\Index' => 'LearnZF2Ajax\Factory\Controller\IndexControllerFactory',
         ],
     ],
 
@@ -48,7 +48,7 @@ return [
             'ViewJsonStrategy',
         ],
         'template_path_stack' => [
-            __DIR__ . '/../view',
+            __DIR__.'/../view',
         ],
     ],
 ];

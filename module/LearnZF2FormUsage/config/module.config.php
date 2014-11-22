@@ -18,12 +18,12 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            'LearnZF2FormUsage\Controller\Form' => 'LearnZF2FormUsage\Factory\Controller\FormControllerFactory'
+            'LearnZF2FormUsage\Controller\Form' => 'LearnZF2FormUsage\Factory\Controller\FormControllerFactory',
         ],
     ],
     'view_manager' => [
         'template_path_stack' => [
-            'learnzf2usage' => __DIR__ . '/../view',
+            'learnzf2usage' => __DIR__.'/../view',
         ],
     ],
 ];

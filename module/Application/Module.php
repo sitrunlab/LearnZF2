@@ -8,6 +8,7 @@ use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\View\Model\JsonModel;
 
 class Module  implements
     AutoloaderProviderInterface,
@@ -15,12 +16,19 @@ class Module  implements
     ConfigProviderInterface
 {
     /**
+     * @var \Zend\ServiceManager\ServiceManager
+     */
+    protected $services;
+    /**
      * {@inheritdoc}
      */
     public function onBootstrap(EventInterface $e)
     {
+        $this->services = $e->getApplication()->getServiceManager();
+
         $eventManager        = $e->getApplication()->getEventManager();
         $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch']);
+        $eventManager->attach(MvcEvent::EVENT_RENDER, [$this, 'onRender']);
 
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
@@ -37,9 +45,29 @@ class Module  implements
         $routeMatch = $e->getRouteMatch();
         $activeController = $routeMatch->getParam('controller');
 
-        if ($activeController!='Application\Controller\Index') {
+        if ($activeController != 'Application\Controller\Index') {
+            $controller = $e->getTarget();
             $controller = $e->getTarget();
             $controller->layout('layout/2columns');
+
+            $controllerClass = get_class($controller);
+            $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
+            if (!$e->getViewModel() instanceof JsonModel) {
+                $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
+            }
+        }
+    }
+
+    /**
+     * Set variable layout on 'render' event
+     *
+     * @param  MvcEvent $e
+     * @return void
+     */
+    public function onRender(MvcEvent $e)
+    {
+        if (!$e->getViewModel() instanceof JsonModel) {
+            $e->getViewModel()->setVariable('modules_list', $this->services->get('Config')['modules_list']);
         }
     }
 
@@ -48,7 +76,7 @@ class Module  implements
      */
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
+        return include __DIR__.'/config/module.config.php';
     }
 
     /**
@@ -59,7 +87,7 @@ class Module  implements
         return [
             'Zend\Loader\StandardAutoloader' => [
                 'namespaces' => [
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
                 ],
             ],
         ];

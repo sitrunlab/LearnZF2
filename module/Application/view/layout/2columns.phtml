@@ -15,7 +15,7 @@
             <div class="donation-desc">
                 Our service is free. But your donation can help us keep running.
                 To rent a server and domain, to buy us a cup of coffee, to reduce our activity in paid stuff and make this service better.
-                You can send us a donation to {Bank Account} in the name of {Name} with Swifcode {SwiftCode}
+                You can send us a donation to BCA Bank, 008 090 8440 in the name of Abdul Malik Ikhsan with Swifcode CENAIDJA. Please confirm to samsonasik@gmail.com after that ;).
             </div>
         </div>
         <a href="<?php echo $this->downloadbuttonlink('zip'); ?>" class="download-button-lg btn btn-success btn-lg">
@@ -23,28 +23,31 @@
             Download module &nbsp; &nbsp; &nbsp;
         </a>
         <br />
-        <iframe src="http://ghbtns.com/github-btn.html?user=mdo&repo=github-buttons&type=fork&count=true"
+        <iframe src="http://ghbtns.com/github-btn.html?user=sitrunlab&repo=LearnZF2&type=fork&count=true"
                 allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
         <div class="fb-wrap">
             <div class="fb-share-button" data-layout="button_count" data-href="https://developers.facebook.com/docs/plugins/"></div>
         </div>
         <br />
         <br />
+        <br />
 
 
         <div class="box-sidebar border-radius">
             <h5 class="title">Other demos</h5>
             <ul>
-                <li><a href=""> Learn ajax form </a> </li>
-                <li><a href=""> Learn ajax Upload </a> </li>
-            </ul>
-        </div>
+                <?php foreach ($this->layout()->modules_list as $list) {
+    if ($list['module_name'] !== $this->layout()->modulenamespace) {
+        ?>
 
-        <div class="box-sidebar border-radius">
-            <h5 class="title">Other demos</h5>
-            <ul>
-                <li><a href=""> Learn ajax form </a> </li>
-                <li><a href=""> Learn ajax Upload </a> </li>
+                    <li><a href="<?php echo $this->url($list['module_route']);
+        ?>"> <?php echo $list['module_name'];
+        ?> </a> </li>
+
+                <?php
+    }
+}
+                ?>
             </ul>
         </div>
 
@@ -53,6 +56,6 @@
     <!-- sidebar -->
 
     <?php echo $this->content; ?>
-</div> 
+</div>
 
 <?php echo $this->render('layout/footer'); ?>

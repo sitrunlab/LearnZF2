@@ -37,9 +37,9 @@ final class DownloadButtonLink extends AbstractHelper
             $moduleNamespace = substr($controller, 0, strpos($controller, '\\'));
         }
 
-        return $this->view->url('download', array(
+        return $this->view->url('download', [
             'module'   => $moduleNamespace,
-            'compress' => $compress
-        ));
+            'compress' => $compress,
+        ]);
     }
 }
