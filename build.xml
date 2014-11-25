@@ -19,6 +19,11 @@
                 <arg line="--coverage-php build/coverage/coverage-learnzf2ajax.cov" />
             </exec>
 
+            <exec executable="phpunit" failonerror="true">
+                <arg line="-c ${basedir}/module/LearnZF2Barcode/test/phpunit.xml" />
+                <arg line="--coverage-php build/coverage/coverage-learnzf2barcode.cov" />
+            </exec>
+
         </parallel>
     </target>
 </project>
