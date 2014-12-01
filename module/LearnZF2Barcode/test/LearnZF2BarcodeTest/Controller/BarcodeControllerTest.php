@@ -4,7 +4,7 @@ namespace LearnZF2BarcodeTest\Controller;
 
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
-class IndexControllerTest extends AbstractHttpControllerTestCase
+class BarcodeControllerTest extends AbstractHttpControllerTestCase
 {
     public function setUp()
     {

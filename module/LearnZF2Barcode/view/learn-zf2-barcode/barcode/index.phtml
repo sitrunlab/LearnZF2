@@ -1,0 +1,49 @@
+
+<div class="col-lg-9">
+
+    <h1>Barcode generation with Zend\Barcode sample usage</h1>
+
+    <div class="demo-box">
+        <div class="col-lg-4">
+            <?php
+            $form = $this->form;
+            $form->prepare();
+            echo $this->form()->openTag($form);
+        ?>
+
+        <div class="form-group">
+            <label><?php echo $form->get('barcode-object-select')->getLabel(); ?></label>
+            <?php echo $this->formElement($form->get('barcode-object-select'));
+            echo $this->formElementErrors($form->get('barcode-object-select'));
+            ?>
+        </div>
+
+        <div class="form-group">
+            <label><?php echo $form->get('barcode-object-text')->getLabel(); ?></label>
+            <?php echo $this->formElement($form->get('barcode-object-text'));
+            echo $this->formElementErrors($form->get('barcode-object-text')); ?>
+        </div>
+
+
+        <div class="form-group">
+            <label><?php echo $form->get('submit')->getLabel(); ?></label>
+            <?php echo $this->formElement($form->get('submit')) ?>
+        </div>
+
+        <div class="img">
+            <img src="<?php echo $this->url('learn-zf2-barcode-usage/default', array('action' => 'getbarcodeimage')); ?>" />
+        </div>
+
+        <?php echo $this->form()->closeTag(); ?>
+
+        <?php if (empty($this->formMessages) && $this->isPost === true) : ?>
+            <h3>Success!</h3>
+        <?php endif; ?>
+    </div>
+</div>
+
+<p>
+    By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
+</p>
+
+</div>
