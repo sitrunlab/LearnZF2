@@ -48,7 +48,7 @@ Setelah PR disubmit, kita bisa review seperti di gambar berikut :
 - Bug report bisa berupa issue/PR dengan detail error yang keluar.
 - RFC feature bisa berupa issue/PR.
 
-**Merging PR**
+**Merging PR ( For Maintainers )**
  * selalu mulai dengan master branch
 ```
 git checkout master
@@ -97,3 +97,30 @@ kalau sudah, kita bisa git push deh ke repository /sitrunlab/LearnZF2 langsung :
 ```
 git push https://github.com/sitrunlab/LearnZF2.git master
 ```
+
+### Git Publish
+
+It would be easier to use git flow to publish your branch, by git flow, you always use feature checked out from develop branch, and when you done and want to create a Pull Request, you can run :
+
+git flow feature yourfeature publish
+
+Next commit you need to push manually :
+
+git push origin yourfeature
+
+It seems more keywords, but it's just a little things for many elegant way to switching branch and merging with git flow. By running git flow, you have summary like :
+
+$ git flow feature start download-plugin
+
+Switched to a new branch **'feature/download-plugin'**
+
+Summary of actions:
+- A new branch 'feature/download-plugin' was created, based on 'develop'
+- You are now on branch 'feature/download-plugin'
+
+Now, start committing on your feature. When done, use:
+
+git flow feature finish download-plugin
+It would be very usefull when you want to managing hotfix that merge to develop and master automatically when finish a hotfix flow.
+
+For full command, you can check [Git flow cheatsheet](http://danielkummer.github.io/git-flow-cheatsheet/)
