@@ -55,13 +55,18 @@ class BarcodeController extends AbstractActionController
     {
         $response = $this->getResponse();
 
-        $response->getHeaders()->addHeaderLine('Content-Type', 'image/gif');
-        $response->getHeaders()->addHeaderLine('Content-Length', filesize('./data/barcode.gif'));
-        // set response with get content of pdf
-        $response->setContent(file_get_contents('./data/barcode.gif'));
+        if (file_exists('./data/barcode.gif')) {
+            $response->getHeaders()->addHeaderLine('Content-Type', 'image/gif');
+            $response->getHeaders()->addHeaderLine('Content-Length', filesize('./data/barcode.gif'));
+            // set response with get content of pdf
+            $response->setContent(file_get_contents('./data/barcode.gif'));
 
-        //remove file after no need
-        @unlink('./data/barcode.gif');
+            //remove file after no need
+            @unlink('./data/barcode.gif');
+        } else {
+            $response->getHeaders()->addHeaderLine('Content-Type', 'text/html');
+            $response->setContent('barcode not found');
+        }
 
         return $response;
     }

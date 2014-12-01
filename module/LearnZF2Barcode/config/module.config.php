@@ -33,8 +33,7 @@ return [
 
     'controllers' => [
         'factories' => [
-            'LearnZF2Barcode\Controller\Barcode'
-                =>  'LearnZF2Barcode\Factory\Controller\BarcodeControllerFactory',
+            'LearnZF2Barcode\Controller\Barcode' => 'LearnZF2Barcode\Factory\Controller\BarcodeControllerFactory',
         ],
     ],
 

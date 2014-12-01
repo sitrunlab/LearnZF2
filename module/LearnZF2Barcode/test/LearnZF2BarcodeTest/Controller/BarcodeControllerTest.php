@@ -15,8 +15,40 @@ class BarcodeControllerTest extends AbstractHttpControllerTestCase
         parent::setUp();
     }
 
-    public function testIn()
+    public function testIndexActionCanBeAccessed()
     {
-        $this->assertTrue(true);
+        $this->dispatch('/learn-zf2-barcode');
+        $this->assertResponseStatusCode(200);
+    }
+
+    public function testPostData()
+    {
+        $postData = [
+            'barcode-object-text' => '123456789',
+            'barcode-object-select' => 'codabar',
+        ];
+        $this->dispatch('/learn-zf2-barcode', 'POST', $postData);
+
+        $this->assertFileExists('./data/barcode.gif');
+    }
+
+    public function testAccessBarcodeImageWithoutAccessForm()
+    {
+        @unlink('./data/barcode.gif');
+
+        $this->dispatch('/learn-zf2-barcode/getbarcodeimage');
+        $this->assertResponseHeaderContains('Content-Type', 'text/html');
+    }
+
+    public function testAccessBarcodeImageWithccessFormBefore()
+    {
+        $postData = [
+            'barcode-object-text' => '123456789',
+            'barcode-object-select' => 'codabar',
+        ];
+        $this->dispatch('/learn-zf2-barcode', 'POST', $postData);
+
+        $this->dispatch('/learn-zf2-barcode/getbarcodeimage');
+        $this->assertResponseHeaderContains('Content-Type', 'image/gif');
     }
 }

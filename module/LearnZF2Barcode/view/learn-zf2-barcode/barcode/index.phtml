@@ -36,11 +36,88 @@
 
         <?php echo $this->form()->closeTag(); ?>
 
-        <?php if (empty($this->formMessages) && $this->isPost === true) : ?>
-            <h3>Success!</h3>
-        <?php endif; ?>
     </div>
 </div>
+
+<p>
+    This example contains about <strong>How to use Barcode Component in Zend framework 2</strong>,
+    The most important parts of using Barcode Component is  the BarcodeObject that can be seen from the Barcode\ObjectPluginManager::invokableClasses
+</p>
+
+1. <code>Barcode\ObjectPluginManager::invokableClasses</code> property
+<pre>
+    <code class="language-php">
+        class ObjectPluginManager extends AbstractPluginManager
+        {
+            // ...
+            protected $invokableClasses = array(
+                'codabar'           => 'Zend\Barcode\Object\Codabar',
+                'code128'           => 'Zend\Barcode\Object\Code128',
+                'code25'            => 'Zend\Barcode\Object\Code25',
+                'code25interleaved' => 'Zend\Barcode\Object\Code25interleaved',
+                'code39'            => 'Zend\Barcode\Object\Code39',
+                'ean13'             => 'Zend\Barcode\Object\Ean13',
+                'ean2'              => 'Zend\Barcode\Object\Ean2',
+                'ean5'              => 'Zend\Barcode\Object\Ean5',
+                'ean8'              => 'Zend\Barcode\Object\Ean8',
+                'error'             => 'Zend\Barcode\Object\Error',
+                'identcode'         => 'Zend\Barcode\Object\Identcode',
+                'itf14'             => 'Zend\Barcode\Object\Itf14',
+                'leitcode'          => 'Zend\Barcode\Object\Leitcode',
+                'planet'            => 'Zend\Barcode\Object\Planet',
+                'postnet'           => 'Zend\Barcode\Object\Postnet',
+                'royalmail'         => 'Zend\Barcode\Object\Royalmail',
+                'upca'              => 'Zend\Barcode\Object\Upca',
+                'upce'              => 'Zend\Barcode\Object\Upce',
+            );
+            // ...
+        }
+    </code>
+</pre>
+2. Then, we can consume via create our ObjectPluginManagerFactory :
+<pre>
+    <code class="language-php">
+        <?php
+
+        namespace LearnZF2Barcode\Factory\Service;
+
+        use Zend\Mvc\Service\AbstractPluginManagerFactory;
+
+        class BarcodeObjectPluginManagerFactory extends AbstractPluginManagerFactory
+        {
+            const PLUGIN_MANAGER_CLASS = 'Zend\Barcode\ObjectPluginManager';
+        }
+    </code>
+</pre>
+
+3. Register it into factories
+<pre>
+    <code class="language-php">
+    'service_manager' => [
+        'factories' => [
+            'BarcodeObjectPluginManager' => 'LearnZF2Barcode\Factory\Service\BarcodeObjectPluginManagerFactory',
+        ],
+    ],
+    </code>
+</pre>
+
+3. Now, we can consume via BarcodeObjectPluginManager plugin manager
+<pre>
+<code class="language-php">
+    var_dump(
+        $serviceManager->get('BarcodeObjectPluginManager')->getRegisteredServices()['invokableClasses']
+    );
+</code>
+</pre>
+
+4. Generate ? Use Zend\Barcode\Barcode class.
+<pre>
+    <code class="language-php">
+        $barcodeOptions = array('text' => '123456789');
+        $barcode = Barcode::factory('codabar', 'image', $barcodeOptions);
+        $barcode->draw()
+    </code>
+</pre>
 
 <p>
     By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
