@@ -1,0 +1,33 @@
+<div class="col-lg-9">
+
+    <h1>Ajax example with Zend Framework 2</h1>
+
+    <div class="demo-box">
+        <div class="col-lg-4">
+            <?php
+            $form = $this->form;
+            $form->setAttribute('action', $this->url('learnZF2Ajax/default', ['controller' => 'index','action' => 'upload']));
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            ?>
+
+            <div class="form-group">
+                <label><?= $form->get('file')->getLabel(); ?></label>
+                <?= $this->formFile($form->get('file')) ?>
+            </div>
+            <?= $this->formHidden($form->get('csrf')) ?>
+            <input type="submit" value="Upload" />
+            <?php $this->form()->closeTag(); ?>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    jQuery('document').ready(function(){
+        jQuery('#login').submit(function(e){
+
+            return false;
+        });
+    });
+</script>
