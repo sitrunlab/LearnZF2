@@ -84,12 +84,12 @@ class Bootstrap
 
         include $zf2Path.'/Zend/Loader/AutoloaderFactory.php';
         AutoloaderFactory::factory([
-        'Zend\Loader\StandardAutoloader' => [
-        'autoregister_zf' => true,
-        'namespaces' => [
-        __NAMESPACE__ => __DIR__.'/'.__NAMESPACE__,
-        ],
-        ],
+            'Zend\Loader\StandardAutoloader' => [
+                'autoregister_zf' => true,
+                    'namespaces' => [
+                        __NAMESPACE__ => __DIR__.'/'.__NAMESPACE__,
+                    ],
+                ],
         ]);
     }
 

@@ -15,7 +15,7 @@ class BarcodeForm extends Form implements InputFilterProviderInterface
     /**
      * construct objectSelectValues value options
      */
-    public function __construct($objectSelectValues)
+    public function __construct(array $objectSelectValues)
     {
         $this->objectSelectValues = array_combine($objectSelectValues, $objectSelectValues);
         parent::__construct('barcode-form');
