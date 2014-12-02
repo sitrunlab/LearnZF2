@@ -9,9 +9,7 @@
  */
 namespace LearnZF2Ajax\Controller;
 
-use LearnZF2Ajax\Form\UploadForm;
 use LearnZF2Ajax\Model\LoginInputFilter;
-use LearnZF2Ajax\Model\UploadInputFilter;
 use Zend\Form\FormInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
@@ -57,37 +55,6 @@ class IndexController extends AbstractActionController
 
         $viewModel->setVariables(['form' => $this->loginForm, 'data' => $result]);
 
-        return $viewModel;
-    }
-
-
-    public function uploadAction()
-    {
-        $result = ['result' => false,'message' => ''];
-        $viewModel = $this->acceptableviewmodelselector($this->acceptCriteria);
-        $form = new UploadForm();
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $upload = new UploadInputFilter();
-            $post = array_merge_recursive(
-                $request->getPost()->toArray(),
-                $request->getFiles()->toArray()
-            );
-
-            $form->setInputFilter($upload->getInputFilter());
-            $form->setData($post);
-
-            if ($form->isValid()) {
-                $result = ['result' => true,'message' => 'Ajax request success'];
-            } else {
-                $result = ['result' => false,'message' => $form->getMessages()];
-                var_dump($result);
-                die;
-            } 
-        }
-
-        $viewModel->setVariables(['form' => $form,'data' => $result]);
         return $viewModel;
     }
 

@@ -6,7 +6,7 @@
         <div class="col-lg-4">
             <?php
             $form = $this->form;
-            $form->setAttribute('action', $this->url('learnZF2Ajax/default', ['controller' => 'index','action' => 'upload']));
+            $form->setAttribute('action', $this->url('learnZF2Ajax/default', ['controller' => 'upload','action' => 'index']));
             $form->prepare();
             echo $this->form()->openTag($form);
             ?>
@@ -14,6 +14,7 @@
             <div class="form-group">
                 <label><?= $form->get('file')->getLabel(); ?></label>
                 <?= $this->formFile($form->get('file')) ?>
+                <?php var_dump($this->formElementErrors($form)); ?>
             </div>
             <?= $this->formHidden($form->get('csrf')) ?>
             <input type="submit" value="Upload" />
