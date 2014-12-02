@@ -23,5 +23,10 @@ return [
             'module_desc' => 'Learn Form Usage with ZF2',
             'module_route' => 'learn-zf2-form-usage',
         ],
+        2 => [
+            'module_name' => 'LearnZF2Barcode',
+            'module_desc' => 'Learn Barcode Usage with ZF2',
+            'module_route' => 'learn-zf2-barcode-usage',
+        ],
     ]
 ];
