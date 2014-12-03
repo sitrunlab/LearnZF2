@@ -1,18 +1,18 @@
 <?php
 
-return array(
-    'doctrine' => array(
-        'connection' => array(
-            'orm_default' => array(
+return [
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
                 'driverClass' =>'Doctrine\DBAL\Driver\PDOMySql\Driver',
-                'params' => array(
+                'params' => [
                     'host'     => 'localhost',
                     'port'     => '3306',
                     'user'     => 'root',
                     'password'     => '',
                     'dbname'   => 'learnzf2',
-                ),
-            ),
-        ),
-    )
+                ],
+            ],
+        ],
+    ]
 );
