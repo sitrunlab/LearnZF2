@@ -48,21 +48,14 @@
         </code>
     </pre>
 
-
     2. <code>acceptableviewmodelselector</code> controller plugin.
     <pre>
         <code class="language-php">
-            <?php echo htmlentities("
-                'view_manager' => [
-                    'strategies' => [
-                        'ViewJsonStrategy',
-                    ],
-                    'template_path_stack' => [
-                        __DIR__ . '/../view',
-                    ],
-                ],
-            ");
-            ?>
+            $acceptCriteria = [
+                'Zend\View\Model\JsonModel' => ['application/json'],
+                'Zend\View\Model\ViewModel' => ['text/html'],
+            ];
+            $viewModel = $this->acceptableviewmodelselector($acceptCriteria);
         </code>
     </pre>
 
@@ -80,6 +73,13 @@
 
     <p>
         By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
+    </p>
+    <p>&nbsp;</p>
+    <p>
+        <span class="label label-default">Ajax Zend framework 2 example</span>
+        <span class="label label-default">ViewJsonStrategy Zend Framework 2 example</span>
+        <span class="label label-default">acceptableviewmodelselector plugin Zend Framework 2 example</span>
+        <span class="label label-default">JsonModel Zend Framework 2 example</span>
     </p>
 
 </div>
