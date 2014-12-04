@@ -29,8 +29,8 @@ return [
     ],
 
     'controllers' => [
-        'invokables' => [
-            'LearnZF2Pagination\Controller\Index' => 'LearnZF2Pagination\Controller\IndexController'
+        'factories' => [
+            'LearnZF2Pagination\Controller\Index' => 'LearnZF2Pagination\Factory\Controller\IndexControllerFactory'
         ]
     ],
 
