@@ -4,7 +4,7 @@ namespace LearnZF2Pagination\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Paginator\Adapter\ArrayAdapter;
 use Zend\Paginator\Paginator;
-use Zend\View\Helper\ViewModel;
+use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
@@ -29,7 +29,7 @@ class IndexController extends AbstractActionController
         $paginator->setCurrentPageNumber($page)
                   ->setItemCountPerPage(self::ITEM_PER_PAGE);
 
-        return new ViewModel(['data' => $paginator]);
+        return new ViewModel(['paginator' => $paginator]);
     }
 
     /**
