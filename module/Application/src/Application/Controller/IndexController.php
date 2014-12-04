@@ -19,23 +19,23 @@ class IndexController extends AbstractActionController
     /**
      * @var array
      */
-    private $config;
+    private $modulesList;
 
     /**
-     * Construct applicationConfig
+     * Construct modulesList
      *
-     * @param array $config
+     * @param array $modulesList
      */
-    public function __construct(array $config)
+    public function __construct(array $modulesList)
     {
-        $this->config = $config;
+        $this->modulesList = $modulesList;
     }
 
     public function indexAction()
     {
         $this->layout('layout/home.phtml');
 
-        $paginator = new Paginator(new ArrayAdapter($this->config['modules_list']));
+        $paginator = new Paginator(new ArrayAdapter($this->modulesList));
 
         $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
         $paginator->setItemCountPerPage(10);

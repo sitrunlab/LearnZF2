@@ -42,12 +42,10 @@ class ModuleList
      */
     private $moduleRoute;
 
-
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +55,7 @@ class ModuleList
     /**
      * Set moduleName
      *
-     * @param string $moduleName
+     * @param  string     $moduleName
      * @return ModuleList
      */
     public function setModuleName($moduleName)
@@ -70,7 +68,7 @@ class ModuleList
     /**
      * Get moduleName
      *
-     * @return string 
+     * @return string
      */
     public function getModuleName()
     {
@@ -80,7 +78,7 @@ class ModuleList
     /**
      * Set moduleDesc
      *
-     * @param string $moduleDesc
+     * @param  string     $moduleDesc
      * @return ModuleList
      */
     public function setModuleDesc($moduleDesc)
@@ -93,7 +91,7 @@ class ModuleList
     /**
      * Get moduleDesc
      *
-     * @return string 
+     * @return string
      */
     public function getModuleDesc()
     {
@@ -103,7 +101,7 @@ class ModuleList
     /**
      * Set moduleRoute
      *
-     * @param string $moduleRoute
+     * @param  string     $moduleRoute
      * @return ModuleList
      */
     public function setModuleRoute($moduleRoute)
@@ -116,7 +114,7 @@ class ModuleList
     /**
      * Get moduleRoute
      *
-     * @return string 
+     * @return string
      */
     public function getModuleRoute()
     {

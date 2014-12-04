@@ -122,12 +122,12 @@ return [
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
                 'paths' => [
-                    __DIR__ . '/../src/Application/Entity'
+                    __DIR__.'/../src/Application/Entity',
                 ],
             ],
             'orm_default' => [
                 'drivers' => [
-                    'Application\Entity' =>  'Application_driver'
+                    'Application\Entity' =>  'Application_driver',
                 ],
             ],
         ],
