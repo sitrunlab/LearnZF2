@@ -28,5 +28,10 @@ return [
             'module_desc' => 'Learn Barcode Usage with ZF2',
             'module_route' => 'learn-zf2-barcode-usage',
         ],
+        3 => [
+            'module_name' => 'LearnZF2Pagination',
+            'module_desc' => 'Learn data pagination ZF2',
+            'module_route' => 'learn-zf2-pagination',
+        ],
     ]
 ];

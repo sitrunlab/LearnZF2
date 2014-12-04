@@ -13,6 +13,7 @@ return [
         'ZendDeveloperTools',
         'ZFTool',
         'LearnZF2Barcode',
+        'LearnZF2Pagination',
     ],
     'module_listener_options' => [
         'module_paths' => [
