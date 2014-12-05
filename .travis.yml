@@ -12,11 +12,14 @@ install:
 before_script:
   - mkdir -p build/coverage
   - mkdir -p build/logs
-  
+  - mysql -e 'create database learnzf2;' -uroot
+  - mysql -u root learnzf2 < data/sql/learnzf2.sql
+  - cp config/autoload/doctrine.local.php.dist config/autoload/doctrine.local.php
+
 script:
   - ls -d module/* | parallel --gnu --keep-order 'echo "Running {} CS checks"; ./vendor/bin/php-cs-fixer fix {} -v --dry-run --config-file=.php_cs;' || exit 1
   - ant
-  
+
 after_script:
   - php phpcov.phar merge --clover build/logs/clover.xml build/coverage/
   - php vendor/bin/coveralls -v
