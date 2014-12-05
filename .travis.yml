@@ -12,7 +12,7 @@ install:
 before_script:
   - mkdir -p build/coverage
   - mkdir -p build/logs
-  - mysql -e 'create database learnzf2;' -uroot
+  - mysql -e 'create database IF NOT EXISTS learnzf2;' -uroot
   - mysql -u root learnzf2 < data/sql/learnzf2.sql
   - cp config/autoload/doctrine.local.php.dist config/autoload/doctrine.local.php
 
