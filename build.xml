@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="learnzf2" default="phpunit">
     <target name="phpunit">
-        <parallel threadCount="2">
+        <parallel threadCount="4">
             <echo message="Running tests" />
 
             <exec executable="phpunit" failonerror="true">
