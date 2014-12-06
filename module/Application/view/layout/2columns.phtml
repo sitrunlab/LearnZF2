@@ -37,11 +37,11 @@
             <h5 class="title">Other demos</h5>
             <ul>
                 <?php foreach ($this->layout()->modules_list as $list) {
-    if ($list['module_name'] !== $this->layout()->modulenamespace) {
+    if ($list->getModuleName() !== $this->layout()->modulenamespace) {
         ?>
 
-                    <li><a href="<?php echo $this->url($list['module_route']);
-        ?>"> <?php echo $list['module_name'];
+                    <li><a href="<?php echo $this->url($list->getModuleRoute());
+        ?>"> <?php echo $list->getModuleName();
         ?> </a> </li>
 
                 <?php

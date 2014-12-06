@@ -3,6 +3,7 @@
 ### Added
 
 - [67: Added Doctrine configuration support](https://github.com/sitrunlab/LearnZF2/pull/67)
+- [69: Db usage for module list](https://github.com/sitrunlab/LearnZF2/pull/69)
 
 
 ## 0.0.2 - 2014-12-03
