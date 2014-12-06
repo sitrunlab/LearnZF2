@@ -1,0 +1,132 @@
+<div class="col-lg-9">
+    <h1>Pagination example with Zend Framework 2</h1>
+    <div class="demo-box">
+        <form method="get" class="form-inline" style="margin-bottom: 20px">
+            <select class="form-control" name="category">
+                <option value="">
+                    All categories
+                </option>
+                <option value="movies"
+                        <?php echo isset($this->category) && $this->category === 'movies' ? 'selected' : '' ?>>
+                    Movies
+                </option>
+                <option value="books"
+                        <?php echo isset($this->category) && $this->category === 'books' ? 'selected' : '' ?>>
+                    Books
+                </option>
+                <option value="music"
+                        <?php echo isset($this->category) && $this->category === 'music' ? 'selected' : '' ?>>
+                    Music
+                </option>
+            </select>
+            <input type="text" name="keyword" class="form-control" placeholder="Keyword"
+                   value="<?php echo $this->keyword ?: '' ?>">
+            <input type="hidden" name="page" value="<?php echo $this->page ?: 1 ?>">
+            <button type="submit" class="btn btn-primary">Apply filter</button>
+        </form>
+        <?php if (count($this->paginator) > 0): ?>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th class="text-right">Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($this->paginator as $element): ?>
+                        <tr>
+                            <td><?php echo $element['title'] ?></td>
+                            <td><?php echo $element['category'] ?></td>
+                            <td class="text-right"><?php echo $element['year'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php
+        echo $this->paginationControl(
+            $this->paginator,
+            'sliding',
+            'learn-zf2-pagination/partials/paginator.phtml'
+        );
+        else: ?>
+            <div class="alert alert-warning">No elements found with provided conditions</div>
+        <?php endif; ?>
+    </div>
+
+    <p>This tutorial explains the basic usage of paginators in Zend Framework 2.</p>
+    <p>It's based on the main object <code>Zend\Paginator\Paginator</code> which wrapps an adapter, defining which page we want to handle and how many results to display.</p>
+    <p>In this case, since we are paginating a plain array of data, we have to use the <code>Zend\Paginator\Adapter\ArrayAdapter</code>.</p>
+
+    <pre>
+        <code class="language-php"><?php echo htmlentities('
+            $paginator = new Paginator(new ArrayAdapter([
+                [
+                    \'title\' => \'First element\',
+                    \'category\' => \'movies\',
+                    \'year\' => 1985
+                ],
+                [
+                    \'title\' => \'Second element\',
+                    \'category\' => \'books\',
+                    \'year\' => 1946
+                ]
+            ]));
+            $paginator->setCurrentPageNumber(2)
+                      ->setItemCountPerPage(4);
+
+            return new ViewModel([\'paginator\' => $paginator]);
+        '); ?></code>
+    </pre>
+
+    <p>After creating the paginator, we just need to pass it to the view template. It is an iterable object that only returns the elements in current page.</p>
+
+    <pre>
+        <code class="language-php"><?php echo htmlentities('
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th class="text-right">Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($this->paginator as $element): ?>
+                        <tr>
+                            <td><?php echo $element[\'title\'] ?></td>
+                            <td><?php echo $element[\'category\'] ?></td>
+                            <td class="text-right"><?php echo $element[\'year\'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        '); ?></code>
+    </pre>
+
+    <p>Finally we only need to display a pagination control. By using the <code>paginationControl</code> view helper we can render it from a view partial.</p>
+
+    <pre>
+        <code class="language-php"><?php echo htmlentities('
+            echo $this->paginationControl(
+                $this->paginator,
+                \'sliding\',
+                \'application/partials/paginator.phtml\'
+            );
+        '); ?></code>
+    </pre>
+
+    <p>The view partial will get some params that will ease the creation of links to other pages, like current page number or previous and next pages. Also, next and previous page won't be set while we are in the first or last page.</p>
+
+    <pre>
+        <code class="language-php"><?php echo htmlentities('
+            echo $this->previous; // The previous page number. If not set, we are at the first page.
+            echo $this->next; // The next page number. If not set, we are at the last page.
+            echo $this->current; // Current page number.
+
+            foreach ($this->pagesInRange as $page) :
+                // The pagesInRange object containes the visible pages, which depends on the type of paginator (the second argument of the paginationControl helper)
+            endforeach;
+        '); ?></code>
+    </pre>
+</div>
