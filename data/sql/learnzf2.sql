@@ -28,7 +28,7 @@ CREATE TABLE `module_list` (
   `module_desc` varchar(255) DEFAULT NULL,
   `module_route` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `module_list` (
 
 LOCK TABLES `module_list` WRITE;
 /*!40000 ALTER TABLE `module_list` DISABLE KEYS */;
-INSERT INTO `module_list` VALUES (1,'LearnZF2Ajax','Learn Ajax with ZF2','learnZF2Ajax'),(2,'LearnZF2FormUsage','Learn Form Usage with ZF2','learn-zf2-form-usage'),(3,'LearnZF2Barcode','Learn Barcode Usage with ZF2','learn-zf2-barcode-usage');
+INSERT INTO `module_list` VALUES (1,'LearnZF2Ajax','Learn Ajax with ZF2','learnZF2Ajax'),(2,'LearnZF2FormUsage','Learn Form Usage with ZF2','learn-zf2-form-usage'),(3,'LearnZF2Barcode','Learn Barcode Usage with ZF2','learn-zf2-barcode-usage'),(4,'LearnZF2Pagination','Learn Pagination Usage with ZF2','learn-zf2-pagination');
 /*!40000 ALTER TABLE `module_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-05  4:50:36
+-- Dump completed on 2014-12-07  0:58:00
