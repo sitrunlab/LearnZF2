@@ -40,7 +40,7 @@ return [
         ]
     ],
 
-    'view_helper' => [
+    'view_helpers' => [
         'factories' => [
             'queryUrl' => 'LearnZF2Pagination\Factory\View\Helper\QueryUrlFactory'
         ]
