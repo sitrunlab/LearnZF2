@@ -22,7 +22,7 @@ class QueryUrl extends Url
         $this->request = $request;
     }
 
-    public function __invoke($name = null, $params = array(), $options = array(), $reuseMatchedParams = false)
+    public function __invoke($name = null, $params = [], $options = [], $reuseMatchedParams = false)
     {
         if (null === $this->router) {
             throw new Exception\RuntimeException('No RouteStackInterface instance provided');
