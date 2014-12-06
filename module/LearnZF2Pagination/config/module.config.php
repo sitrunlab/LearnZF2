@@ -40,6 +40,12 @@ return [
         ]
     ],
 
+    'view_helper' => [
+        'factories' => [
+            'queryUrl' => 'LearnZF2Pagination\Factory\View\Helper\QueryUrlFactory'
+        ]
+    ],
+
     'pagination_data' => [
         // @see http://www.imdb.com/list/ls055592025/
         'movies' => [
