@@ -8,7 +8,7 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
-    const ITEM_PER_PAGE = 5;
+    const ITEM_PER_PAGE = 4;
 
     /**
      * @var array

@@ -30,7 +30,7 @@ return [
         ],
         3 => [
             'module_name' => 'LearnZF2Pagination',
-            'module_desc' => 'Learn data pagination ZF2',
+            'module_desc' => 'Learn data pagination with ZF2',
             'module_route' => 'learn-zf2-pagination',
         ],
     ]
