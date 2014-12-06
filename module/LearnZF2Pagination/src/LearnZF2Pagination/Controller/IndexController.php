@@ -29,7 +29,7 @@ class IndexController extends AbstractActionController
         $paginator->setCurrentPageNumber($page)
                   ->setItemCountPerPage(self::ITEM_PER_PAGE);
 
-        return new ViewModel(['paginator' => $paginator]);
+        return new ViewModel(array_merge($this->params()->fromQuery(), ['paginator' => $paginator]));
     }
 
     /**
@@ -38,8 +38,8 @@ class IndexController extends AbstractActionController
     protected function getFilteredData()
     {
         // Filter by category
-        $category = $this->params()->fromQuery('category');
-        $data = isset($category) && array_key_exists($category, $this->data) ? $this->data[$category] : array_merge(
+        $category = $this->params()->fromQuery('category', '');
+        $data = array_key_exists($category, $this->data) ? $this->data[$category] : array_merge(
             $this->data['movies'],
             $this->data['books'],
             $this->data['music']
@@ -47,17 +47,29 @@ class IndexController extends AbstractActionController
 
         // Filter by keyword
         $keyword = $this->params()->fromQuery('keyword');
-        if (! isset($keyword)) {
+        if (empty($keyword)) {
             return $data;
         }
 
         // Remove those elements which doesn't accomplish the keyword condition
         foreach ($data as $key => $element) {
-            if (strpos($element['title'], $keyword) === false) {
+            if (! $this->isKeywordInTitle($keyword, $element['title'])) {
                 unset($data[$key]);
             }
         }
 
         return $data;
+    }
+
+    /**
+     * Triws to find certain keyword in provided title
+     * @param $keyword
+     * @param $title
+     * @return bool
+     */
+    protected function isKeywordInTitle($keyword, $title)
+    {
+        $pos = strpos(strtolower($title), strtolower($keyword));
+        return is_int($pos);
     }
 }

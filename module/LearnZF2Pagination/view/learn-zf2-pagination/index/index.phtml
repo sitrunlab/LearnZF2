@@ -1,13 +1,29 @@
 <div class="col-lg-9">
     <h1>Pagination example with Zend Framework 2</h1>
     <div class="demo-box">
-        <?php
-        echo $this->paginationControl(
-            $this->paginator,
-            'sliding',
-            'learn-zf2-pagination/partials/paginator.phtml'
-        );
-        ?>
+        <form method="get" class="form-inline" style="margin-bottom: 20px">
+            <select class="form-control" name="category">
+                <option value="">
+                    All categories
+                </option>
+                <option value="movies"
+                        <?php echo isset($this->category) && $this->category === 'movies' ? 'selected' : '' ?>>
+                    Movies
+                </option>
+                <option value="books"
+                        <?php echo isset($this->category) && $this->category === 'books' ? 'selected' : '' ?>>
+                    Books
+                </option>
+                <option value="music"
+                        <?php echo isset($this->category) && $this->category === 'music' ? 'selected' : '' ?>>
+                    Music
+                </option>
+            </select>
+            <input type="text" name="keyword" class="form-control" placeholder="Keyword"
+                   value="<?php echo $this->keyword ?: '' ?>">
+            <input type="hidden" name="page" value="<?php echo $this->page ?: 1 ?>">
+            <button type="submit" class="btn btn-primary">Apply filter</button>
+        </form>
         <table class="table">
             <thead>
                 <tr>
@@ -26,5 +42,12 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?php
+        echo $this->paginationControl(
+            $this->paginator,
+            'sliding',
+            'learn-zf2-pagination/partials/paginator.phtml'
+        );
+        ?>
     </div>
 </div>
