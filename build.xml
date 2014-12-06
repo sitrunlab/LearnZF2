@@ -24,6 +24,11 @@
                 <arg line="--coverage-php build/coverage/coverage-learnzf2barcode.cov" />
             </exec>
 
+            <exec executable="phpunit" failonerror="true">
+                <arg line="-c ${basedir}/module/LearnZF2Pagination/test/phpunit.xml" />
+                <arg line="--coverage-php build/coverage/coverage-learnzf2pagination.cov" />
+            </exec>
+
         </parallel>
     </target>
 </project>
