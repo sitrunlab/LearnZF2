@@ -1,0 +1,11 @@
+<phpunit bootstrap="Bootstrap.php" colors="true">
+    <testsuite name="LearnZF2Pagination" >
+        <directory>./LearnZF2PaginationTest</directory>
+    </testsuite>
+    <filter>
+        <blacklist>
+            <directory suffix=".php">./../test/</directory>
+            <directory suffix=".php">./../../../vendor/</directory>
+        </blacklist>
+    </filter>
+</phpunit>
