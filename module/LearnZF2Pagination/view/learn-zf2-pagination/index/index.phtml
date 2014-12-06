@@ -2,19 +2,18 @@
     <h1>Pagination example with Zend Framework 2</h1>
     <div class="demo-box">
         <?php
-        $pagination = $this->paginationControl(
+        echo $this->paginationControl(
             $this->paginator,
             'sliding',
             'learn-zf2-pagination/partials/paginator.phtml'
         );
-        echo $pagination;
         ?>
         <table class="table">
             <thead>
                 <tr>
                     <th>Title</th>
                     <th>Category</th>
-                    <th>Year</th>
+                    <th class="text-right">Year</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,11 +21,10 @@
                     <tr>
                         <td><?php echo $element['title'] ?></td>
                         <td><?php echo $element['category'] ?></td>
-                        <td><?php echo $element['year'] ?></td>
+                        <td class="text-right"><?php echo $element['year'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <?php echo $pagination; ?>
     </div>
 </div>
