@@ -15,6 +15,8 @@ class IndexControllerFactory implements FactoryInterface
     {
         $services = $serviceLocator->getServiceLocator();
 
-        return new IndexController($services->get('Config'));
+        return new IndexController(
+            $services->get('Doctrine\ORM\EntityManager')->getRepository('Application\Entity\ModuleList')->findAll()
+        );
     }
 }

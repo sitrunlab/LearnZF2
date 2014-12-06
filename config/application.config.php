@@ -8,6 +8,8 @@
 return [
     'modules' => [
         'Application',
+        'DoctrineModule',
+        'DoctrineORMModule',
         'LearnZF2Ajax',
         'LearnZF2FormUsage',
         'ZendDeveloperTools',

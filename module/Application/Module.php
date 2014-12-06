@@ -67,7 +67,9 @@ class Module  implements
     public function onRender(MvcEvent $e)
     {
         if (!$e->getViewModel() instanceof JsonModel) {
-            $e->getViewModel()->setVariable('modules_list', $this->services->get('Config')['modules_list']);
+            $entityManager = $this->services->get('Doctrine\ORM\EntityManager');
+            $e->getViewModel()
+              ->setVariable('modules_list', $entityManager->getRepository('Application\Entity\ModuleList')->findAll());
         }
     }
 
