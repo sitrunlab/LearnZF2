@@ -3,6 +3,7 @@
 namespace LearnZF2Pagination\View\Helper;
 
 use Zend\Http\Request;
+use Zend\Stdlib\RequestInterface;
 use Zend\View\Helper\Url;
 use LearnZF2Pagination\Exception;
 
@@ -15,6 +16,11 @@ class QueryUrl extends Url
      * @var Request
      */
     protected $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
 
     public function __invoke($name = null, $params = array(), $options = array(), $reuseMatchedParams = false)
     {
