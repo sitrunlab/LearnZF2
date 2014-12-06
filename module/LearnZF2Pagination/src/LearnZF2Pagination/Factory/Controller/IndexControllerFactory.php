@@ -11,7 +11,7 @@ class IndexControllerFactory implements FactoryInterface
      * Create service
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @return mixed
+     * @return IndexController
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

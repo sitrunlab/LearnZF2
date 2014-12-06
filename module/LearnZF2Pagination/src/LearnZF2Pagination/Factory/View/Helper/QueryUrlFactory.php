@@ -12,7 +12,7 @@ class QueryUrlFactory implements FactoryInterface
      * Create service
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @return mixed
+     * @return QueryUrl
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
