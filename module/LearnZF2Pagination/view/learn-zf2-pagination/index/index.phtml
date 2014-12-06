@@ -24,30 +24,33 @@
             <input type="hidden" name="page" value="<?php echo $this->page ?: 1 ?>">
             <button type="submit" class="btn btn-primary">Apply filter</button>
         </form>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th class="text-right">Year</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($this->paginator as $element): ?>
+        <?php if (count($this->paginator) > 0): ?>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><?php echo $element['title'] ?></td>
-                        <td><?php echo $element['category'] ?></td>
-                        <td class="text-right"><?php echo $element['year'] ?></td>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th class="text-right">Year</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($this->paginator as $element): ?>
+                        <tr>
+                            <td><?php echo $element['title'] ?></td>
+                            <td><?php echo $element['category'] ?></td>
+                            <td class="text-right"><?php echo $element['year'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         <?php
         echo $this->paginationControl(
             $this->paginator,
             'sliding',
             'learn-zf2-pagination/partials/paginator.phtml'
         );
-        ?>
+        else: ?>
+            <div class="alert alert-warning">No elements found with provided conditions</div>
+        <?php endif; ?>
     </div>
 </div>
