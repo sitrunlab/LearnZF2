@@ -7,7 +7,6 @@ use Zend\Http\Request;
 use Zend\Mvc\Router\Http\Literal;
 use Zend\Mvc\Router\Http\TreeRouteStack;
 use Zend\Mvc\Router\RouteStackInterface;
-use Zend\Mvc\Router\SimpleRouteStack;
 use Zend\Stdlib\Parameters;
 
 class QueryUrlTest extends TestCase
@@ -31,8 +30,8 @@ class QueryUrlTest extends TestCase
         $this->helper = new QueryUrl($this->request);
         $this->router = TreeRouteStack::factory([
             'routes' => [
-                'route-name' => new Literal('/foo/bar')
-            ]
+                'route-name' => new Literal('/foo/bar'),
+            ],
         ]);
         $this->helper->setRouter($this->router);
     }
@@ -47,7 +46,7 @@ class QueryUrlTest extends TestCase
     {
         $this->request->setQuery(new Parameters([
             'one' => 'foo',
-            'another' => 'bar'
+            'another' => 'bar',
         ]));
         $route = $this->helper->__invoke('route-name', [], true);
         $this->assertEquals('/foo/bar?one=foo&another=bar', $route);
@@ -57,7 +56,7 @@ class QueryUrlTest extends TestCase
     {
         $this->request->setQuery(new Parameters([
             'one' => 'foo',
-            'another' => 'bar'
+            'another' => 'bar',
         ]));
         $route = $this->helper->__invoke('route-name', [], ['query' => ['another' => 'overriden']], true);
         $this->assertEquals('/foo/bar?one=foo&another=overriden', $route);

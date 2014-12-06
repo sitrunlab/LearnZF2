@@ -30,20 +30,20 @@ return [
 
     'controllers' => [
         'factories' => [
-            'LearnZF2Pagination\Controller\Index' => 'LearnZF2Pagination\Factory\Controller\IndexControllerFactory'
-        ]
+            'LearnZF2Pagination\Controller\Index' => 'LearnZF2Pagination\Factory\Controller\IndexControllerFactory',
+        ],
     ],
 
     'view_manager' => [
         'template_path_stack' => [
-            __DIR__ . '/../view'
-        ]
+            __DIR__.'/../view',
+        ],
     ],
 
     'view_helpers' => [
         'factories' => [
-            'queryUrl' => 'LearnZF2Pagination\Factory\View\Helper\QueryUrlFactory'
-        ]
+            'queryUrl' => 'LearnZF2Pagination\Factory\View\Helper\QueryUrlFactory',
+        ],
     ],
 
     'pagination_data' => [
@@ -205,6 +205,6 @@ return [
                 'category' => 'music',
                 'year' => 1968,
             ],
-        ]
+        ],
     ]
 ];

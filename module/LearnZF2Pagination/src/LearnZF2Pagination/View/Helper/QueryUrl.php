@@ -3,7 +3,6 @@
 namespace LearnZF2Pagination\View\Helper;
 
 use Zend\Http\Request;
-use Zend\Stdlib\RequestInterface;
 use Zend\View\Helper\Url;
 use LearnZF2Pagination\Exception;
 

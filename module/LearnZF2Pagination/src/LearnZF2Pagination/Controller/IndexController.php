@@ -70,6 +70,7 @@ class IndexController extends AbstractActionController
     protected function isKeywordInTitle($keyword, $title)
     {
         $pos = strpos(strtolower($title), strtolower($keyword));
+
         return is_int($pos);
     }
 }

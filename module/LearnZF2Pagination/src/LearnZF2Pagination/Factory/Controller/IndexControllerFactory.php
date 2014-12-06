@@ -10,12 +10,13 @@ class IndexControllerFactory implements FactoryInterface
     /**
      * Create service
      *
-     * @param ServiceLocatorInterface $serviceLocator
+     * @param  ServiceLocatorInterface $serviceLocator
      * @return IndexController
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->getServiceLocator()->get('Config');
+
         return new IndexController(isset($config['pagination_data']) ? $config['pagination_data'] : []);
     }
 }

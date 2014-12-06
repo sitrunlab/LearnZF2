@@ -60,6 +60,7 @@ class QueryUrlFactoryTest extends TestCase
 
         $helperManager = new HelperPluginManager();
         $helperManager->setServiceLocator($sm);
+
         return $helperManager;
     }
 }
