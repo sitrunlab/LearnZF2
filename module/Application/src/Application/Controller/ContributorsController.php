@@ -13,6 +13,9 @@ class ContributorsController extends AbstractActionController
 
     public function indexAction()
     {
+        $this->layout('layout/1columns.phtml');
+        $this->layout()->setVariable('skipWelcome', true);
+
         return new ViewModel();
     }
 }

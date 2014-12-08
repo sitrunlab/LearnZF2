@@ -42,16 +42,11 @@ class Module  implements
      */
     public function onDispatch(MvcEvent $e)
     {
-        $routeMatch = $e->getRouteMatch();
-        $activeController = $routeMatch->getParam('controller');
+        $controller = $e->getTarget();
+        $controllerClass = get_class($controller);
+        $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
 
-        if ($activeController != 'Application\Controller\Index') {
-            $controller = $e->getTarget();
-            $controller = $e->getTarget();
-            $controller->layout('layout/2columns');
-
-            $controllerClass = get_class($controller);
-            $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
+        if ($moduleNamespace != 'Application') {
             if (!$e->getViewModel() instanceof JsonModel) {
                 $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
             }
