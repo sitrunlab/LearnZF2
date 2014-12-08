@@ -60,6 +60,16 @@ return [
                     ],
                 ],
             ],
+            'contributors' => [
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => [
+                    'route'    => '/contributors',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Contributors',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
@@ -85,7 +95,7 @@ return [
         'factories' => [
             'Application\Controller\Download' => 'Application\Factory\Controller\DownloadControllerFactory',
             'Application\Controller\Index' => 'Application\Factory\Controller\IndexControllerFactory',
-            'Application\Controller\Contributor' => 'Application\Factory\Controller\ContributorControllerFactory',
+            'Application\Controller\Contributors' => 'Application\Factory\Controller\ContributorsControllerFactory',
         ],
     ],
     'view_helpers' => [
