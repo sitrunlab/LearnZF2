@@ -15,4 +15,10 @@ jQuery('document').ready(function(){
         return false;
     });
 
+    jQuery('ul.contributor-gallery li').hover(function(){
+        $(this).find('.icon-con').fadeIn(1500);
+    },function(){
+        $(this).find('.icon-con').fadeOut(1500);
+    });
+
 });
