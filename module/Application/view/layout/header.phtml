@@ -53,10 +53,13 @@
             <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Learn ZF2"/>&nbsp;Learn ZF2</a>
         </div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="<?php echo $this->url('home') ?>">Home</a></li>
-                <li class="active"><a href="<?php echo $this->url('contributors') ?>">Contributors</a></li>
-            </ul>
+            <?php
+                echo $this->navigation('navigation')
+                    ->menu()
+                    ->setMinDepth(0)
+                    ->setMaxDepth(0)
+                    ->setUlClass('nav navbar-nav');
+            ?>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
