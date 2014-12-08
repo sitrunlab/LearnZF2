@@ -8,20 +8,19 @@
 
 namespace Application\Factory\Controller;
 
-
 use Application\Controller\ContributorController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class ContributorControllerFactory implements FactoryInterface {
-
+class ContributorControllerFactory implements FactoryInterface
+{
     /**
      * {@inheritDoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $services = $serviceLocator->getServiceLocator();
+
         return new ContributorController();
     }
-
-} 
+}

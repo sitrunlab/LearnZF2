@@ -8,18 +8,17 @@
 
 namespace Application\Controller;
 
-
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class ContributorController extends AbstractActionController {
-
-    public function __construct(){}
+class ContributorController extends AbstractActionController
+{
+    public function __construct()
+    {
+    }
 
     public function indexAction()
     {
         return new ViewModel();
     }
-
-
-} 
+}
