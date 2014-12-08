@@ -85,6 +85,7 @@ return [
         'factories' => [
             'Application\Controller\Download' => 'Application\Factory\Controller\DownloadControllerFactory',
             'Application\Controller\Index' => 'Application\Factory\Controller\IndexControllerFactory',
+            'Application\Controller\Contributor' => 'Application\Factory\Controller\ContributorControllerFactory',
         ],
     ],
     'view_helpers' => [
