@@ -15,6 +15,7 @@ $config->fixers(
         'elseif',
         'eof_ending',
         'unused_use',
+        'phpdoc_indent'
     )
 );
 $config->finder($finder);
