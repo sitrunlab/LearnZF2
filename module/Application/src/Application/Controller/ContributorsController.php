@@ -7,8 +7,17 @@ use Zend\View\Model\ViewModel;
 
 class ContributorsController extends AbstractActionController
 {
-    public function __construct()
+    /**
+     * @var array
+     */
+    protected $contributors;
+
+    /**
+     * Construct contributors property
+     */
+    public function __construct(array $contributors)
     {
+        $this->contributors = $contributors;
     }
 
     public function indexAction()
@@ -16,6 +25,8 @@ class ContributorsController extends AbstractActionController
         $this->layout('layout/1columns.phtml');
         $this->layout()->setVariable('skipWelcome', true);
 
-        return new ViewModel();
+        return new ViewModel([
+            'contributors' => $this->contributors
+        ]);
     }
 }

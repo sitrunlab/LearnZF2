@@ -1,10 +1,7 @@
-<?php
-    $contributors = unserialize(file_get_contents('./data/contributors/contributors.pson'));
-?>
 <div class="col-lg-9">
     <h1>Thanks to :</h1>
     <ul class="row  contributor-gallery">
-        <?php foreach ($contributors as $i => $contributor): ?>
+        <?php foreach ($this->contributors as $i => $contributor): ?>
         <li class="col-lg-3 col-md-2 col-sm-3 col-xs-4">
             <img class="avatar" src="<?php echo $contributor['avatar_url'] ?>" />
             <div class="icon-con ">

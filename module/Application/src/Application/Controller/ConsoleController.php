@@ -9,7 +9,7 @@ use Zend\Http\Client as HttpClient;
 
 /**
  * Console controller to get contributor list
- * inspired and some code copied from https://github.com/zendframework/zf-web/blob/master/module/Application/src/Application/Controller/ConsoleController.php
+ * inspired and almost all code copied from https://github.com/zendframework/zf-web/blob/master/module/Application/src/Application/Controller/ConsoleController.php
  */
 class ConsoleController extends AbstractConsoleController
 {

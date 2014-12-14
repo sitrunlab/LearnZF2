@@ -13,8 +13,6 @@ class ContributorsControllerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $serviceLocator->getServiceLocator();
-
-        return new ContributorsController();
+        return new ContributorsController(unserialize(file_get_contents('./data/contributors/contributors.pson')));
     }
 }
