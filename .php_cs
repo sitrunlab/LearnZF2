@@ -15,7 +15,8 @@ $config->fixers(
         'elseif',
         'eof_ending',
         'unused_use',
-        'phpdoc_indent'
+        'phpdoc_indent',
+        'multiline_array_trailing_comma'
     )
 );
 $config->finder($finder);
