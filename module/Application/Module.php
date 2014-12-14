@@ -50,6 +50,7 @@ class Module  implements
         if ($moduleNamespace != 'Application') {
             if (!$e->getViewModel() instanceof JsonModel) {
                 $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
+                $controller->layout('layout/2columns');
             }
         }
     }
