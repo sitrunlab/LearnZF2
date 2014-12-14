@@ -43,15 +43,21 @@ class Module  implements
      */
     public function onDispatch(MvcEvent $e)
     {
-        $controller = $e->getTarget();
-        $controllerClass = get_class($controller);
-        $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
+        $routeMatch = $e->getRouteMatch();
+        $activeController = $routeMatch->getParam('controller');
 
-        if ($moduleNamespace != 'Application') {
-            if (!$e->getViewModel() instanceof JsonModel) {
-                $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
-                $controller->layout('layout/2columns');
-            }
+        $listController1Columns = [
+            'Application\Controller\Index',
+            'Application\Controller\Contributors',
+        ];
+
+        if (!in_array($activeController, $listController1Columns) && !$e->getViewModel() instanceof JsonModel) {
+            $controller = $e->getTarget();
+            $controllerClass = get_class($controller);
+            $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
+
+            $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
+            $controller->layout('layout/2columns');
         }
     }
 
