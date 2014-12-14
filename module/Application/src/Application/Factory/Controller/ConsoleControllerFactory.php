@@ -3,6 +3,7 @@
 namespace Application\Factory\Controller;
 
 use Application\Controller\ConsoleController;
+use Zend\Http\Client as HttpClient;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -14,10 +15,13 @@ class ConsoleControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $services = $serviceLocator->getServiceLocator();
+        $client = new HttpClient();
+        $client->setAdapter('Zend\Http\Client\Adapter\Curl');
 
         return new ConsoleController(
             $services->get('Console'),
-            $services->get('Config')
+            $services->get('Config'),
+            $client
         );
     }
 }

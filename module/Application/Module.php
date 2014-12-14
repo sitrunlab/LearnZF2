@@ -75,9 +75,9 @@ class Module  implements
      */
     public function getConsoleUsage(Console $console)
     {
-        return array(
+        return [
             'get contributors' => 'get contributors list',
-        );
+        ];
     }
 
     /**

@@ -24,12 +24,19 @@ class ConsoleController extends AbstractConsoleController
     protected $config;
 
     /**
+     * @var HttpClient
+     */
+    protected $httpClient;
+
+    /**
      * Construct console and config property
      */
-    public function __construct(Console $console, array $config)
+    public function __construct(Console $console, array $config, HttpClient $httpClient)
     {
         $this->console = $console;
         $this->config  = $config;
+
+        $this->httpClient = $httpClient;
     }
 
     protected function reportError($width, $length, $message, $e = null)
@@ -64,11 +71,9 @@ class ConsoleController extends AbstractConsoleController
         $width = $this->console->getWidth();
         $this->console->writeLine('Fetching GitHub Contributors', Color::GREEN);
 
-        $client = new HttpClient();
-        $client->setAdapter('Zend\Http\Client\Adapter\Curl');
-        $client->setUri('https://api.github.com/repos/sitrunlab/LearnZF2/contributors');
+        $this->httpClient->setUri('https://api.github.com/repos/sitrunlab/LearnZF2/contributors');
 
-        $response = $client->send();
+        $response = $this->httpClient->send();
         if (!$response->isSuccess()) {
             // report failure
             $message = $response->getStatusCode().': '.$response->getReasonPhrase();
@@ -84,8 +89,8 @@ class ConsoleController extends AbstractConsoleController
         foreach ($contributors as $i => $contributor) {
             $message = sprintf('    Processing %d/%d', $i, $total);
             $this->console->write($message);
-            $client->setUri("https://api.github.com/users/{$contributor['login']}");
-            $response = $client->send();
+            $this->httpClient->setUri("https://api.github.com/users/{$contributor['login']}");
+            $response = $this->httpClient->send();
             if (!$response->isSuccess()) {
                 // report failure
                 $error = $response->getStatusCode().': '.$response->getReasonPhrase();
