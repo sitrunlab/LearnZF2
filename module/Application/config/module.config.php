@@ -78,7 +78,7 @@ return [
             'Zend\Log\LoggerAbstractServiceFactory',
         ],
         'factories' => [
-            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',    
+            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
         ],
         'aliases' => [
             'translator' => 'MvcTranslator',
