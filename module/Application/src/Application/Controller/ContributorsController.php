@@ -26,7 +26,7 @@ class ContributorsController extends AbstractActionController
         $this->layout()->setVariable('skipWelcome', true);
 
         return new ViewModel([
-            'contributors' => $this->contributors
+            'contributors' => $this->contributors,
         ]);
     }
 }
