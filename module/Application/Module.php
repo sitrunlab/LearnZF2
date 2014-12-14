@@ -2,6 +2,7 @@
 
 namespace Application;
 
+use Zend\Console\Adapter\AdapterInterface as Console;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
@@ -66,6 +67,16 @@ class Module  implements
             $e->getViewModel()
               ->setVariable('modules_list', $entityManager->getRepository('Application\Entity\ModuleList')->findAll());
         }
+    }
+
+    /**
+     * Get console usage description
+     */
+    public function getConsoleUsage(Console $console)
+    {
+        return array(
+            'get contributors' => 'get contributors list',
+        );
     }
 
     /**

@@ -99,6 +99,7 @@ return [
             'Application\Controller\Download' => 'Application\Factory\Controller\DownloadControllerFactory',
             'Application\Controller\Index' => 'Application\Factory\Controller\IndexControllerFactory',
             'Application\Controller\Contributors' => 'Application\Factory\Controller\ContributorsControllerFactory',
+            'Application\Controller\Console' => 'Application\Factory\Controller\ConsoleControllerFactory',
         ],
     ],
     'view_helpers' => [
@@ -122,10 +123,22 @@ return [
             __DIR__.'/../view',
         ],
     ],
-    // Placeholder for console routes
     'console' => [
+        'contributors' => [
+            'output' => 'data/contributors/contributors.pson',
+        ],
         'router' => [
             'routes' => [
+                'contributors' => [
+                    'type' => 'Simple',
+                    'options' => [
+                        'route' => 'get contributors',
+                        'defaults' => [
+                            'controller' => 'Application\Controller\Console',
+                            'action'     => 'getcontributors',
+                        ],
+                    ],
+                ],
             ],
         ],
     ],
