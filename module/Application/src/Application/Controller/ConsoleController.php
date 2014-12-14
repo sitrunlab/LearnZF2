@@ -71,8 +71,6 @@ class ConsoleController extends AbstractConsoleController
         $width = $this->console->getWidth();
         $this->console->writeLine('Fetching GitHub Contributors', Color::GREEN);
 
-        $this->httpClient->setUri('https://api.github.com/repos/sitrunlab/LearnZF2/contributors');
-
         $response = $this->httpClient->send();
         if (!$response->isSuccess()) {
             // report failure

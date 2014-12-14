@@ -17,6 +17,7 @@ class ConsoleControllerFactory implements FactoryInterface
         $services = $serviceLocator->getServiceLocator();
         $client = new HttpClient();
         $client->setAdapter('Zend\Http\Client\Adapter\Curl');
+        $client->setUri('https://api.github.com/repos/sitrunlab/LearnZF2/contributors');
 
         return new ConsoleController(
             $services->get('Console'),
