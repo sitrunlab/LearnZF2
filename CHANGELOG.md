@@ -5,7 +5,7 @@
 - [67: Doctrine configuration support](https://github.com/sitrunlab/LearnZF2/pull/67)
 - [69: Db usage for module list](https://github.com/sitrunlab/LearnZF2/pull/69)
 - [69: Pagination module](https://github.com/sitrunlab/LearnZF2/pull/70)
-
+- [74: Contributors Page](https://github.com/sitrunlab/LearnZF2/pull/74)
 
 ## 0.0.2 - 2014-12-03
 

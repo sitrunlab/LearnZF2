@@ -1,0 +1,29 @@
+<div class="col-lg-9">
+    <h1>Thanks to :</h1>
+    <ul class="row  contributor-gallery">
+        <?php foreach ($this->contributors as $i => $contributor): ?>
+        <li class="col-lg-3 col-md-2 col-sm-3 col-xs-4">
+            <img class="avatar" src="<?php echo $contributor['avatar_url'] ?>" />
+            <div class="icon-con ">
+                <div class="github ">
+                    <a href="<?php echo $contributor['user_info']['html_url'] ?>">
+                        <img src="<?php echo $this->basePath('img/github.png') ?>" />
+                    </a>
+                </div>
+                <?php if (isset($contributor['user_info']['blog'])): ?>
+                    <?php
+                     if ('http:' !== substr($contributor['user_info']['blog'],0,5)) {
+                         $contributor['user_info']['blog'] = 'http://' . $contributor['user_info']['blog'];
+                         }
+                    ?>
+                    <div class="blog ">
+                        <a href="<?php echo $contributor['user_info']['blog'] ?>">
+                            <img src="<?php echo $this->basePath('img/link.png') ?>" />
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
