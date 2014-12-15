@@ -23,8 +23,8 @@ class BarcodeController extends AbstractActionController
     }
 
     /**
-    * Use the form to get barcode image from selected barcode object
-    */
+     * Use the form to get barcode image from selected barcode object
+     */
     public function indexAction()
     {
         $request = $this->getRequest();

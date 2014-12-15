@@ -2,6 +2,7 @@
 
 namespace Application;
 
+use Zend\Console\Adapter\AdapterInterface as Console;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
@@ -45,16 +46,18 @@ class Module  implements
         $routeMatch = $e->getRouteMatch();
         $activeController = $routeMatch->getParam('controller');
 
-        if ($activeController != 'Application\Controller\Index') {
-            $controller = $e->getTarget();
-            $controller = $e->getTarget();
-            $controller->layout('layout/2columns');
+        $listController1Columns = [
+            'Application\Controller\Index',
+            'Application\Controller\Contributors',
+        ];
 
+        if (!in_array($activeController, $listController1Columns) && !$e->getViewModel() instanceof JsonModel) {
+            $controller = $e->getTarget();
             $controllerClass = get_class($controller);
             $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
-            if (!$e->getViewModel() instanceof JsonModel) {
-                $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
-            }
+
+            $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
+            $controller->layout('layout/2columns');
         }
     }
 
@@ -71,6 +74,16 @@ class Module  implements
             $e->getViewModel()
               ->setVariable('modules_list', $entityManager->getRepository('Application\Entity\ModuleList')->findAll());
         }
+    }
+
+    /**
+     * Get console usage description
+     */
+    public function getConsoleUsage(Console $console)
+    {
+        return [
+            'get contributors' => 'get contributors list',
+        ];
     }
 
     /**

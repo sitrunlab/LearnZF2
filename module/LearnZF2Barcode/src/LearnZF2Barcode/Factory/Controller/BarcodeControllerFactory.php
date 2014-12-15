@@ -9,8 +9,8 @@ use Zend\ServiceManager\FactoryInterface;
 class BarcodeControllerFactory implements FactoryInterface
 {
     /**
-    * @{inheritDoc}
-    */
+     * @{inheritDoc}
+     */
     public function createService(ServiceLocatorInterface $sl)
     {
         $controller = new BarcodeController(
