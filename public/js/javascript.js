@@ -16,9 +16,9 @@ jQuery('document').ready(function(){
     });
 
     jQuery('ul.contributor-gallery li').hover(function(){
-        $(this).find('.icon-con').fadeIn(1500);
+        $(this).find('.gallery-overlay').stop(true).fadeIn(1500);
     },function(){
-        $(this).find('.icon-con').fadeOut(1500);
+        $(this).find('.gallery-overlay').stop(true).fadeOut(1500);
     });
 
 });
