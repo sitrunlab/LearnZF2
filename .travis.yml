@@ -15,6 +15,8 @@ before_script:
   - mysql -e 'create database IF NOT EXISTS learnzf2;' -uroot
   - mysql -u root learnzf2 < data/sql/learnzf2.sql
   - cp config/autoload/doctrine.local.php.dist config/autoload/doctrine.local.php
+  - phantomjs --webdriver=4444 && PID=$! &
+  - sleep 1
 
 script:
   - ls -d module/* | parallel --gnu --keep-order 'echo "Running {} CS checks"; ./vendor/bin/php-cs-fixer fix {} -v --dry-run --config-file=.php_cs;' || exit 1
