@@ -6,6 +6,7 @@
 - [69: Db usage for module list](https://github.com/sitrunlab/LearnZF2/pull/69)
 - [69: Pagination module](https://github.com/sitrunlab/LearnZF2/pull/70)
 - [74: Contributors Page](https://github.com/sitrunlab/LearnZF2/pull/74)
+- [84: Improved unit test for Application\Module](https://github.com/sitrunlab/LearnZF2/pull/84)
 
 ## 0.0.2 - 2014-12-03
 
