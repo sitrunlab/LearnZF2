@@ -1,4 +1,3 @@
-
 #Work with Git
 
 
@@ -6,64 +5,56 @@
 
  _1. Fork repository_
 
-Sebelum memulai pertama, kita fork dulu repository ini dari button "fork" di menu sebelah kanan atas ke akun github kita masing2.
+Before start, we need to do fork the repository by click "fork" button in the top right of the repository page.
 
  _2. PRs_
 
-Selalu mengajukan rancangan coding dengan PR ( Pull Request ). Langkah2 :
- * Clone ke local komputer kita dari forked repository di akun kita.
+Always use Pull Request. Steps :
+
+ * Clone to our local computer from forked repository in our account :
 ```
    git clone https://github.com/samsonasik/LearnZF2.git OurLocalLearnZF2Repository
 ```
- * Membuat branch baru , misal branch baru bernama 'changelog' :
+ * Create new branch : for example : 'changelog' :
 ```
-git checkout master #always start with it to make sure we are from master
-git branch changelog
+#always start with it to make sure we are from master/develop
+git checkout -b changelog master
 ```
- * Checkout ke branch tersebut
-```
-git checkout changelog
-```
- * Lakukan perubahan dan commit dan push ke akun kita :
+ * Do changes and push to our origin repository :
 ```
 git commit -m "commit message" -a
 git push origin changelog
 ```
- * Lakukan pull request
-Di forked akun kita : _/akunkita/LearnZF2_ akan ada button "Compare and Create Pull Request", nah kita klik :
+ * Keeping up to date for overlapped commits ( do againts master/develop based on your start):
+```
+git checkout master && git pull upstream master && git checkout changelog && git rebase master
+```
+ * Do Pull Requests
+In our forked repository : _/ouraccount/LearnZF2_ there will be a button "Compare and Create Pull Request", we then could do click :
 ![1](https://cloud.githubusercontent.com/assets/459648/3942685/5da25e34-2571-11e4-8453-00178259aad3.png)
 
-Lalu masuk halaman submit pull request yang kita bisa isi dengan deskripsi ( jika perlu ) dan kita bisa klik button "Create Pull Request" :
+Then, we can redirected to submit pull request page that we can add description in there if needed and then, we can click "Create Pull Request" :
 ![2](https://cloud.githubusercontent.com/assets/459648/3942691/651fa9fa-2571-11e4-9a3b-bcf743fda02a.png)
 
-Sehingga kita bisa lihat hasilnya di list PR :
+So we can see :
 ![3](https://cloud.githubusercontent.com/assets/459648/3942693/6bbb197a-2571-11e4-8186-64d0b2d840b1.png)
 
-
-Setelah PR disubmit, kita bisa review seperti di gambar berikut :
+After PR submitted, we can review the PR  :
 ![4](https://cloud.githubusercontent.com/assets/459648/3942694/71ef3fa6-2571-11e4-8c0f-0eb43a4e5bfa.png)
 
 
 **Bug report/RFC feature :**
-- Bug report bisa berupa issue/PR dengan detail error yang keluar.
-- RFC feature bisa berupa issue/PR.
+- Bug report and RFC can be an issue/PR. Bug Report/new module should pointed to **master**, and feature should pointed to **develop**.
 
 **Merging PR ( For Maintainers )**
- * selalu mulai dengan master branch
+ * Always check if it is a bug fix/new module or a feature. bug fix/ new module should merged into master
 ```
 git checkout master
-```
- * buat branch baru
-```
 git branch samsonasik/change-changelog
-```
- * checkout dan pull dari branch nya yang ada di PR :
-```
 git checkout  samsonasik/change-changelog
 git pull https://github.com/samsonasik/LearnZF2.git changelog
 ```
-
- * maka kita akan dapat console tampilan seperti berikut :
+ * So, we will get console output :
 ```
   $ git pull https://github.com/samsonasik/LearnZF2.git changelog
 From https://github.com/samsonasik/LearnZF2
@@ -74,15 +65,15 @@ Fast-forward
  1 file changed, 6 insertions(+)
  create mode 100644 CHANGELOG.md
 ```
- * nah, kita balik ke master dan merge
+ * Great! now, we can merge to master
 ```
 git checkout master
 git  merge --no-ff samsonasik/change-changelog
 ```
-dan kita akan dapat tampilan vim:
+And in the our VIM, we can edit the merge commit message, as maintainer, commit merge should have PR #id for example :
 
 ```
-Merge branch 'samsonasik/change-changelog'
+Merge PR #12 from branch 'samsonasik/change-changelog'
 
 # Please enter a commit message to explain why this merge is necessary,
 # especially if it merges an updated upstream into a topic branch.
@@ -90,13 +81,30 @@ Merge branch 'samsonasik/change-changelog'
 # Lines starting with '#' will be ignored, and an empty message aborts
 # the commit.
 ```
-kita bisa ubah dengan klik keyboard _i_ dan ubah yang tidak ada # nya ( # diabaikan dari commit message ).
-terus kalau sudah selesai, kita ketik _:wq_.
+We can change the commit message with type _i_ and change the message. After done, type : _:wq_.
 
-kalau sudah, kita bisa git push deh ke repository /sitrunlab/LearnZF2 langsung :
+**REMEMBER**, that merging bug fixes/new module to master should be forwarded to develop too so it will be syncronized.
+
+You can do :
 ```
+git checkout develop
+git merge --no-ff --log master
+```
+Add 'port #id pr' message in the VIM during merging process master to develop.
+
+**_If feature, it should be merged to develop only._**
+
+After that, we can do :
+```
+git checkout master # ensure in master
 git push https://github.com/sitrunlab/LearnZF2.git master
 ```
+If you merged to develop to, you can do :
+```
+git checkout develop # ensure in develop
+git push https://github.com/sitrunlab/LearnZF2.git develop
+```
+
 
 ### Git Publish
 
