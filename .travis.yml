@@ -15,7 +15,7 @@ before_script:
   - mysql -e 'create database IF NOT EXISTS learnzf2;' -uroot
   - mysql -u root learnzf2 < data/sql/learnzf2.sql
   - cp config/autoload/doctrine.local.php.dist config/autoload/doctrine.local.php
-  - php -S localhost:8000 -t public/
+  - php -S localhost:8000 -t public/ &
   - vendor/bin/phantomjs --webdriver=4444 && PID=$! &
   - sleep 1
 
