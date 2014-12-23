@@ -10,5 +10,8 @@ modules:
         - WebDriver
         - AcceptanceHelper
     config:
-        PhpBrowser:
-            url: 'http://localhost/myapp/'
+        WebDriver:
+            url: 'http://localhost:8000/'
+            browser: firefox
+            capabilities:
+                unexpectedAlertBehaviour: 'accept'
