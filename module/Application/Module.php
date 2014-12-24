@@ -56,6 +56,14 @@ class Module  implements
             $controllerClass = get_class($controller);
             $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
 
+            // set title prepend of module desc...
+            $moduleDetail = $this->services->get('Doctrine\ORM\EntityManager')->getRepository('Application\Entity\ModuleList')->findOneBy([
+                'moduleName' => $moduleNamespace,
+            ]);
+            if ($moduleDetail) {
+                $this->services->get('ViewHelperManager')->get('headTitle')->prepend($moduleDetail->getModuleDesc());
+            }
+
             $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
             $controller->layout('layout/2columns');
         }

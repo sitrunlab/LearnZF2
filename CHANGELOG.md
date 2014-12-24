@@ -8,6 +8,7 @@
 - [74: Contributors Page](https://github.com/sitrunlab/LearnZF2/pull/74)
 - [83: Update language that still using Bahasa to English](https://github.com/sitrunlab/LearnZF2/issues/83)
 - [84: Improved unit test for Application\Module](https://github.com/sitrunlab/LearnZF2/pull/84)
+- [87: set title prepend per module and add title in link for seo](https://github.com/sitrunlab/LearnZF2/pull/87)
 
 ## 0.0.2 - 2014-12-03
 
