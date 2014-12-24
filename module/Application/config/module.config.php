@@ -70,6 +70,16 @@ return [
                     ],
                 ],
             ],
+            'x' => [
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => [
+                    'route'    => '/sitemapxml',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Sitemap',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
@@ -100,6 +110,9 @@ return [
             'Application\Controller\Index' => 'Application\Factory\Controller\IndexControllerFactory',
             'Application\Controller\Contributors' => 'Application\Factory\Controller\ContributorsControllerFactory',
             'Application\Controller\Console' => 'Application\Factory\Controller\ConsoleControllerFactory',
+        ],
+        'invokables' => [
+            'Application\Controller\Sitemap' => 'Application\Controller\SitemapController',
         ],
     ],
     'view_helpers' => [

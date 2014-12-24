@@ -36,7 +36,7 @@
         <div class="box-sidebar border-radius">
             <h5 class="title">Other demos</h5>
             <ul>
-                <?php foreach ($this->layout()->modules_list as $list) {
+                <?php if ($this->layout()->modules_list) { foreach ($this->layout()->modules_list as $list) {
     if ($list->getModuleName() !== $this->layout()->modulenamespace) {
         ?>
 
@@ -45,6 +45,7 @@
         ?> </a> </li>
 
                 <?php
+        }
     }
 }
                 ?>
