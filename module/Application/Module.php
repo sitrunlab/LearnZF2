@@ -60,7 +60,9 @@ class Module  implements
             $moduleDetail = $this->services->get('Doctrine\ORM\EntityManager')->getRepository('Application\Entity\ModuleList')->findOneBy([
                 'moduleName' => $moduleNamespace,
             ]);
-            $this->services->get('ViewHelperManager')->get('headTitle')->prepend($moduleDetail->getModuleDesc());
+            if ($moduleDetail) {
+                $this->services->get('ViewHelperManager')->get('headTitle')->prepend($moduleDetail->getModuleDesc());
+            }
 
             $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
             $controller->layout('layout/2columns');
