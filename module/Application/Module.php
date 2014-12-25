@@ -9,7 +9,6 @@ use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Zend\View\Model\JsonModel;
 
 class Module  implements
     AutoloaderProviderInterface,
@@ -51,7 +50,7 @@ class Module  implements
             'Application\Controller\Contributors',
         ];
 
-        if (!in_array($activeController, $listController1Columns) && !$e->getViewModel() instanceof JsonModel) {
+        if (!in_array($activeController, $listController1Columns) && !$e->getViewModel()->terminate()) {
             $controller = $e->getTarget();
             $controllerClass = get_class($controller);
             $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
@@ -77,7 +76,7 @@ class Module  implements
      */
     public function onRender(MvcEvent $e)
     {
-        if (!$e->getViewModel() instanceof JsonModel) {
+        if (!$e->getViewModel()->terminate()) {
             $entityManager = $this->services->get('Doctrine\ORM\EntityManager');
             $e->getViewModel()
               ->setVariable('modules_list', $entityManager->getRepository('Application\Entity\ModuleList')->findAll());
