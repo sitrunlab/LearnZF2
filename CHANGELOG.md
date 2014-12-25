@@ -9,6 +9,7 @@
 - [83: Update language that still using Bahasa to English](https://github.com/sitrunlab/LearnZF2/issues/83)
 - [84: Improved unit test for Application\Module](https://github.com/sitrunlab/LearnZF2/pull/84)
 - [87: set title prepend per module and add title in link for seo](https://github.com/sitrunlab/LearnZF2/pull/87)
+- [89: Fixes bug : using viewmodel->terminate() to check whenever view has layout](https://github.com/sitrunlab/LearnZF2/pull/89)
 
 ## 0.0.2 - 2014-12-03
 
