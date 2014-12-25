@@ -70,7 +70,7 @@ return [
                     ],
                 ],
             ],
-            'x' => [
+            'sitemapxml' => [
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => [
                     'route'    => '/sitemapxml',
