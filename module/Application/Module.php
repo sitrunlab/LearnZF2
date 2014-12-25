@@ -51,7 +51,7 @@ class Module  implements
             'Application\Controller\Contributors',
         ];
 
-        if (!in_array($activeController, $listController1Columns) && !$e->getViewModel() instanceof JsonModel) {
+        if (!in_array($activeController, $listController1Columns) && !$e->getViewModel()->terminate()) {
             $controller = $e->getTarget();
             $controllerClass = get_class($controller);
             $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
