@@ -1,1 +1,4 @@
-<?php echo $this->navigation()->sitemap()->setFormatOutput(true)->setRenderInvisible(true); ?> 
+<?php echo $this->navigation('navigation')
+                ->sitemap()
+                ->setServerUrl('http://learnzf2.sitrun-tech.com')
+                ->setFormatOutput(true); ?>
