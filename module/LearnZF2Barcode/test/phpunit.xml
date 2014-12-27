@@ -8,4 +8,8 @@
             <directory suffix=".php">./../../../vendor/</directory>
         </blacklist>
     </filter>
+    <logging>
+        <log type="coverage-html" target="./../../../data/test-html-report/" charset="UTF-8" yui="true" />
+        <log type="coverage-php" target="./../../../build/coverage/coverage-learnzf2barcode.cov"/>
+    </logging>
 </phpunit>
