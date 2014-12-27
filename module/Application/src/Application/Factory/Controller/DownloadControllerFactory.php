@@ -2,9 +2,9 @@
 
 namespace Application\Factory\Controller;
 
+use Application\Controller\DownloadController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Application\Controller\DownloadController;
 
 class DownloadControllerFactory implements FactoryInterface
 {
@@ -14,7 +14,13 @@ class DownloadControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $services = $serviceLocator->getServiceLocator();
+        $moduleList = [];
+        foreach ($services->get('Doctrine\ORM\EntityManager')
+                               ->getRepository('Application\Entity\ModuleList')
+                               ->findAll() as $module) {
+            $moduleList[] = $module->getModuleName();
+        }
 
-        return new DownloadController($services->get('ApplicationConfig'));
+        return new DownloadController($moduleList);
     }
 }

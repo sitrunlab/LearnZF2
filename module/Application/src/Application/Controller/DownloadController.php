@@ -11,16 +11,16 @@ class DownloadController extends AbstractActionController
     /**
      * @var array
      */
-    private $applicationConfig;
+    private $modulesList;
 
     /**
-     * Construct applicationConfig
+     * Construct $modulesList
      *
-     * @param array $applicationConfig
+     * @param array $modulesList
      */
-    public function __construct(array $applicationConfig)
+    public function __construct(array $modulesList)
     {
-        $this->applicationConfig = $applicationConfig;
+        $this->modulesList = $modulesList;
     }
 
     /**
@@ -32,10 +32,9 @@ class DownloadController extends AbstractActionController
     {
         $module = $this->params()->fromRoute('module', '');
         $compress = $this->params()->fromRoute('compress', 'zip');
-        $modules           = $this->applicationConfig['modules'];
 
         $response = $this->getResponse();
-        if (in_array($module, $modules)) {
+        if (in_array($module, $this->modulesList)) {
             $currDateTime = date('Y-m-dHis');
 
             $fileToArchive  = $module.'.'.(($compress == 'zip') ? 'zip' : 'bz2');
