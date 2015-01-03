@@ -8,6 +8,7 @@ php:
 install:
   - sudo apt-get install parallel
   - composer install --dev --prefer-source
+  - vendor/bin/bowerphp install
 
 before_script:
   - mkdir -p build/coverage

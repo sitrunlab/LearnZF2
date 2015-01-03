@@ -14,7 +14,8 @@
         "fabpot/php-cs-fixer": "1.*",
         "satooshi/php-coveralls": "dev-master",
         "codeception/codeception": "2.*",
-        "jonnyw/php-phantomjs": "3.*"
+        "jonnyw/php-phantomjs": "3.*",
+        "beelab/bowerphp": "1.0.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
