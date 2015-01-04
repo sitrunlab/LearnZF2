@@ -11,6 +11,10 @@ return [
                 'label' => 'Contributors',
                 'route' => 'contributors',
             ],
+            [
+                'label' => 'Credits',
+                'route' => 'credits',
+            ],
         ],
     ],
 ];

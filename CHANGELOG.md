@@ -12,6 +12,7 @@
 - [89: Fixes bug : using viewmodel->terminate() to check whenever view has layout](https://github.com/sitrunlab/LearnZF2/pull/89)
 - [90: hotfix : restrict other "in db" modules to be download-able](https://github.com/sitrunlab/LearnZF2/pull/90)
 - [91: remove "ant" on .travis.yml, use "parallel" instead](https://github.com/sitrunlab/LearnZF2/pull/91)
+- [93: Added Credits page](https://github.com/sitrunlab/LearnZF2/pull/93)
 - [96: Share facebook button count fix](https://github.com/sitrunlab/LearnZF2/pull/96)
 
 ## 0.0.2 - 2014-12-03

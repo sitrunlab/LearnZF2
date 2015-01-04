@@ -60,6 +60,16 @@ return [
                     ],
                 ],
             ],
+            'credits' => [
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => [
+                    'route'    => '/credits',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Credits',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
             'contributors' => [
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => [
@@ -100,6 +110,9 @@ return [
             'Application\Controller\Index' => 'Application\Factory\Controller\IndexControllerFactory',
             'Application\Controller\Contributors' => 'Application\Factory\Controller\ContributorsControllerFactory',
             'Application\Controller\Console' => 'Application\Factory\Controller\ConsoleControllerFactory',
+        ],
+        'invokables' => [
+            'Application\Controller\Credits' => 'Application\Controller\CreditsController',
         ],
     ],
     'view_helpers' => [

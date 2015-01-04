@@ -47,11 +47,12 @@ class Module  implements
 
         $listController1Columns = [
             'Application\Controller\Index',
+            'Application\Controller\Credits',
             'Application\Controller\Contributors',
         ];
 
+        $controller = $e->getTarget();
         if (!in_array($activeController, $listController1Columns) && !$e->getViewModel()->terminate()) {
-            $controller = $e->getTarget();
             $controllerClass = get_class($controller);
             $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
 
@@ -76,6 +77,8 @@ class Module  implements
 
             $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
             $controller->layout('layout/2columns');
+        } else {
+            $controller->layout('layout/1columns');
         }
     }
 
