@@ -55,7 +55,7 @@ class Module  implements
             $controllerClass = get_class($controller);
             $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
 
-            $fbMeta['title']       = 'Real Life Learn ZF2';
+            $fbMeta['title']       = 'Real Live Learn ZF2';
             $fbMeta['description'] = '';
 
             // set title prepend of module desc...
