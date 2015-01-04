@@ -12,7 +12,10 @@
         ->setName('spiders','all')
         ->setName('robots','all')
         ->setName('keywords', 'ZF2, Zend, Framework, Learn, Tutorial')
-        ->setName('description', 'Real Live ZF2 Examples and tutorial');
+        ->setName('description', 'Real Live ZF2 Examples and tutorial')
+        ->setProperty('og:title', $this->layout()->fbMeta['title'])
+        ->setProperty('og:description', $this->layout()->fbMeta['description'])
+        ->setProperty('og:image', $this->serverUrl() . '/img/zf2-logo.png');
     ?>
 
     <!-- Le styles -->
@@ -32,20 +35,18 @@
         ->prependFile($this->basePath() . '/js/jquery.min.js')
         ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
         ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
-    ; ?>
-
+    ;
+    ?>
 </head>
 <body>
 <div id="fb-root"></div>
-<script>
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=471963102931624&version=v2.0";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/id_ID/sdk.js#xfbml=1&appId=581080422025637&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
