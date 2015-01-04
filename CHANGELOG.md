@@ -14,6 +14,7 @@
 - [91: remove "ant" on .travis.yml, use "parallel" instead](https://github.com/sitrunlab/LearnZF2/pull/91)
 - [93: Added Credits page](https://github.com/sitrunlab/LearnZF2/pull/93)
 - [96: Share facebook button count fix](https://github.com/sitrunlab/LearnZF2/pull/96)
+- [97: remove scrutinizer service as too many failing, use coveralls instead](https://github.com/sitrunlab/LearnZF2/pull/97)
 
 ## 0.0.2 - 2014-12-03
 
