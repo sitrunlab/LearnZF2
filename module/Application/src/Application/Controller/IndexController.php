@@ -26,7 +26,6 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        $this->layout('layout/1columns.phtml');
         $this->layout()->setVariable('skipWelcome', false);
 
         $paginator = new Paginator(new ArrayAdapter($this->modulesList));

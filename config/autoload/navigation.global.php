@@ -15,6 +15,10 @@ return [
                 'priority' => 0.80,
                 'changefreq' => 'weekly',
             ],
+            [
+                'label' => 'Credits',
+                'route' => 'credits',
+            ],
         ],
     ],
 ];

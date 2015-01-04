@@ -60,6 +60,16 @@ return [
                     ],
                 ],
             ],
+            'credits' => [
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => [
+                    'route'    => '/credits',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Credits',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
             'contributors' => [
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => [
@@ -113,6 +123,7 @@ return [
         ],
         'invokables' => [
             'Application\Controller\Sitemap' => 'Application\Controller\SitemapController',
+            'Application\Controller\Credits' => 'Application\Controller\CreditsController',
         ],
     ],
     'view_helpers' => [
