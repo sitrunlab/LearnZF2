@@ -23,7 +23,13 @@ before_script:
 script:
   - ls -d module/* | parallel --gnu --keep-order 'echo "Running {} CS checks"; ./vendor/bin/php-cs-fixer fix {} -v --dry-run --config-file=.php_cs;' || exit 1
   - ls -d module/*/test | parallel --gnu --keep-order 'echo "Running {} tests"; phpunit -c {}/phpunit.xml;' || exit 1
+  # parallel for codeception still doesn't work
+  # - ls -d module/*/test/CodeCeption | parallel --gnu --keep-order 'echo "Running tests ./vendor/bin/codecept --config={}/codeception.yml run acceptance"; ./vendor/bin/codecept --config={}/codeception.yml run acceptance;' || exit 1
   - vendor/bin/codecept --config=module/Application/test/CodeCeption/codeception.yml run acceptance
+  - vendor/bin/codecept --config=module/LearnZF2Ajax/test/CodeCeption/codeception.yml run acceptance
+  - vendor/bin/codecept --config=module/LearnZF2Barcode/test/CodeCeption/codeception.yml run acceptance
+  - vendor/bin/codecept --config=module/LearnZF2FormUsage/test/CodeCeption/codeception.yml run acceptance
+  - vendor/bin/codecept --config=module/LearnZF2Pagination/test/CodeCeption/codeception.yml run acceptance
 
 after_script:
   - php phpcov.phar merge --clover build/logs/clover.xml build/coverage/
