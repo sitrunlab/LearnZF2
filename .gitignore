@@ -6,6 +6,7 @@
 vendor/
 composer.phar
 public/js/dependencies/
+data/uploads
 public/css/.sass-cache/
 /nbproject
 build/
