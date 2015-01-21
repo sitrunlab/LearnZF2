@@ -1,4 +1,4 @@
-## Development
+## 0.0.3 - 2014-01-22
 
 ### Added
 
@@ -9,10 +9,14 @@
 - [83: Update language that still using Bahasa to English](https://github.com/sitrunlab/LearnZF2/issues/83)
 - [84: Improved unit test for Application\Module](https://github.com/sitrunlab/LearnZF2/pull/84)
 - [87: set title prepend per module and add title in link for seo](https://github.com/sitrunlab/LearnZF2/pull/87)
+- [93: Added Credits page](https://github.com/sitrunlab/LearnZF2/pull/93)
+- [99: Improve unit test coverage](https://github.com/sitrunlab/LearnZF2/pull/99)
+
+### Fixed
+
 - [89: Fixes bug : using viewmodel->terminate() to check whenever view has layout](https://github.com/sitrunlab/LearnZF2/pull/89)
 - [90: hotfix : restrict other "in db" modules to be download-able](https://github.com/sitrunlab/LearnZF2/pull/90)
 - [91: remove "ant" on .travis.yml, use "parallel" instead](https://github.com/sitrunlab/LearnZF2/pull/91)
-- [93: Added Credits page](https://github.com/sitrunlab/LearnZF2/pull/93)
 - [96: Share facebook button count fix](https://github.com/sitrunlab/LearnZF2/pull/96)
 - [97: remove scrutinizer service as too many failing, use coveralls instead](https://github.com/sitrunlab/LearnZF2/pull/97)
 
