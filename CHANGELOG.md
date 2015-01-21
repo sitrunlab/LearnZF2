@@ -1,3 +1,13 @@
+## 0.1.0 - 2014-01-22
+
+### Added
+
+- [59: SEO](https://github.com/sitrunlab/LearnZF2/issues/59)
+- [59: Add Codeception BDD acceptance Testing in all modules](https://github.com/sitrunlab/LearnZF2/issues/59)
+
+### Fixed
+- [94: some assets in web Acceptance test didn't loaded because of bower not run in travis](https://github.com/sitrunlab/LearnZF2/issues/94)
+
 ## 0.0.3 - 2014-01-22
 
 ### Added

@@ -80,6 +80,16 @@ return [
                     ],
                 ],
             ],
+            'sitemapxml' => [
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => [
+                    'route'    => '/sitemapxml',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Sitemap',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
@@ -112,6 +122,7 @@ return [
             'Application\Controller\Console' => 'Application\Factory\Controller\ConsoleControllerFactory',
         ],
         'invokables' => [
+            'Application\Controller\Sitemap' => 'Application\Controller\SitemapController',
             'Application\Controller\Credits' => 'Application\Controller\CreditsController',
         ],
     ],

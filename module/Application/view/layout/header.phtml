@@ -8,6 +8,11 @@
     <?php echo $this->headMeta()
         ->appendName('viewport', 'width=device-width, initial-scale=1.0')
         ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ->setName('webcrawlers','all')
+        ->setName('spiders','all')
+        ->setName('robots','all')
+        ->setName('keywords', 'ZF2, Zend, Framework, Learn, Tutorial')
+        ->setName('description', 'Real Live ZF2 Examples and tutorial')
         ->setProperty('og:title', $this->layout()->fbMeta['title'])
         ->setProperty('og:description', $this->layout()->fbMeta['description'])
         ->setProperty('og:image', $this->serverUrl() . '/img/zf2-logo.png');

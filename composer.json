@@ -1,6 +1,6 @@
 {
     "name": "sitrunlab/learnzf2",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "description": "Sitrun Lab",
     "homepage": "http://learnzf2.sitrun-tech.com/",
     "require": {
@@ -12,6 +12,17 @@
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "1.*",
-        "satooshi/php-coveralls": "dev-master"
+        "satooshi/php-coveralls": "dev-master",
+        "codeception/codeception": "2.*",
+        "jonnyw/php-phantomjs": "3.*",
+        "beelab/bowerphp": "1.0.*@dev"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ],
+        "post-update-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ]
     }
 }
