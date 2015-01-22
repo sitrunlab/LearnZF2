@@ -52,33 +52,35 @@ class Module  implements
         ];
 
         $controller = $e->getTarget();
-        if (!in_array($activeController, $listController1Columns) && !$e->getViewModel()->terminate()) {
-            $controllerClass = get_class($controller);
-            $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
+        if (!$e->getViewModel()->terminate()) {
+            if (!in_array($activeController, $listController1Columns)) {
+                $controllerClass = get_class($controller);
+                $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
 
-            $fbMeta['title']       = 'Real Live Learn ZF2';
-            $fbMeta['description'] = '';
+                $fbMeta['title']       = 'Real Live Learn ZF2';
+                $fbMeta['description'] = '';
 
-            // set title prepend of module desc...
-            $moduleDetail = $this->services->get('Doctrine\ORM\EntityManager')->getRepository('Application\Entity\ModuleList')->findOneBy([
-                'moduleName' => $moduleNamespace,
-            ]);
+                // set title prepend of module desc...
+                $moduleDetail = $this->services->get('Doctrine\ORM\EntityManager')->getRepository('Application\Entity\ModuleList')->findOneBy([
+                    'moduleName' => $moduleNamespace,
+                ]);
 
-            if ($moduleDetail) {
-                $this->services->get('ViewHelperManager')->get('headTitle')->prepend($moduleDetail->getModuleDesc());
-                $title       = $moduleDetail->getModuleDesc();
-                $description = $moduleDetail->getModuleDesc();
+                if ($moduleDetail) {
+                    $this->services->get('ViewHelperManager')->get('headTitle')->prepend($moduleDetail->getModuleDesc());
+                    $title       = $moduleDetail->getModuleDesc();
+                    $description = $moduleDetail->getModuleDesc();
 
-                $fbMeta['title'] = $title.'-'.$fbMeta['title'];
-                $fbMeta['description'] = $description.'-'.$fbMeta['description'];
+                    $fbMeta['title'] = $title.'-'.$fbMeta['title'];
+                    $fbMeta['description'] = $description.'-'.$fbMeta['description'];
+                }
+
+                $e->getViewModel()->setVariable('fbMeta', $fbMeta);
+
+                $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
+                $controller->layout('layout/2columns');
+            } else {
+                $controller->layout('layout/1columns');
             }
-
-            $e->getViewModel()->setVariable('fbMeta', $fbMeta);
-
-            $e->getViewModel()->setVariable('modulenamespace', $moduleNamespace);
-            $controller->layout('layout/2columns');
-        } else {
-            $controller->layout('layout/1columns');
         }
     }
 
