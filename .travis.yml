@@ -24,6 +24,7 @@ script:
   - ls -d module/* | parallel --gnu --keep-order 'echo "Running {} CS checks"; ./vendor/bin/php-cs-fixer fix {} -v --dry-run --config-file=.php_cs;' || exit 1
   - ls -d module/*/test | parallel --gnu --keep-order 'echo "Running {} tests"; phpunit -c {}/phpunit.xml;' || exit 1
   - cd module && for i in $(ls -d *); do ./../vendor/bin/codecept --config=${i%%/}/test/CodeCeption/codeception.yml run acceptance; done
+  - cd ..
 
 after_script:
   - php phpcov.phar merge --clover build/logs/clover.xml build/coverage/

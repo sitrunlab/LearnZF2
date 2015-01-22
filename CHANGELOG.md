@@ -1,3 +1,10 @@
+Development
+-----------
+
+### Fixes
+
+- [100: Fixes /sitemapxml error](https://github.com/sitrunlab/LearnZF2/pull/100)
+
 ## 0.1.0 - 2014-01-22
 
 ### Added
