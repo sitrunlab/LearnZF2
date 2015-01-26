@@ -9,7 +9,7 @@ class BarcodeControllerTest extends AbstractHttpControllerTestCase
     public function setUp()
     {
         $this->setApplicationConfig(
-            include dirname(dirname(dirname(dirname(dirname(__DIR__))))).'/config/application.config.php'
+            include dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/config/application.config.php'
         );
 
         parent::setUp();
