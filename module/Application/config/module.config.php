@@ -100,19 +100,6 @@ return [
         'factories' => [
             'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
         ],
-        'aliases' => [
-            'translator' => 'MvcTranslator',
-        ],
-    ],
-    'translator' => [
-        'locale' => 'en_US',
-        'translation_file_patterns' => [
-            [
-                'type'     => 'gettext',
-                'base_dir' => __DIR__.'/../language',
-                'pattern'  => '%s.mo',
-            ],
-        ],
     ],
     'controllers' => [
         'factories' => [
