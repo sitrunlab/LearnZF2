@@ -5,6 +5,7 @@ Development
 
 - [100: Fixes /sitemapxml error](https://github.com/sitrunlab/LearnZF2/pull/100)
 - [103: Apply #92 : restructure test folder](https://github.com/sitrunlab/LearnZF2/pull/103)
+- [105: add BarcodeObjectPluginManagerFactory test](https://github.com/sitrunlab/LearnZF2/pull/105)
 
 ## 0.1.0 - 2014-01-22
 
