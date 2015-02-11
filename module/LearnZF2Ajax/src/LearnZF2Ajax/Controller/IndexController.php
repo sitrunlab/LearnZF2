@@ -7,6 +7,7 @@
  * Website : http://mockie.net
  * Email : rifkimuhammad89@gmail.com
  */
+
 namespace LearnZF2Ajax\Controller;
 
 use LearnZF2Ajax\Model\LoginInputFilter;
