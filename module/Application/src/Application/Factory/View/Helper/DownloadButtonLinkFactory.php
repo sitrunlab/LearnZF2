@@ -15,7 +15,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace Application\Factory\View\Helper;
 
 use Zend\ServiceManager\FactoryInterface;
