@@ -55,7 +55,7 @@ class LoginInputFilter implements InputFilterAwareInterface
                         'name' => 'Regex',
                         'options' => [
                             'pattern' => '/admin/',
-                        ]
+                        ],
                     ],
                 ],
             ]));
@@ -80,7 +80,7 @@ class LoginInputFilter implements InputFilterAwareInterface
                         'name' => 'Regex',
                         'options' => [
                             'pattern' => '/admin/',
-                        ]
+                        ],
                     ],
                 ],
             ]));

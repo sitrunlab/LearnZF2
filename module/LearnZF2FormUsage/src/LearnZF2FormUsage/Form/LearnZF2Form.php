@@ -188,7 +188,7 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
             ],
             [
                 'name'     => 'hobby',
-                'required' => true
+                'required' => true,
             ],
             [
                 'name'     => 'email',
@@ -230,8 +230,8 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
             ],
             [
                 'name'     => 'direction',
-                'required' => true
-            ]
+                'required' => true,
+            ],
         ];
     }
 }
