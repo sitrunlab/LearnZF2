@@ -5,7 +5,6 @@
  * Date: 9/28/14
  * Time: 5:20 PM
  */
-
 namespace LearnZF2Ajax\Model;
 
 use Zend\InputFilter\Factory as InputFactory;     // <-- Add this import
@@ -56,7 +55,7 @@ class LoginInputFilter implements InputFilterAwareInterface
                         'name' => 'Regex',
                         'options' => [
                             'pattern' => '/admin/',
-                        ]
+                        ],
                     ],
                 ],
             ]));
@@ -81,7 +80,7 @@ class LoginInputFilter implements InputFilterAwareInterface
                         'name' => 'Regex',
                         'options' => [
                             'pattern' => '/admin/',
-                        ]
+                        ],
                     ],
                 ],
             ]));
