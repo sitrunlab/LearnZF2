@@ -27,7 +27,7 @@ script:
   - cd ..
 
 after_script:
-  - php phpcov.phar merge --clover build/logs/clover.xml build/coverage/
+  - php vendor/bin/phpcov merge --clover build/logs/clover.xml build/coverage/
   - php vendor/bin/coveralls -v
 
 notifications:
