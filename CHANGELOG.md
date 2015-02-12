@@ -12,6 +12,7 @@ Development
 - [103: Apply #92 : restructure test folder](https://github.com/sitrunlab/LearnZF2/pull/103)
 - [104: hotfix : remove unused language files](https://github.com/sitrunlab/LearnZF2/pull/104)
 - [107: apply #85 : license](https://github.com/sitrunlab/LearnZF2/pull/107)
+- [110: remove deprecated --dev option in composer install at .travis.yml](https://github.com/sitrunlab/LearnZF2/pull/110)
 
 ## 0.1.0 - 2014-01-22
 
