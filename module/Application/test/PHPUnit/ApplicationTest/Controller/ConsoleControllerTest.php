@@ -163,4 +163,34 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
 
         $method->invokeArgs($controller, array(10, 3, ''));
     }
+
+    public function testCollectContributorsInfoFailed()
+    {
+        $adapter = Console::detectBestAdapter();
+        $consoleAdapter = new $adapter();
+
+        $controller = new ConsoleController(
+            $consoleAdapter,
+            [
+                'console' => [
+                    'contributors' => [
+                        'output' => 'foo.pson',
+                    ],
+                ],
+            ],
+            $this->httpClient
+        );
+
+        $class = new ReflectionClass('Application\Controller\ConsoleController');
+        $method = $class->getMethod('collectContributorsInfo');
+        $method->setAccessible(true);
+
+        $contributors = [
+            0 => [
+                'login' => '*samsonasik*',
+            ],
+        ];
+
+        $method->invokeArgs($controller, array($contributors, 3, 100));
+    }
 }
