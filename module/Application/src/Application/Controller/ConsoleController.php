@@ -82,6 +82,34 @@ class ConsoleController extends AbstractConsoleController
     }
 
     /**
+     * Collect contributors info
+     * @param  array $contributors
+     * @param  int   $total
+     * @param  int   $width
+     * @return array
+     */
+    protected function collectContributorsInfo($contributors, $total, $width)
+    {
+        foreach ($contributors as $i => $contributor) {
+            $message = sprintf('    Processing %d/%d', $i, $total);
+            $this->console->write($message);
+            $this->httpClient->setUri("https://api.github.com/users/{$contributor['login']}");
+            $response = $this->httpClient->send();
+            if (!$response->isSuccess()) {
+                // report failure
+                $error = $response->getStatusCode().': '.$response->getReasonPhrase();
+                $this->reportError($width, strlen($message), $error);
+            }
+            $body     = $response->getBody();
+            $userInfo = json_decode($body, 1);
+            $contributors[$i]['user_info'] = $userInfo;
+            $this->reportSuccess($width, strlen($message));
+        }
+
+        return $contributors;
+    }
+
+    /**
      * route : get contributors
      */
     public function getcontributorsAction()
@@ -102,21 +130,7 @@ class ConsoleController extends AbstractConsoleController
         $contributors = json_decode($body, true);
         $total        = count($contributors);
 
-        foreach ($contributors as $i => $contributor) {
-            $message = sprintf('    Processing %d/%d', $i, $total);
-            $this->console->write($message);
-            $this->httpClient->setUri("https://api.github.com/users/{$contributor['login']}");
-            $response = $this->httpClient->send();
-            if (!$response->isSuccess()) {
-                // report failure
-                $error = $response->getStatusCode().': '.$response->getReasonPhrase();
-                $this->reportError($width, strlen($message), $error);
-            }
-            $body     = $response->getBody();
-            $userInfo = json_decode($body, 1);
-            $contributors[$i]['user_info'] = $userInfo;
-            $this->reportSuccess($width, strlen($message));
-        }
+        $contributors = $this->collectContributorsInfo($contributors, $total, $width);
 
         $this->console->writeLine(str_repeat('-', $width));
         $message = 'Writing file';
