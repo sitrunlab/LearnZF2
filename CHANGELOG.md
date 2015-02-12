@@ -4,6 +4,7 @@ Development
 ### Added
 - [105: add BarcodeObjectPluginManagerFactory test](https://github.com/sitrunlab/LearnZF2/pull/105)
 - [108: use composer for phpcov](https://github.com/sitrunlab/LearnZF2/pull/108)
+- [109: add more tests for ConsoleController](https://github.com/sitrunlab/LearnZF2/pull/109)
 
 ### Fixes
 
