@@ -70,6 +70,13 @@ sudo apt-get install nodejs-legacy
 php composer.phar self-update && php composer.phar install
 ```
 
+ 4.Execute Sql dump that located in **data/sql** directory into MySQL database.
+ 
+ 5.Copy <code>config/autoload/doctrine.local.php.dist</code> to <code>config/autoload/doctrine.local.php</code> and configure it with your current environment.
+
+
+ 
+
 Web Server Setup
 ----------------
 
