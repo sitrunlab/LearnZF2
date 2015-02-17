@@ -29,7 +29,7 @@ class LogForm extends Form implements InputFilterProviderInterface
     {
         $this->add([
             'name' => 'logtext',
-            'type' => 'Textarea'
+            'type' => 'Textarea',
         ]);
 
         $this->add([
@@ -51,5 +51,3 @@ class LogForm extends Form implements InputFilterProviderInterface
         ];
     }
 }
-
-
