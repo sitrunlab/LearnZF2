@@ -15,41 +15,23 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace LearnZF2Log\Form;
+namespace LearnZF2Log\Factory\Controller;
 
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilterProviderInterface;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
+use LearnZF2Log\Controller\IndexController;
 
-/**
- * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
- */
-class LogForm extends Form implements InputFilterProviderInterface
+class IndexControllerFactory implements FactoryInterface
 {
-    public function init()
+    /**
+     * {@inheritDoc}
+     */
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $this->add([
-            'name' => 'logtext',
-            'type' => 'Textarea'
-        ]);
+        $services = $serviceLocator->getServiceLocator();
 
-        $this->add([
-            'name' => 'logtype',
-            'type' => 'Select',
-            'options' => [
-                'value_options' => [
-                    0 => 'Emerg',
-                    1 => 'Info',
-                ],
-            ],
-        ]);
-    }
-
-    public function getInputFilterSpecification()
-    {
-        return [
-
-        ];
+        return new IndexController(
+            $services->get('FormElementManager')->get('LearnZF2Log\Form\LogForm')
+        );
     }
 }
-
-
