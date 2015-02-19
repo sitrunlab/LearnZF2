@@ -1,0 +1,39 @@
+<div class="col-lg-9">
+
+    <h1>Zend\Log sample usage</h1>
+
+    <div class="demo-box">
+            <?php
+            $form = $this->form;
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            ?>
+
+            <div class="form-group">
+                <label><?php echo $form->get('logmessage')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('logmessage'));
+                echo $this->formElementErrors($form->get('logmessage'));
+                 ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('logpriority')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('logpriority'));
+                echo $this->formElementErrors($form->get('logpriority')); ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('logformat')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('logformat'));
+                echo $this->formElementErrors($form->get('logformat'));?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('submit')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('submit')) ?>
+            </div>
+
+            <?php echo $this->form()->closeTag(); ?>
+    </div>
+
+</div>

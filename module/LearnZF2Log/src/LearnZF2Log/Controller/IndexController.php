@@ -17,6 +17,8 @@
  */
 namespace LearnZF2Log\Controller;
 
+use Zend\Form\FormInterface;
+use Zend\Log\Logger;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -25,8 +27,42 @@ use Zend\View\Model\ViewModel;
  */
 class IndexController extends AbstractActionController
 {
+    /**
+     * @var Logger
+     */
+    protected $logger;
+
+    /**
+     * @var FormInterface
+     */
+    protected $form;
+
+    public function __construct(Logger $logger, FormInterface $form)
+    {
+        $this->logger = $logger;
+        $this->form = $form;
+    }
+
     public function indexAction()
     {
-        return new ViewModel();
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            $this->form->setData($request->getPost());
+            if ($this->form->isValid()) {
+                $data = $this->form->getData();
+                $writers = $this->logger->getWriters();
+                foreach ($writers as $writer) {
+                    if ($data['logformat'] == 'Xml') {
+                        $writer->setFormatter($data['logformat']);
+                        $this->logger->addWriter($writer);
+                    }
+                }
+            }
+        }
+
+        return new ViewModel([
+            'form' => $this->form,
+        ]);
     }
 }

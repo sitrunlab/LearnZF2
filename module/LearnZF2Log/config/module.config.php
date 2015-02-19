@@ -16,6 +16,34 @@
  * and is licensed under the MIT license.
  */
 return [
+    // setup log abstract service
+    'log' => [
+        'Tutorial-Logger' => [
+            'writers' => [
+                [
+                    'name' => 'stream',
+                    'options' => [
+                        'stream' => 'php://output',
+                        'filters' => [
+                            'priority' => [
+                                'name' => 'priority',
+                                'options' => [
+                                    'priority' => \Zend\Log\Logger::DEBUG,
+                                ],
+                            ],
+                        ],
+                        'formatter' => [
+                            'name' => 'simple',
+                            'options' => [
+                                'format' => '%timestamp% %priorityName% (%priority%): %message%'.PHP_EOL,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+
     'router' => [
         'routes' => [
             'learn-zf2-log' => [
@@ -32,8 +60,8 @@ return [
         ],
     ],
     'controllers' => [
-        'invokables' => [
-            'LearnZF2Log\Controller\Index' => 'LearnZF2Log\Controller\IndexController',
+        'factories' => [
+            'LearnZF2Log\Controller\Index' => 'LearnZF2Log\Factory\Controller\IndexControllerFactory',
         ],
     ],
     'view_manager' => [

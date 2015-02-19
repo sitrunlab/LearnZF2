@@ -29,8 +29,10 @@ class IndexControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $services = $serviceLocator->getServiceLocator();
+        $logger   = $services->get('Tutorial-Logger');
 
         return new IndexController(
+            $logger,
             $services->get('FormElementManager')->get('LearnZF2Log\Form\LogForm')
         );
     }

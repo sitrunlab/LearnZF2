@@ -28,18 +28,50 @@ class LogForm extends Form implements InputFilterProviderInterface
     public function init()
     {
         $this->add([
-            'name' => 'logtext',
+            'name' => 'logmessage',
             'type' => 'Textarea',
+            'options' => [
+                'label' => 'Log message',
+            ],
         ]);
 
         $this->add([
-            'name' => 'logtype',
+            'name' => 'logpriority',
             'type' => 'Select',
             'options' => [
                 'value_options' => [
-                    0 => 'Emerg',
-                    1 => 'Info',
+                    'emerg' => 'EMERG',
+                    'alert' => 'ALERT',
+                    'crit' => 'CRIT',
+                    'err' => 'ERR',
+                    'warn' => 'WARN',
+                    'notice' => 'NOTICE',
+                    'info' => 'INFO',
+                    'debug' => 'DEBUG',
                 ],
+                'label' => 'Log message',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'logformat',
+            'type' => 'Select',
+            'options' => [
+                'value_options' => [
+                    'Simple' => 'Simple',
+                    'Xml' => 'Xml',
+                ],
+                'label' => 'Log message',
+            ],
+        ]);
+
+        $this->add([
+            'name' => 'submit',
+            'attributes' => [
+                'class' => 'form-control',
+                'type'  => 'submit',
+                'value' => 'Go',
+                'id' => 'submitbutton',
             ],
         ]);
     }
@@ -47,7 +79,20 @@ class LogForm extends Form implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return [
-
+            [
+                'name'     => 'logmessage',
+                'required' => true,
+                'validators' => [
+                    [
+                        'name'    => 'StringLength',
+                        'options' => [
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 255,
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 }
