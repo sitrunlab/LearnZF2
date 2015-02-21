@@ -10,4 +10,4 @@ $I->fillField("logmessage", "xyzxyzxyz");
 $I->selectOption('logformat', 'xml');
 $I->selectOption('logpriority', 0);
 $I->click(".btn-primary");
-$I->see("&lt;priority&gt;0&lt;/priority&gt;&lt;priorityName&gt;EMERG&lt;/priorityName&gt;&lt;message&gt;xyzxyzxyz&lt;/message&gt;&lt;");
+$I->see("<priority>0</priority><priorityName>EMERG</priorityName><message>xyzxyzxyz</message>");
