@@ -39,7 +39,7 @@ class IndexController extends AbstractActionController
                     'formatter' => [
                         'name' => 'simple',
                         'options' => [
-                            'format' => '%timestamp% %priorityName% (%priority%): %message%'.PHP_EOL,
+                            'format' => '%timestamp% %priorityName% (%priority%): %message%',
                         ],
                     ],
                 ],
