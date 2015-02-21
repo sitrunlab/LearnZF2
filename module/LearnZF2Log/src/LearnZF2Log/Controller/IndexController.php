@@ -34,7 +34,6 @@ class IndexController extends AbstractActionController
         'writers' => [
             [
                 'name' => 'stream',
-                'priority' => \Zend\Log\Logger::DEBUG,
                 'options' => [
                     'stream' => 'php://output',
                     'formatter' => [
@@ -47,6 +46,11 @@ class IndexController extends AbstractActionController
             ],
         ],
     ];
+
+    /**
+     * @var int
+     */
+    protected $loggerPriority = Logger::EMERG;
 
     /**
      * @var FormInterface
@@ -63,12 +67,29 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
 
         $logContent = '';
+
+        // initialize when no submit anymore
+        $data = [];
+        $data['logmessage'] = $this->form->get('logmessage')->getValue();
         if ($request->isPost()) {
             $this->form->setData($request->getPost());
             if ($this->form->isValid()) {
                 $data = $this->form->getData();
+
+                $this->loggerPriority = $data['logpriority'];
+                if ($data['logformat'] != 'simple') {
+                    $this->loggerConfig['writers'][0]['options']['formatter']['name'] = $data['logformat'];
+                    unset($this->loggerConfig['writers'][0]['options']['formatter']['options']);
+                }
             }
         }
+
+        $logger = new Logger($this->loggerConfig);
+
+        // save log data to buffer and make it variable
+        ob_start();
+        $logger->log((int) $this->loggerPriority, $data['logmessage']);
+        $logContent = ob_get_clean();
 
         return new ViewModel([
             'form' => $this->form,

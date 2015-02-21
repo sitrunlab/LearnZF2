@@ -33,6 +33,9 @@ class LogForm extends Form implements InputFilterProviderInterface
             'options' => [
                 'label' => 'Log message',
             ],
+            'attributes' => [
+                'value' => 'this is log message',
+            ],
         ]);
 
         $this->add([
@@ -58,8 +61,8 @@ class LogForm extends Form implements InputFilterProviderInterface
             'type' => 'Select',
             'options' => [
                 'value_options' => [
-                    'Simple' => 'Simple',
-                    'Xml' => 'Xml',
+                    'simple' => 'Simple',
+                    'xml' => 'Xml',
                 ],
                 'label' => 'Log message',
             ],

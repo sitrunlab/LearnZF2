@@ -35,7 +35,7 @@
 
             <?php echo $this->form()->closeTag(); ?>
             <div class="logContent">
-                <?php echo $this->logContent; ?>
+                <?php echo $this->escapeHtml($this->logContent); ?>
             </div>
     </div>
 
