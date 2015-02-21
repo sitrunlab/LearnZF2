@@ -71,9 +71,9 @@ class LogForm extends Form implements InputFilterProviderInterface
         $this->add([
             'name' => 'submit',
             'attributes' => [
-                'class' => 'form-control',
+                'class' => 'form-control btn-primary',
                 'type'  => 'submit',
-                'value' => 'Go',
+                'value' => 'Submit log data',
                 'id' => 'submitbutton',
             ],
         ]);

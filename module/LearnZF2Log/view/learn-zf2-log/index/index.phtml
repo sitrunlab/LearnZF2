@@ -38,5 +38,51 @@
                 <?php echo $this->escapeHtml($this->logContent); ?>
             </div>
     </div>
+<p>
+    This example contains about <strong>How to use Log Component in Zend framework 2</strong>,
+    The most important parts of using Log Component is the Logger class, writer, formatter, and priority.
+</p>
+
+We can build the Log instance via abstract factories by 'log' config, or via pass options into Logger instance.
+
+1. setup <code>config</code>
+<pre>
+    <code class="language-php">
+$writersConfig = [
+    'writers' => [
+        [
+            'name' => 'stream',
+            'options' => [
+                'stream' => 'php://output',
+                'formatter' => [
+                    'name' => 'simple',
+                    'options' => [
+                        'format' => '%timestamp% %priorityName% (%priority%): %message%'.PHP_EOL,
+                    ],
+                ],
+            ],
+        ],
+    ],
+];
+</code>
+</pre>
+
+2. Create Log instance
+<pre>
+    <code class="language-php">
+$logger = new Logger($writersConfig);
+    </code>
+</pre>
+
+3. Pass priority and message when call Logger:log()
+<pre>
+    <code class="language-php">
+$logger->log(Logger::EMERG, 'this is a log');
+    </code>
+</pre>
+<p>
+    By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
+</p>
+
 
 </div>
