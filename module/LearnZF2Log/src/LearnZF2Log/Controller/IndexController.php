@@ -28,18 +28,33 @@ use Zend\View\Model\ViewModel;
 class IndexController extends AbstractActionController
 {
     /**
-     * @var Logger
+     * @var array
      */
-    protected $logger;
+    protected $loggerConfig = [
+        'writers' => [
+            [
+                'name' => 'stream',
+                'priority' => \Zend\Log\Logger::DEBUG,
+                'options' => [
+                    'stream' => 'php://output',
+                    'formatter' => [
+                        'name' => 'simple',
+                        'options' => [
+                            'format' => '%timestamp% %priorityName% (%priority%): %message%'.PHP_EOL,
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ];
 
     /**
      * @var FormInterface
      */
     protected $form;
 
-    public function __construct(Logger $logger, FormInterface $form)
+    public function __construct(FormInterface $form)
     {
-        $this->logger = $logger;
         $this->form = $form;
     }
 
@@ -47,22 +62,17 @@ class IndexController extends AbstractActionController
     {
         $request = $this->getRequest();
 
+        $logContent = '';
         if ($request->isPost()) {
             $this->form->setData($request->getPost());
             if ($this->form->isValid()) {
                 $data = $this->form->getData();
-                $writers = $this->logger->getWriters();
-                foreach ($writers as $writer) {
-                    if ($data['logformat'] == 'Xml') {
-                        $writer->setFormatter($data['logformat']);
-                        $this->logger->addWriter($writer);
-                    }
-                }
             }
         }
 
         return new ViewModel([
             'form' => $this->form,
+            'logContent' => $logContent,
         ]);
     }
 }
