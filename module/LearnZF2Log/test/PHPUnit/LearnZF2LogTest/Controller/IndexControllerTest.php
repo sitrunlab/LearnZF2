@@ -53,13 +53,26 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
     public function testPostData($priority, $priorityDesc)
     {
         $postData = [
-            'logmessage' => 'this is a log message',
+            'logmessage' => 'a log message',
             'logformat' => 'xml',
             'logpriority' => $priority,
         ];
         $this->dispatch('/learn-zf2-log', 'POST', $postData);
         $response = $this->getResponse();
 
-        $this->assertContains('&lt;priorityName&gt;'.$priorityDesc.'&lt;/priorityName&gt;', $response->getBody());
+        $this->assertContains('priority&gt;'.$priority.'&lt;/priority&gt;&lt;priorityName&gt;'.$priorityDesc.'&lt;/priorityName&gt;&lt;message&gt;'.$postData['logmessage'].'&lt;/message&gt;&lt;/log', $response->getBody());
+    }
+
+    public function testInvalidPostData()
+    {
+        $postData = [
+            'logmessage' => 'foo',
+            'logformat' => 'notvalidformat',
+            'logpriority' => 100,
+        ];
+        $this->dispatch('/learn-zf2-log', 'POST', $postData);
+        $response = $this->getResponse();
+
+        $this->assertContains('EMERG (0): this is log message', $response->getBody());
     }
 }
