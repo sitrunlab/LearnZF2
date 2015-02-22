@@ -30,7 +30,6 @@ class LogFormTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->logForm = new LogForm();
-        $this->logForm->init();
     }
 
     /**
@@ -38,6 +37,7 @@ class LogFormTest extends PHPUnit_Framework_TestCase
      */
     public function testHasElement()
     {
+        $this->logForm->init();
         $this->assertTrue($this->logForm->has('logmessage'));
         $this->assertTrue($this->logForm->has('logformat'));
         $this->assertTrue($this->logForm->has('logpriority'));
