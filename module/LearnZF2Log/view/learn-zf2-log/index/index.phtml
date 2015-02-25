@@ -1,0 +1,92 @@
+<div class="col-lg-9">
+
+    <h1>Zend\Log sample usage</h1>
+
+    <div class="demo-box">
+            <?php
+            $form = $this->form;
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            ?>
+
+            <div class="form-group">
+                <label><?php echo $form->get('logmessage')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('logmessage'));
+                echo $this->formElementErrors($form->get('logmessage'));
+                 ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('logpriority')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('logpriority'));
+                echo $this->formElementErrors($form->get('logpriority')); ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('logformat')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('logformat'));
+                echo $this->formElementErrors($form->get('logformat'));?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('submit')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('submit')) ?>
+            </div>
+
+            <?php echo $this->form()->closeTag(); ?>
+            <div class="logContent">
+                <pre>
+                    <code>
+<?php echo $this->escapeHtml($this->logContent); ?>
+                    </code>
+                </pre>
+            </div>
+    </div>
+<p>
+    This example contains about <strong>How to use Log Component in Zend framework 2</strong>,
+    The most important parts of using Log Component is the Logger class, writer, formatter, and priority.
+</p>
+
+We can build the Log instance via abstract factories by 'log' config, or via pass options into Logger instance.
+<br>
+1. setup <code>config</code>
+<pre>
+    <code class="language-php">
+$writersConfig = [
+    'writers' => [
+        [
+            'name' => 'stream',
+            'options' => [
+                'stream' => 'php://output',
+                'formatter' => [
+                    'name' => 'simple',
+                    'options' => [
+                        'format' => '%timestamp% %priorityName% (%priority%): %message%'.PHP_EOL,
+                    ],
+                ],
+            ],
+        ],
+    ],
+];
+</code>
+</pre>
+
+2. Create Log instance
+<pre>
+    <code class="language-php">
+$logger = new Logger($writersConfig);
+    </code>
+</pre>
+
+3. Pass priority and message when call Logger:log()
+<pre>
+    <code class="language-php">
+$logger->log(Logger::EMERG, 'this is a log');
+    </code>
+</pre>
+<p>
+    By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
+</p>
+
+
+</div>
