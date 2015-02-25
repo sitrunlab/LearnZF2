@@ -52,7 +52,7 @@ class LogForm extends Form implements InputFilterProviderInterface
                     6 => 'INFO',
                     7 => 'DEBUG',
                 ],
-                'label' => 'Log message',
+                'label' => 'Log priority',
             ],
         ]);
 
@@ -64,7 +64,7 @@ class LogForm extends Form implements InputFilterProviderInterface
                     'simple' => 'Simple',
                     'xml' => 'Xml',
                 ],
-                'label' => 'Log message',
+                'label' => 'Log format',
             ],
         ]);
 
