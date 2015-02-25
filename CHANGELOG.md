@@ -16,6 +16,7 @@ Development
 - [110: remove deprecated --dev option in composer install at .travis.yml](https://github.com/sitrunlab/LearnZF2/pull/110)
 - [111: update readme on installation proces](https://github.com/sitrunlab/LearnZF2/pull/111)
 - [112: use --exclude-no-stmt in coveralls to exclude interface and empty class](https://github.com/sitrunlab/LearnZF2/pull/112)
+- [115: remove .PHP_EOL in array at description as doesnot work in PHP 5.4 & 5.5](https://github.com/sitrunlab/LearnZF2/pull/115)
 
 ## 0.1.0 - 2014-01-22
 
