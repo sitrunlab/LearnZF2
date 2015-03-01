@@ -34,4 +34,55 @@ return [
             'LearnZF2Navigation\Controller\Index' => 'LearnZF2Navigation\Controller\IndexController'
         ]
     ],
+
+    'service_manager' => [
+        'factories' => [
+            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory'
+        ]
+    ],
+
+    'view_manager' => [
+        'template_path_stack' => [
+            __DIR__.'/../view',
+        ],
+    ],
+
+    'navigation' => [
+        'default' => [
+            [
+                'label' => 'Google',
+                'uri' => 'https://www.google.com'
+            ],
+            [
+                'label' => 'Home',
+                'route' => 'home'
+            ],
+            [
+                'label' => 'Modules',
+                'uri' => '#',
+                'pages' => [
+                    [
+                        'label' => 'LearnZF2Ajax',
+                        'route' => 'learnZF2Ajax'
+                    ],
+                    [
+                        'label' => 'LearnZF2FormUsage',
+                        'route' => 'learn-zf2-form-usage'
+                    ],
+                    [
+                        'label' => 'LearnZF2Barcode',
+                        'route' => 'learn-zf2-barcode-usage'
+                    ],
+                    [
+                        'label' => 'LearnZF2Pagination',
+                        'route' => 'learn-zf2-pagination'
+                    ],
+                    [
+                        'label' => 'LearnZF2Log',
+                        'route' => 'learn-zf2-log'
+                    ]
+                ]
+            ]
+        ]
+    ]
 ];
