@@ -5,7 +5,6 @@ use LearnZF2Navigation\Navigation\NavigationFactory;
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\EventManager\EventManager;
 use Zend\Http\Request;
-use Zend\Http\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\Console\RouteMatch;
 use Zend\Mvc\Router\Http\TreeRouteStack;
@@ -32,12 +31,12 @@ class NavigationFactoryTest extends TestCase
     {
         $sm = new ServiceManager(new Config([
             'services' => [
-                'config' => include __DIR__ . '/../../../../config/module.config.php',
+                'config' => include __DIR__.'/../../../../config/module.config.php',
                 'eventmanager' => new EventManager(),
                 'router' => new TreeRouteStack(),
                 'request' => new Request(),
-                'routematch' => new RouteMatch([])
-            ]
+                'routematch' => new RouteMatch([]),
+            ],
         ]));
 
         $event = new MvcEvent();

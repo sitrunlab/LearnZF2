@@ -20,7 +20,7 @@ class ModuleTest extends TestCase
     public function testGetConfig()
     {
         $config = $this->module->getConfig();
-        $expected = include __DIR__ . '/../../../config/module.config.php';
+        $expected = include __DIR__.'/../../../config/module.config.php';
         $this->assertEquals($expected, $config);
     }
 

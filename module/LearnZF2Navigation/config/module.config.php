@@ -33,14 +33,14 @@ return [
 
     'controllers' => [
         'invokables' => [
-            'LearnZF2Navigation\Controller\Index' => 'LearnZF2Navigation\Controller\IndexController'
-        ]
+            'LearnZF2Navigation\Controller\Index' => 'LearnZF2Navigation\Controller\IndexController',
+        ],
     ],
 
     'service_manager' => [
         'factories' => [
-            NavigationFactory::NAME => 'LearnZF2Navigation\Navigation\NavigationFactory'
-        ]
+            NavigationFactory::NAME => 'LearnZF2Navigation\Navigation\NavigationFactory',
+        ],
     ],
 
     'view_manager' => [
@@ -54,7 +54,7 @@ return [
             [
                 'label' => 'Google',
                 'uri' => 'https://www.google.com',
-                'target' => '_blank'
+                'target' => '_blank',
             ],
             [
                 'label' => 'Home',
@@ -66,7 +66,7 @@ return [
                 'pages' => [
                     [
                         'label' => 'LearnZF2Ajax',
-                        'route' => 'learnZF2Ajax'
+                        'route' => 'learnZF2Ajax',
                     ],
                     [
                         'label' => 'LearnZF2FormUsage',
@@ -83,9 +83,9 @@ return [
                     [
                         'label' => 'LearnZF2Log',
                         'route' => 'learn-zf2-log'
-                    ]
+                    ],
                 ]
-            ]
-        ]
+            ],
+        ],
     ]
 ];
