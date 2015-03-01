@@ -1,5 +1,5 @@
 <?php
-namespace PHPUnit\LearnZF2NavigationTest;
+namespace LearnZF2NavigationTest\Controller;
 
 use LearnZF2Navigation\Controller\IndexController;
 use PHPUnit_Framework_TestCase as TestCase;
