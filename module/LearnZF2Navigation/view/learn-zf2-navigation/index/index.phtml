@@ -19,4 +19,130 @@
             </fieldset>
         </div>
     </div>
+
+    <p>This tutorial explains how to render custom menus by using the <code>Zend\Navigation</code> component.</p>
+    <p>The behavior is easy to understand. There is a built-in navigation service that consumes a previously set configuration where we define pages and subpages.</p>
+
+     <pre><code class="language-php"><?php
+ echo htmlentities("'navigation' => [
+    'navigation-example' => [
+        [
+            'label' => 'Google',
+            'uri' => 'https://www.google.com',
+            'target' => '_blank'
+        ],
+        [
+            'label' => 'Home',
+            'route' => 'home'
+        ],
+        [
+            'label' => 'Modules',
+            'uri' => '#',
+            'pages' => [
+                [
+                    'label' => 'LearnZF2Ajax',
+                    'route' => 'learnZF2Ajax'
+                ],
+                [
+                    'label' => 'LearnZF2FormUsage',
+                    'route' => 'learn-zf2-form-usage'
+                ],
+                [
+                    'label' => 'LearnZF2Barcode',
+                    'route' => 'learn-zf2-barcode-usage'
+                ],
+                [
+                    'label' => 'LearnZF2Pagination',
+                    'route' => 'learn-zf2-pagination'
+                ],
+                [
+                    'label' => 'LearnZF2Log',
+                    'route' => 'learn-zf2-log'
+                ]
+            ]
+        ]
+    ]
+]"); ?></code></pre>
+
+    <p>The configuration has to be set under the <b>'navigation'</b> key, and then, under a custom key for certain menu. In this case, our menu is the <b>'navigation-example'</b> menu.</p>
+    <p>Finally we just have to define a couple pages and subpages, each one of them with at least a <b>label</b> and a <b>route</b> (to use a previously defined ZF2 route) or <b>uri</b> (to point the page to an absolute URI)</p>
+    <p>The last step would be to define a factory that can create the Navigation service that will work with this menu. ZF2 comes with a built-in <code>DefaultNavigationFactory</code> that can create a service which consumes the menu configuration under the key <b>'default'</b>. If we extend it, we just need to define our custom menu name on the new factory</p>
+    <p>This could be our factory</p>
+
+    <pre><code class="language-php"><?php
+echo htmlentities("namespace LearnZF2Navigation\Navigation;
+
+use Zend\Navigation\Service\DefaultNavigationFactory;
+
+class NavigationFactory extends DefaultNavigationFactory
+{
+    /**
+     * @return string
+     */
+    protected function getName()
+    {
+        return 'navigation-example';
+    }
+}")
+?></code></pre>
+    <p>We just need to register this factory under the name of our menu.</p>
+
+    <pre><code class="language-php"><?php
+echo htmlentities("'service_manager' => [
+    'factories' => [
+        'navigation-example' => 'LearnZF2Navigation\Navigation\NavigationFactory'
+    ]
+]")
+?></code></pre>
+
+    <p>Now that everything is configured we have to render the menu.</p>
+    <p>Menus are rendered using the <code>Navigation</code> view helper. It consumes certain navigation service to render its wrapped menu.</p>
+    <p>By default it just creates a group of nested unordered lists as you can see in the first part of the demo.</p>
+
+    <pre><code class="language-php"><?php
+echo htmlentities("<?php echo \$this->navigation('navigation-example')->menu(); ?>")
+?></code></pre>
+
+    <p>Of course, it is possible to define a custom view partial script so that we can customize the way the menu is rendered. It's the second part of the demo on top of this page.</p>
+
+    <pre><code class="language-php"><?php
+echo htmlentities("\$this->navigation('navigation-example')->menu()->setPartial('learn-zf2-navigation/partials/navigation');
+echo \$this->navigation('navigation-example')->menu()->render();")
+?></code></pre>
+
+    <p>The partial could be like this.</p>
+
+    <pre><code class="language-php"><?php
+echo htmlentities("<nav class=\"navbar navbar-inverse\">
+    <ul class=\"nav navbar-nav\">
+        <?php foreach (\$this->container as \$page):
+            /** @var Zend\Navigation\Page\AbstractPage \$page */ ?>
+            <li class=\"<?php echo \$page->hasPages() ? 'dropdown' : '' ?>\">
+            <a href=\"<?php echo \$page->getHref() ?>\" target=\"<?php echo \$page->getTarget() ?>\"
+                <?php echo \$page->hasPages() ? 'class=\"dropdown-toggle\" data-toggle=\"dropdown\"' : '' ?>>
+                <?php echo \$page->getLabel() ?>
+                <?php if (\$page->hasPages()): ?>
+                    <span class=\"caret\"></span>
+                <?php endif; ?>
+            </a>
+            <?php if (\$page->hasPages()): ?>
+                <ul class=\"dropdown-menu\">
+                    <?php foreach (\$page->getPages() as \$child):
+                        /** @var Zend\Navigation\Page\AbstractPage \$child */ ?>
+                        <li>
+                            <a href=\"<?php echo \$child->getHref() ?>\">
+                                <?php echo \$child->getLabel() ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</nav>")
+?></code></pre>
+
+    <p>This partial basically renders a <a href="http://getbootstrap.com" target="_blank">Bootstrap</a> navbar by using the injected <code>container</code>object</p>
+    <p>The container object is a <code>Zend\Navigation\Navigation</code> instance that can be iterated to render its wrapped pages. Each page is can have ots own children pages</p>
 </div>
