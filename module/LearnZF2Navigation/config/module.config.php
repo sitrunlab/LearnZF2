@@ -1,4 +1,6 @@
 <?php
+use LearnZF2Navigation\Navigation\NavigationFactory;
+
 return [
     'router' => [
         'routes' => [
@@ -37,7 +39,7 @@ return [
 
     'service_manager' => [
         'factories' => [
-            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory'
+            NavigationFactory::NAME => 'LearnZF2Navigation\Navigation\NavigationFactory'
         ]
     ],
 
@@ -48,10 +50,11 @@ return [
     ],
 
     'navigation' => [
-        'default' => [
+        NavigationFactory::NAME => [
             [
                 'label' => 'Google',
-                'uri' => 'https://www.google.com'
+                'uri' => 'https://www.google.com',
+                'target' => '_blank'
             ],
             [
                 'label' => 'Home',

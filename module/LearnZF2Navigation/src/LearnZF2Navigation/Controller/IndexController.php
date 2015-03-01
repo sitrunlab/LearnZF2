@@ -6,8 +6,7 @@ use Zend\View\Model\ViewModel;
 
 /**
  * Class IndexController
- * @author
- * @link
+ * @author Alejandro Celaya Alastrué <alejandro@alejandrocelaya.com>
  */
 class IndexController extends AbstractActionController
 {
