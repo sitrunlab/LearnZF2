@@ -5,6 +5,10 @@ use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 
+/**
+ * Class Module
+ * @author Alejandro Celaya Alastrué <alejandro@alejandrocelaya.com>
+ */
 class Module implements
     ConfigProviderInterface,
     AutoloaderProviderInterface

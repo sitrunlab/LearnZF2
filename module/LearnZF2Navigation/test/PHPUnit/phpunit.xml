@@ -1,0 +1,20 @@
+<phpunit bootstrap="Bootstrap.php" colors="true">
+    <testsuite name="Application" >
+        <directory>./LearnZF2NavigationTest</directory>
+    </testsuite>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./../../</directory>
+            <exclude>
+                <directory suffix=".php">./../</directory>
+            </exclude>
+        </whitelist>
+        <blacklist>
+            <directory suffix=".php">./../../../../vendor/</directory>
+        </blacklist>
+    </filter>
+    <logging>
+        <log type="coverage-html" target="./../../../../data/test-html-report/learnzf2navigation/" charset="UTF-8" yui="true" />
+        <log type="coverage-php" target="./../../../../build/coverage/coverage-learnzf2navigation.cov"/>
+    </logging>
+</phpunit>
