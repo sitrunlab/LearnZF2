@@ -9,7 +9,13 @@
         </div>
         <div class="col-lg-6">
             <fieldset>
-                <legend>With custom partial</legend>
+                <legend>With custom partial view script</legend>
+                <?php
+                $this->navigation('navigation-example')->menu()->setPartial('learn-zf2-navigation/partials/navigation');
+                echo $this->navigation('navigation-example')->menu()->render();
+                // Reset partial after rendering this menu, so that it doesn't affect other navigation menus
+                $this->navigation('navigation-example')->menu()->setPartial(null);
+                ?>
             </fieldset>
         </div>
     </div>
