@@ -17,6 +17,7 @@ return array(
         'LearnZF2Barcode',
         'LearnZF2Pagination',
         'LearnZF2Log',
+        'LearnZF2Navigation',
     ),
     'module_listener_options' => array(
         'module_paths' => array(

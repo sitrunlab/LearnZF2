@@ -15,6 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace Application;
 
 use Zend\Console\Adapter\AdapterInterface as Console;
@@ -50,10 +51,9 @@ class Module  implements
     }
 
     /**
-     * Handle layout on 'dispatch' event
+     * Handle layout on 'dispatch' event.
      *
-     * @param  MvcEvent $e
-     * @return void
+     * @param MvcEvent $e
      */
     public function onDispatch(MvcEvent $e)
     {
@@ -100,10 +100,9 @@ class Module  implements
     }
 
     /**
-     * Set variable layout on 'render' event
+     * Set variable layout on 'render' event.
      *
-     * @param  MvcEvent $e
-     * @return void
+     * @param MvcEvent $e
      */
     public function onRender(MvcEvent $e)
     {
@@ -115,7 +114,7 @@ class Module  implements
     }
 
     /**
-     * Get console usage description
+     * Get console usage description.
      */
     public function getConsoleUsage(Console $console)
     {

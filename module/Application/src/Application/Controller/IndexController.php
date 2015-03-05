@@ -15,6 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -30,7 +31,7 @@ class IndexController extends AbstractActionController
     private $modulesList;
 
     /**
-     * Construct modulesList
+     * Construct modulesList.
      *
      * @param array $modulesList
      */

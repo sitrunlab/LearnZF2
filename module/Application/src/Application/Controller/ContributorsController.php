@@ -15,6 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -28,7 +29,7 @@ class ContributorsController extends AbstractActionController
     protected $contributors;
 
     /**
-     * Construct contributors property
+     * Construct contributors property.
      */
     public function __construct(array $contributors)
     {

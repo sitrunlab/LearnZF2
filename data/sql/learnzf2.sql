@@ -37,7 +37,13 @@ CREATE TABLE `module_list` (
 
 LOCK TABLES `module_list` WRITE;
 /*!40000 ALTER TABLE `module_list` DISABLE KEYS */;
-INSERT INTO `module_list` VALUES (1,'LearnZF2Ajax','Learn Ajax with ZF2','learnZF2Ajax'),(2,'LearnZF2FormUsage','Learn Form Usage with ZF2','learn-zf2-form-usage'),(3,'LearnZF2Barcode','Learn Barcode Usage with ZF2','learn-zf2-barcode-usage'),(4,'LearnZF2Pagination','Learn Pagination Usage with ZF2','learn-zf2-pagination'),(5,'LearnZF2Log','Learn Log Usage with ZF2','learn-zf2-log');
+INSERT INTO `module_list` VALUES
+  (1,'LearnZF2Ajax','Learn Ajax with ZF2','learnZF2Ajax'),
+  (2,'LearnZF2FormUsage','Learn Form Usage with ZF2','learn-zf2-form-usage'),
+  (3,'LearnZF2Barcode','Learn Barcode Usage with ZF2','learn-zf2-barcode-usage'),
+  (4,'LearnZF2Pagination','Learn Pagination Usage with ZF2','learn-zf2-pagination'),
+  (5,'LearnZF2Log','Learn Log Usage with ZF2','learn-zf2-log'),
+  (6,'LearnZF2Navigation','Learn Navigation and menus with ZF2','learn-zf2-navigation');
 /*!40000 ALTER TABLE `module_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: mockie
  * Date: 9/28/14
- * Time: 5:20 PM
+ * Time: 5:20 PM.
  */
+
 namespace LearnZF2Ajax\Model;
 
 use Zend\InputFilter\Factory as InputFactory;     // <-- Add this import

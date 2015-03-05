@@ -17,8 +17,9 @@
  */
 
 /**
- * This modified only, comes from https://github.com/zendframework/zf-web/blob/master/module/Application/src/Application/Controller/ConsoleController.php
+ * This modified only, comes from https://github.com/zendframework/zf-web/blob/master/module/Application/src/Application/Controller/ConsoleController.php.
  */
+
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractConsoleController;
@@ -27,7 +28,7 @@ use Zend\Console\ColorInterface as Color;
 use Zend\Http\Client as HttpClient;
 
 /**
- * Console controller to get contributor list
+ * Console controller to get contributor list.
  */
 class ConsoleController extends AbstractConsoleController
 {
@@ -47,7 +48,7 @@ class ConsoleController extends AbstractConsoleController
     protected $httpClient;
 
     /**
-     * Construct console and config property
+     * Construct console and config property.
      */
     public function __construct(Console $console, array $config, HttpClient $httpClient)
     {
@@ -82,10 +83,12 @@ class ConsoleController extends AbstractConsoleController
     }
 
     /**
-     * Collect contributors info
-     * @param  array $contributors
-     * @param  int   $total
-     * @param  int   $width
+     * Collect contributors info.
+     *
+     * @param array $contributors
+     * @param int   $total
+     * @param int   $width
+     *
      * @return array
      */
     protected function collectContributorsInfo($contributors, $total, $width)
@@ -110,7 +113,7 @@ class ConsoleController extends AbstractConsoleController
     }
 
     /**
-     * route : get contributors
+     * route : get contributors.
      */
     public function getcontributorsAction()
     {

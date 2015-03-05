@@ -15,6 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2Pagination\View\Helper;
 
 use Zend\Http\Request;
@@ -22,7 +23,7 @@ use Zend\View\Helper\Url;
 use LearnZF2Pagination\Exception;
 
 /**
- * Similar to Zends's Url view helper but allows to inherit query params as well
+ * Similar to Zends's Url view helper but allows to inherit query params as well.
  */
 class QueryUrl extends Url
 {

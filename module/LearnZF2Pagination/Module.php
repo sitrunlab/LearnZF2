@@ -10,7 +10,7 @@ class Module implements
     AutoloaderProviderInterface
 {
     /**
-     * Returns configuration to merge with application configuration
+     * Returns configuration to merge with application configuration.
      *
      * @return array|\Traversable
      */
