@@ -15,6 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace test;
 
 use Zend\Loader\AutoloaderFactory;
@@ -26,7 +27,7 @@ error_reporting(E_ALL | E_STRICT);
 chdir(__DIR__);
 
 /**
- * Test bootstrap, for setting up autoloading
+ * Test bootstrap, for setting up autoloading.
  */
 class Bootstrap
 {

@@ -5,7 +5,8 @@ use LearnZF2Navigation\Controller\IndexController;
 use PHPUnit_Framework_TestCase as TestCase;
 
 /**
- * Class IndexControllerTest
+ * Class IndexControllerTest.
+ *
  * @author Alejandro Celaya Alastrué <alejandro@alejandrocelaya.com>
  */
 class IndexControllerTest extends TestCase

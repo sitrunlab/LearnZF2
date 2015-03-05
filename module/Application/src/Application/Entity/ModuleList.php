@@ -15,12 +15,13 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ModuleList
+ * ModuleList.
  *
  * @ORM\Table(name="module_list")
  * @ORM\Entity
@@ -58,7 +59,7 @@ class ModuleList
     private $moduleRoute;
 
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -68,9 +69,10 @@ class ModuleList
     }
 
     /**
-     * Set moduleName
+     * Set moduleName.
      *
-     * @param  string     $moduleName
+     * @param string $moduleName
+     *
      * @return ModuleList
      */
     public function setModuleName($moduleName)
@@ -81,7 +83,7 @@ class ModuleList
     }
 
     /**
-     * Get moduleName
+     * Get moduleName.
      *
      * @return string
      */
@@ -91,9 +93,10 @@ class ModuleList
     }
 
     /**
-     * Set moduleDesc
+     * Set moduleDesc.
      *
-     * @param  string     $moduleDesc
+     * @param string $moduleDesc
+     *
      * @return ModuleList
      */
     public function setModuleDesc($moduleDesc)
@@ -104,7 +107,7 @@ class ModuleList
     }
 
     /**
-     * Get moduleDesc
+     * Get moduleDesc.
      *
      * @return string
      */
@@ -114,9 +117,10 @@ class ModuleList
     }
 
     /**
-     * Set moduleRoute
+     * Set moduleRoute.
      *
-     * @param  string     $moduleRoute
+     * @param string $moduleRoute
+     *
      * @return ModuleList
      */
     public function setModuleRoute($moduleRoute)
@@ -127,7 +131,7 @@ class ModuleList
     }
 
     /**
-     * Get moduleRoute
+     * Get moduleRoute.
      *
      * @return string
      */

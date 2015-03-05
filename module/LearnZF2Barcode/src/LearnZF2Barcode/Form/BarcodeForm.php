@@ -15,6 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2Barcode\Form;
 
 use Zend\Form\Form;
@@ -28,7 +29,7 @@ class BarcodeForm extends Form implements InputFilterProviderInterface
     protected $objectSelectValues;
 
     /**
-     * construct objectSelectValues value options
+     * construct objectSelectValues value options.
      */
     public function __construct(array $objectSelectValues)
     {

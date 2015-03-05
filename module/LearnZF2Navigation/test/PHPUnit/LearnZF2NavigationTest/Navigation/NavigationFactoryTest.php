@@ -12,7 +12,8 @@ use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
 
 /**
- * Class NavigationFactoryTest
+ * Class NavigationFactoryTest.
+ *
  * @author Alejandro Celaya Alastrué <alejandro@alejandrocelaya.com>
  */
 class NavigationFactoryTest extends TestCase

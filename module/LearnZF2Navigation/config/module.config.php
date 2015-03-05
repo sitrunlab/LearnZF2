@@ -58,7 +58,7 @@ return [
             ],
             [
                 'label' => 'Home',
-                'route' => 'home'
+                'route' => 'home',
             ],
             [
                 'label' => 'Modules',
@@ -70,22 +70,22 @@ return [
                     ],
                     [
                         'label' => 'LearnZF2FormUsage',
-                        'route' => 'learn-zf2-form-usage'
+                        'route' => 'learn-zf2-form-usage',
                     ],
                     [
                         'label' => 'LearnZF2Barcode',
-                        'route' => 'learn-zf2-barcode-usage'
+                        'route' => 'learn-zf2-barcode-usage',
                     ],
                     [
                         'label' => 'LearnZF2Pagination',
-                        'route' => 'learn-zf2-pagination'
+                        'route' => 'learn-zf2-pagination',
                     ],
                     [
                         'label' => 'LearnZF2Log',
-                        'route' => 'learn-zf2-log'
+                        'route' => 'learn-zf2-log',
                     ],
-                ]
+                ],
             ],
         ],
-    ]
+    ],
 ];

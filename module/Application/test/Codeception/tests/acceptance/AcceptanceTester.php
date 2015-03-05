@@ -8,7 +8,8 @@
 use Codeception\Module\WebDriver;
 
 /**
- * Inherited Methods
+ * Inherited Methods.
+ *
  * @method void wantToTest($text)
  * @method void wantTo($text)
  * @method void execute($callable)
@@ -45,6 +46,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $subdomain
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::amOnSubdomain()
      */
     public function amOnSubdomain($subdomain)
@@ -66,6 +68,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $name
+     *
      * @see \Codeception\Module\WebDriver::makeScreenshot()
      */
     public function makeScreenshot($name)
@@ -86,6 +89,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param int $width
      * @param int $height
+     *
      * @see \Codeception\Module\WebDriver::resizeWindow()
      */
     public function resizeWindow($width, $height)
@@ -108,6 +112,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @return mixed
      *               Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeCookie()
      */
     public function canSeeCookie($cookie)
@@ -128,6 +133,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $cookie
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::seeCookie()
      */
     public function seeCookie($cookie)
@@ -144,6 +150,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @return mixed
      *               Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeCookie()
      */
     public function cantSeeCookie($cookie)
@@ -158,6 +165,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $cookie
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::dontSeeCookie()
      */
     public function dontSeeCookie($cookie)
@@ -180,6 +188,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $value
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::setCookie()
      */
     public function setCookie($cookie, $value)
@@ -195,6 +204,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $cookie
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::resetCookie()
      */
     public function resetCookie($cookie)
@@ -210,6 +220,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $cookie
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::grabCookie()
      */
     public function grabCookie($cookie)
@@ -228,6 +239,7 @@ class AcceptanceTester extends \Codeception\Actor
      * $I->amOnPage('/quickstart'); // moves to http://codeception.com/quickstart
      * ?>
      * ```
+     *
      * @see \Codeception\Module\WebDriver::amOnUrl()
      */
     public function amOnUrl($url)
@@ -250,6 +262,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $page
+     *
      * @see \Codeception\Module\WebDriver::amOnPage()
      */
     public function amOnPage($page)
@@ -274,6 +287,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param      $text
      * @param null $selector
      *                       Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::see()
      */
     public function canSee($text, $selector = null)
@@ -296,6 +310,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param      $text
      * @param null $selector
+     *
      * @see \Codeception\Module\WebDriver::see()
      */
     public function see($text, $selector = null)
@@ -320,6 +335,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param      $text
      * @param null $selector
      *                       Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSee()
      */
     public function cantSee($text, $selector = null)
@@ -342,6 +358,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param      $text
      * @param null $selector
+     *
      * @see \Codeception\Module\WebDriver::dontSee()
      */
     public function dontSee($text, $selector = null)
@@ -361,6 +378,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $text
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeInPageSource()
      */
     public function canSeeInPageSource($text)
@@ -378,6 +396,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $text
+     *
      * @see \Codeception\Module\WebDriver::seeInPageSource()
      */
     public function seeInPageSource($text)
@@ -392,6 +411,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $text
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeInPageSource()
      */
     public function cantSeeInPageSource($text)
@@ -404,6 +424,7 @@ class AcceptanceTester extends \Codeception\Actor
      * Checks that the page source doesn't contain the given string.
      *
      * @param $text
+     *
      * @see \Codeception\Module\WebDriver::dontSeeInPageSource()
      */
     public function dontSeeInPageSource($text)
@@ -443,6 +464,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $link
      * @param $context
+     *
      * @see \Codeception\Module\WebDriver::click()
      */
     public function click($link, $context = null)
@@ -466,6 +488,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param      $text
      * @param null $url
      *                   Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeLink()
      */
     public function canSeeLink($text, $url = null)
@@ -487,6 +510,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param      $text
      * @param null $url
+     *
      * @see \Codeception\Module\WebDriver::seeLink()
      */
     public function seeLink($text, $url = null)
@@ -510,6 +534,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $text
      * @param null $url
      *                  Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeLink()
      */
     public function cantSeeLink($text, $url = null)
@@ -531,6 +556,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $text
      * @param null $url
+     *
      * @see \Codeception\Module\WebDriver::dontSeeLink()
      */
     public function dontSeeLink($text, $url = null)
@@ -554,6 +580,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $uri
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeInCurrentUrl()
      */
     public function canSeeInCurrentUrl($uri)
@@ -575,6 +602,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $uri
+     *
      * @see \Codeception\Module\WebDriver::seeInCurrentUrl()
      */
     public function seeInCurrentUrl($uri)
@@ -597,6 +625,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $uri
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeCurrentUrlEquals()
      */
     public function canSeeCurrentUrlEquals($uri)
@@ -617,6 +646,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $uri
+     *
      * @see \Codeception\Module\WebDriver::seeCurrentUrlEquals()
      */
     public function seeCurrentUrlEquals($uri)
@@ -638,6 +668,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $uri
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeCurrentUrlMatches()
      */
     public function canSeeCurrentUrlMatches($uri)
@@ -657,6 +688,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $uri
+     *
      * @see \Codeception\Module\WebDriver::seeCurrentUrlMatches()
      */
     public function seeCurrentUrlMatches($uri)
@@ -677,6 +709,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $uri
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeInCurrentUrl()
      */
     public function cantSeeInCurrentUrl($uri)
@@ -695,6 +728,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $uri
+     *
      * @see \Codeception\Module\WebDriver::dontSeeInCurrentUrl()
      */
     public function dontSeeInCurrentUrl($uri)
@@ -717,6 +751,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $uri
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeCurrentUrlEquals()
      */
     public function cantSeeCurrentUrlEquals($uri)
@@ -737,6 +772,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $uri
+     *
      * @see \Codeception\Module\WebDriver::dontSeeCurrentUrlEquals()
      */
     public function dontSeeCurrentUrlEquals($uri)
@@ -758,6 +794,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $uri
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeCurrentUrlMatches()
      */
     public function cantSeeCurrentUrlMatches($uri)
@@ -777,6 +814,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $uri
+     *
      * @see \Codeception\Module\WebDriver::dontSeeCurrentUrlMatches()
      */
     public function dontSeeCurrentUrlMatches($uri)
@@ -800,7 +838,9 @@ class AcceptanceTester extends \Codeception\Actor
      * @param null $uri
      *
      * @internal param $url
+     *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::grabFromCurrentUrl()
      */
     public function grabFromCurrentUrl($uri = null)
@@ -823,6 +863,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $checkbox
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeCheckboxIsChecked()
      */
     public function canSeeCheckboxIsChecked($checkbox)
@@ -843,6 +884,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $checkbox
+     *
      * @see \Codeception\Module\WebDriver::seeCheckboxIsChecked()
      */
     public function seeCheckboxIsChecked($checkbox)
@@ -864,6 +906,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $checkbox
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeCheckboxIsChecked()
      */
     public function cantSeeCheckboxIsChecked($checkbox)
@@ -883,6 +926,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $checkbox
+     *
      * @see \Codeception\Module\WebDriver::dontSeeCheckboxIsChecked()
      */
     public function dontSeeCheckboxIsChecked($checkbox)
@@ -910,6 +954,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $field
      * @param $value
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeInField()
      */
     public function canSeeInField($field, $value)
@@ -935,6 +980,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $field
      * @param $value
+     *
      * @see \Codeception\Module\WebDriver::seeInField()
      */
     public function seeInField($field, $value)
@@ -962,6 +1008,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $field
      * @param $value
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeInField()
      */
     public function cantSeeInField($field, $value)
@@ -987,6 +1034,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $field
      * @param $value
+     *
      * @see \Codeception\Module\WebDriver::dontSeeInField()
      */
     public function dontSeeInField($field, $value)
@@ -1017,6 +1065,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $select
      * @param $option
+     *
      * @see \Codeception\Module\WebDriver::selectOption()
      */
     public function selectOption($select, $option)
@@ -1047,6 +1096,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $option
+     *
      * @see \Codeception\Module\WebDriver::checkOption()
      */
     public function checkOption($option)
@@ -1066,6 +1116,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $option
+     *
      * @see \Codeception\Module\WebDriver::uncheckOption()
      */
     public function uncheckOption($option)
@@ -1087,6 +1138,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $field
      * @param $value
+     *
      * @see \Codeception\Module\WebDriver::fillField()
      */
     public function fillField($field, $value)
@@ -1108,6 +1160,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $field
      * @param $filename
+     *
      * @see \Codeception\Module\WebDriver::attachFile()
      */
     public function attachFile($field, $filename)
@@ -1121,6 +1174,7 @@ class AcceptanceTester extends \Codeception\Actor
      * Grabs all visible text from the current page.
      *
      * @return string
+     *
      * @see \Codeception\Module\WebDriver::getVisibleText()
      */
     public function getVisibleText()
@@ -1145,6 +1199,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $cssOrXPathOrRegex
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::grabTextFrom()
      */
     public function grabTextFrom($cssOrXPathOrRegex)
@@ -1167,8 +1222,11 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $cssOrXpath
      * @param $attribute
+     *
      * @internal param $element
+     *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::grabAttributeFrom()
      */
     public function grabAttributeFrom($cssOrXpath, $attribute)
@@ -1194,6 +1252,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $field
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::grabValueFrom()
      */
     public function grabValueFrom($field)
@@ -1221,8 +1280,10 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $selector
      * @param array $attributes
+     *
      * @return
      *                          Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeElement()
      */
     public function canSeeElement($selector, $attributes = null)
@@ -1249,7 +1310,9 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $selector
      * @param array $attributes
+     *
      * @return
+     *
      * @see \Codeception\Module\WebDriver::seeElement()
      */
     public function seeElement($selector, $attributes = null)
@@ -1275,6 +1338,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $selector
      * @param array $attributes
      *                          Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeElement()
      */
     public function cantSeeElement($selector, $attributes = null)
@@ -1298,6 +1362,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $selector
      * @param array $attributes
+     *
      * @see \Codeception\Module\WebDriver::dontSeeElement()
      */
     public function dontSeeElement($selector, $attributes = null)
@@ -1318,6 +1383,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $selector
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeElementInDOM()
      */
     public function canSeeElementInDOM($selector, $attributes = null)
@@ -1336,6 +1402,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $selector
+     *
      * @see \Codeception\Module\WebDriver::seeElementInDOM()
      */
     public function seeElementInDOM($selector, $attributes = null)
@@ -1350,6 +1417,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $selector
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeElementInDOM()
      */
     public function cantSeeElementInDOM($selector, $attributes = null)
@@ -1362,6 +1430,7 @@ class AcceptanceTester extends \Codeception\Actor
      * Opposite of `seeElementInDOM`.
      *
      * @param $selector
+     *
      * @see \Codeception\Module\WebDriver::dontSeeElementInDOM()
      */
     public function dontSeeElementInDOM($selector, $attributes = null)
@@ -1380,11 +1449,13 @@ class AcceptanceTester extends \Codeception\Actor
      * $I->seeNumberOfElements('tr', [0,10]); //between 0 and 10 elements
      * ?>
      * ```
+     *
      * @param $selector
      * @param mixed $expected:
      *                         - string: strict number
      *                         - array: range of numbers [0,10]
      *                         Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeNumberOfElements()
      */
     public function canSeeNumberOfElements($selector, $expected)
@@ -1402,10 +1473,12 @@ class AcceptanceTester extends \Codeception\Actor
      * $I->seeNumberOfElements('tr', [0,10]); //between 0 and 10 elements
      * ?>
      * ```
+     *
      * @param $selector
      * @param mixed $expected:
      *                         - string: strict number
      *                         - array: range of numbers [0,10]
+     *
      * @see \Codeception\Module\WebDriver::seeNumberOfElements()
      */
     public function seeNumberOfElements($selector, $expected)
@@ -1429,6 +1502,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @return mixed
      *               Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeOptionIsSelected()
      */
     public function canSeeOptionIsSelected($selector, $optionText)
@@ -1450,6 +1524,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $optionText
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::seeOptionIsSelected()
      */
     public function seeOptionIsSelected($selector, $optionText)
@@ -1473,6 +1548,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @return mixed
      *               Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeOptionIsSelected()
      */
     public function cantSeeOptionIsSelected($selector, $optionText)
@@ -1494,6 +1570,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $optionText
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::dontSeeOptionIsSelected()
      */
     public function dontSeeOptionIsSelected($selector, $optionText)
@@ -1516,6 +1593,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @return mixed
      *               Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeInTitle()
      */
     public function canSeeInTitle($title)
@@ -1536,6 +1614,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $title
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::seeInTitle()
      */
     public function seeInTitle($title)
@@ -1552,6 +1631,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @return mixed
      *               Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::dontSeeInTitle()
      */
     public function cantSeeInTitle($title)
@@ -1566,6 +1646,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $title
      *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::dontSeeInTitle()
      */
     public function dontSeeInTitle($title)
@@ -1578,6 +1659,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * Accepts the active JavaScript native popup window, as created by `window.alert`|`window.confirm`|`window.prompt`.
      * Don't confuse popups with modal windows, as created by [various libraries](http://jster.net/category/windows-modals-popups).
+     *
      * @see \Codeception\Module\WebDriver::acceptPopup()
      */
     public function acceptPopup()
@@ -1589,6 +1671,7 @@ class AcceptanceTester extends \Codeception\Actor
      * [!] Method is generated. Documentation taken from corresponding module.
      *
      * Dismisses the active JavaScript popup, as created by `window.alert`|`window.confirm`|`window.prompt`.
+     *
      * @see \Codeception\Module\WebDriver::cancelPopup()
      */
     public function cancelPopup()
@@ -1603,6 +1686,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $text
      * Conditional Assertion: Test won't be stopped on fail
+     *
      * @see \Codeception\Module\WebDriver::seeInPopup()
      */
     public function canSeeInPopup($text)
@@ -1615,6 +1699,7 @@ class AcceptanceTester extends \Codeception\Actor
      * Checks that the active JavaScript popup, as created by `window.alert`|`window.confirm`|`window.prompt`, contains the given string.
      *
      * @param $text
+     *
      * @see \Codeception\Module\WebDriver::seeInPopup()
      */
     public function seeInPopup($text)
@@ -1628,6 +1713,7 @@ class AcceptanceTester extends \Codeception\Actor
      * Enters text into a native JavaScript prompt popup, as created by `window.prompt`.
      *
      * @param $keys
+     *
      * @see \Codeception\Module\WebDriver::typeInPopup()
      */
     public function typeInPopup($keys)
@@ -1639,6 +1725,7 @@ class AcceptanceTester extends \Codeception\Actor
      * [!] Method is generated. Documentation taken from corresponding module.
      *
      * Reloads the current page.
+     *
      * @see \Codeception\Module\WebDriver::reloadPage()
      */
     public function reloadPage()
@@ -1650,6 +1737,7 @@ class AcceptanceTester extends \Codeception\Actor
      * [!] Method is generated. Documentation taken from corresponding module.
      *
      * Moves back in history.
+     *
      * @see \Codeception\Module\WebDriver::moveBack()
      */
     public function moveBack()
@@ -1661,6 +1749,7 @@ class AcceptanceTester extends \Codeception\Actor
      * [!] Method is generated. Documentation taken from corresponding module.
      *
      * Moves forward in history.
+     *
      * @see \Codeception\Module\WebDriver::moveForward()
      */
     public function moveForward()
@@ -1725,6 +1814,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param $selector
      * @param $params
      * @param $button
+     *
      * @see \Codeception\Module\WebDriver::submitForm()
      */
     public function submitForm($selector, $params, $button = null)
@@ -1747,9 +1837,11 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $element
-     * @param  \Closure                               $callback
-     * @param  int                                    $timeout  seconds
+     * @param \Closure $callback
+     * @param int      $timeout  seconds
+     *
      * @throws \Codeception\Exception\ElementNotFound
+     *
      * @see \Codeception\Module\WebDriver::waitForElementChange()
      */
     public function waitForElementChange($element, $callback, $timeout = null)
@@ -1771,8 +1863,10 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $element
-     * @param  int        $timeout seconds
+     * @param int $timeout seconds
+     *
      * @throws \Exception
+     *
      * @see \Codeception\Module\WebDriver::waitForElement()
      */
     public function waitForElement($element, $timeout = null)
@@ -1794,8 +1888,10 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $element
-     * @param  int        $timeout seconds
+     * @param int $timeout seconds
+     *
      * @throws \Exception
+     *
      * @see \Codeception\Module\WebDriver::waitForElementVisible()
      */
     public function waitForElementVisible($element, $timeout = null)
@@ -1816,8 +1912,10 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $element
-     * @param  int        $timeout seconds
+     * @param int $timeout seconds
+     *
      * @throws \Exception
+     *
      * @see \Codeception\Module\WebDriver::waitForElementNotVisible()
      */
     public function waitForElementNotVisible($element, $timeout = null)
@@ -1839,11 +1937,14 @@ class AcceptanceTester extends \Codeception\Actor
      * ?>
      * ```
      *
-     * @param  string     $text
-     * @param  int        $timeout  seconds
-     * @param  null       $selector
+     * @param string $text
+     * @param int    $timeout  seconds
+     * @param null   $selector
+     *
      * @throws \Exception
+     *
      * @internal param string $element
+     *
      * @see \Codeception\Module\WebDriver::waitForText()
      */
     public function waitForText($text, $timeout = null, $selector = null)
@@ -1856,8 +1957,10 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * Wait for $timeout seconds.
      *
-     * @param  int                                $timeout secs
+     * @param int $timeout secs
+     *
      * @throws \Codeception\Exception\TestRuntime
+     *
      * @see \Codeception\Module\WebDriver::wait()
      */
     public function wait($timeout)
@@ -1882,6 +1985,7 @@ class AcceptanceTester extends \Codeception\Actor
      * If Codeception lacks a feature you need, please implement it and submit a patch.
      *
      * @param callable $function
+     *
      * @see \Codeception\Module\WebDriver::executeInSelenium()
      */
     public function executeInSelenium($function)
@@ -1924,6 +2028,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param string|null $name
+     *
      * @see \Codeception\Module\WebDriver::switchToWindow()
      */
     public function switchToWindow($name = null)
@@ -1952,6 +2057,7 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param string|null $name
+     *
      * @see \Codeception\Module\WebDriver::switchToIFrame()
      */
     public function switchToIFrame($name = null)
@@ -1974,6 +2080,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param string $script
      * @param int    $timeout seconds
+     *
      * @see \Codeception\Module\WebDriver::waitForJS()
      */
     public function waitForJS($script, $timeout = null)
@@ -1995,7 +2102,9 @@ class AcceptanceTester extends \Codeception\Actor
      * ```
      *
      * @param $script
+     *
      * @return mixed
+     *
      * @see \Codeception\Module\WebDriver::executeJS()
      */
     public function executeJS($script)
@@ -2007,6 +2116,7 @@ class AcceptanceTester extends \Codeception\Actor
      * [!] Method is generated. Documentation taken from corresponding module.
      *
      * Maximizes the current window.
+     *
      * @see \Codeception\Module\WebDriver::maximizeWindow()
      */
     public function maximizeWindow()
@@ -2027,6 +2137,7 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param string $source (CSS ID or XPath)
      * @param string $target (CSS ID or XPath)
+     *
      * @see \Codeception\Module\WebDriver::dragAndDrop()
      */
     public function dragAndDrop($source, $target)
@@ -2052,6 +2163,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param int    $offsetY
      *
      * @throws \Codeception\Exception\ElementNotFound
+     *
      * @see \Codeception\Module\WebDriver::moveMouseOver()
      */
     public function moveMouseOver($cssOrXPath, $offsetX = null, $offsetY = null)
@@ -2065,7 +2177,9 @@ class AcceptanceTester extends \Codeception\Actor
      * Performs contextual click with the right mouse button on an element.
      *
      * @param $cssOrXPath
+     *
      * @throws \Codeception\Exception\ElementNotFound
+     *
      * @see \Codeception\Module\WebDriver::clickWithRightButton()
      */
     public function clickWithRightButton($cssOrXPath)
@@ -2080,6 +2194,7 @@ class AcceptanceTester extends \Codeception\Actor
      * To proceed test press "ENTER" in console.
      *
      * This method is useful while writing tests, since it allows you to inspect the current page in the middle of a test case.
+     *
      * @see \Codeception\Module\WebDriver::pauseExecution()
      */
     public function pauseExecution()
@@ -2093,7 +2208,9 @@ class AcceptanceTester extends \Codeception\Actor
      * Performs a double-click on an element matched by CSS or XPath.
      *
      * @param $cssOrXPath
+     *
      * @throws \Codeception\Exception\ElementNotFound
+     *
      * @see \Codeception\Module\WebDriver::doubleClick()
      */
     public function doubleClick($cssOrXPath)
@@ -2122,7 +2239,9 @@ class AcceptanceTester extends \Codeception\Actor
      *
      * @param $element
      * @param $char Can be char or array with modifier. You can provide several chars.
+     *
      * @throws \Codeception\Exception\ElementNotFound
+     *
      * @see \Codeception\Module\WebDriver::pressKey()
      */
     public function pressKey($element, $char)
@@ -2143,9 +2262,11 @@ class AcceptanceTester extends \Codeception\Actor
      * ?>
      * ```
      *
-     * @param  string                                 $field
-     * @param  string                                 $value
+     * @param string $field
+     * @param string $value
+     *
      * @throws \Codeception\Exception\ElementNotFound
+     *
      * @see \Codeception\Module\WebDriver::appendField()
      */
     public function appendField($field, $value)

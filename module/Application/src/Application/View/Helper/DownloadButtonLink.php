@@ -15,13 +15,14 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace Application\View\Helper;
 
 use Zend\Mvc\MvcEvent;
 use Zend\View\Helper\AbstractHelper;
 
 /**
- * Download Button Link View Helper
+ * Download Button Link View Helper.
  */
 final class DownloadButtonLink extends AbstractHelper
 {
@@ -31,7 +32,7 @@ final class DownloadButtonLink extends AbstractHelper
     private $mvcEvent;
 
     /**
-     * Construct mvcEvent property
+     * Construct mvcEvent property.
      */
     public function __construct(MvcEvent $mvcEvent)
     {
@@ -39,7 +40,8 @@ final class DownloadButtonLink extends AbstractHelper
     }
 
     /**
-     * Download link
+     * Download link.
+     *
      * @param string $compress        'zip' | 'bz2' | other to make option
      * @param string $moduleNamespace
      *

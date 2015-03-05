@@ -6,7 +6,8 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 
 /**
- * Class Module
+ * Class Module.
+ *
  * @author Alejandro Celaya Alastrué <alejandro@alejandrocelaya.com>
  */
 class Module implements
@@ -14,7 +15,7 @@ class Module implements
     AutoloaderProviderInterface
 {
     /**
-     * Returns configuration to merge with application configuration
+     * Returns configuration to merge with application configuration.
      *
      * @return array|\Traversable
      */

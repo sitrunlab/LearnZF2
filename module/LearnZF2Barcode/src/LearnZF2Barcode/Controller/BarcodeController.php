@@ -15,6 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2Barcode\Controller;
 
 use Zend\Barcode\Barcode;
@@ -30,7 +31,7 @@ class BarcodeController extends AbstractActionController
     protected $form;
 
     /**
-     * Construct the form
+     * Construct the form.
      */
     public function __construct(FormInterface $form)
     {
@@ -38,7 +39,7 @@ class BarcodeController extends AbstractActionController
     }
 
     /**
-     * Use the form to get barcode image from selected barcode object
+     * Use the form to get barcode image from selected barcode object.
      */
     public function indexAction()
     {
@@ -64,7 +65,7 @@ class BarcodeController extends AbstractActionController
     }
 
     /**
-     * Show image barcode
+     * Show image barcode.
      */
     public function getbarcodeimageAction()
     {

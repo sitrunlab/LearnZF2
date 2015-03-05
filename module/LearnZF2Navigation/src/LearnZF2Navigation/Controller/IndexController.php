@@ -5,7 +5,8 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 /**
- * Class IndexController
+ * Class IndexController.
+ *
  * @author Alejandro Celaya Alastrué <alejandro@alejandrocelaya.com>
  */
 class IndexController extends AbstractActionController
