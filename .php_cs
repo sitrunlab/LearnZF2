@@ -16,7 +16,8 @@ $config->fixers(
         'eof_ending',
         'unused_use',
         'phpdoc_indent',
-        'multiline_array_trailing_comma'
+        'multiline_array_trailing_comma',
+        '-no_empty_lines_after_phpdocs'
     )
 );
 $config->finder($finder);
