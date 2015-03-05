@@ -15,6 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2LogTest\Form;
 
 use PHPUnit_Framework_TestCase;

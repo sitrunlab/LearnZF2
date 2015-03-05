@@ -62,9 +62,11 @@ class IndexController extends AbstractActionController
     }
 
     /**
-     * Triws to find certain keyword in provided title
+     * Triws to find certain keyword in provided title.
+     *
      * @param $keyword
      * @param $title
+     *
      * @return bool
      */
     protected function isKeywordInTitle($keyword, $title)

@@ -902,16 +902,16 @@
         },
         {
             "name": "zendframework/zendframework",
-            "version": "2.3.4",
+            "version": "2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf2.git",
-                "reference": "c878e047ab1c5dcfb201974bdff607be54ccb54b"
+                "reference": "886063aa5aee7476b77c380e25ecfacb2ee5ff4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/c878e047ab1c5dcfb201974bdff607be54ccb54b",
-                "reference": "c878e047ab1c5dcfb201974bdff607be54ccb54b",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/886063aa5aee7476b77c380e25ecfacb2ee5ff4c",
+                "reference": "886063aa5aee7476b77c380e25ecfacb2ee5ff4c",
                 "shasum": ""
             },
             "require": {
@@ -1016,7 +1016,7 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2015-01-14 16:44:17"
+            "time": "2015-02-18 19:48:16"
         },
         {
             "name": "zendframework/zendxml",
@@ -1234,25 +1234,25 @@
         },
         {
             "name": "codeception/codeception",
-            "version": "2.0.9",
+            "version": "2.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "0094191ac0d6e87821fba41de002103ebe79a279"
+                "reference": "9c7f23eff3e607225e9f43277c6d9cdb03d30b84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/0094191ac0d6e87821fba41de002103ebe79a279",
-                "reference": "0094191ac0d6e87821fba41de002103ebe79a279",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/9c7f23eff3e607225e9f43277c6d9cdb03d30b84",
+                "reference": "9c7f23eff3e607225e9f43277c6d9cdb03d30b84",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "facebook/webdriver": "~0.4",
+                "facebook/webdriver": "~0.4|~0.5",
                 "guzzlehttp/guzzle": "~4.0|~5.0",
                 "php": ">=5.4.0",
-                "phpunit/phpunit": "~4.0",
+                "phpunit/phpunit": "~4.5.0",
                 "symfony/browser-kit": "~2.4",
                 "symfony/console": "~2.4",
                 "symfony/css-selector": "~2.4",
@@ -1263,12 +1263,10 @@
             },
             "require-dev": {
                 "codeception/specify": "~0.3",
-                "codegyre/robo-ci": "@dev",
                 "facebook/php-sdk": "~3.2",
-                "flow/jsonpath": "~0.1",
+                "flow/jsonpath": "~0.2",
                 "monolog/monolog": "~1.8",
                 "pda/pheanstalk": "~2.0",
-                "phpseclib/phpseclib": "~0.3.6",
                 "videlalvaro/php-amqplib": "~2.4"
             },
             "suggest": {
@@ -1312,7 +1310,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2014-12-19 23:54:20"
+            "time": "2015-02-23 23:10:03"
         },
         {
             "name": "doctrine/instantiator",
@@ -1370,16 +1368,16 @@
         },
         {
             "name": "fabpot/php-cs-fixer",
-            "version": "v1.4.2",
+            "version": "v1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "3af00cf237289a406e7307e18e7ab0d92cf57038"
+                "reference": "2d6851520bf0250f668307ab2fd28cbb0b35d2b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/3af00cf237289a406e7307e18e7ab0d92cf57038",
-                "reference": "3af00cf237289a406e7307e18e7ab0d92cf57038",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/2d6851520bf0250f668307ab2fd28cbb0b35d2b9",
+                "reference": "2d6851520bf0250f668307ab2fd28cbb0b35d2b9",
                 "shasum": ""
             },
             "require": {
@@ -1419,7 +1417,7 @@
                 }
             ],
             "description": "A script to automatically fix Symfony Coding Standard",
-            "time": "2015-02-03 21:20:51"
+            "time": "2015-02-18 19:35:59"
         },
         {
             "name": "facebook/webdriver",
@@ -1614,16 +1612,16 @@
         },
         {
             "name": "guzzlehttp/ringphp",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/RingPHP.git",
-                "reference": "a903f51b692427318bc813217c0e6505287e79a4"
+                "reference": "f43ab34aad69ca0ba04172cf2c3cd5c12fc0e5a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/a903f51b692427318bc813217c0e6505287e79a4",
-                "reference": "a903f51b692427318bc813217c0e6505287e79a4",
+                "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/f43ab34aad69ca0ba04172cf2c3cd5c12fc0e5a4",
+                "reference": "f43ab34aad69ca0ba04172cf2c3cd5c12fc0e5a4",
                 "shasum": ""
             },
             "require": {
@@ -1660,7 +1658,8 @@
                     "homepage": "https://github.com/mtdowling"
                 }
             ],
-            "time": "2014-12-11 05:50:32"
+            "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
+            "time": "2015-02-26 20:43:09"
         },
         {
             "name": "guzzlehttp/streams",
@@ -1755,16 +1754,16 @@
         },
         {
             "name": "jonnyw/php-phantomjs",
-            "version": "v3.1.4",
+            "version": "v3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jonnnnyw/php-phantomjs.git",
-                "reference": "d55362eb2fcc52949642182536503f0b249acccc"
+                "reference": "b2e6985b7362f7699c11823e2956a2d8112728eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jonnnnyw/php-phantomjs/zipball/d55362eb2fcc52949642182536503f0b249acccc",
-                "reference": "d55362eb2fcc52949642182536503f0b249acccc",
+                "url": "https://api.github.com/repos/jonnnnyw/php-phantomjs/zipball/b2e6985b7362f7699c11823e2956a2d8112728eb",
+                "reference": "b2e6985b7362f7699c11823e2956a2d8112728eb",
                 "shasum": ""
             },
             "require": {
@@ -1777,7 +1776,7 @@
                 "twig/twig": "~1.16"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "~4.0"
             },
             "bin": [
                 "bin/phantomloader"
@@ -1808,20 +1807,20 @@
                 "phantomjs",
                 "testing"
             ],
-            "time": "2014-09-09 08:30:19"
+            "time": "2015-02-17 14:23:56"
         },
         {
             "name": "knplabs/github-api",
-            "version": "1.4.1",
+            "version": "1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/php-github-api.git",
-                "reference": "c4fb5fe66df44efa83a7236c3e18dca557649217"
+                "reference": "fe666bd091c8721866654879a031f840b250e4ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/c4fb5fe66df44efa83a7236c3e18dca557649217",
-                "reference": "c4fb5fe66df44efa83a7236c3e18dca557649217",
+                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/fe666bd091c8721866654879a031f840b250e4ff",
+                "reference": "fe666bd091c8721866654879a031f840b250e4ff",
                 "shasum": ""
             },
             "require": {
@@ -1838,7 +1837,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
@@ -1869,7 +1868,7 @@
                 "gist",
                 "github"
             ],
-            "time": "2014-12-22 23:59:03"
+            "time": "2015-02-23 16:36:53"
         },
         {
             "name": "phpdocumentor/reflection-docblock",

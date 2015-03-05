@@ -6,6 +6,7 @@ Development
 - [108: use composer for phpcov](https://github.com/sitrunlab/LearnZF2/pull/108)
 - [109: add more tests for ConsoleController](https://github.com/sitrunlab/LearnZF2/pull/109)
 - [113: add Log demo module](https://github.com/sitrunlab/LearnZF2/pull/113)
+- [117: add Navigation demo module](https://github.com/sitrunlab/LearnZF2/pull/117)
 
 ### Fixes
 

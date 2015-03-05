@@ -33,7 +33,8 @@ class IndexControllerFactoryTest extends TestCase
 
     /**
      * @return ServiceLocatorInterface
-     * @param  array                   $data
+     *
+     * @param array $data
      */
     private function createServiceLocator(array $data = [])
     {

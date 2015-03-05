@@ -15,6 +15,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -29,7 +30,7 @@ class DownloadController extends AbstractActionController
     private $modulesList;
 
     /**
-     * Construct $modulesList
+     * Construct $modulesList.
      *
      * @param array $modulesList
      */
@@ -39,7 +40,7 @@ class DownloadController extends AbstractActionController
     }
 
     /**
-     * Download module
+     * Download module.
      *
      * /download/:module
      */

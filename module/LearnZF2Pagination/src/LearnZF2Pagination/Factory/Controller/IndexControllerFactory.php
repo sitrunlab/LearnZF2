@@ -8,9 +8,10 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class IndexControllerFactory implements FactoryInterface
 {
     /**
-     * Create service
+     * Create service.
      *
-     * @param  ServiceLocatorInterface $serviceLocator
+     * @param ServiceLocatorInterface $serviceLocator
+     *
      * @return IndexController
      */
     public function createService(ServiceLocatorInterface $serviceLocator)

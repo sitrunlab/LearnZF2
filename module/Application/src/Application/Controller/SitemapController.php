@@ -15,13 +15,14 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 /**
- * Get sitemap page
+ * Get sitemap page.
  */
 class SitemapController extends AbstractActionController
 {

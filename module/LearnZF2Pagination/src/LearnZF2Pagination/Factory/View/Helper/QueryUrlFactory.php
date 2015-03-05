@@ -9,9 +9,10 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class QueryUrlFactory implements FactoryInterface
 {
     /**
-     * Create service
+     * Create service.
      *
-     * @param  ServiceLocatorInterface $serviceLocator
+     * @param ServiceLocatorInterface $serviceLocator
+     *
      * @return QueryUrl
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
