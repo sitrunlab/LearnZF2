@@ -23,7 +23,7 @@ use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Loader\StandardAutoloader;
 
 /**
- * Class ModuleTest
+ * Class ModuleTest.
  *
  * @author Alejandro Celaya Alastrué <alejandro@alejandrocelaya.com>
  */
