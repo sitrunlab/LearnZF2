@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eebf8be37637945d3e3878734c3d1b87",
+    "hash": "97943d408fb6b3bb5e9ff30dc0703f38",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1121,120 +1121,6 @@
     ],
     "packages-dev": [
         {
-            "name": "beelab/bowerphp",
-            "version": "v0.2.4-alpha",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Bee-Lab/bowerphp.git",
-                "reference": "60fee1920023beaf2e584c89dc412dd995c50d96"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Bee-Lab/bowerphp/zipball/60fee1920023beaf2e584c89dc412dd995c50d96",
-                "reference": "60fee1920023beaf2e584c89dc412dd995c50d96",
-                "shasum": ""
-            },
-            "require": {
-                "camspiers/json-pretty": "1.0.*",
-                "ext-fileinfo": "*",
-                "ext-zip": "*",
-                "knplabs/github-api": "1.4.*",
-                "php": ">=5.3.6",
-                "symfony/console": "~2.3",
-                "symfony/filesystem": "~2.1",
-                "symfony/finder": "~2.2",
-                "symfony/process": "~2.1",
-                "vierbergenlars/php-semver": "~3.0"
-            },
-            "require-dev": {
-                "ext-phar": "*",
-                "fabpot/php-cs-fixer": "~1.5",
-                "mockery/mockery": "~0.9.3",
-                "phpunit/phpunit": "4.*"
-            },
-            "bin": [
-                "bin/bowerphp"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Bowerphp": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Massimiliano Arione",
-                    "email": "massimiliano.arione@bee-lab.net"
-                },
-                {
-                    "name": "Mauro D'Alatri",
-                    "email": "mauro.dalatri@bee-lab.net"
-                },
-                {
-                    "name": "The Community",
-                    "homepage": "https://github.com/Bee-Lab/bowerphp/graphs/contributors"
-                }
-            ],
-            "description": "An implementation of bower in PHP",
-            "homepage": "http://bowerphp.org/",
-            "keywords": [
-                "dependency",
-                "frontend",
-                "package"
-            ],
-            "time": "2015-03-07 19:59:55"
-        },
-        {
-            "name": "camspiers/json-pretty",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/camspiers/json-pretty.git",
-                "reference": "2378ac3e8e798e9c55bd3c194238cde35af93817"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/camspiers/json-pretty/zipball/2378ac3e8e798e9c55bd3c194238cde35af93817",
-                "reference": "2378ac3e8e798e9c55bd3c194238cde35af93817",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "suggest": {
-                "pimple/pimple": "Useful for dependency injection"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Camspiers": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cam Spiers",
-                    "email": "cameron@heyday.co.nz",
-                    "homepage": "https://github.com/camspiers/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Provides support for json pretty printing in php 5.3",
-            "time": "2014-01-24 12:31:00"
-        },
-        {
             "name": "codeception/codeception",
             "version": "2.0.11",
             "source": {
@@ -1813,67 +1699,6 @@
                 "testing"
             ],
             "time": "2015-02-17 14:23:56"
-        },
-        {
-            "name": "knplabs/github-api",
-            "version": "1.4.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KnpLabs/php-github-api.git",
-                "reference": "fe666bd091c8721866654879a031f840b250e4ff"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/fe666bd091c8721866654879a031f840b250e4ff",
-                "reference": "fe666bd091c8721866654879a031f840b250e4ff",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "guzzle/guzzle": "~3.7",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "knplabs/gaufrette": "Needed for optional Gaufrette cache"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Github\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Thibault Duplessis",
-                    "email": "thibault.duplessis@gmail.com",
-                    "homepage": "http://ornicar.github.com"
-                },
-                {
-                    "name": "KnpLabs Team",
-                    "homepage": "http://knplabs.com"
-                }
-            ],
-            "description": "GitHub API v3 client",
-            "homepage": "https://github.com/KnpLabs/php-github-api",
-            "keywords": [
-                "api",
-                "gh",
-                "gist",
-                "github"
-            ],
-            "time": "2015-02-23 16:36:53"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -3654,58 +3479,6 @@
                 "templating"
             ],
             "time": "2015-01-25 17:32:08"
-        },
-        {
-            "name": "vierbergenlars/php-semver",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vierbergenlars/php-semver.git",
-                "reference": "4dc35f3804f3b127ad557b8b2255c03204dec951"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vierbergenlars/php-semver/zipball/4dc35f3804f3b127ad557b8b2255c03204dec951",
-                "reference": "4dc35f3804f3b127ad557b8b2255c03204dec951",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "simpletest/simpletest": "1.1.*"
-            },
-            "bin": [
-                "bin/semver",
-                "bin/update-versions"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "vierbergenlars\\SemVer\\": "src/",
-                    "vierbergenlars\\LibJs\\": "src/"
-                },
-                "classmap": [
-                    "src/vierbergenlars/SemVer/internal.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Lars Vierbergen",
-                    "email": "vierbergenlars@gmail.com"
-                }
-            ],
-            "description": "The Semantic Versioner for PHP",
-            "keywords": [
-                "semantic",
-                "semver",
-                "versioning"
-            ],
-            "time": "2013-12-21 17:10:13"
         }
     ],
     "aliases": [],
@@ -3713,8 +3486,7 @@
     "stability-flags": {
         "zendframework/zftool": 20,
         "zendframework/zend-developer-tools": 20,
-        "satooshi/php-coveralls": 20,
-        "beelab/bowerphp": 15
+        "satooshi/php-coveralls": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -5,6 +5,6 @@
     "jquery": "1.10.2",
     "jquery-ui": "1.10.3",
     "selectize": "0.8.5",
-    "prism": "git@github.com:PrismJS/prism.git#6dbe88514254be7f953dc7de28b1a7114f4538da"
+    "prism": "gh-pages"
   }
 }
