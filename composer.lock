@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d7ed0a6c87a1bc211c42d792fa9f96c8",
+    "hash": "eebf8be37637945d3e3878734c3d1b87",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1122,16 +1122,16 @@
     "packages-dev": [
         {
             "name": "beelab/bowerphp",
-            "version": "dev-master",
+            "version": "v0.2.4-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Bee-Lab/bowerphp.git",
-                "reference": "c165000944c88e83e8e73f88b7bfa0e72380c27c"
+                "reference": "60fee1920023beaf2e584c89dc412dd995c50d96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bee-Lab/bowerphp/zipball/c165000944c88e83e8e73f88b7bfa0e72380c27c",
-                "reference": "c165000944c88e83e8e73f88b7bfa0e72380c27c",
+                "url": "https://api.github.com/repos/Bee-Lab/bowerphp/zipball/60fee1920023beaf2e584c89dc412dd995c50d96",
+                "reference": "60fee1920023beaf2e584c89dc412dd995c50d96",
                 "shasum": ""
             },
             "require": {
@@ -1191,7 +1191,7 @@
                 "frontend",
                 "package"
             ],
-            "time": "2015-03-12 08:58:59"
+            "time": "2015-03-07 19:59:55"
         },
         {
             "name": "camspiers/json-pretty",
@@ -3714,7 +3714,7 @@
         "zendframework/zftool": 20,
         "zendframework/zend-developer-tools": 20,
         "satooshi/php-coveralls": 20,
-        "beelab/bowerphp": 20
+        "beelab/bowerphp": 15
     },
     "prefer-stable": false,
     "prefer-lowest": false,
