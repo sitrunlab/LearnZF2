@@ -7,8 +7,11 @@ php:
 
 install:
   - sudo apt-get install parallel
+  - sudo apt-get install nodejs npm
+  - npm install -g bower
+  - /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/bin/composer self-update
   - composer install --prefer-source
-  - vendor/bin/bowerphp install
+  - bower install
 
 before_script:
   - mkdir -p build/coverage

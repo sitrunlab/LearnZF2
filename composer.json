@@ -12,11 +12,10 @@
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "1.*",
-        "phpunit/PHPUnit": "~4.0",
+        "phpunit/PHPUnit": "4.*",
         "satooshi/php-coveralls": "dev-master",
         "codeception/codeception": "2.*",
         "jonnyw/php-phantomjs": "3.*",
-        "beelab/bowerphp": "1.0.*@dev",
         "phpunit/phpcov": "~2.0"
     },
     "scripts": {

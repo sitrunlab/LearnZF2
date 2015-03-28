@@ -1,6 +1,5 @@
 {
-  "name": "Learn ZF2",
-  "version": "1.0.0",
+  "name": "LearnZF2",
   "dependencies": {
     "bootstrap": "3.0.3",
     "jquery": "1.10.2",
