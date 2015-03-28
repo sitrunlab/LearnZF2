@@ -5,8 +5,8 @@
  *
  * @see https://github.com/zendframework/ZFTool
  */
-return array(
-    'modules' => array(
+return [
+    'modules' => [
         'Application',
         'DoctrineModule',
         'DoctrineORMModule',
@@ -18,14 +18,15 @@ return array(
         'LearnZF2Pagination',
         'LearnZF2Log',
         'LearnZF2Navigation',
-    ),
-    'module_listener_options' => array(
-        'module_paths' => array(
+        'LearnZF2Acl',
+    ],
+    'module_listener_options' => [
+        'module_paths' => [
             './module',
-            './vendor',
-        ),
-        'config_glob_paths' => array(
-            'config/autoload/{,*.}{global,local}.php',
-        ),
-    ),
-);
+            './vendor'
+        ],
+        'config_glob_paths' => [
+            'config/autoload/{,*.}{global,local}.php'
+        ],
+    ],
+];
