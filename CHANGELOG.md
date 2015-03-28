@@ -1,5 +1,4 @@
-Development
------------
+0.1.1 - 2014-03-28
 
 ### Added
 - [105: add BarcodeObjectPluginManagerFactory test](https://github.com/sitrunlab/LearnZF2/pull/105)
