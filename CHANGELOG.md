@@ -1,3 +1,8 @@
+Development
+-----------
+#Fixes
+- [119: update zf2 version to ~2.4.0](https://github.com/sitrunlab/LearnZF2/pull/119)
+
 0.1.1 - 2014-03-28
 
 ### Added
