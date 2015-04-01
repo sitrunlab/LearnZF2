@@ -59,7 +59,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->assertTrue($request->isXmlHttpRequest());
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
-        $this->assertEquals('{"form":{"1":{},"0":{}},"data":{"result":false,"message":{"username":{"regexNotMatch":"The input does not match against pattern \u0027\/admin\/\u0027"},"password":{"regexNotMatch":"The input does not match against pattern \u0027\/admin\/\u0027"}}}}', $this->getResponse()->getBody());
+        $this->assertEquals('{"form":{"username":{},"password":{}},"data":{"result":false,"message":{"username":{"regexNotMatch":"The input does not match against pattern \u0027\/admin\/\u0027"},"password":{"regexNotMatch":"The input does not match against pattern \u0027\/admin\/\u0027"}}}}', $this->getResponse()->getBody());
     }
 
     public function testPostValidDataWithAjax()
@@ -74,6 +74,6 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->assertTrue($request->isXmlHttpRequest());
         $this->assertResponseHeaderContains('Content-Type', 'application/json; charset=utf-8');
 
-        $this->assertEquals('{"form":{"1":{},"0":{}},"data":{"result":true,"message":"Ajax request success"}}', $this->getResponse()->getBody());
+        $this->assertEquals('{"form":{"username":{},"password":{}},"data":{"result":true,"message":"Ajax request success"}}', $this->getResponse()->getBody());
     }
 }

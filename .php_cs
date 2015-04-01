@@ -18,7 +18,10 @@ $config->fixers(
         'phpdoc_indent',
         'multiline_array_trailing_comma',
         '-no_empty_lines_after_phpdocs',
-        '-single_blank_line_before_namespace'
+        '-single_blank_line_before_namespace',
+        '-blankline_after_open_tag',
+        '-single_quote',
+        '-phpdoc_scalar'
     )
 );
 $config->finder($finder);
