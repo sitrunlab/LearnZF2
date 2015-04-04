@@ -2,6 +2,7 @@ Development
 -----------
 #Fixes
 - [119: update zf2 version to ~2.4.0](https://github.com/sitrunlab/LearnZF2/pull/119)
+- [121: added back scrutinizer badge](https://github.com/sitrunlab/LearnZF2/pull/121) 
 
 0.1.1 - 2014-03-28
 
