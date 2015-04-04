@@ -3,6 +3,7 @@ LearnZF2 repository
 
 [![Build Status](https://secure.travis-ci.org/sitrunlab/LearnZF2.png?branch=develop)](http://travis-ci.org/sitrunlab/LearnZF2)
 [![Coverage Status](https://coveralls.io/repos/sitrunlab/LearnZF2/badge.png?branch=develop)](https://coveralls.io/r/sitrunlab/LearnZF2)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sitrunlab/LearnZF2/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sitrunlab/LearnZF2/?branch=master)
 
 Introduction
 ------------
@@ -71,11 +72,11 @@ php composer.phar self-update && php composer.phar install
 ```
 
  4.Execute Sql dump that located in **data/sql** directory into MySQL database.
- 
+
  5.Copy <code>config/autoload/doctrine.local.php.dist</code> to <code>config/autoload/doctrine.local.php</code> and configure it with your current environment.
 
 
- 
+
 
 Web Server Setup
 ----------------
