@@ -36,9 +36,9 @@ return [
     ],
 
     'service_manager' => [
-        'factories' => [
-
-        ],
+        'aliases' => [
+            'translator' => 'mvctranslator'
+        ]
     ],
 
     'view_manager' => [
@@ -46,4 +46,8 @@ return [
             __DIR__.'/../view',
         ],
     ],
+
+    'translator' => [
+
+    ]
 ];

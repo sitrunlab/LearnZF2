@@ -18,9 +18,14 @@
 
 namespace LearnZF2I18n;
 
+use Zend\EventManager\EventInterface;
+use Zend\I18n\Translator\Translator;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\Mvc\MvcEvent;
+use Zend\Http;
 
 /**
  * Class Module.
@@ -29,7 +34,8 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
  */
 class Module implements
     ConfigProviderInterface,
-    AutoloaderProviderInterface
+    AutoloaderProviderInterface,
+    BootstrapListenerInterface
 {
     /**
      * Returns configuration to merge with application configuration.
@@ -55,5 +61,25 @@ class Module implements
                 ],
             ],
         ];
+    }
+
+    /**
+     * Listen to the bootstrap event
+     *
+     * @param EventInterface $e
+     * @return array
+     */
+    public function onBootstrap(EventInterface $e)
+    {
+        /** @var MvcEvent $e */
+        $request = $e->getRequest();
+        if (! $request instanceof Http\Request) {
+            return;
+        }
+
+        /** @var Translator $translator */
+        $translator = $e->getApplication()->getServiceManager()->get('translator');
+        $lang = $request->getQuery('lang', 'en_US');
+        $translator->setLocale($lang);
     }
 }
