@@ -8,18 +8,24 @@
 return array(
     'modules' => array(
         'Application',
+        'DoctrineModule',
+        'DoctrineORMModule',
         'LearnZF2Ajax',
         'LearnZF2FormUsage',
         'ZendDeveloperTools',
         'ZFTool',
+        'LearnZF2Barcode',
+        'LearnZF2Pagination',
+        'LearnZF2Log',
+        'LearnZF2Navigation',
     ),
     'module_listener_options' => array(
         'module_paths' => array(
             './module',
-            './vendor'
+            './vendor',
         ),
         'config_glob_paths' => array(
-            'config/autoload/{,*.}{global,local}.php'
-        )
-    )
+            'config/autoload/{,*.}{global,local}.php',
+        ),
+    ),
 );

@@ -1,6 +1,5 @@
 <?php echo $this->render('layout/header'); ?>
 
-
 <div class="container container-main">
 
     <!-- sidebar -->
@@ -26,7 +25,7 @@
         <iframe src="http://ghbtns.com/github-btn.html?user=sitrunlab&repo=LearnZF2&type=fork&count=true"
                 allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
         <div class="fb-wrap">
-            <div class="fb-share-button" data-layout="button_count" data-href="https://developers.facebook.com/docs/plugins/"></div>
+            <div class="fb-share-button" href="<?php echo $this->serverUrl() . $this->url(); ?>" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count"></div>
         </div>
         <br />
         <br />
@@ -36,15 +35,16 @@
         <div class="box-sidebar border-radius">
             <h5 class="title">Other demos</h5>
             <ul>
-                <?php foreach ($this->layout()->modules_list as $list) {
-    if ($list['module_name'] !== $this->layout()->modulenamespace) {
+                <?php if ($this->layout()->modules_list) { foreach ($this->layout()->modules_list as $list) {
+    if ($list->getModuleName() !== $this->layout()->modulenamespace) {
         ?>
 
-                    <li><a href="<?php echo $this->url($list['module_route']);
-        ?>"> <?php echo $list['module_name'];
+                    <li><a href="<?php echo $this->url($list->getModuleRoute());
+        ?>"> <?php echo $list->getModuleName();
         ?> </a> </li>
 
                 <?php
+        }
     }
 }
                 ?>

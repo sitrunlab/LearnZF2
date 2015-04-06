@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: mockie
  * Date: 9/28/14
- * Time: 5:20 PM
+ * Time: 5:20 PM.
  */
 
 namespace LearnZF2Ajax\Model;
@@ -56,7 +56,7 @@ class LoginInputFilter implements InputFilterAwareInterface
                         'name' => 'Regex',
                         'options' => [
                             'pattern' => '/admin/',
-                        ]
+                        ],
                     ],
                 ],
             ]));
@@ -81,7 +81,7 @@ class LoginInputFilter implements InputFilterAwareInterface
                         'name' => 'Regex',
                         'options' => [
                             'pattern' => '/admin/',
-                        ]
+                        ],
                     ],
                 ],
             ]));

@@ -1,0 +1,30 @@
+<?php $this->headTitle()->prepend('Contributors'); ?>
+<div class="col-lg-9">
+    <h1>Thanks to :</h1>
+    <ul class="row contributor-gallery">
+        <?php foreach ($this->contributors as $i => $contributor): ?>
+        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4 circle">
+            <div class="gallery-overlay circle">
+                    <div class="github circle con-icons">
+                        <a href="<?php echo $contributor['user_info']['html_url'] ?>">
+                            <img src="<?php echo $this->basePath('img/github.png') ?>" />
+                        </a>
+                    </div>
+                    <?php if (isset($contributor['user_info']['blog'])): ?>
+                        <?php
+                         if ('http:' !== substr($contributor['user_info']['blog'],0,5)) {
+                             $contributor['user_info']['blog'] = 'http://' . $contributor['user_info']['blog'];
+                             }
+                        ?>
+                        <div class="blog circle con-icons">
+                            <a href="<?php echo $contributor['user_info']['blog'] ?>">
+                                <img src="<?php echo $this->basePath('img/link.png') ?>" />
+                            </a>
+                        </div>
+                    <?php endif; ?>
+            </div>
+            <img class="avatar circle" src="<?php echo $contributor['avatar_url'] ?>" />
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

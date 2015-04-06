@@ -4,9 +4,10 @@
 .buildpath
 .project
 vendor/
-composer.lock
 composer.phar
 public/js/dependencies/
 public/css/.sass-cache/
 /nbproject
 build/
+data/barcode.gif
+data/test-html-report/

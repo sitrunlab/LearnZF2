@@ -1,16 +1,35 @@
 {
     "name": "sitrunlab/learnzf2",
-    "version": "alpha2-dev",
+    "version": "0.1.1",
     "description": "Sitrun Lab",
     "homepage": "http://learnzf2.sitrun-tech.com/",
     "require": {
-        "php": ">=5.3.3",
-        "zendframework/zendframework": "2.3.*",
+        "php": ">=5.4.0",
+        "zendframework/zendframework": "~2.4.0",
         "zendframework/zftool": "dev-master#8bab848834bfc48fef2f4b3e874ddd3760fb9e0d",
-        "zendframework/zend-developer-tools": "dev-master#5e38d0889a34bfbfccef2acb93ca9f4df40dfe31"
+        "zendframework/zend-developer-tools": "dev-master#5e38d0889a34bfbfccef2acb93ca9f4df40dfe31",
+        "doctrine/doctrine-orm-module": "0.8.*"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "1.*",
-        "satooshi/php-coveralls": "dev-master"
+        "phpunit/PHPUnit": "4.*",
+        "satooshi/php-coveralls": "dev-master",
+        "codeception/codeception": "2.*",
+        "jonnyw/php-phantomjs": "3.*",
+        "phpunit/phpcov": "~2.0"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ],
+        "post-update-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev",
+            "dev-develop": "0.2-dev"
+        }
     }
 }

@@ -2,8 +2,9 @@ LearnZF2 repository
 ===================
 
 [![Build Status](https://secure.travis-ci.org/sitrunlab/LearnZF2.png?branch=develop)](http://travis-ci.org/sitrunlab/LearnZF2)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sitrunlab/LearnZF2/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/sitrunlab/LearnZF2/?branch=develop)
 [![Coverage Status](https://coveralls.io/repos/sitrunlab/LearnZF2/badge.png?branch=develop)](https://coveralls.io/r/sitrunlab/LearnZF2)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sitrunlab/LearnZF2/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sitrunlab/LearnZF2/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/2b79c8e1-574f-40f2-b116-7fa80342f108/mini.png)](https://insight.sensiolabs.com/projects/2b79c8e1-574f-40f2-b116-7fa80342f108)
 
 Introduction
 ------------
@@ -70,6 +71,13 @@ sudo apt-get install nodejs-legacy
 ```
 php composer.phar self-update && php composer.phar install
 ```
+
+ 4.Execute Sql dump that located in **data/sql** directory into MySQL database.
+
+ 5.Copy <code>config/autoload/doctrine.local.php.dist</code> to <code>config/autoload/doctrine.local.php</code> and configure it with your current environment.
+
+
+
 
 Web Server Setup
 ----------------
@@ -148,31 +156,3 @@ The host file location in Linux is :
 And add this line :
 
     127.0.0.1 learnzf2.localhost
-
-
-### Git Publish
-
-It would be easier to use git flow to publish your branch, by git flow, you always use feature checked out from develop branch, and when you done and want to create a Pull Request, you can run :
-
-    git flow feature yourfeature publish
-
-Next commit you need to push manually :
-
-    git push origin yourfeature
-
-It seems more keywords, but it's just a little things for many elegant way to switching branch and merging with git flow. By running git flow, you have summary like :
-
-    $ git flow feature start download-plugin
-
-Switched to a new branch **'feature/download-plugin'**
-
-Summary of actions:
-- A new branch 'feature/download-plugin' was created, based on 'develop'
-- You are now on branch 'feature/download-plugin'
-
-Now, start committing on your feature. When done, use:
-
-     git flow feature finish download-plugin
-It would be very usefull when you want to managing hotfix that merge to develop and master automatically when finish a hotfix flow.
-
-For full command, you can check [Git flow cheatsheet](http://danielkummer.github.io/git-flow-cheatsheet/)

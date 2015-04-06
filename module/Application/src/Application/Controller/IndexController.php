@@ -1,10 +1,19 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
  */
 
 namespace Application\Controller;
@@ -19,23 +28,23 @@ class IndexController extends AbstractActionController
     /**
      * @var array
      */
-    private $config;
+    private $modulesList;
 
     /**
-     * Construct applicationConfig
+     * Construct modulesList.
      *
-     * @param array $config
+     * @param array $modulesList
      */
-    public function __construct(array $config)
+    public function __construct(array $modulesList)
     {
-        $this->config = $config;
+        $this->modulesList = $modulesList;
     }
 
     public function indexAction()
     {
-        $this->layout('layout/home.phtml');
+        $this->layout()->setVariable('skipWelcome', false);
 
-        $paginator = new Paginator(new ArrayAdapter($this->config['modules_list']));
+        $paginator = new Paginator(new ArrayAdapter($this->modulesList));
 
         $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
         $paginator->setItemCountPerPage(10);

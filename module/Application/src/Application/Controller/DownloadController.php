@@ -1,4 +1,20 @@
 <?php
+/**
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
+ */
 
 namespace Application\Controller;
 
@@ -11,20 +27,20 @@ class DownloadController extends AbstractActionController
     /**
      * @var array
      */
-    private $applicationConfig;
+    private $modulesList;
 
     /**
-     * Construct applicationConfig
+     * Construct $modulesList.
      *
-     * @param array $applicationConfig
+     * @param array $modulesList
      */
-    public function __construct(array $applicationConfig)
+    public function __construct(array $modulesList)
     {
-        $this->applicationConfig = $applicationConfig;
+        $this->modulesList = $modulesList;
     }
 
     /**
-     * Download module
+     * Download module.
      *
      * /download/:module
      */
@@ -32,10 +48,9 @@ class DownloadController extends AbstractActionController
     {
         $module = $this->params()->fromRoute('module', '');
         $compress = $this->params()->fromRoute('compress', 'zip');
-        $modules           = $this->applicationConfig['modules'];
 
         $response = $this->getResponse();
-        if (in_array($module, $modules)) {
+        if (in_array($module, $this->modulesList)) {
             $currDateTime = date('Y-m-dHis');
 
             $fileToArchive  = $module.'.'.(($compress == 'zip') ? 'zip' : 'bz2');

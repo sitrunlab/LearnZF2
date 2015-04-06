@@ -8,10 +8,17 @@
 return [
     'modules' => [
         'Application',
+        'DoctrineModule',
+        'DoctrineORMModule',
         'LearnZF2Ajax',
         'LearnZF2FormUsage',
         'ZendDeveloperTools',
         'ZFTool',
+        'LearnZF2Barcode',
+        'LearnZF2Pagination',
+        'LearnZF2Log',
+        'LearnZF2Navigation',
+        'LearnZF2Acl',
     ],
     'module_listener_options' => [
         'module_paths' => [
@@ -20,6 +27,6 @@ return [
         ],
         'config_glob_paths' => [
             'config/autoload/{,*.}{global,local}.php'
-        ]
-    ]
+        ],
+    ],
 ];

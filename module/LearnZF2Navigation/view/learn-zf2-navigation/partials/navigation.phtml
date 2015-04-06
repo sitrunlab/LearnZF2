@@ -1,0 +1,28 @@
+<nav class="navbar navbar-inverse">
+    <ul class="nav navbar-nav">
+        <?php foreach ($this->container as $page):
+            /** @var Zend\Navigation\Page\AbstractPage $page */ ?>
+            <li class="<?php echo $page->hasPages() ? 'dropdown' : '' ?>">
+                <a href="<?php echo $page->getHref() ?>" target="<?php echo $page->getTarget() ?>"
+                    <?php echo $page->hasPages() ? 'class="dropdown-toggle" data-toggle="dropdown"' : '' ?>>
+                    <?php echo $page->getLabel() ?>
+                    <?php if ($page->hasPages()): ?>
+                        <span class="caret"></span>
+                    <?php endif; ?>
+                </a>
+                <?php if ($page->hasPages()): ?>
+                    <ul class="dropdown-menu">
+                        <?php foreach ($page->getPages() as $child):
+                            /** @var Zend\Navigation\Page\AbstractPage $child */ ?>
+                            <li>
+                                <a href="<?php echo $child->getHref() ?>">
+                                    <?php echo $child->getLabel() ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</nav>

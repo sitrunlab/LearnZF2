@@ -12,16 +12,5 @@
  */
 
 return [
-    'modules_list' => [
-        0 => [
-            'module_name' => 'LearnZF2Ajax',
-            'module_desc' => 'Learn Ajax with ZF2',
-            'module_route' => 'learnZF2Ajax',
-        ],
-        1 => [
-            'module_name' => 'LearnZF2FormUsage',
-            'module_desc' => 'Learn Form Usage with ZF2',
-            'module_route' => 'learn-zf2-form-usage',
-        ],
-    ]
+
 ];

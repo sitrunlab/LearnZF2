@@ -7,19 +7,31 @@ php:
 
 install:
   - sudo apt-get install parallel
-  - composer install --dev --prefer-source
+  - sudo apt-get install nodejs npm
+  - npm install -g bower
+  - /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/bin/composer self-update
+  - composer install --prefer-source
+  - bower install
 
 before_script:
   - mkdir -p build/coverage
   - mkdir -p build/logs
-  
+  - mysql -e 'create database IF NOT EXISTS learnzf2;' -uroot
+  - mysql -u root learnzf2 < data/sql/learnzf2.sql
+  - cp config/autoload/doctrine.local.php.dist config/autoload/doctrine.local.php
+  - php -S localhost:8000 -t public/ &
+  - vendor/bin/phantomjs --webdriver=4444 && PID=$! &
+  - sleep 1
+
 script:
   - ls -d module/* | parallel --gnu --keep-order 'echo "Running {} CS checks"; ./vendor/bin/php-cs-fixer fix {} -v --dry-run --config-file=.php_cs;' || exit 1
-  - ant
-  
+  - ls -d module/*/test/PHPUnit | parallel --gnu --keep-order 'echo "Running {} tests"; ./vendor/bin/phpunit -c {}/phpunit.xml;' || exit 1
+  - cd module && for i in $(ls -d *); do ./../vendor/bin/codecept --config=${i%%/}/test/Codeception/codeception.yml run acceptance; done
+  - cd ..
+
 after_script:
-  - php phpcov.phar merge --clover build/logs/clover.xml build/coverage/
-  - php vendor/bin/coveralls -v
+  - php vendor/bin/phpcov merge --clover build/logs/clover.xml build/coverage/
+  - php vendor/bin/coveralls -v --exclude-no-stmt
 
 notifications:
   email: false

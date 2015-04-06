@@ -8,6 +8,14 @@
     <?php echo $this->headMeta()
         ->appendName('viewport', 'width=device-width, initial-scale=1.0')
         ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ->setName('webcrawlers','all')
+        ->setName('spiders','all')
+        ->setName('robots','all')
+        ->setName('keywords', 'ZF2, Zend, Framework, Learn, Tutorial')
+        ->setName('description', 'Real Live ZF2 Examples and tutorial')
+        ->setProperty('og:title', $this->layout()->fbMeta['title'])
+        ->setProperty('og:description', $this->layout()->fbMeta['description'])
+        ->setProperty('og:image', $this->serverUrl() . '/img/zf2-logo.png');
     ?>
 
     <!-- Le styles -->
@@ -27,20 +35,18 @@
         ->prependFile($this->basePath() . '/js/jquery.min.js')
         ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
         ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
-    ; ?>
-
+    ;
+    ?>
 </head>
 <body>
 <div id="fb-root"></div>
-<script>
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=471963102931624&version=v2.0";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/id_ID/sdk.js#xfbml=1&appId=581080422025637&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -53,9 +59,13 @@
             <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Learn ZF2"/>&nbsp;Learn ZF2</a>
         </div>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-            </ul>
+            <?php
+                echo $this->navigation('navigation')
+                    ->menu()
+                    ->setMinDepth(0)
+                    ->setMaxDepth(0)
+                    ->setUlClass('nav navbar-nav');
+            ?>
         </div><!--/.nav-collapse -->
     </div>
 </nav>

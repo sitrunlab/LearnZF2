@@ -38,7 +38,7 @@ body {
 
 
 .container-main{
-  min-height: 450px;
+  min-height: 950px;
   padding-top: 40px;
   padding-bottom: 100px;
   h1{
@@ -205,6 +205,54 @@ thead{
     }
   }
 }
+
+@mixin circular($number) {
+  border-radius: $number;
+  -webkit-border-radius: $number;
+  -moz-border-radius: $number;
+}
+
+.circle {
+  border-radius: 50%;
+//  width: 200px;
+//  height: 200px;
+  /* width and height can be anything, as long as they're equal */
+}
+
+.contributor-gallery{
+  list-style: none;
+  li{
+    border: 5px solid $third-color;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    img.avatar{
+      width: 100%;
+    }
+    .gallery-overlay{
+      background: #000;
+      width: 100%;
+      height: 100%;
+      display: none;
+      position: absolute;
+      background-color:rgba(0,0,0,0.6);
+    }
+    .con-icons{
+      border: 2px solid $second-green;
+      width: 46px;
+      height: 46px;
+      text-align: center;
+      background: $second-green;
+      &.github{
+        padding-top: 5px;
+      }
+      &.blog{
+        margin-left: -20px;
+      }
+    }
+  }
+}
+
 
 
 .demo-box{
