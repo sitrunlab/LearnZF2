@@ -4,6 +4,7 @@ LearnZF2 repository
 [![Build Status](https://secure.travis-ci.org/sitrunlab/LearnZF2.png?branch=develop)](http://travis-ci.org/sitrunlab/LearnZF2)
 [![Coverage Status](https://coveralls.io/repos/sitrunlab/LearnZF2/badge.png?branch=develop)](https://coveralls.io/r/sitrunlab/LearnZF2)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sitrunlab/LearnZF2/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sitrunlab/LearnZF2/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/2b79c8e1-574f-40f2-b116-7fa80342f108/mini.png)](https://insight.sensiolabs.com/projects/2b79c8e1-574f-40f2-b116-7fa80342f108)
 
 Introduction
 ------------
