@@ -1,6 +1,8 @@
 <?php
 namespace LearnZF2Pagination\Exception;
 
-class RuntimeException extends \RuntimeException implements ExceptionInterface
+use RuntimeException as BaseRuntimeException;
+
+class RuntimeException extends BaseRuntimeException implements ExceptionInterface
 {
 }
