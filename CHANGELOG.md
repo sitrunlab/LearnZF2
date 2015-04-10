@@ -4,6 +4,7 @@ Development
 - [119: update zf2 version to ~2.4.0](https://github.com/sitrunlab/LearnZF2/pull/119)
 - [121: added back scrutinizer badge](https://github.com/sitrunlab/LearnZF2/pull/121) 
 - [125: increase sensiolabs stars](https://github.com/sitrunlab/LearnZF2/pull/125)
+- [126: add php 7, hhvm, and hhvm-nightly in .travis.yml](https://github.com/sitrunlab/LearnZF2/pull/126)
 
 0.1.1 - 2014-03-28
 
