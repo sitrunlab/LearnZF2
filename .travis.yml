@@ -4,6 +4,9 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - 7
+  - hhvm
+  - hhvm-nightly
 
 install:
   - sudo apt-get install parallel
@@ -38,3 +41,7 @@ notifications:
 
 matrix:
   fast_finish: true
+  allow_failures:
+    - php: 7
+    - php: hhvm
+    - php: hhvm-nightly
