@@ -31,14 +31,14 @@ return [
 
     'controllers' => [
         'invokables' => [
-            'LearnZF2I18n\Controller\Index' => 'LearnZF2I18n\Controller\IndexController'
+            'LearnZF2I18n\Controller\Index' => 'LearnZF2I18n\Controller\IndexController',
         ],
     ],
 
     'service_manager' => [
         'aliases' => [
-            'translator' => 'mvctranslator'
-        ]
+            'translator' => 'mvctranslator',
+        ],
     ],
 
     'view_manager' => [
@@ -60,6 +60,6 @@ return [
                 'type'     => 'gettext',
                 'pattern'  => '%s.mo',
             ],
-        ]
-    ]
+        ],
+    ],
 ];
