@@ -6,20 +6,32 @@
             <ul>
                 <li><?php echo $this->translate('Hello') ?></li>
                 <li><?php echo $this->translate('Learn Zend Framework with this tutorials') ?></li>
+                <li><?php echo $this->translate('This string is fetched from a gettext file') ?></li>
+                <li><?php echo $this->translate('Zend Framework 2 is a web framework written in PHP') ?></li>
             </ul>
         </fieldset>
-
+        <br>
         <fieldset>
             <legend>Sentences always in English</legend>
             <ul>
-                <li></li>
+                <li><?php echo $this->translate('Hello', null, 'en_US') ?></li>
+                <li><?php echo $this->translate('Learn Zend Framework with this tutorials', null, 'en_US') ?></li>
+                <li><?php echo $this->translate('This string is fetched from a gettext file', null, 'en_US') ?></li>
+                <li>
+                    <?php echo $this->translate('Zend Framework 2 is a web framework written in PHP', null, 'en_US') ?>
+                </li>
             </ul>
         </fieldset>
-
+        <br>
         <fieldset>
             <legend>Sentences always in Spanish</legend>
             <ul>
-                <li></li>
+                <li><?php echo $this->translate('Hello', null, 'es_ES') ?></li>
+                <li><?php echo $this->translate('Learn Zend Framework with this tutorials', null, 'es_ES') ?></li>
+                <li><?php echo $this->translate('This string is fetched from a gettext file', null, 'es_ES') ?></li>
+                <li>
+                    <?php echo $this->translate('Zend Framework 2 is a web framework written in PHP', null, 'es_ES') ?>
+                </li>
             </ul>
         </fieldset>
     </div>
