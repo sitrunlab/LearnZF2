@@ -48,8 +48,8 @@
     </div>
 
     <p>The <code>Zend\I18n</code> component is used to handle translations in Zend Framework 2 applications.</p>
-    <p>It includes the Translator, which is the main service, but also a view helper that consumes it and can be used to translate texts directly inside views</p>
-    <p>The first thing we have to do is to define a <b>translator</b> configuration block, so that the Translator service can be properly created</p>
+    <p>It includes the Translator, which is the main service, but also a view helper that consumes it and can be used to translate texts directly inside views.</p>
+    <p>The first thing we have to do is to define a <b>translator</b> top level configuration block, so that the Translator service can be properly created.</p>
 
     <pre><code class="language-php"><?php echo htmlentities("[
     'translator' => [
@@ -72,11 +72,33 @@
     <p>
         The <b>translator</b> configuration has two elements.
         <ul>
-            <li>The <b>locale</b> is the default locale to be used when no other locale is defined.</li>
+            <li>The <b>locale</b> is the default locale to be used when no other locale is provided.</li>
             <li>The <b>translation_file_patterns</b> is a list of places where translation files can be found. Each one of them as the directory path, the type of translation files that it contains and a file name pattern, where the mask will be replaced by the locale.</li>
         </ul>
     </p>
-    <p>The Translator service can handle multiple language files. Usually you will define a group of language files per module, and each module will have its own <b>translator</b> configuration. At runtime all of them will be merged and you will have something like the example, with multiple <b>translation_file_patterns</b>.</p>
+    <p>The Translator service can handle multiple language files in different formats. Usually you will define a group of language files per module, and each module will have its own <b>translator</b> configuration. At runtime all of them will be merged and you will have something like the example, with multiple <b>translation_file_patterns</b>.</p>
 
+    <br>
+    <h4>The service</h4>
+    <p>The <code>Zend\Mvc</code> component registers a service with the key <b>MvcTranslator</b>, which is the one that consumes the <b>translator</b> top level configuration, but some other services will try to find a <b>translator</b> service.</p>
+    <p>To fix this problem we have to define a service alias like this.</p>
 
+    <pre><code class="language-php"><?php echo htmlentities("[
+    'service_manager' => [
+        'aliases' => [
+            'translator' => 'mvctranslator',
+        ],
+    ]
+]") ?></code></pre>
+    <p>The <a target="_blank" href="https://github.com/zendframework/ZendSkeletonApplication">Zend Skeleton Application</a> has this preconfigured.</p>
+
+    <br>
+    <h4>The view helper</h4>
+    <p>You will usually want to translate messages in view templates. That can be easily done by using the <code>translate()</code> view helper, which internally consumes the <b>translator</b> service.</p>
+    <p>Inside a view partial, just call it by passing the message you want it to translate and optionally the text domain and locale.</p>
+
+    <pre><code class="language-php"><?php echo htmlentities("<label><?php echo \$this->translate('Hello') ?></label>
+<label><?php echo \$this->translate('Hello', null, 'en_US') ?></label>
+") ?></code></pre>
+    <p>And that's it, you are now ready to use <code>Zend\I18n</code>.</p>
 </div>
