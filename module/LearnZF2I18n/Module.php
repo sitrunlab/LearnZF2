@@ -72,6 +72,12 @@ class Module implements
     public function onBootstrap(EventInterface $e)
     {
         /** @var MvcEvent $e */
+        $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
+        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initCurrentLocale'], 10);
+    }
+
+    public function initCurrentLocale(MvcEvent $e)
+    {
         $request = $e->getRequest();
         if (! $request instanceof Http\Request) {
             return;
@@ -81,5 +87,8 @@ class Module implements
         $translator = $e->getApplication()->getServiceManager()->get('translator');
         $lang = $request->getQuery('lang', 'en_US');
         $translator->setLocale($lang);
+
+        // Inject current language in view model
+        $e->getViewModel()->setVariable('lang', $lang);
     }
 }
