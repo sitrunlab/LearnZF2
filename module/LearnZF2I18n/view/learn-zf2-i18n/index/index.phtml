@@ -1,8 +1,19 @@
+<?php $currentLang = $this->layout()->lang; ?>
 <div class="col-lg-9">
     <h1>I18n example with Zend Framework 2</h1>
     <div class="demo-box">
+        <form method="get" id="changeLanguageForm" class="form-inline">
+            <p class="text-right">
+                <label for="languageElement"><?php echo $this->translate('Change current language') ?></label>
+                <select id="languageElement" class="form-control" name="lang"
+                        onchange="$('#changeLanguageForm').submit()">
+                    <option <?php echo $currentLang === 'en_US' ? 'selected' : '' ?>>en_US</option>
+                    <option <?php echo $currentLang === 'es_ES' ? 'selected' : '' ?>>es_ES</option>
+                </select>
+            </p>
+        </form>
         <fieldset>
-            <legend>Sentences in current language (<?php echo $this->layout()->lang ?>)</legend>
+            <legend>Sentences in current language (<?php echo $currentLang ?>)</legend>
             <ul>
                 <li><?php echo $this->translate('Hello') ?></li>
                 <li><?php echo $this->translate('Learn Zend Framework with this tutorials') ?></li>
