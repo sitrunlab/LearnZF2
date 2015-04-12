@@ -39,9 +39,7 @@ class Module implements
     BootstrapListenerInterface
 {
     /**
-     * Returns configuration to merge with application configuration.
-     *
-     * @return array|\Traversable
+     * {@inheritDoc}
      */
     public function getConfig()
     {
@@ -49,9 +47,7 @@ class Module implements
     }
 
     /**
-     * Return an array for passing to Zend\Loader\AutoloaderFactory.
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function getAutoloaderConfig()
     {
@@ -65,11 +61,7 @@ class Module implements
     }
 
     /**
-     * Listen to the bootstrap event.
-     *
-     * @param EventInterface $e
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function onBootstrap(EventInterface $e)
     {
