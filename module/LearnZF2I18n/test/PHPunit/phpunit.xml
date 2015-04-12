@@ -1,0 +1,21 @@
+<phpunit bootstrap="Bootstrap.php" colors="true">
+    <testsuite name="Application" >
+        <directory>./LearnZF2I18nTest</directory>
+    </testsuite>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./../../</directory>
+            <exclude>
+                <directory suffix=".php">./../</directory>
+                <directory suffix=".php">./../../languages/phpArray/</directory>
+            </exclude>
+        </whitelist>
+        <blacklist>
+            <directory suffix=".php">./../../../../vendor/</directory>
+        </blacklist>
+    </filter>
+    <logging>
+        <log type="coverage-html" target="./../../../../data/test-html-report/learnzf2i18n/" charset="UTF-8" yui="true" />
+        <log type="coverage-php" target="./../../../../build/coverage/coverage-learnzf2i18n.cov"/>
+    </logging>
+</phpunit>

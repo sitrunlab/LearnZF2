@@ -28,7 +28,7 @@ CREATE TABLE `module_list` (
   `module_desc` varchar(255) DEFAULT NULL,
   `module_route` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,15 @@ CREATE TABLE `module_list` (
 
 LOCK TABLES `module_list` WRITE;
 /*!40000 ALTER TABLE `module_list` DISABLE KEYS */;
-INSERT INTO `module_list` VALUES (1,'LearnZF2Ajax','Learn Ajax with ZF2','learnZF2Ajax'),(2,'LearnZF2FormUsage','Learn Form Usage with ZF2','learn-zf2-form-usage'),(3,'LearnZF2Barcode','Learn Barcode Usage with ZF2','learn-zf2-barcode-usage'),(4,'LearnZF2Pagination','Learn Pagination Usage with ZF2','learn-zf2-pagination'),(5,'LearnZF2Log','Learn Log Usage with ZF2','learn-zf2-log'),(6,'LearnZF2Navigation','Learn Navigation and menus with ZF2','learn-zf2-navigation'),(7,'LearnZF2Acl','Learn ACL with ZF2','learn-zf2-acl');
+INSERT INTO `module_list` VALUES
+  (1,'LearnZF2Ajax','Learn Ajax with ZF2','learnZF2Ajax'),
+  (2,'LearnZF2FormUsage','Learn Form Usage with ZF2','learn-zf2-form-usage'),
+  (3,'LearnZF2Barcode','Learn Barcode Usage with ZF2','learn-zf2-barcode-usage'),
+  (4,'LearnZF2Pagination','Learn Pagination Usage with ZF2','learn-zf2-pagination'),
+  (5,'LearnZF2Log','Learn Log Usage with ZF2','learn-zf2-log'),
+  (6,'LearnZF2Navigation','Learn Navigation and menus with ZF2','learn-zf2-navigation'),
+  (7,'LearnZF2Acl','Learn ACL with ZF2','learn-zf2-acl'),
+  (8,'LearnZF2I18n','Learn Internationalization with ZF2','learn-zf2-i18n');
 /*!40000 ALTER TABLE `module_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
