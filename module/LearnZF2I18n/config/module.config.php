@@ -1,4 +1,5 @@
 <?php
+
 return [
     'router' => [
         'routes' => [
@@ -51,12 +52,12 @@ return [
         'locale' => 'en_US',
         'translation_file_patterns' => [
             [
-                'base_dir' => __DIR__ . '/../languages/phpArray',
+                'base_dir' => __DIR__.'/../languages/phpArray',
                 'type'     => 'phpArray',
                 'pattern'  => '%s.php',
             ],
             [
-                'base_dir' => __DIR__ . '/../languages/gettext',
+                'base_dir' => __DIR__.'/../languages/gettext',
                 'type'     => 'gettext',
                 'pattern'  => '%s.mo',
             ],

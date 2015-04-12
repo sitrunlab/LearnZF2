@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -34,7 +35,7 @@ use Zend\Stdlib\Parameters;
 use Zend\View\Model\ViewModel;
 
 /**
- * Class ModuleTest
+ * Class ModuleTest.
  *
  * @author Alejandro Celaya Alastrué <alejandro@alejandrocelaya.com>
  */
@@ -56,8 +57,8 @@ class ModuleTest extends TestCase
 
         $sm = new ServiceManager(new Config([
             'services' => [
-                'translator' => Translator::factory(['locale' => 'id_ID'])
-            ]
+                'translator' => Translator::factory(['locale' => 'id_ID']),
+            ],
         ]));
         $this->app->expects($this->any())
                   ->method('getServiceManager')
@@ -136,9 +137,10 @@ class ModuleTest extends TestCase
     }
 
     /**
-     * Creates an MvcEvent object
+     * Creates an MvcEvent object.
      *
      * @param null $lang
+     *
      * @return MvcEvent
      */
     protected function createMvcEvent($lang = null)

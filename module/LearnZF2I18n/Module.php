@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -64,14 +65,15 @@ class Module implements
     }
 
     /**
-     * Listen to the bootstrap event
+     * Listen to the bootstrap event.
      *
      * @param EventInterface $e
+     *
      * @return array
      */
     public function onBootstrap(EventInterface $e)
     {
-        /** @var MvcEvent $e */
+        /* @var MvcEvent $e */
         $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
         $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initCurrentLocale'], 10);
     }

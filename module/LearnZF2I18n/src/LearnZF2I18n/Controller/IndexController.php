@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -21,11 +22,10 @@ namespace LearnZF2I18n\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 
 /**
- * Class IndexController
+ * Class IndexController.
  *
  * @author Alejandro Celaya Alastrué <alejandro@alejandrocelaya.com>
  */
 class IndexController extends AbstractActionController
 {
-
 }

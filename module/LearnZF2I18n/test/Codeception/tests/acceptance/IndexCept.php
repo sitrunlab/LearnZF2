@@ -1,4 +1,5 @@
 <?php
+
 $I = new AcceptanceTester($scenario);
 $I->wantTo('Get the internationalization start page');
 $I->amOnPage('/learn-zf2-i18n');
