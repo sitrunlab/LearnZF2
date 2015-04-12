@@ -19,6 +19,7 @@ return [
         'LearnZF2Log',
         'LearnZF2Navigation',
         'LearnZF2Acl',
+        'LearnZF2I18n',
     ],
     'module_listener_options' => [
         'module_paths' => [

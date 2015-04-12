@@ -5,6 +5,7 @@ Development
 - [121: added back scrutinizer badge](https://github.com/sitrunlab/LearnZF2/pull/121) 
 - [125: increase sensiolabs stars](https://github.com/sitrunlab/LearnZF2/pull/125)
 - [126: add php 7, hhvm, and hhvm-nightly in .travis.yml](https://github.com/sitrunlab/LearnZF2/pull/126)
+- [127: new module : I18n example module](https://github.com/sitrunlab/LearnZF2/pull/127)
 
 0.1.1 - 2014-03-28
 
