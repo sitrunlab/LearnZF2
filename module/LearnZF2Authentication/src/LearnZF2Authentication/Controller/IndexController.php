@@ -20,6 +20,8 @@
 namespace LearnZF2Authentication\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Zend\Mvc\MvcEvent;
 
 /**
  * Class IndexController.
@@ -28,4 +30,30 @@ use Zend\Mvc\Controller\AbstractActionController;
  */
 class IndexController extends AbstractActionController
 {
+    /**
+     * @var ViewModel $view
+     */
+    public $view = null;
+
+    function __construct() {
+        $this->view = new ViewModel();
+    }
+
+    /**
+     * @param MvcEvent $e
+     */
+    public function onDispatch(MvcEvent $e)
+    {
+        parent::onDispatch($e);
+    }
+
+    public function basicAction()
+    {
+        return $this->view;
+    }
+
+    public function digestAction()
+    {
+        return $this->view;
+    }
 }

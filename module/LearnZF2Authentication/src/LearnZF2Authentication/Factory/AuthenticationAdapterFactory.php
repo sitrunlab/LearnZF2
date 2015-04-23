@@ -8,6 +8,9 @@ use Zend\Authentication\Adapter\Http\FileResolver;
 
 class AuthenticationAdapterFactory implements FactoryInterface
 {
+    /**
+     * {@inheritDoc}
+     */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->get('Config');

@@ -1,1 +1,1 @@
-stanimir:authentication:0885123
+basic:authentication:strongpassword

@@ -17,7 +17,7 @@ return [
                     'default' => [
                         'type'      => 'Segment',
                         'options'   => [
-                            'route'         => '/:action',
+                            'route'         => '[/:action]',
                             'constraints'   => [
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ],
@@ -25,7 +25,6 @@ return [
                     ],
                 ],
             ],
-
         ],
     ],
     'authentication' => [
@@ -33,12 +32,11 @@ return [
             'config' => [
                 'accept_schemes' => 'basic digest',
                 'realm'          => 'authentication',
-                'digest_domains' => '/learn-zf2-authentication/auth',
+                'digest_domains' => '/learn-zf2-authentication/digest',
                 'nonce_timeout'  => 3600,
-                'proxy_auth'     => false,
             ],
-            'basic' => __DIR__ . '/auth/basic.txt',
-            'digest' => __DIR__ . '/auth/digest.txt',
+            'basic' => __DIR__.'/auth/basic.txt',
+            'digest' => __DIR__.'/auth/digest.txt',
         ],
     ],
     'service_manager' => [

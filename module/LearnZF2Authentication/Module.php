@@ -69,35 +69,37 @@ class Module implements
         $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initAuthtentication'], 1);
     }
 
-    /**
-     * @param MvcEvent $e
-     */
     public function initAuthtentication(MvcEvent $e)
     {
-        $request  = $e->getRequest();
-        $response = $e->getResponse();
+        /**
+         * For simplicity for this tutorial, we will listen for different actions and apply different authentication schemes
+         */
+        if($e->getRouteMatch()->getParam("action") == "basic" || $e->getRouteMatch()->getParam("action") == "digest") {
+            /* @var MvcEvent $e */
+            $request  = $e->getRequest();
+            $response = $e->getResponse();
 
-        // Not HTTP? Stop!
-        if (!($request instanceof Http\Request && $response instanceof Http\Response))
-        {
-            return;
-        }
+            // Not HTTP? Stop!
+            if (!($request instanceof Http\Request && $response instanceof Http\Response)) {
+                return;
+            }
 
-        $sm = $e->getApplication()->getServiceManager();
-        $authAdapter = $sm->get('LearnZF2Authentication\AuthenticationAdapter');
-        $authAdapter->setRequest($request);
-        $authAdapter->setResponse($response);
-        $result = $authAdapter->authenticate();
-        if ($result->isValid())
-        {
-            return $e->getViewModel()->setVariable('identity', $result->getIdentity());
-        }
-        else
-        {
-            // Maybe create a log function or just use the one from LearnZF2
-            foreach ($result->getMessages() as $msg)
-            {
-                return $msg;
+            $sm = $e->getApplication()->getServiceManager();
+            $authAdapter = $sm->get('LearnZF2Authentication\AuthenticationAdapter');
+            $authAdapter->setRequest($request);
+            $authAdapter->setResponse($response);
+            $result = $authAdapter->authenticate();
+
+            if ($result->isValid()) {
+                var_dump($result->getIdentity());
+                return $e->getViewModel()->setVariable('identity', $result->getIdentity());
+            }
+            else {
+                // Create a log function or just use the one from LearnZF2.
+                //Also make sure to redirect to another page 404 for example
+                foreach ($result->getMessages() as $msg) {
+                    return $msg;
+                }
             }
         }
     }
