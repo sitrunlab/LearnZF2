@@ -91,7 +91,6 @@ class Module implements
             $result = $authAdapter->authenticate();
 
             if ($result->isValid()) {
-                var_dump($result->getIdentity());
                 return $e->getViewModel()->setVariable('identity', $result->getIdentity());
             }
             else {
