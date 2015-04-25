@@ -75,29 +75,44 @@ class Module implements
          * For simplicity for this tutorial, we will listen for different actions and apply different authentication schemes
          */
         if($e->getRouteMatch()->getParam("action") == "basic" || $e->getRouteMatch()->getParam("action") == "digest") {
-            /* @var MvcEvent $e */
+            /**
+             * @var MvcEvent $e
+             */
             $request  = $e->getRequest();
             $response = $e->getResponse();
+            $view = $e->getApplication()->getMvcEvent()->getViewModel();
+            $sm = $e->getApplication()->getServiceManager();
+            $authAdapter = $sm->get('LearnZF2Authentication\BasicAuthenticationAdapter');
 
-            // Not HTTP? Stop!
+            /**
+             * Not HTTP? Stop!
+             */
             if (!($request instanceof Http\Request && $response instanceof Http\Response)) {
                 return;
             }
 
-            $sm = $e->getApplication()->getServiceManager();
-            $authAdapter = $sm->get('LearnZF2Authentication\AuthenticationAdapter');
+            /**
+             * Call the factory class and try to authenticate
+             */
+            if ($e->getRouteMatch()->getParam("action") == "digest") {
+                $authAdapter = $sm->get('LearnZF2Authentication\DigestAuthenticationAdapter');
+            }
             $authAdapter->setRequest($request);
             $authAdapter->setResponse($response);
             $result = $authAdapter->authenticate();
 
+            /**
+             * Pass the information to the view and see what we got
+             */
             if ($result->isValid()) {
-                return $e->getViewModel()->setVariable('identity', $result->getIdentity());
-            }
-            else {
-                // Create a log function or just use the one from LearnZF2.
-                //Also make sure to redirect to another page 404 for example
+                return $view->identity = $result->getIdentity();
+            } else {
+                /**
+                 * Create a log function or just use the one from LearnZF2.
+                 * Also make sure to redirect to another page, 404 for example
+                 */
                 foreach ($result->getMessages() as $msg) {
-                    return $msg;
+                    return $view->authProblem = $msg;
                 }
             }
         }

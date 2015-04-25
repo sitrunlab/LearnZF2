@@ -27,21 +27,31 @@ return [
             ],
         ],
     ],
-    'authentication' => [
+    'authentication_basic' => [
         'adapter' => [
             'config' => [
-                'accept_schemes' => 'basic digest',
+                'accept_schemes' => 'basic',
+                'realm'          => 'authentication',
+                'nonce_timeout'  => 3600,
+            ],
+            'basic'  => __DIR__.'/auth/basic.txt',
+        ],
+    ],
+    'authentication_digest' => [
+        'adapter' => [
+            'config' => [
+                'accept_schemes' => 'digest',
                 'realm'          => 'authentication',
                 'digest_domains' => '/learn-zf2-authentication/digest',
                 'nonce_timeout'  => 3600,
             ],
-            'basic' => __DIR__.'/auth/basic.txt',
             'digest' => __DIR__.'/auth/digest.txt',
         ],
     ],
     'service_manager' => [
         'factories' => [
-            'LearnZF2Authentication\AuthenticationAdapter' => 'LearnZF2Authentication\Factory\AuthenticationAdapterFactory',
+            'LearnZF2Authentication\BasicAuthenticationAdapter' => 'LearnZF2Authentication\Factory\BasicAuthenticationAdapterFactory',
+            'LearnZF2Authentication\DigestAuthenticationAdapter' => 'LearnZF2Authentication\Factory\DigestAuthenticationAdapterFactory',
         ],
     ],
 

@@ -1,6 +1,7 @@
 <div class="col-lg-9">
     <h1>Authentication example with Zend Framework 2</h1>
     <div class="demo-box">
+        <p>After each successful authentication, please restart your browser. Each authentication last for an hour.</p>
         <ul>
             <code>Username:</code> basic
             <br>
@@ -22,39 +23,136 @@
     <p>The <code>Zend\Authentication\Adapter\Http</code> provides an easy way for Apache like authentication in Zend Framework 2 applications.</p>
     <p>It comes with two implementations Basic and Digest HTTP Authentication, which can be combined with two sub components - the class itself or a FileResolver. We are going to use the FileResolver to read the stored credentials and compare them to the submitted values.</p>
     <p>First thing first. There are few important things to know.</p>
-    <p>1. We will create a folder with name <b>auth</b> in MODULE_NAME/config/. Inside that folder create two files basic.txt and digest.txt. The file formats are smillar to Apache htpasswd files.
-    Basic - &lt;username&gt;:&lt;realm&gt;:&lt;credentials&gt;, here credentials should be written in clear text, e.g.: <b>stanimir:authentication:plaintextpassword</b>.
-    Digest - &lt;username&gt;:&lt;realm&gt;:&lt;credentials&gt;, where &lt;credentials&gt; is the md5 hash of all 3 parts, e.g.: <b>stanimir:authentication:dc45122ef294d83e84a8b5a3a6c5356b</b></p>
-    <p>2. In the same module where we have just created our auth folder, open module.config.php file and place this code.</p>
+    <p>1. Create a folder with name <b>auth</b> in MODULE_NAME/config/. Inside that folder create two files basic.txt and digest.txt. The file formats are smillar to Apache .htpasswd files.<br>
+    Basic - &lt;username&gt;:&lt;realm&gt;:&lt;credentials&gt;, here credentials should be written in clear text, e.g.: <b>basic:authentication:plaintextpassword</b>.
+    <br>
+    Digest - &lt;username&gt;:&lt;realm&gt;:&lt;credentials&gt;, where &lt;credentials&gt; is the md5 hash of all 3 parts, e.g.: <b>digest:authentication:dc45122ef294d83e84a8b5a3a6c5356b</b></p>
+    <p>2. In the same module, where we have just created our auth folder, open module.config.php file and place this code.</p>
     <pre><code class="language-php"><?php echo htmlentities("
-    'authentication' => [
+    /**
+     * Used for basic authentication
+     */
+    'authentication_basic' => [
         'adapter' => [
             'config' => [
-                'accept_schemes' => 'basic digest',
+                'accept_schemes' => 'basic',
                 'realm'          => 'authentication',
-                'digest_domains' => '/learn-zf2-authentication',
                 'nonce_timeout'  => 3600,
             ],
-            'basic' => __DIR__.'/auth/basic.txt',
+            'basic'  => __DIR__.'/auth/basic.txt',
+        ],
+    ],
+    /**
+     * Used for digest authentication
+     */
+    'authentication_digest' => [
+        'adapter' => [
+            'config' => [
+                'accept_schemes' => 'digest',
+                'realm'          => 'authentication',
+                'digest_domains' => '/learn-zf2-authentication/digest',
+                'nonce_timeout'  => 3600,
+            ],
             'digest' => __DIR__.'/auth/digest.txt',
         ],
-    ],")?></code></pre>
+    ]")?></code></pre>
     <p>The code tells us which authentication schemes we accept, the realm (must be the same as the realm in the basic/digest.txt files, digest_domains (only when we use digest authentication) is the URL(s) where we want to apply the same valid information, nonce_timeout sets the number of seconds for which the nonce is valid.</p>
 
-    <code>LearnZF2Authentication\Factory</code>
-    <pre><code class="language-php"><?php echo htmlentities('
+    <br>
+    <code>LearnZF2Authentication\Factory\BasicAuthenticationAdapterFactory</code>
+    <pre><code class="language-php">
+    <?php echo htmlentities('
         $config = $serviceLocator->get(\'Config\');
-        $authConfig = $config[\'authentication\'][\'adapter\'];
+        $authConfig = $config[\'authentication_basic\'][\'adapter\'];
         $authAdapter = new HttpAdapter($authConfig[\'config\']);
 
         $basic = new FileResolver();
-        $digest = new FileResolver();
-
         $basic->setFile($authConfig[\'basic\']);
-        $digest->setFile($authConfig[\'digest\']);
 
         $authAdapter->setBasicResolver($basic);
+
+        return $authAdapter;
+    ')?>
+    </code></pre>
+        <br>
+    <code>LearnZF2Authentication\Factory\DigestAuthenticationAdapterFactory</code>
+    <pre><code class="language-php">
+    <?php echo htmlentities('
+        $config = $serviceLocator->get(\'Config\');
+        $authConfig = $config[\'authentication_digest\'][\'adapter\'];
+        $authAdapter = new HttpAdapter($authConfig[\'config\']);
+
+        $digest = new FileResolver();
+        $digest->setFile($authConfig[\'digest\']);
+
         $authAdapter->setDigestResolver($digest);
 
-        return $authAdapter;')?></code></pre>
+        return $authAdapter;
+    ')?>
+    </code></pre>
+    <p>These are the codes we use to pass the authentication information</p>
+
+    <br>
+    <code>Module.php</code>
+    <pre><code class="language-php">
+    <?php echo htmlentities('
+/**
+ * For simplicity for this tutorial, we will listen for different actions and apply different authentication schemes
+ */
+if($e->getRouteMatch()->getParam(\'action\') == \'basic\' || $e->getRouteMatch()->getParam(\'action\') == \'digest\') {
+    /**
+     * @var MvcEvent $e
+     */
+    $request  = $e->getRequest();
+    $response = $e->getResponse();
+    $view = $e->getApplication()->getMvcEvent()->getViewModel();
+    $sm = $e->getApplication()->getServiceManager();
+    $authAdapter = $sm->get(\'LearnZF2Authentication\BasicAuthenticationAdapter\');
+
+    /**
+     * Not HTTP? Stop!
+     */
+    if (!($request instanceof Http\Request && $response instanceof Http\Response)) {
+        return;
+    }
+
+    /**
+     * Call the factory class and try to authenticate
+     */
+    if ($e->getRouteMatch()->getParam(\'action\') == \'digest\') {
+        $authAdapter = $sm->get(\'LearnZF2Authentication\DigestAuthenticationAdapter\');
+    }
+    $authAdapter->setRequest($request);
+    $authAdapter->setResponse($response);
+    $result = $authAdapter->authenticate();
+
+    /**
+     * Pass the information to the view and see what we got
+     */
+    if ($result->isValid()) {
+        return $view->identity = $result->getIdentity();
+    } else {
+        /**
+         * Create a log function or just use the one from LearnZF2.
+         * Also make sure to redirect to another page, 404 for example
+         */
+        foreach ($result->getMessages() as $msg) {
+            return $view->authProblem = $msg;
+        }
+    }
+}
+    ')?>
+    </code></pre>
+    <p>This is the code we use to pass the authentication information</p>
+    <br>
+    <p>One last important thing to note is that you <u>must</u> include a special header called <code>Authorization</code> n your request. Put this peace of code in your .htaccess file, if you are using Apache. If you are using nginx, IIS or any other server just match the code according to it.</p>
+    <pre><code class="language-php">
+        <?php echo htmlentities('
+# PHP compiled as CGI does not support apache_response_headers function, but we need this header in order to do basic HTTP authtentication when running with CGI or FastCGI.
+ RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+        ')?>
+    </code></pre>
+    <br>
+    <br>
+    <p>Some things to note. The auth folder as well the authentication code from module.config.php is best to be placed in your main config folder, where the global|local.php files are and excluded from commits.</p>
 </div>
