@@ -14,11 +14,11 @@ class BasicAuthenticationAdapterFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->get('Config');
-        $authConfig = $config['authentication_basic']['adapter'];
-        $authAdapter = new HttpAdapter($authConfig['config']);
+        $authConfig = $config[ 'authentication_basic' ][ 'adapter' ];
+        $authAdapter = new HttpAdapter($authConfig[ 'config' ]);
 
         $basic = new FileResolver();
-        $basic->setFile($authConfig['basic']);
+        $basic->setFile($authConfig[ 'basic' ]);
 
         $authAdapter->setBasicResolver($basic);
 

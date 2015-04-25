@@ -66,7 +66,7 @@ class Module implements
     {
         /* @var MvcEvent $e */
         $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
-        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initAuthtentication'], 1);
+        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [ $this, 'initAuthtentication' ], 1);
     }
 
     public function initAuthtentication(MvcEvent $e)
@@ -74,7 +74,7 @@ class Module implements
         /**
          * For simplicity for this tutorial, we will listen for different actions and apply different authentication schemes
          */
-        if($e->getRouteMatch()->getParam("action") == "basic" || $e->getRouteMatch()->getParam("action") == "digest") {
+        if ($e->getRouteMatch()->getParam("action") == "basic" || $e->getRouteMatch()->getParam("action") == "digest") {
             /**
              * @var MvcEvent $e
              */
