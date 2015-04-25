@@ -25,5 +25,3 @@ class DigestAuthenticationAdapterFactory implements FactoryInterface
         return $authAdapter;
     }
 }
-
-?>

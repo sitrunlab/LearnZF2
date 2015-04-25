@@ -35,7 +35,7 @@ class IndexController extends AbstractActionController
      */
     public $view = null;
 
-    function __construct() {
+    public function __construct() {
         $this->view = new ViewModel();
     }
 

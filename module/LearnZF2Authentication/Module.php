@@ -85,13 +85,6 @@ class Module implements
             $authAdapter = $sm->get('LearnZF2Authentication\BasicAuthenticationAdapter');
 
             /**
-             * Not HTTP? Stop!
-             */
-            if (!($request instanceof Http\Request && $response instanceof Http\Response)) {
-                return;
-            }
-
-            /**
              * Call the factory class and try to authenticate
              */
             if ($e->getRouteMatch()->getParam("action") == "digest") {

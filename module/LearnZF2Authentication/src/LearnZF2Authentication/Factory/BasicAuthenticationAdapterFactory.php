@@ -25,5 +25,3 @@ class BasicAuthenticationAdapterFactory implements FactoryInterface
         return $authAdapter;
     }
 }
-
-?>
