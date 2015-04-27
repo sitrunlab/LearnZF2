@@ -31,7 +31,7 @@ use Zend\Mvc\MvcEvent;
 class IndexController extends AbstractActionController
 {
     /**
-     * @var ViewModel $view
+     * @var ViewModel
      */
     public $view = null;
 

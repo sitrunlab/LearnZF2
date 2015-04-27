@@ -1,4 +1,5 @@
 <?php
+
 namespace LearnZF2Authentication\Factory;
 
 use Zend\ServiceManager\FactoryInterface;

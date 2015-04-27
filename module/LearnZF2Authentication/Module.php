@@ -65,16 +65,16 @@ class Module implements
     {
         /* @var MvcEvent $e */
         $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
-        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [ $this, 'initAuthtentication' ], 1);
+        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initAuthtentication'], 1);
     }
 
     public function initAuthtentication(MvcEvent $e)
     {
-        /**
+        /*
          * For simplicity for this tutorial, we will listen for different actions and apply different authentication schemes
          */
-        if ($e->getRouteMatch()->getParam("action") == "basic" || $e->getRouteMatch()->getParam("action") == "digest") {
-            /**
+        if ($e->getRouteMatch()->getParam('action') == 'basic' || $e->getRouteMatch()->getParam('action') == 'digest') {
+            /*
              * @var MvcEvent $e
              */
             $request  = $e->getRequest();
@@ -83,23 +83,23 @@ class Module implements
             $sm = $e->getApplication()->getServiceManager();
             $authAdapter = $sm->get('LearnZF2Authentication\BasicAuthenticationAdapter');
 
-            /**
+            /*
              * Call the factory class and try to authenticate
              */
-            if ($e->getRouteMatch()->getParam("action") == "digest") {
+            if ($e->getRouteMatch()->getParam('action') == 'digest') {
                 $authAdapter = $sm->get('LearnZF2Authentication\DigestAuthenticationAdapter');
             }
             $authAdapter->setRequest($request);
             $authAdapter->setResponse($response);
             $result = $authAdapter->authenticate();
 
-            /**
+            /*
              * Pass the information to the view and see what we got
              */
             if ($result->isValid()) {
                 return $view->identity = $result->getIdentity();
             } else {
-                /**
+                /*
                  * Create a log function or just use the one from LearnZF2.
                  * Also make sure to redirect to another page, 404 for example
                  */
