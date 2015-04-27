@@ -40,5 +40,4 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->assertControllerClass('IndexController');
         $this->assertMatchedRouteName('learn-zf2-authentication');
     }
-
 }
