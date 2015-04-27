@@ -97,33 +97,31 @@
     <pre><code class="language-php">
     <?php echo htmlentities('
 /**
- * For simplicity for this tutorial, we will listen for different actions and apply different authentication schemes
+ * @var MvcEvent $e
  */
+$request  = $e->getRequest();
+$response = $e->getResponse();
+$view = $e->getApplication()->getMvcEvent()->getViewModel();
+$sm = $e->getApplication()->getServiceManager();
+$authAdapter = $sm->get(\'LearnZF2Authentication\BasicAuthenticationAdapter\');
+
+/**
+ * Not HTTP? Stop!
+ */
+if (!($request instanceof Http\Request && $response instanceof Http\Response)) {
+    return;
+}
+
+/**
+ * Call the factory class and try to authenticate
+ */
+if ($e->getRouteMatch()->getParam(\'action\') == \'digest\') {
+    $authAdapter = $sm->get(\'LearnZF2Authentication\DigestAuthenticationAdapter\');
+}
+$authAdapter->setRequest($request);
+$authAdapter->setResponse($response);
+
 if($e->getRouteMatch()->getParam(\'action\') == \'basic\' || $e->getRouteMatch()->getParam(\'action\') == \'digest\') {
-    /**
-     * @var MvcEvent $e
-     */
-    $request  = $e->getRequest();
-    $response = $e->getResponse();
-    $view = $e->getApplication()->getMvcEvent()->getViewModel();
-    $sm = $e->getApplication()->getServiceManager();
-    $authAdapter = $sm->get(\'LearnZF2Authentication\BasicAuthenticationAdapter\');
-
-    /**
-     * Not HTTP? Stop!
-     */
-    if (!($request instanceof Http\Request && $response instanceof Http\Response)) {
-        return;
-    }
-
-    /**
-     * Call the factory class and try to authenticate
-     */
-    if ($e->getRouteMatch()->getParam(\'action\') == \'digest\') {
-        $authAdapter = $sm->get(\'LearnZF2Authentication\DigestAuthenticationAdapter\');
-    }
-    $authAdapter->setRequest($request);
-    $authAdapter->setResponse($response);
     $result = $authAdapter->authenticate();
 
     /**

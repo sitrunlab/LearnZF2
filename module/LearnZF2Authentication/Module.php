@@ -65,32 +65,30 @@ class Module implements
     {
         /* @var MvcEvent $e */
         $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
-        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initAuthtentication'], 1);
+        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initAuthtentication'], 100);
     }
 
     public function initAuthtentication(MvcEvent $e)
     {
         /*
-         * For simplicity for this tutorial, we will listen for different actions and apply different authentication schemes
+         * @var MvcEvent $e
          */
-        if ($e->getRouteMatch()->getParam('action') == 'basic' || $e->getRouteMatch()->getParam('action') == 'digest') {
-            /*
-             * @var MvcEvent $e
-             */
-            $request  = $e->getRequest();
-            $response = $e->getResponse();
-            $view = $e->getApplication()->getMvcEvent()->getViewModel();
-            $sm = $e->getApplication()->getServiceManager();
-            $authAdapter = $sm->get('LearnZF2Authentication\BasicAuthenticationAdapter');
+        $request  = $e->getRequest();
+        $response = $e->getResponse();
+        $view = $e->getApplication()->getMvcEvent()->getViewModel();
+        $sm = $e->getApplication()->getServiceManager();
+        $authAdapter = $sm->get('LearnZF2Authentication\BasicAuthenticationAdapter');
 
-            /*
-             * Call the factory class and try to authenticate
-             */
-            if ($e->getRouteMatch()->getParam('action') == 'digest') {
-                $authAdapter = $sm->get('LearnZF2Authentication\DigestAuthenticationAdapter');
-            }
-            $authAdapter->setRequest($request);
-            $authAdapter->setResponse($response);
+        /*
+         * Call the factory class and try to authenticate
+         */
+        if ($e->getRouteMatch()->getParam('action') == 'digest') {
+            $authAdapter = $sm->get('LearnZF2Authentication\DigestAuthenticationAdapter');
+        }
+        $authAdapter->setRequest($request);
+        $authAdapter->setResponse($response);
+
+        if ($e->getRouteMatch()->getParam('action') == 'basic' || $e->getRouteMatch()->getParam('action') == 'digest') {
             $result = $authAdapter->authenticate();
 
             /*

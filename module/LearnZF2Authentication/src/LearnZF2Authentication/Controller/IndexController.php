@@ -31,16 +31,6 @@ use Zend\Mvc\MvcEvent;
 class IndexController extends AbstractActionController
 {
     /**
-     * @var ViewModel
-     */
-    public $view = null;
-
-    public function __construct()
-    {
-        $this->view = new ViewModel();
-    }
-
-    /**
      * @param MvcEvent $e
      */
     public function onDispatch(MvcEvent $e)
@@ -50,11 +40,11 @@ class IndexController extends AbstractActionController
 
     public function basicAction()
     {
-        return $this->view;
+        return new ViewModel();
     }
 
     public function digestAction()
     {
-        return $this->view;
+        return new ViewModel();
     }
 }
