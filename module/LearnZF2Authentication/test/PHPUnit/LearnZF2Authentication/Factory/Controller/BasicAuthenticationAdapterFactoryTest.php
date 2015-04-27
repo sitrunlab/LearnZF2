@@ -54,7 +54,7 @@ class BasicAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
                         ],
                     ]];
 
-        $serviceLocator->expects($this->once())
+        $controllerManager->expects($this->once())
                        ->method('get')
                        ->with('Config')
                        ->willReturn($dataArray);
@@ -65,7 +65,7 @@ class BasicAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
 
     public function testCreateService()
     {
-        $basic = $this->basicFactory->createService($this->serviceLocator);
+        $basic = $this->basicFactory->createService($this->controllerManager);
         $this->assertInstanceOf('Zend\Authentication\Adapter\Http', $basic);
     }
 }
