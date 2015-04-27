@@ -1,5 +1,4 @@
 <?php
-
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -17,44 +16,29 @@
  * and is licensed under the MIT license.
  */
 
-namespace LearnZF2Authentication\Controller;
+namespace LearnZF2AuthenticationTest\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Zend\Mvc\MvcEvent;
+use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
-/**
- * Class IndexController.
- *
- * @author Stanimir Dimitrov <s.dimitrov@weblunatix.com>
- */
-class IndexController extends AbstractActionController
+class IndexControllerTest extends AbstractHttpControllerTestCase
 {
-    /**
-     * @var ViewModel $view
-     */
-    public $view = null;
-
-    public function __construct()
+    public function setUp()
     {
-        $this->view = new ViewModel();
+        $this->setApplicationConfig(
+            include dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/config/application.config.php'
+        );
+
+        parent::setUp();
     }
 
-    /**
-     * @param MvcEvent $e
-     */
-    public function onDispatch(MvcEvent $e)
+    public function testAccessIndexAction()
     {
-        parent::onDispatch($e);
+        $this->dispatch('/learn-zf2-authentication');
+
+        $this->assertModuleName('LearnZF2Authentication');
+        $this->assertControllerName('LearnZF2Authentication\Controller\Index');
+        $this->assertControllerClass('IndexController');
+        $this->assertMatchedRouteName('learn-zf2-authentication');
     }
 
-    public function basicAction()
-    {
-        return $this->view;
-    }
-
-    public function digestAction()
-    {
-        return $this->view;
-    }
 }

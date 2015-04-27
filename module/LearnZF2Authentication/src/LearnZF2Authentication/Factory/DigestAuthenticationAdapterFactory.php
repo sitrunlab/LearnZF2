@@ -14,11 +14,11 @@ class DigestAuthenticationAdapterFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->get('Config');
-        $authConfig = $config[ 'authentication_digest' ][ 'adapter' ];
-        $authAdapter = new HttpAdapter($authConfig[ 'config' ]);
+        $authConfig = $config['authentication_digest']['adapter'];
+        $authAdapter = new HttpAdapter($authConfig['config']);
 
         $digest = new FileResolver();
-        $digest->setFile($authConfig[ 'digest' ]);
+        $digest->setFile($authConfig['digest']);
 
         $authAdapter->setDigestResolver($digest);
 
