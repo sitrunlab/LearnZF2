@@ -23,50 +23,34 @@ use PHPUnit_Framework_TestCase;
 use LearnZF2Authentication\Factory\BasicAuthenticationAdapterFactory;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use test\Bootstrap;
 
 class BasicAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
 {
     /** @var BasicAuthenticationAdapterFactory */
     protected $basicFactory;
 
-    /** @var ControllerManager */
-    protected $controllerManager;
-
     /** @var ServiceLocatorInterface */
     protected $serviceLocator;
 
+    /** @var ServiceManager */
+    protected $serviceManager;
+
     public function setUp()
     {
-        /** @var ControllerManager $controllerManager */
-        $controllerManager = $this->getMock('Zend\Mvc\Controller\ControllerManager');
-        $this->controllerManager = $controllerManager;
-
         /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $this->serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
 
-        $dataArray = ['authentication_basic' => [
-                        'adapter' => [
-                            'config' => [
-                                'accept_schemes' => 'basic',
-                                'realm'          => 'authentication',
-                                'nonce_timeout'  => 3600,
-                            ],
-                            'basic'  => dirname(dirname(dirname(dirname(dirname(__DIR__))))).'/config/auth/basic.txt',
-                        ],
-                    ]];
+        /** @var ServiceManager $serviceManager */
+        $this->serviceManager = Bootstrap::getServiceManager();
 
-        $controllerManager->expects($this->once())
-                       ->method('get')
-                       ->with('Config')
-                       ->willReturn($dataArray);
-
-        $this->basicFactory = new BasicAuthenticationAdapterFactory();
-        $this->serviceLocator = $serviceLocator;
+        /** @var BasicAuthenticationAdapterFactory $basicFactory */
+        $this->basicFactory = new BasicAuthenticationAdapterFactory($this->serviceManager->get('Config'));
     }
 
     public function testCreateService()
     {
-        $basic = $this->basicFactory->createService($this->controllerManager);
+        $basic = $this->basicFactory->createService($this->serviceLocator);
         $this->assertInstanceOf('Zend\Authentication\Adapter\Http', $basic);
     }
 }

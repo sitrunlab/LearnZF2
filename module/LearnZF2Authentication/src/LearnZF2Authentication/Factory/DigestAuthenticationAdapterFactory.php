@@ -10,12 +10,28 @@ use Zend\Authentication\Adapter\Http\FileResolver;
 class DigestAuthenticationAdapterFactory implements FactoryInterface
 {
     /**
+     * @var array $config
+     */
+    private $config = array();
+
+    /**
+     * @param array $config
+     */
+    public function __construct(array $config = array())
+    {
+        $this->config = $config;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = $serviceLocator->get('Config');
-        $authConfig = $config['authentication_digest']['adapter'];
+        if (empty($this->config)) {
+            $this->config = $serviceLocator->get('Config');
+        }
+
+        $authConfig = $this->config['authentication_digest']['adapter'];
         $authAdapter = new HttpAdapter($authConfig['config']);
 
         $digest = new FileResolver();

@@ -13,12 +13,28 @@ use Zend\Authentication\Adapter\Http\FileResolver;
 class BasicAuthenticationAdapterFactory implements FactoryInterface
 {
     /**
+     * @var array $config
+     */
+    private $config = array();
+
+    /**
+     * @param array $config
+     */
+    public function __construct(array $config = array())
+    {
+        $this->config = $config;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = $serviceLocator->get('Config');
-        $authConfig = $config['authentication_basic']['adapter'];
+        if (empty($this->config)) {
+            $this->config = $serviceLocator->get('Config');
+        }
+
+        $authConfig = $this->config['authentication_basic']['adapter'];
         $authAdapter = new HttpAdapter($authConfig['config']);
 
         $basic = new FileResolver();

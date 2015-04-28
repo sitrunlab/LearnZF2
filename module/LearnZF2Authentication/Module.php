@@ -94,17 +94,17 @@ class Module implements
             /*
              * Pass the information to the view and see what we got
              */
-            if ($result->isValid()) {
-                return $view->identity = $result->getIdentity();
-            } else {
+            if (!$result->isValid()) {
                 /*
                  * Create a log function or just use the one from LearnZF2.
                  * Also make sure to redirect to another page, 404 for example
                  */
                 foreach ($result->getMessages() as $msg) {
-                    return $view->authProblem = $msg;
+                    $view->authProblem = $msg;
                 }
+                return $view->authProblem;
             }
+            return $view->identity = $result->getIdentity();
         }
     }
 }

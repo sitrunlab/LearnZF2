@@ -20,15 +20,23 @@
 namespace LearnZF2AuthenticationTest\Controller;
 
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Zend\Http\Request;
+use Zend\Http\Response;
+use Zend\Stdlib\Parameters;
+use test\Bootstrap;
 
 class IndexControllerTest extends AbstractHttpControllerTestCase
 {
+    /** @var serviceManager $serviceManager */
+    private $serviceManager;
+
     public function setUp()
     {
         $this->setApplicationConfig(
             include dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/config/application.config.php'
         );
 
+        $this->serviceManager = Bootstrap::getServiceManager();
         parent::setUp();
     }
 
@@ -44,11 +52,30 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testAccessBasicAction()
     {
+        $this->getRequest()
+        ->setMethod('POST')
+        ->setPost(new Parameters(array('username' => 'basic', 'realm' => "authentication")));
+
         $this->dispatch('/learn-zf2-authentication/basic');
+        $authAdapter = $this->serviceManager->get('LearnZF2Authentication\BasicAuthenticationAdapter');
+        $authAdapter->setRequest($this->getRequest());
+        $authAdapter->setResponse($this->getResponse());
+        $result = $authAdapter->authenticate();
+        $this->assertRedirectTo('/learn-zf2-authentication/basic');
+
     }
 
     public function testAccessDigestAction()
     {
+        $this->getRequest()
+        ->setMethod('POST')
+        ->setPost(new Parameters(array('username' => 'digest', 'realm' => "authentication")));
+
         $this->dispatch('/learn-zf2-authentication/digest');
+        $authAdapter = $this->serviceManager->get('LearnZF2Authentication\DigestAuthenticationAdapter');
+        $authAdapter->setRequest($this->getRequest());
+        $authAdapter->setResponse($this->getResponse());
+        $result = $authAdapter->authenticate();
+        $this->assertRedirectTo('/learn-zf2-authentication/digest');
     }
 }
