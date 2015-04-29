@@ -38,7 +38,7 @@ class DigestAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-       /** @var ServiceLocatorInterface $serviceLocator */
+        /** @var ServiceLocatorInterface $serviceLocator */
         $this->serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
 
         /** @var ServiceManager $serviceManager */
