@@ -21,7 +21,6 @@ namespace LearnZF2AuthenticationTest\Factory;
 
 use PHPUnit_Framework_TestCase;
 use LearnZF2Authentication\Factory\BasicAuthenticationAdapterFactory;
-use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use test\Bootstrap;
 
@@ -48,7 +47,7 @@ class BasicAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
         $this->basicFactory = new BasicAuthenticationAdapterFactory($this->serviceManager->get('Config'));
     }
 
-    public function testCreateService()
+    public function testCreateBasicService()
     {
         $basic = $this->basicFactory->createService($this->serviceLocator);
         $this->assertInstanceOf('Zend\Authentication\Adapter\Http', $basic);

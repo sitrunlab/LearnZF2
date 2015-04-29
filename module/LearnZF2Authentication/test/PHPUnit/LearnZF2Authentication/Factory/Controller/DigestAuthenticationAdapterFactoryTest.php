@@ -31,7 +31,7 @@ class DigestAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
     protected $digestFactory;
 
     /** @var ControllerManager */
-    protected $controllerManager;
+    protected $serviceLocator;
 
     /** @var ServiceManager */
     protected $serviceManager;
@@ -48,7 +48,7 @@ class DigestAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
         $this->digestFactory = new DigestAuthenticationAdapterFactory($this->serviceManager->get('Config'));
     }
 
-    public function testCreateService()
+    public function testCreateDigestService()
     {
         $digest = $this->digestFactory->createService($this->serviceLocator);
         $this->assertInstanceOf('Zend\Authentication\Adapter\Http', $digest);

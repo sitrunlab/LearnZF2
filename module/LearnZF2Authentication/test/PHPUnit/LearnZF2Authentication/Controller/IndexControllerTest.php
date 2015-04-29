@@ -20,9 +20,6 @@
 namespace LearnZF2AuthenticationTest\Controller;
 
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
-use Zend\Http\Request;
-use Zend\Http\Response;
-use Zend\Stdlib\Parameters;
 use test\Bootstrap;
 
 class IndexControllerTest extends AbstractHttpControllerTestCase
@@ -52,30 +49,35 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testAccessBasicAction()
     {
-        $this->getRequest()
-        ->setMethod('POST')
-        ->setPost(new Parameters(array('username' => 'basic', 'realm' => "authentication")));
-
+        $this->getRequest()->getHeaders()->addHeaderLine('Authorization', 'Basic YmFzaWM6c3Ryb25ncGFzc3dvcmQ=');
         $this->dispatch('/learn-zf2-authentication/basic');
         $authAdapter = $this->serviceManager->get('LearnZF2Authentication\BasicAuthenticationAdapter');
         $authAdapter->setRequest($this->getRequest());
         $authAdapter->setResponse($this->getResponse());
         $result = $authAdapter->authenticate();
-        $this->assertRedirectTo('/learn-zf2-authentication/basic');
-
+        $this->assertArrayHasKey("username", $result->getIdentity());
+        $this->assertArrayHasKey("realm", $result->getIdentity());
     }
 
-    public function testAccessDigestAction()
+    public function testWrongBasicAction()
     {
-        $this->getRequest()
-        ->setMethod('POST')
-        ->setPost(new Parameters(array('username' => 'digest', 'realm' => "authentication")));
+        $this->getRequest()->getHeaders()->addHeaderLine('Authorization', 'Basic s64g6fs4h7j3dg3mk7gcj6g5fy=');
+        $this->dispatch('/learn-zf2-authentication/basic');
+        $authAdapter = $this->serviceManager->get('LearnZF2Authentication\BasicAuthenticationAdapter');
+        $authAdapter->setRequest($this->getRequest());
+        $authAdapter->setResponse($this->getResponse());
+        $result = $authAdapter->authenticate();
+        $this->assertEquals('Invalid or absent credentials; challenging client',$result->getMessages()[0]);
+    }
 
+    public function testWrongDigestAction()
+    {
+        $this->getRequest()->getHeaders()->addHeaderLine('Authorization', 'Digest username="digest", realm="authentication", nonce="84d6e21677c33887f3dad809", uri="/learn-zf2-authentication/digest", algorithm=MD5, response="7c86f860b6714c74cc966", opaque="e6bf6992a5479102cc787bc9", qop=auth, nc=00000001, cnonce="fd60c8e82cb');
         $this->dispatch('/learn-zf2-authentication/digest');
         $authAdapter = $this->serviceManager->get('LearnZF2Authentication\DigestAuthenticationAdapter');
         $authAdapter->setRequest($this->getRequest());
         $authAdapter->setResponse($this->getResponse());
         $result = $authAdapter->authenticate();
-        $this->assertRedirectTo('/learn-zf2-authentication/digest');
+        $this->assertEquals('Invalid Authorization header format', $result->getMessages()[0]);
     }
 }

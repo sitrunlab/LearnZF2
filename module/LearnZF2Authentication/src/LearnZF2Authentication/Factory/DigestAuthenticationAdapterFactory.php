@@ -9,9 +9,7 @@ use Zend\Authentication\Adapter\Http\FileResolver;
 
 class DigestAuthenticationAdapterFactory implements FactoryInterface
 {
-    /**
-     * @var array $config
-     */
+    /** @var array $config */
     private $config = array();
 
     /**
