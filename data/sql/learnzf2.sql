@@ -45,7 +45,8 @@ INSERT INTO `module_list` VALUES
   (5,'LearnZF2Log','Learn Log Usage with ZF2','learn-zf2-log'),
   (6,'LearnZF2Navigation','Learn Navigation and menus with ZF2','learn-zf2-navigation'),
   (7,'LearnZF2Acl','Learn ACL with ZF2','learn-zf2-acl'),
-  (8,'LearnZF2I18n','Learn Internationalization with ZF2','learn-zf2-i18n');
+  (8,'LearnZF2I18n','Learn Internationalization with ZF2','learn-zf2-i18n'),
+  (9,'LearnZF2Authentication','Learn Authentication with ZF2','learn-zf2-authentication');
 /*!40000 ALTER TABLE `module_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
