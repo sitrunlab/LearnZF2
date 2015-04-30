@@ -20,6 +20,7 @@ return [
         'LearnZF2Navigation',
         'LearnZF2Acl',
         'LearnZF2I18n',
+        'LearnZF2Authentication',
     ],
     'module_listener_options' => [
         'module_paths' => [

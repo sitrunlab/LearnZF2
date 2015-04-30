@@ -1,0 +1,9 @@
+<?php
+if (isset($this->layout()->identity)) {
+    echo "Congratulations! You have succesfully managed to perform a digest authentication! These are your credentials. <br>";
+    echo "Username: ".$this->layout()->identity["username"]."<br>";
+    echo "Realm: ".$this->layout()->identity["realm"]."<br>";
+} else {
+    echo "Hmmm... Looks like there was a problem while you were trying to authenticate yourself. <br>";
+    echo "<code>".$this->layout()->authProblem."</code>";
+}
