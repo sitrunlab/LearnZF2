@@ -21,7 +21,6 @@ namespace LearnZF2AuthenticationTest\Factory;
 
 use PHPUnit_Framework_TestCase;
 use LearnZF2Authentication\Factory\DigestAuthenticationAdapterFactory;
-use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use test\Bootstrap;
 
@@ -31,26 +30,26 @@ class DigestAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
     protected $digestFactory;
 
     /** @var ControllerManager */
-    protected $serviceLocator;
+    protected $digestServiceLocator;
 
     /** @var ServiceManager */
-    protected $serviceManager;
+    protected $digestServiceManager;
 
     public function setUp()
     {
-        /** @var ServiceLocatorInterface $serviceLocator */
-        $this->serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+        /** @var ServiceLocatorInterface $digestServiceLocator */
+        $this->digestServiceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
 
-        /** @var ServiceManager $serviceManager */
-        $this->serviceManager = Bootstrap::getServiceManager();
+        /** @var ServiceManager $digestServiceManager */
+        $this->digestServiceManager = Bootstrap::getServiceManager();
 
-        /** @var BasicAuthenticationAdapterFactory $basicFactory */
-        $this->digestFactory = new DigestAuthenticationAdapterFactory($this->serviceManager->get('Config'));
+        /** @var DigestAuthenticationAdapterFactory $digestFactory */
+        $this->digestFactory = new DigestAuthenticationAdapterFactory($this->digestServiceManager->get('Config'));
     }
 
     public function testCreateDigestService()
     {
-        $digest = $this->digestFactory->createService($this->serviceLocator);
+        $digest = $this->digestFactory->createService($this->digestServiceLocator);
         $this->assertInstanceOf('Zend\Authentication\Adapter\Http', $digest);
     }
 }

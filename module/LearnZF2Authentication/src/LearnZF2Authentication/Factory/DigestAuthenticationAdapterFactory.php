@@ -9,34 +9,34 @@ use Zend\Authentication\Adapter\Http\FileResolver;
 
 class DigestAuthenticationAdapterFactory implements FactoryInterface
 {
-    /** @var array $config */
-    private $config = array();
+    /** @var array|object|string $digestConfig */
+    private $digestConfig = array();
 
     /**
-     * @param array $config
+     * @param array|object|string $digestConfig
      */
-    public function __construct(array $config = array())
+    public function __construct(array $digestConfig = array())
     {
-        $this->config = $config;
+        $this->digestConfig = $digestConfig;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ServiceLocatorInterface $digestServiceLocator)
     {
-        if (empty($this->config)) {
-            $this->config = $serviceLocator->get('Config');
+        if (empty($this->digestConfig)) {
+            $this->digestConfig = $digestServiceLocator->get('Config');
         }
 
-        $authConfig = $this->config['authentication_digest']['adapter'];
-        $authAdapter = new HttpAdapter($authConfig['config']);
+        $authDigestConfig = $this->digestConfig['authentication_digest']['adapter'];
+        $authDigestAdapter = new HttpAdapter($authDigestConfig['config']);
 
         $digest = new FileResolver();
-        $digest->setFile($authConfig['digest']);
+        $digest->setFile($authDigestConfig['digest']);
 
-        $authAdapter->setDigestResolver($digest);
+        $authDigestAdapter->setDigestResolver($digest);
 
-        return $authAdapter;
+        return $authDigestAdapter;
     }
 }
