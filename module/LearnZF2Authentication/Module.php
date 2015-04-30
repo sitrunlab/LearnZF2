@@ -77,18 +77,17 @@ class Module implements
         $response = $e->getResponse();
         $view = $e->getApplication()->getMvcEvent()->getViewModel();
         $sm = $e->getApplication()->getServiceManager();
-        $authAdapter = $sm->get('LearnZF2Authentication\BasicAuthenticationAdapter');
+        $actionScheme = $e->getRouteMatch()->getParam('action');
+        $schemes = array('basic', 'digest');
+        if (in_array($actionScheme, $schemes)) {
+            $authAdapter = $sm->get("LearnZF2Authentication\\{$actionScheme}AuthenticationAdapter");
 
-        /*
-         * Call the factory class and try to authenticate
-         */
-        if ($e->getRouteMatch()->getParam('action') == 'digest') {
-            $authAdapter = $sm->get('LearnZF2Authentication\DigestAuthenticationAdapter');
-        }
-        $authAdapter->setRequest($request);
-        $authAdapter->setResponse($response);
+            /*
+             * Call the factory class and try to authenticate
+             */
+            $authAdapter->setRequest($request);
+            $authAdapter->setResponse($response);
 
-        if ($e->getRouteMatch()->getParam('action') == 'basic' || $e->getRouteMatch()->getParam('action') == 'digest') {
             $result = $authAdapter->authenticate();
 
             /*

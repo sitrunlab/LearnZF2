@@ -26,24 +26,19 @@ use test\Bootstrap;
 
 class DigestAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
 {
-    /** @var BasicAuthenticationAdapterFactory */
-    protected $digestFactory;
+    /** @var BasicAuthenticationAdapterFactory $digestFactory */
+    private $digestFactory;
 
-    /** @var ControllerManager */
-    protected $digestServiceLocator;
+    /** @var Zend\ServiceManager\ServiceLocator $digestServiceLocator */
+    private $digestServiceLocator;
 
-    /** @var ServiceManager */
-    protected $digestServiceManager;
+    /** @var Zend\ServiceManager\ServiceManager $digestServiceManager */
+    private $digestServiceManager;
 
     public function setUp()
     {
-        /** @var ServiceLocatorInterface $digestServiceLocator */
         $this->digestServiceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
-
-        /** @var ServiceManager $digestServiceManager */
         $this->digestServiceManager = Bootstrap::getServiceManager();
-
-        /** @var DigestAuthenticationAdapterFactory $digestFactory */
         $this->digestFactory = new DigestAuthenticationAdapterFactory($this->digestServiceManager->get('Config'));
     }
 

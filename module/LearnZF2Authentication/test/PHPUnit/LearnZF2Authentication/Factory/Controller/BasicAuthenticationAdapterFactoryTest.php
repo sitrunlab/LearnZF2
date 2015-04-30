@@ -26,24 +26,19 @@ use test\Bootstrap;
 
 class BasicAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
 {
-    /** @var BasicAuthenticationAdapterFactory */
-    protected $basicFactory;
+    /** @var BasicAuthenticationAdapterFactory $basicFactory */
+    private $basicFactory;
 
-    /** @var ServiceLocatorInterface */
-    protected $basicServiceLocator;
+    /** @var Zend\ServiceManager\ServiceLocator $basicServiceLocator */
+    private $basicServiceLocator;
 
-    /** @var ServiceManager */
-    protected $basicServiceManager;
+    /** @var Zend\ServiceManager\ServiceManager $basicServiceManager */
+    private $basicServiceManager;
 
     public function setUp()
     {
-        /** @var ServiceLocatorInterface $basicServiceLocator */
         $this->basicServiceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
-
-        /** @var ServiceManager $basicServiceManager */
         $this->basicServiceManager = Bootstrap::getServiceManager();
-
-        /** @var BasicAuthenticationAdapterFactory $basicFactory */
         $this->basicFactory = new BasicAuthenticationAdapterFactory($this->basicServiceManager->get('Config'));
     }
 
