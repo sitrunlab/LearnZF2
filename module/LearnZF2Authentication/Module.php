@@ -77,21 +77,18 @@ class Module implements
         $response = $e->getResponse();
         $view = $e->getApplication()->getMvcEvent()->getViewModel();
         $sm = $e->getApplication()->getServiceManager();
+        $authAdapter = $sm->get('LearnZF2Authentication\BasicAuthenticationAdapter');
 
         /*
-         * Feel free to choose directly any one of the schemes for your personal use.
-         * Just replace {$actionScheme} with the factory name you want to use
+         * Call the factory class and try to authenticate
          */
-        $actionScheme = $e->getRouteMatch()->getParam('action');
-        $schemes = array('basic', 'digest');
-        if (in_array($actionScheme, $schemes)) {
-            $authAdapter = $sm->get("LearnZF2Authentication\\{$actionScheme}AuthenticationAdapter");
+        if ($e->getRouteMatch()->getParam('action') == 'digest') {
+            $authAdapter = $sm->get('LearnZF2Authentication\DigestAuthenticationAdapter');
+        }
+        $authAdapter->setRequest($request);
+        $authAdapter->setResponse($response);
 
-            /*
-             * Call the factory class and try to authenticate
-             */
-            $authAdapter->setRequest($request);
-            $authAdapter->setResponse($response);
+        if ($e->getRouteMatch()->getParam('action') == 'basic' || $e->getRouteMatch()->getParam('action') == 'digest') {
             $result = $authAdapter->authenticate();
 
             /*
@@ -102,7 +99,9 @@ class Module implements
                  * Create a log function or just use the one from LearnZF2.
                  * Also make sure to redirect to another page, 404 for example
                  */
-                $view->authProblem = $result->getMessages()[0];
+                foreach ($result->getMessages() as $msg) {
+                    $view->authProblem = $msg;
+                }
                 return $view->authProblem;
             }
             return $view->identity = $result->getIdentity();
