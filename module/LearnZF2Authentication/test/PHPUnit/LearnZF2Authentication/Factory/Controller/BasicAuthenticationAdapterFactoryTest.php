@@ -27,13 +27,13 @@ use test\Bootstrap;
 class BasicAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
 {
     /** @var BasicAuthenticationAdapterFactory $basicFactory */
-    private $basicFactory;
+    protected $basicFactory;
 
     /** @var Zend\ServiceManager\ServiceLocator $basicServiceLocator */
-    private $basicServiceLocator;
+    protected $basicServiceLocator;
 
     /** @var Zend\ServiceManager\ServiceManager $basicServiceManager */
-    private $basicServiceManager;
+    protected $basicServiceManager;
 
     public function setUp()
     {

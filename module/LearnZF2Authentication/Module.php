@@ -77,6 +77,11 @@ class Module implements
         $response = $e->getResponse();
         $view = $e->getApplication()->getMvcEvent()->getViewModel();
         $sm = $e->getApplication()->getServiceManager();
+
+        /*
+         * Feel free to choose directly any one of the schemes for your personal use.
+         * Just replace {$actionScheme} with the factory name you want to use
+         */
         $actionScheme = $e->getRouteMatch()->getParam('action');
         $schemes = array('basic', 'digest');
         if (in_array($actionScheme, $schemes)) {
@@ -87,7 +92,6 @@ class Module implements
              */
             $authAdapter->setRequest($request);
             $authAdapter->setResponse($response);
-
             $result = $authAdapter->authenticate();
 
             /*
@@ -98,9 +102,7 @@ class Module implements
                  * Create a log function or just use the one from LearnZF2.
                  * Also make sure to redirect to another page, 404 for example
                  */
-                foreach ($result->getMessages() as $msg) {
-                    $view->authProblem = $msg;
-                }
+                $view->authProblem = $result->getMessages()[0];
                 return $view->authProblem;
             }
             return $view->identity = $result->getIdentity();
