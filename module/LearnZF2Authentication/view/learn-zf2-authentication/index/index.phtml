@@ -143,13 +143,25 @@ if($e->getRouteMatch()->getParam(\'action\') == \'basic\' || $e->getRouteMatch()
     </code></pre>
     <p>This is the code we use to pass the authentication information</p>
     <br>
-    <p>One last important thing to note is that you <u>must</u> include a special header called <code>Authorization</code> n your request. Put this peace of code in your .htaccess file, if you are using Apache. If you are using nginx, IIS or any other server just match the code according to it.</p>
+    <p>One last important thing to note is that you <u>must</u> include a special header called <code>Authorization</code> n your request, replace :
+        <pre><code class="language-php">
+            <?php echo htmlentities('
+        RewriteRule ^(.*)$ %{ENV:BASE}index.php [NC,L]
+        ')?>
+    </code></pre>
+         with
     <pre><code class="language-php">
         <?php echo htmlentities('
 # PHP compiled as CGI does not support apache_response_headers function, but we need this header in order to do basic HTTP authtentication when running with CGI or FastCGI.
- RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteRule ^(.*)$ %{ENV:BASE}index.php [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L,NC]
         ')?>
     </code></pre>
+    and add in top of <code>public/index.php</code>
+    <pre><code class="language-php">
+    if (isset($_SERVER["REDIRECT_HTTP_AUTHORIZATION"])) {
+       $_SERVER["HTTP_AUTHORIZATION"] = $_SERVER["REDIRECT_HTTP_AUTHORIZATION"];
+   }
+</code></pre>
     <br>
     <br>
     <p>Some things to note. The auth folder as well the authentication code from module.config.php is best to be placed in your main config folder, where the global|local.php files are and excluded from commits.</p>
