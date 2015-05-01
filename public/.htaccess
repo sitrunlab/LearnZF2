@@ -13,9 +13,4 @@ RewriteRule ^.*$ - [NC,L]
 # fits all solution.
 RewriteCond %{REQUEST_URI}::$1 ^(/.+)(.+)::\2$
 RewriteRule ^(.*) - [E=BASE:%1]
-RewriteRule ^(.*)$ %{ENV:BASE}index.php [NC,L]
-
-
-# Needed for the Authentication tutorial
-# CGI does not support apache_response_headers, but we need this header in order to do basic HTTP authtentication when running with CGI or FastCGI.
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteRule ^(.*)$ %{ENV:BASE}index.php [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L,NC]
