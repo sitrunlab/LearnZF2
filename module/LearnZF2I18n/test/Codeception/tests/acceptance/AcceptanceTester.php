@@ -7,7 +7,6 @@
 // @codingStandardsIgnoreFile
 
 
-use Codeception\Module\PhpBrowser;
 
 /**
  * Inherited Methods.

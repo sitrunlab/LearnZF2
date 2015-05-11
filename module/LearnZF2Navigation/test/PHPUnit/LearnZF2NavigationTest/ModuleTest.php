@@ -20,7 +20,6 @@ namespace LearnZF2NavigationTest;
 
 use LearnZF2Navigation\Module;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Loader\StandardAutoloader;
 
 /**
  * Class ModuleTest.
