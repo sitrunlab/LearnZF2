@@ -46,6 +46,13 @@ After PR submitted, we can review the PR  :
 **Bug report/RFC feature :**
 - Bug report and RFC can be an issue/PR. Bug Report/new module should pointed to **master**, and feature should pointed to **develop**.
 
+New module must update db migrations file with run :
+
+```
+vendor/bin/doctrine-module migrations:generate
+```
+and add sql for insert new data.
+
 **Merging PR ( For Maintainers )**
  * Always check if it is a bug fix/new module or a feature. bug fix/ new module should merged into master
 ```
