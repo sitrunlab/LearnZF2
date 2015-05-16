@@ -21,7 +21,6 @@ namespace LearnZF2AuthenticationTest\Factory;
 
 use PHPUnit_Framework_TestCase;
 use LearnZF2Authentication\Factory\DigestAuthenticationAdapterFactory;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use test\Bootstrap;
 
 class DigestAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
