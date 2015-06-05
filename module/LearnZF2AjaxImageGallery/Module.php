@@ -16,30 +16,23 @@
  * and is licensed under the MIT license.
  */
 
-namespace LearnZF2AjaxImageGalleryTest\Model;
+namespace LearnZF2AjaxImageGallery;
 
-use LearnZF2Ajax\Model\LoginInputFilter;
-use PHPUnit_Framework_TestCase;
-use Zend\InputFilter\InputFilter;
-
-class LoginInputFilterTest extends PHPUnit_Framework_TestCase
+class Module
 {
-    public function testHasFilters()
+    public function getConfig()
     {
-        $loginInputFilter = new LoginInputFilter();
-        $loginInputFilter->exchangeArray([
-            'username' => 'admin',
-            'password' => 'admin',
-        ]);
-        $this->assertSame(2, $loginInputFilter->getInputFilter()->count());
-        $this->assertTrue($loginInputFilter->getInputFilter()->has('username'));
-        $this->assertTrue($loginInputFilter->getInputFilter()->has('password'));
+        return include __DIR__.'/config/module.config.php';
     }
 
-    public function testExceptionCoughtWithSetInputFilter()
+    public function getAutoloaderConfig()
     {
-        $this->setExpectedException('\Exception');
-        $loginInputFilter = new LoginInputFilter();
-        $loginInputFilter->setInputFilter(new InputFilter());
+        return [
+            'Zend\Loader\StandardAutoloader' => [
+                'namespaces' => [
+                    __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
+                ],
+            ],
+        ];
     }
 }

@@ -4,6 +4,7 @@
 
     <div class="demo-box">
         <div class="col-lg-4">
+<<<<<<< HEAD
             <button type="button" class="button modal-toggle"><i class="fa fa-upload"></i>Upload images</button>
             <?php
              $this->headScript()->prependFile($this->basePath('/js/ajaxImageUpload.js'));
@@ -12,6 +13,12 @@
               * @var $form AjaxImageUploadForm
               */
             $form = $this->form;
+=======
+            <button type="button" class="button media-modal-toggle"><i class="fa fa-upload"></i>Upload images</button>
+            <?php
+            $form = $this->form;
+            $form->setAttribute('action', $this->url('LearnZF2AjaxImageGallery', array('action' => 'index','method' => 'post')));
+>>>>>>> initial commit of ajax image gallery
             $form->prepare();
             echo $this->form()->openTag($form);
             echo $this->partial("/imgupload.phtml");
@@ -20,6 +27,7 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <pre><code class="language-javascript">
 ;(function (win, doc, $, undefined) {
     /**
@@ -572,4 +580,6 @@ echo htmlentities('<div id="modal-imgupload">
     <p>
         By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
     </p>
+=======
+>>>>>>> initial commit of ajax image gallery
 </div>
