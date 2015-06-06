@@ -5,8 +5,8 @@
  *
  * @see https://github.com/zendframework/ZFTool
  */
-return [
-    'modules' => [
+return array(
+    'modules' => array(
         'Application',
         'DoctrineModule',
         'DoctrineORMModule',
@@ -21,14 +21,15 @@ return [
         'LearnZF2Acl',
         'LearnZF2I18n',
         'LearnZF2Authentication',
-    ],
-    'module_listener_options' => [
-        'module_paths' => [
+        'LearnZF2Captcha',
+    ),
+    'module_listener_options' => array(
+        'module_paths' => array(
             './module',
-            './vendor'
-        ],
-        'config_glob_paths' => [
-            'config/autoload/{,*.}{global,local}.php'
-        ],
-    ],
-];
+            './vendor',
+        ),
+        'config_glob_paths' => array(
+            'config/autoload/{,*.}{global,local}.php',
+        ),
+    ),
+);
