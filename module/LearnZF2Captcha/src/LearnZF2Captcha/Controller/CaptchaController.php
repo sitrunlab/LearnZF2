@@ -15,11 +15,30 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-/**
- * Module config.
+
+namespace LearnZF2Captcha\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use LearnZF2Captcha\Form\CaptchaForm;
+
+/*
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-return [
+class CaptchaController extends AbstractActionController
+{
+    /**
+     * @var CaptchaForm
+     */
+    private $captchaForm;
 
-];
+    public function __construct(CaptchaForm $captchaForm)
+    {
+        $this->captchaForm = $captchaForm;
+    }
+
+    public function indexAction()
+    {
+        
+    }
+}
