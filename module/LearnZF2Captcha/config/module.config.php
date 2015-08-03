@@ -1,5 +1,4 @@
 <?php
-
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -22,5 +21,32 @@
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 return [
+    'router' => [
+        'routes' => [
 
+            'learn-zf2-captcha' => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/learn-zf2-captcha',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'LearnZF2Acl\Controller',
+                        'controller'    => 'Captcha',
+                        'action'        => 'index',
+                    ],
+                ],
+            ],
+        ],
+    ],
+
+    'controllers' => [
+        'factories' => [
+            'LearnZF2Captcha\Controller\Captcha' => 'LearnZF2Captcha\Factory\Controller\CaptchaControllerFactory',
+        ],
+    ],
+
+    'view_manager' => [
+        'template_path_stack' => [
+            'learn-zf2-captcha' => __DIR__.'/../view',
+        ],
+    ],
 ];
