@@ -29,7 +29,7 @@ return [
                 'options' => [
                     'route'    => '/learn-zf2-captcha',
                     'defaults' => [
-                        '__NAMESPACE__' => 'LearnZF2Acl\Controller',
+                        '__NAMESPACE__' => 'LearnZF2Captcha\Controller',
                         'controller'    => 'Captcha',
                         'action'        => 'index',
                     ],
