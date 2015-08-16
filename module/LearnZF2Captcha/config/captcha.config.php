@@ -29,8 +29,11 @@ return [
         1 => [
             'adapter_name' => 'Image',
             'options' => [
+                'font' => __DIR__ . '/../assets/fonts/arial.ttf',
                 'width' => 200,
                 'height' => 100,
+                'dotNoiseLevel' => 40,
+                'lineNoiseLevel' => 3,
             ],
         ],
     ],

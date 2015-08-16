@@ -1,5 +1,4 @@
 <?php
-
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -17,32 +16,44 @@
  * and is licensed under the MIT license.
  */
 
-namespace LearnZF2Captcha\Controller;
+namespace LearnZF2Captcha\Factory\Form;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use LearnZF2Captcha\Form\CaptchaForm;
-use Zend\View\Model\ViewModel;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
-/*
- *
+/**
+ * Factory for CaptchaForm instantiation
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class CaptchaController extends AbstractActionController
+class CaptchaFormFactory implements FactoryInterface
 {
     /**
-     * @var CaptchaForm
+     * @{inheritDoc}
      */
-    private $captchaForm;
-
-    public function __construct(CaptchaForm $captchaForm)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $this->captchaForm = $captchaForm;
+        $config = $this->getParentServiceLocator($serviceLocator)
+                       ->get('Config');
+
+        $form = new CaptchaForm($config['learnzf2_captcha_config']);
+        return $form;
     }
 
-    public function indexAction()
+    /**
+     * Get Parent ServiceLocator.
+     *
+     * @param ServiceLocatorInterface
+     *
+     * @return ServiceLocatorInterface
+     */
+    private function getParentServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
-        return new ViewModel([
-            'form' => $this->captchaForm
-        ]);
+        if ($serviceLocator instanceof ServiceLocatorAwareInterface) {
+            return $serviceLocator->getServiceLocator();
+        }
+
+        return $serviceLocator;
     }
 }

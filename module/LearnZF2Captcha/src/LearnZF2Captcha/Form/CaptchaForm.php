@@ -21,14 +21,52 @@ namespace LearnZF2Captcha\Form;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
 
+/**
+ * Form class that shows captchas
+ */
 class CaptchaForm extends Form implements InputFilterProviderInterface
 {
+    /** @var array */
+    private $captchaConfig;
+
+    /**
+     * Constructor
+     *
+     * Setup Captcha Config
+     *
+     * @param array $captchaConfig
+     */
+    public function __construct(array $captchaConfig)
+    {
+        $this->captchaConfig  = $captchaConfig;
+
+        parent::__construct('Captcha Form');
+    }
+
     /**
      * {@inheritDoc}
      */
     public function init()
     {
-        
+        $this->setAttribute('method', 'post');
+
+//        $adapters = $this->captchaConfig
+
+        $this->add([
+            'type' => 'Zend\Form\Element\Select',
+            'name' => 'captcha_adapter',
+            'options' => [
+                'label' => 'Choose Captcha Adapter',
+                'value_options' => [
+                    
+                ],
+            ],
+            'attributes' => [
+                'class' => 'form-control',
+                'value' => '0',
+            ],
+        ]);
+
     }
 
     /**
@@ -36,6 +74,8 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
      */
     public function getInputFilterSpecification()
     {
+        return [
 
+        ];
     }
 }

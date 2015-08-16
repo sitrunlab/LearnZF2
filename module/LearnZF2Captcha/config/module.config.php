@@ -44,6 +44,12 @@ return [
         ],
     ],
 
+    'form_elements' => [
+        'factories' => [
+            'LearnZF2Captcha\Form\CaptchaForm' => 'LearnZF2Captcha\Factory\Form\CaptchaFormFactory',
+        ],
+    ],
+
     'view_manager' => [
         'template_path_stack' => [
             'learn-zf2-captcha' => __DIR__.'/../view',
