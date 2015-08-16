@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -25,13 +26,13 @@ return [
         'routes' => [
 
             'learn-zf2-captcha' => [
-                'type'    => 'Literal',
+                'type' => 'Literal',
                 'options' => [
-                    'route'    => '/learn-zf2-captcha',
+                    'route' => '/learn-zf2-captcha',
                     'defaults' => [
                         '__NAMESPACE__' => 'LearnZF2Captcha\Controller',
-                        'controller'    => 'Captcha',
-                        'action'        => 'index',
+                        'controller' => 'Captcha',
+                        'action' => 'index',
                     ],
                 ],
             ],

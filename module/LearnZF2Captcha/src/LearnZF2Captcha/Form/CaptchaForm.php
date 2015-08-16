@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,14 +16,13 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace LearnZF2Captcha\Form;
 
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
 
 /**
- * Form class that shows captchas
+ * Form class that shows captchas.
  */
 class CaptchaForm extends Form implements InputFilterProviderInterface
 {
@@ -33,7 +33,7 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
     private $captchaAdapterKey;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * Setup Captcha Config
      *
@@ -41,14 +41,14 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
      */
     public function __construct(array $captchaConfig, $captchaAdapterKey)
     {
-        $this->captchaConfig     = $captchaConfig;
+        $this->captchaConfig = $captchaConfig;
         $this->captchaAdapterKey = $captchaAdapterKey;
 
         parent::__construct('Captcha Form');
     }
 
     /**
-     * Collect Captcha options
+     * Collect Captcha options.
      *
      * @return array
      */
@@ -63,7 +63,7 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -89,7 +89,7 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
             'options' => [
                 'label' => 'Please verify you are human.',
                 'captcha' => [
-                    'class'   => $this->collectValueOptions()[$this->captchaAdapterKey],
+                    'class' => $this->collectValueOptions()[$this->captchaAdapterKey],
                     'options' => $this->captchaConfig[$this->captchaAdapterKey]['options'],
                 ],
             ],
@@ -97,7 +97,7 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getInputFilterSpecification()
     {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,7 +37,7 @@ return [
         2 => [
             'adapter_name' => 'Image',
             'options' => [
-                'font' => __DIR__ . '/../assets/fonts/arial.ttf',
+                'font' => __DIR__.'/../assets/fonts/arial.ttf',
                 'width' => 200,
                 'height' => 100,
                 'dotNoiseLevel' => 40,

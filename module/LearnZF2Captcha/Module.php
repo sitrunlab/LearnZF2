@@ -6,7 +6,7 @@ class Module
 {
     public function getConfig()
     {
-        $moduleConfig  = include __DIR__.'/config/module.config.php';
+        $moduleConfig = include __DIR__.'/config/module.config.php';
         $captchaConfig = include __DIR__.'/config/captcha.config.php';
 
         return array_merge($moduleConfig, $captchaConfig);

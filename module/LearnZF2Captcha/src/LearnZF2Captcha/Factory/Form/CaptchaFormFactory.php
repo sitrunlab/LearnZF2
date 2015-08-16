@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,7 +16,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace LearnZF2Captcha\Factory\Form;
 
 use LearnZF2Captcha\Form\CaptchaForm;
@@ -24,24 +24,26 @@ use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Factory for CaptchaForm instantiation
+ * Factory for CaptchaForm instantiation.
+ *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
 class CaptchaFormFactory implements FactoryInterface
 {
     /**
-     * @{inheritDoc}
+     * {@inheritdoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services          = $this->getParentServiceLocator($serviceLocator);
-        $config            = $services->get('Config');
+        $services = $this->getParentServiceLocator($serviceLocator);
+        $config = $services->get('Config');
         $captchaAdapterKey = $services->get('Application')
                                       ->getMvcEvent()
                                       ->getRequest()
                                       ->getQuery('captcha_adapter', 0);
 
         $form = new CaptchaForm($config['learnzf2_captcha_config'], $captchaAdapterKey);
+
         return $form;
     }
 

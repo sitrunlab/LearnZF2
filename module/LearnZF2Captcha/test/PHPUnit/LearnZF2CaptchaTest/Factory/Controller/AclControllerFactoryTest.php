@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,7 +16,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace LearnZF2CaptchaTest\Factory\Controller;
 
 use PHPUnit_Framework_TestCase;
@@ -23,7 +23,7 @@ use LearnZF2Captcha\Factory\Controller\CaptchaControllerFactory;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class CaptchaControllerFactoryTest extends PHPUnit_Framework_TestCase
+class AclControllerFactoryTest extends PHPUnit_Framework_TestCase
 {
     /** @var CaptchaControllerFactory */
     protected $factory;
@@ -64,7 +64,7 @@ class CaptchaControllerFactoryTest extends PHPUnit_Framework_TestCase
 
     private function doTestCreateService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = include __DIR__ . '/../../config/captcha.config.php';
+        $config = include __DIR__.'/../../config/captcha.config.php';
         $serviceLocator->expects($this->at(0))
                        ->method('get')
                        ->with('Config')
@@ -72,7 +72,7 @@ class CaptchaControllerFactoryTest extends PHPUnit_Framework_TestCase
         $application = $this->getMockBuilder('Zend\Mvc\Application')
                             ->disableOriginalConstructor()
                             ->getMock();
-        $mvcEvent    = $this->getMockBuilder('Zend\Mvc\MvcEvent')
+        $mvcEvent = $this->getMockBuilder('Zend\Mvc\MvcEvent')
                             ->disableOriginalConstructor()
                             ->getMock();
         $application->expects($this->once())
