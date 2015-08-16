@@ -960,18 +960,23 @@
                 "zendframework/zend-version": "2.*",
                 "zendframework/zend-view": "2.*"
             },
+            "require-dev": {
+                "phpunit/phpunit": "~4"
+            },
             "suggest": {
+                "aist/aist-git-tools": "Show you informations about current GIT repository",
                 "bjyoungblood/bjy-profiler": "Version: dev-master, allows the usage of the (Zend) Db collector.",
-                "ocramius/ocra-service-manager": "OcraServiceManager can help you track dependencies within your application."
+                "doctrine/doctrine-orm-module": "Profile DoctrineORM queries",
+                "jhuet/zdt-logger-module": "Show you log data from Zend\\Log",
+                "ocramius/ocra-service-manager": "OcraServiceManager can help you track dependencies within your application.",
+                "san/san-session-toolbar": "SanSessionToolbar can help you see current Zend\\Session data you're using within your application.",
+                "snapshotpl/zf-snap-event-debugger": "ZfSnapEventDebugger can help you debug events from Zend\\EventManager"
             },
             "type": "zf-module",
             "autoload": {
                 "psr-0": {
                     "ZendDeveloperTools": "src/"
-                },
-                "classmap": [
-                    "./Module.php"
-                ]
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1256,6 +1261,9 @@
                 "zendframework/zend-version": ">=2.2.2 ",
                 "zendframework/zend-view": ">=2.2.2",
                 "zendframework/zenddiagnostics": ">=1.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
             },
             "bin": [
                 "zf.php"
