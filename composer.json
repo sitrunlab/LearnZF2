@@ -7,7 +7,6 @@
         "php": ">=5.4.0",
         "zendframework/zendframework": "~2.4.0",
         "zendframework/zftool": "dev-master#8bab848834bfc48fef2f4b3e874ddd3760fb9e0d",
-        "zendframework/zend-developer-tools": "dev-master#5e38d0889a34bfbfccef2acb93ca9f4df40dfe31",
         "doctrine/doctrine-orm-module": "~0.9",
         "doctrine/migrations": "dev-master"
     },

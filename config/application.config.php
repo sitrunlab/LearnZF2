@@ -12,7 +12,6 @@ return [
         'DoctrineORMModule',
         'LearnZF2Ajax',
         'LearnZF2FormUsage',
-        'ZendDeveloperTools',
         'ZFTool',
         'LearnZF2Barcode',
         'LearnZF2Pagination',
