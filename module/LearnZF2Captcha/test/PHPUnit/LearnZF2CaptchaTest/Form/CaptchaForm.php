@@ -19,12 +19,11 @@
 namespace LearnZF2CaptchaTest\Form;
 
 use PHPUnit_Framework_TestCase;
-use LearnZF2CaptchaTest\Form\CaptchaForm;
 
 /**
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-class CaptchaFormTest extends PHPUnit_Framework_TestCase
+class CaptchaForm extends PHPUnit_Framework_TestCase
 {
     /** @var CaptchaForm */
     protected $form;

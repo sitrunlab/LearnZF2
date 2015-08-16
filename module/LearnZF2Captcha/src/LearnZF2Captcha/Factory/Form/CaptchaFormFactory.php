@@ -20,7 +20,6 @@ namespace LearnZF2Captcha\Factory\Form;
 
 use LearnZF2Captcha\Form\CaptchaForm;
 use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
