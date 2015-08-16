@@ -34,10 +34,14 @@ class CaptchaFormFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = $this->getParentServiceLocator($serviceLocator)
-                       ->get('Config');
+        $services          = $this->getParentServiceLocator($serviceLocator);
+        $config            = $services->get('Config');
+        $captchaAdapterKey = $services->get('Application')
+                                      ->getMvcEvent()
+                                      ->getRequest()
+                                      ->getQuery('captcha_adapter', 0);
 
-        $form = new CaptchaForm($config['learnzf2_captcha_config']);
+        $form = new CaptchaForm($config['learnzf2_captcha_config'], $captchaAdapterKey);
         return $form;
     }
 

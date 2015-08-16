@@ -29,6 +29,9 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
     /** @var array */
     private $captchaConfig;
 
+    /** @var int captchaAdapterKey */
+    private $captchaAdapterKey;
+
     /**
      * Constructor
      *
@@ -36,13 +39,14 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
      *
      * @param array $captchaConfig
      */
-    public function __construct(array $captchaConfig)
+    public function __construct(array $captchaConfig, $captchaAdapterKey)
     {
-        $this->captchaConfig  = $captchaConfig;
+        $this->captchaConfig     = $captchaConfig;
+        $this->captchaAdapterKey = $captchaAdapterKey;
 
         parent::__construct('Captcha Form');
     }
-
+    
     private function collectValueOptions()
     {
         $options = [];
@@ -58,7 +62,8 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
      */
     public function init()
     {
-        $this->setAttribute('method', 'post');
+        $this->setAttribute('id', 'captchaForm');
+        $this->setAttribute('method', 'get');
 
         $this->add([
             'type' => 'Zend\Form\Element\Select',
@@ -69,7 +74,7 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
             ],
             'attributes' => [
                 'class' => 'form-control',
-                'value' => '0',
+                'value' => $this->captchaAdapterKey,
             ],
         ]);
 
@@ -79,8 +84,8 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
             'options' => [
                 'label' => 'Please verify you are human.',
                 'captcha' => [
-                    'class'   => $this->collectValueOptions()[0], // default as first option
-                    'options' => $this->captchaConfig[0]['options'], // default as first option
+                    'class'   => $this->collectValueOptions()[$this->captchaAdapterKey], // default as first option
+                    'options' => $this->captchaConfig[$this->captchaAdapterKey]['options'], // default as first option
                 ],
             ],
         ]);

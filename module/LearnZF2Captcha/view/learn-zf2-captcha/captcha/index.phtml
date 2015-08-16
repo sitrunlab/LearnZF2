@@ -8,13 +8,14 @@
             $form = $this->form;
             $form->setAttribute('action', $this->url(
                 'learn-zf2-captcha',
-                array(
+                [
                     'action'     => 'index'
-                )
+                ]
             ));
             $form->get('captcha_adapter')->setAttributes([
-                'onchange' => ''
+                'onchange' => "$('#captchaForm').submit();",
             ]);
+
             $form->prepare();
             echo $this->form()->openTag($form);
             ?>
@@ -36,12 +37,15 @@
     </div>
 
     <p>
-
+        Captcha Image has default location in <code>public/images/captcha</code> that you can set up in <code>imgDir</code> inside options.
     </p>
-
 
     <p>
         By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
     </p>
 
 </div>
+
+<script type="text/javascript">
+
+</script>
