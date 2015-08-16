@@ -33,29 +33,13 @@ class CaptchaControllerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $formElementManager = $this->getParentServiceLocator($serviceLocator)
-                                   ->get('FormElementManager');
+        $services = $serviceLocator->getServiceLocator();
+        $formElementManager = $services->get('FormElementManager');
 
         $controller = new CaptchaController(
             (object) $formElementManager->get('LearnZF2Captcha\Form\CaptchaForm')
         );
 
         return $controller;
-    }
-
-    /**
-     * Get Parent ServiceLocator.
-     *
-     * @param ServiceLocatorInterface
-     *
-     * @return ServiceLocatorInterface
-     */
-    private function getParentServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        if ($serviceLocator instanceof ServiceLocatorAwareInterface) {
-            return $serviceLocator->getServiceLocator();
-        }
-
-        return $serviceLocator;
     }
 }

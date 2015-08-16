@@ -23,7 +23,7 @@ use LearnZF2Captcha\Factory\Controller\CaptchaControllerFactory;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class AclControllerFactoryTest extends PHPUnit_Framework_TestCase
+class CaptchaControllerFactoryTest extends PHPUnit_Framework_TestCase
 {
     /** @var CaptchaControllerFactory */
     protected $factory;
@@ -52,39 +52,25 @@ class AclControllerFactoryTest extends PHPUnit_Framework_TestCase
         $this->factory = $factory;
     }
 
-    public function testCreateServiceWithServiceLocator()
+    public function testCreateService()
     {
-        $this->doTestCreateService($this->serviceLocator);
-    }
+        $formElementManager = $this->getMockBuilder('Zend\Form\FormElementManager')
+                                   ->disableOriginalConstructor()
+                                   ->getMock();
+        $captchaForm = $this->getMockBuilder('LearnZF2Captcha\Form\CaptchaForm')
+                            ->disableOriginalConstructor()
+                            ->getMock();
+        $formElementManager->expects($this->once())
+                           ->method('get')
+                           ->with('LearnZF2Captcha\Form\CaptchaForm')
+                           ->willReturn($captchaForm);
 
-    public function testCreateServiceWithControllerManager()
-    {
-        $this->doTestCreateService($this->controllerManager);
-    }
-
-    private function doTestCreateService(ServiceLocatorInterface $serviceLocator)
-    {
-        $config = include __DIR__.'/../../config/captcha.config.php';
-        $serviceLocator->expects($this->at(0))
+        $this->serviceLocator->expects($this->once())
                        ->method('get')
-                       ->with('Config')
-                       ->willReturn($config);
-        $application = $this->getMockBuilder('Zend\Mvc\Application')
-                            ->disableOriginalConstructor()
-                            ->getMock();
-        $mvcEvent = $this->getMockBuilder('Zend\Mvc\MvcEvent')
-                            ->disableOriginalConstructor()
-                            ->getMock();
-        $application->expects($this->once())
-                    ->method('getMvcEvent')
-                    ->willReturn($mvcEvent);
+                       ->with('FormElementManager')
+                       ->willReturn($formElementManager);
 
-        $services->expects($this->at(2))
-                 ->method('get')
-                 ->with('Application')
-                 ->willReturn($application);
-
-        $result = $this->factory->createService($serviceLocator);
+        $result = $this->factory->createService($this->controllerManager);
         $this->assertInstanceOf('LearnZF2Captcha\Controller\CaptchaController', $result);
     }
 }

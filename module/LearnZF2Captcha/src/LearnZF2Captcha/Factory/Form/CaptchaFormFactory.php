@@ -35,7 +35,7 @@ class CaptchaFormFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services = $this->getParentServiceLocator($serviceLocator);
+        $services = $serviceLocator->getServiceLocator();
         $config = $services->get('Config');
         $captchaAdapterKey = $services->get('Application')
                                       ->getMvcEvent()
@@ -45,21 +45,5 @@ class CaptchaFormFactory implements FactoryInterface
         $form = new CaptchaForm($config['learnzf2_captcha_config'], $captchaAdapterKey);
 
         return $form;
-    }
-
-    /**
-     * Get Parent ServiceLocator.
-     *
-     * @param ServiceLocatorInterface
-     *
-     * @return ServiceLocatorInterface
-     */
-    private function getParentServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        if ($serviceLocator instanceof ServiceLocatorAwareInterface) {
-            return $serviceLocator->getServiceLocator();
-        }
-
-        return $serviceLocator;
     }
 }
