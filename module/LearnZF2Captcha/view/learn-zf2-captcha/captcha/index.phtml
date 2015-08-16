@@ -3,7 +3,7 @@
     <h1>Form with Captcha in ZF2 demo</h1>
 
     <div class="demo-box">
-        <div class="col-lg-4">
+        <div>
             <?php
             $form = $this->form;
             $form->setAttribute('action', $this->url(
@@ -12,6 +12,9 @@
                     'action'     => 'index'
                 )
             ));
+            $form->get('captcha_adapter')->setAttributes([
+                'onchange' => ''
+            ]);
             $form->prepare();
             echo $this->form()->openTag($form);
             ?>
@@ -21,6 +24,13 @@
                 <?php echo $this->formElement($form->get('captcha_adapter'));
                 echo $this->formElementErrors($form->get('captcha_adapter')); ?>
             </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('captcha')->getLabel(); ?></label> <br />
+                <?php echo $this->formElement($form->get('captcha'));
+                echo $this->formElementErrors($form->get('captcha')); ?>
+            </div>
+
             <?php echo $this->form()->closeTag(); ?>
         </div>
     </div>

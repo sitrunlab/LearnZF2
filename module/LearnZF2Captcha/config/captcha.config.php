@@ -27,6 +27,12 @@ return [
             'options' => [],
         ],
         1 => [
+            'adapter_name' => 'Figlet',
+            'options' => [
+                'outputWidth' => 90,
+            ],
+        ],
+        2 => [
             'adapter_name' => 'Image',
             'options' => [
                 'font' => __DIR__ . '/../assets/fonts/arial.ttf',

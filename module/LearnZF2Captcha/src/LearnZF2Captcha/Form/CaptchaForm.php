@@ -73,6 +73,17 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
             ],
         ]);
 
+        $this->add([
+            'type' => 'Zend\Form\Element\Captcha',
+            'name' => 'captcha',
+            'options' => [
+                'label' => 'Please verify you are human.',
+                'captcha' => [
+                    'class'   => $this->collectValueOptions()[0], // default as first option
+                    'options' => $this->captchaConfig[0]['options'], // default as first option
+                ],
+            ],
+        ]);
     }
 
     /**
