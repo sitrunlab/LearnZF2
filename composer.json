@@ -14,7 +14,7 @@
         "fabpot/php-cs-fixer": "1.*",
         "phpunit/PHPUnit": "4.*",
         "satooshi/php-coveralls": "dev-master",
-        "codeception/codeception": "2.*",
+        "codeception/codeception": "2.0.0",
         "jonnyw/php-phantomjs": "3.*",
         "phpunit/phpcov": "~2.0"
     },
