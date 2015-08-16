@@ -43,6 +43,16 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
         parent::__construct('Captcha Form');
     }
 
+    private function collectValueOptions()
+    {
+        $options = [];
+        foreach ($this->captchaConfig as $key => $config) {
+            $options[$key] = $config['adapter_name'];
+        }
+
+        return $options;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -50,16 +60,12 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
     {
         $this->setAttribute('method', 'post');
 
-//        $adapters = $this->captchaConfig
-
         $this->add([
             'type' => 'Zend\Form\Element\Select',
             'name' => 'captcha_adapter',
             'options' => [
                 'label' => 'Choose Captcha Adapter',
-                'value_options' => [
-                    
-                ],
+                'value_options' => $this->collectValueOptions(),
             ],
             'attributes' => [
                 'class' => 'form-control',
