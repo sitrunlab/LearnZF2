@@ -46,7 +46,12 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
 
         parent::__construct('Captcha Form');
     }
-    
+
+    /**
+     * Collect Captcha options
+     *
+     * @return array
+     */
     private function collectValueOptions()
     {
         $options = [];
@@ -84,8 +89,8 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
             'options' => [
                 'label' => 'Please verify you are human.',
                 'captcha' => [
-                    'class'   => $this->collectValueOptions()[$this->captchaAdapterKey], // default as first option
-                    'options' => $this->captchaConfig[$this->captchaAdapterKey]['options'], // default as first option
+                    'class'   => $this->collectValueOptions()[$this->captchaAdapterKey],
+                    'options' => $this->captchaConfig[$this->captchaAdapterKey]['options'],
                 ],
             ],
         ]);

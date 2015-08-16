@@ -37,15 +37,86 @@
     </div>
 
     <p>
-        Captcha Image has default location in <code>public/images/captcha</code> that you can set up in <code>imgDir</code> inside options.
+        This demo show you how to use ZF2 Captcha Form Element, There are 4 adapters:
+        <ul>
+            <li>Dump</li>
+            <li>Figlet</li>
+            <li>Image</li>
+            <li>Recaptcha</li>
+        </ul>
+        We currently demoing only 3 (Dumb, Figlet, and Image).
     </p>
+
+    <p>
+        For <code>Dump</code> adapter, we can setup the captcha element like the following:
+<pre>
+    <code class="language-php">
+        $this->add([
+                'type' => 'Zend\Form\Element\Captcha',
+                'name' => 'captcha',
+                'options' => [
+                    'label' => 'Please verify you are human.',
+                    'captcha' => [
+                        'class'   => 'Dump',
+                        'options' => [],
+                    ],
+                ],
+        ]);
+    </code>
+</pre>
+    </p>
+
+    <p>
+        For <code>Figlet</code> adapter, we can setup the captcha element like the following:
+<pre>
+    <code class="language-php">
+        $this->add([
+                'type' => 'Zend\Form\Element\Captcha',
+                'name' => 'captcha',
+                'options' => [
+                    'label' => 'Please verify you are human.',
+                    'captcha' => [
+                        'class'   => 'Figlet',
+                        'options' => [
+                            'outputWidth' => 80,
+                            'wordLen' => 7,
+                        ],
+                    ],
+                ],
+        ]);
+    </code>
+</pre>
+    </p>
+
+    <p>
+        For <code>Image</code> adapter, we can setup the captcha element like the following:
+<pre>
+    <code class="language-php">
+        $this->add([
+                'type' => 'Zend\Form\Element\Captcha',
+                'name' => 'captcha',
+                'options' => [
+                    'label' => 'Please verify you are human.',
+                    'captcha' => [
+                        'class'   => 'Image',
+                        'options' => [
+                            'font' => __DIR__ . '/../assets/fonts/arial.ttf',
+                            'width' => 200,
+                            'height' => 100,
+                            'dotNoiseLevel' => 40,
+                            'lineNoiseLevel' => 3,
+                            'imgDir' => '/path/to/image/captcha/will/be/generated'
+                        ],
+                    ],
+                ],
+        ]);
+    </code>
+</pre>
+    </p>
+
 
     <p>
         By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
     </p>
 
 </div>
-
-<script type="text/javascript">
-
-</script>

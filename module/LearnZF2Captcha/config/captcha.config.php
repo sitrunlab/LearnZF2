@@ -29,7 +29,8 @@ return [
         1 => [
             'adapter_name' => 'Figlet',
             'options' => [
-                'outputWidth' => 90,
+                'outputWidth' => 80,
+                'wordLen' => 7,
             ],
         ],
         2 => [
