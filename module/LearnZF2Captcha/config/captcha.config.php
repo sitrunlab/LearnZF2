@@ -25,13 +25,17 @@ return [
     'learnzf2_captcha_config' => [
         0 => [
             'adapter_name' => 'Dumb',
-            'options' => [],
+            'options' => [
+                'wordLen' => 5,
+                'label' => 'Please type this word BACKWARDS',
+            ],
         ],
         1 => [
             'adapter_name' => 'Figlet',
             'options' => [
                 'outputWidth' => 80,
                 'wordLen' => 7,
+                'label' => 'Please verify you are a human',
             ],
         ],
         2 => [
@@ -42,6 +46,7 @@ return [
                 'height' => 100,
                 'dotNoiseLevel' => 40,
                 'lineNoiseLevel' => 3,
+                'label' => 'Please verify you are a human',
             ],
         ],
     ],

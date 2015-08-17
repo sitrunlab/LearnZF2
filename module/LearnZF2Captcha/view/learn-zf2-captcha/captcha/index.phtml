@@ -32,7 +32,13 @@
                 echo $this->formElementErrors($form->get('captcha')); ?>
             </div>
 
+            <div class="form-group">
+                <?php echo $this->formElement($form->get('submitCaptcha')); ?>
+            </div>
+
             <?php echo $this->form()->closeTag(); ?>
+
+            <?php if ($this->isPost && $this->isValid) { echo "FORM IS VALID"; } ?>
         </div>
     </div>
 
@@ -120,3 +126,13 @@
     </p>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $(".submit").click(function() {
+            $('#captchaForm').attr('method', 'post');
+            $('#captchaForm').submit();
+        });
+    });
+</script>

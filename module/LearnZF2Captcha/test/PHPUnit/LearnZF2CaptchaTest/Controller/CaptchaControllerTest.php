@@ -40,4 +40,16 @@ class CaptchaControllerTest extends AbstractHttpControllerTestCase
         $this->assertControllerClass('CaptchaController');
         $this->assertMatchedRouteName('learn-zf2-captcha');
     }
+
+    public function testPostData()
+    {
+        $postData = [
+            'captcha_adapter' => '1',
+            'captcha[id]' => 'Som3Rand0M',
+            'captcha[input]' => 'OOFXY',
+            'submitCaptcha' => 'submit',
+        ];
+
+        $this->dispatch('/learn-zf2-captcha', 'POST', $postData);
+    }
 }
