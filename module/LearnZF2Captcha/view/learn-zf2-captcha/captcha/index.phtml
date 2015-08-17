@@ -1,0 +1,122 @@
+<div class="col-lg-9">
+
+    <h1>Form with Captcha in ZF2 demo</h1>
+
+    <div class="demo-box">
+        <div>
+            <?php
+            $form = $this->form;
+            $form->setAttribute('action', $this->url(
+                'learn-zf2-captcha',
+                [
+                    'action'     => 'index'
+                ]
+            ));
+            $form->get('captcha_adapter')->setAttributes([
+                'onchange' => "$('#captchaForm').submit();",
+            ]);
+
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            ?>
+
+            <div class="form-group">
+                <label><?php echo $form->get('captcha_adapter')->getLabel(); ?></label>
+                <?php echo $this->formElement($form->get('captcha_adapter'));
+                echo $this->formElementErrors($form->get('captcha_adapter')); ?>
+            </div>
+
+            <div class="form-group">
+                <label><?php echo $form->get('captcha')->getLabel(); ?></label> <br />
+                <?php echo $this->formElement($form->get('captcha'));
+                echo $this->formElementErrors($form->get('captcha')); ?>
+            </div>
+
+            <?php echo $this->form()->closeTag(); ?>
+        </div>
+    </div>
+
+    <p>
+        This demo show you how to use ZF2 Captcha Form Element, There are 4 adapters:
+        <ul>
+            <li>Dump</li>
+            <li>Figlet</li>
+            <li>Image</li>
+            <li>Recaptcha</li>
+        </ul>
+        We currently demoing only 3 (Dumb, Figlet, and Image).
+    </p>
+
+    <p>
+        For <code>Dump</code> adapter, we can setup the captcha element like the following:
+<pre>
+    <code class="language-php">
+        $this->add([
+                'type' => 'Zend\Form\Element\Captcha',
+                'name' => 'captcha',
+                'options' => [
+                    'label' => 'Please verify you are human.',
+                    'captcha' => [
+                        'class'   => 'Dump',
+                        'options' => [],
+                    ],
+                ],
+        ]);
+    </code>
+</pre>
+    </p>
+
+    <p>
+        For <code>Figlet</code> adapter, we can setup the captcha element like the following:
+<pre>
+    <code class="language-php">
+        $this->add([
+                'type' => 'Zend\Form\Element\Captcha',
+                'name' => 'captcha',
+                'options' => [
+                    'label' => 'Please verify you are human.',
+                    'captcha' => [
+                        'class'   => 'Figlet',
+                        'options' => [
+                            'outputWidth' => 80,
+                            'wordLen' => 7,
+                        ],
+                    ],
+                ],
+        ]);
+    </code>
+</pre>
+    </p>
+
+    <p>
+        For <code>Image</code> adapter, we can setup the captcha element like the following:
+<pre>
+    <code class="language-php">
+        $this->add([
+                'type' => 'Zend\Form\Element\Captcha',
+                'name' => 'captcha',
+                'options' => [
+                    'label' => 'Please verify you are human.',
+                    'captcha' => [
+                        'class'   => 'Image',
+                        'options' => [
+                            'font' => __DIR__ . '/../assets/fonts/arial.ttf',
+                            'width' => 200,
+                            'height' => 100,
+                            'dotNoiseLevel' => 40,
+                            'lineNoiseLevel' => 3,
+                            'imgDir' => '/path/to/image/captcha/will/be/generated'
+                        ],
+                    ],
+                ],
+        ]);
+    </code>
+</pre>
+    </p>
+
+
+    <p>
+        By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
+    </p>
+
+</div>
