@@ -12,7 +12,6 @@ return [
         'DoctrineORMModule',
         'LearnZF2Ajax',
         'LearnZF2FormUsage',
-        'ZendDeveloperTools',
         'ZFTool',
         'LearnZF2Barcode',
         'LearnZF2Pagination',
@@ -21,14 +20,15 @@ return [
         'LearnZF2Acl',
         'LearnZF2I18n',
         'LearnZF2Authentication',
+        'LearnZF2Captcha',
     ],
     'module_listener_options' => [
         'module_paths' => [
             './module',
-            './vendor'
+            './vendor',
         ],
         'config_glob_paths' => [
-            'config/autoload/{,*.}{global,local}.php'
+            'config/autoload/{,*.}{global,local}.php',
         ],
     ],
 ];
