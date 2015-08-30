@@ -62,11 +62,10 @@ class NavigationFactoryTest extends TestCase
               ->setRouter($sm->get('router'))
               ->setRouteMatch($sm->get('routematch'));
 
-        $app = $this->getMockBuilder('Zend\Mvc\Application')->disableOriginalConstructor()->getMock();
-        $app->method('getMvcEvent')
-            ->willReturn($event);
+        $app = $this->prophesize('Zend\Mvc\Application');
+        $app->getMvcEvent()->willReturn($event);
 
-        $sm->setService('application', $app);
+        $sm->setService('application', $app->reveal());
 
         $navigation = $this->factory->createService($sm);
         $this->assertInstanceOf('Zend\Navigation\Navigation', $navigation);

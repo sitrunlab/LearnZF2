@@ -36,17 +36,10 @@ class AclControllerFactoryTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        /** @var ControllerManager $controllerManager */
-        $controllerManager = $this->getMock('Zend\Mvc\Controller\ControllerManager');
-        $this->controllerManager = $controllerManager;
+        $this->controllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
+        $this->serviceLocator    = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
 
-        /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
-        $this->serviceLocator = $serviceLocator;
-
-        $controllerManager->expects($this->any())
-                          ->method('getServiceLocator')
-                          ->willReturn($serviceLocator);
+        $this->controllerManager->getServiceLocator()->willReturn($this->serviceLocator);
 
         $factory = new AclControllerFactory();
         $this->factory = $factory;
@@ -54,13 +47,10 @@ class AclControllerFactoryTest extends PHPUnit_Framework_TestCase
 
     public function testCreateService()
     {
-        $aclmock = $this->getMock('LearnZF2Acl\Model\Acl');
-        $this->serviceLocator->expects($this->at(0))
-                             ->method('get')
-                             ->with('aclmodel')
-                             ->willReturn($aclmock);
+        $aclmock = $this->prophesize('LearnZF2Acl\Model\Acl');
+        $this->serviceLocator->get('aclmodel')->willReturn($aclmock);
 
-        $result = $this->factory->createService($this->controllerManager);
+        $result = $this->factory->createService($this->controllerManager->reveal());
         $this->assertInstanceOf('LearnZF2Acl\Controller\AclController', $result);
     }
 }

@@ -36,14 +36,14 @@ class DigestAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->digestServiceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $this->digestServiceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
         $this->digestServiceManager = Bootstrap::getServiceManager();
         $this->digestFactory = new DigestAuthenticationAdapterFactory($this->digestServiceManager->get('Config'));
     }
 
     public function testCreateDigestService()
     {
-        $digest = $this->digestFactory->createService($this->digestServiceLocator);
+        $digest = $this->digestFactory->createService($this->digestServiceLocator->reveal());
         $this->assertInstanceOf('Zend\Authentication\Adapter\Http', $digest);
     }
 }
