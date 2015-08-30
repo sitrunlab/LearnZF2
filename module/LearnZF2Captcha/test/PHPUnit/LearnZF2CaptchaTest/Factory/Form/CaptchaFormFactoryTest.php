@@ -36,8 +36,10 @@ class CaptchaFormFactoryTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->formElementManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');;
-        $this->serviceLocator     = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');;
+        $this->formElementManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
+        ;
+        $this->serviceLocator     = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
+        ;
 
         $this->formElementManager->getServiceLocator()->willReturn($this->serviceLocator);
 

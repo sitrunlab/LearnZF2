@@ -36,8 +36,10 @@ class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->controllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');;
-        $this->serviceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');;
+        $this->controllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
+        ;
+        $this->serviceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
+        ;
 
         $this->controllerManager->getServiceLocator()->willReturn($this->serviceLocator);
 
