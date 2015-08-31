@@ -76,19 +76,11 @@ class ModuleTest extends PHPUnit_Framework_TestCase
         // Create EntityManager and EntityRepository
         $moduleDetail = new ModuleList();
         $moduleDetail->setModuleDesc('Pretty description');
-        $repo = $this->getMockBuilder('Doctrine\ORM\EntityRepository')
-                     ->disableOriginalConstructor()
-                     ->getMock();
-        $repo->expects($this->any())
-             ->method('findOneBy')
-             ->willReturn($moduleDetail);
-        $em = $this->getMockBuilder('Doctrine\ORM\EntityManager')
-                   ->disableOriginalConstructor()
-                   ->getMock();
-        $em->expects($this->any())
-           ->method('getRepository')
-           ->willReturn($repo);
-        $this->sm->setService('Doctrine\ORM\EntityManager', $em);
+        $repo = $this->prophesize('Doctrine\ORM\EntityRepository');
+        $repo->findOneBy(['moduleName' => 'Application'])->willReturn($moduleDetail);
+        $em = $this->prophesize('Doctrine\ORM\EntityManager');
+        $em->getRepository('Application\Entity\ModuleList')->willReturn($repo);
+        $this->sm->setService('Doctrine\ORM\EntityManager', $em->reveal());
 
         // Create ViewHelperManager
         $headTitle = new HeadTitle();
