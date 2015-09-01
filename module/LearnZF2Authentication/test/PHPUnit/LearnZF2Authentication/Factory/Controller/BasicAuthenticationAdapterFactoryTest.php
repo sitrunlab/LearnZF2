@@ -36,14 +36,14 @@ class BasicAuthenticationAdapterFactoryTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->basicServiceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $this->basicServiceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
         $this->basicServiceManager = Bootstrap::getServiceManager();
         $this->basicFactory = new BasicAuthenticationAdapterFactory($this->basicServiceManager->get('Config'));
     }
 
     public function testCreateBasicService()
     {
-        $basic = $this->basicFactory->createService($this->basicServiceLocator);
+        $basic = $this->basicFactory->createService($this->basicServiceLocator->reveal());
         $this->assertInstanceOf('Zend\Authentication\Adapter\Http', $basic);
     }
 }
