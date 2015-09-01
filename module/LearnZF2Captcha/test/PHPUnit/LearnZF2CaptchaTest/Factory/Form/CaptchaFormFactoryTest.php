@@ -36,17 +36,12 @@ class CaptchaFormFactoryTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        /** @var FormElementManager $formElementManager */
-        $formElementManager = $this->getMock('Zend\Mvc\Controller\ControllerManager');
-        $this->formElementManager = $formElementManager;
+        $this->formElementManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
+        ;
+        $this->serviceLocator     = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
+        ;
 
-        /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
-        $this->serviceLocator = $serviceLocator;
-
-        $this->formElementManager->expects($this->any())
-                                 ->method('getServiceLocator')
-                                 ->willReturn($serviceLocator);
+        $this->formElementManager->getServiceLocator()->willReturn($this->serviceLocator);
 
         $factory = new CaptchaFormFactory();
         $this->factory = $factory;
@@ -67,37 +62,19 @@ class CaptchaFormFactoryTest extends PHPUnit_Framework_TestCase
     public function testCreateService($captchaAdapterKey)
     {
         $config =  include __DIR__ . '/../../../../../config/captcha.config.php';
-        $this->serviceLocator->expects($this->at(0))
-                             ->method('get')
-                             ->with('Config')
+        $this->serviceLocator->get('Config')
                              ->willReturn($config);
 
-        $application = $this->getMockBuilder('Zend\Mvc\Application')
-                            ->disableOriginalConstructor()
-                            ->getMock();
-        $mvcEvent    = $this->getMockBuilder('Zend\Mvc\MvcEvent')
-                            ->disableOriginalConstructor()
-                            ->getMock();
-        $application->expects($this->once())
-                    ->method('getMvcEvent')
-                    ->willReturn($mvcEvent);
-        $request     =  $this->getMockBuilder('Zend\Http\PhpEnvironment\Request')
-                             ->disableOriginalConstructor()
-                             ->getMock();
-        $request->expects($this->once())
-                ->method('getQuery')
-                ->with('captcha_adapter')
-                ->willReturn($captchaAdapterKey);
-        $mvcEvent->expects($this->once())
-                 ->method('getRequest')
-                 ->willReturn($request);
+        $application = $this->prophesize('Zend\Mvc\Application');
+        $mvcEvent    = $this->prophesize('Zend\Mvc\MvcEvent');
+        $application->getMvcEvent()->willReturn($mvcEvent);
+        $request     =  $this->prophesize('Zend\Http\PhpEnvironment\Request');
+        $request->getQuery('captcha_adapter', 0)->willReturn($captchaAdapterKey);
+        $mvcEvent->getRequest()->willReturn($request);
 
-        $this->serviceLocator->expects($this->at(1))
-                             ->method('get')
-                             ->with('Application')
-                             ->willReturn($application);
+        $this->serviceLocator->get('Application')->willReturn($application);
 
-        $result = $this->factory->createService($this->formElementManager);
+        $result = $this->factory->createService($this->formElementManager->reveal());
         $this->assertInstanceOf('LearnZF2Captcha\Form\CaptchaForm', $result);
     }
 }
