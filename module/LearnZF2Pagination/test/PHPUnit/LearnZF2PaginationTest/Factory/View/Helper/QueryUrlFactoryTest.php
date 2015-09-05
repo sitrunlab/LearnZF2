@@ -52,11 +52,9 @@ class QueryUrlFactoryTest extends TestCase
         $sm->setService('Router', TreeRouteStack::factory(['routes' => []]));
 
         $e = $e ?: new MvcEvent();
-        $app = $this->getMock('Zend\Mvc\Application', [], [[], $sm]);
-        $app->expects($this->any())
-            ->method('getMvcEvent')
-            ->willReturn($e);
-        $sm->setService('Application', $app);
+        $app = $this->prophesize('Zend\Mvc\Application');
+        $app->getMvcEvent()->willReturn($e);
+        $sm->setService('Application', $app->reveal());
 
         $helperManager = new HelperPluginManager();
         $helperManager->setServiceLocator($sm);

@@ -36,17 +36,10 @@ class CaptchaControllerFactoryTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        /** @var ControllerManager $controllerManager */
-        $controllerManager = $this->getMock('Zend\Mvc\Controller\ControllerManager');
-        $this->controllerManager = $controllerManager;
+        $this->controllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
+        $this->serviceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
 
-        /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
-        $this->serviceLocator = $serviceLocator;
-
-        $controllerManager->expects($this->any())
-                          ->method('getServiceLocator')
-                          ->willReturn($serviceLocator);
+        $this->controllerManager->getServiceLocator()->willReturn($this->serviceLocator);
 
         $factory = new CaptchaControllerFactory();
         $this->factory = $factory;
@@ -54,23 +47,13 @@ class CaptchaControllerFactoryTest extends PHPUnit_Framework_TestCase
 
     public function testCreateService()
     {
-        $formElementManager = $this->getMockBuilder('Zend\Form\FormElementManager')
-                                   ->disableOriginalConstructor()
-                                   ->getMock();
-        $captchaForm = $this->getMockBuilder('LearnZF2Captcha\Form\CaptchaForm')
-                            ->disableOriginalConstructor()
-                            ->getMock();
-        $formElementManager->expects($this->once())
-                           ->method('get')
-                           ->with('LearnZF2Captcha\Form\CaptchaForm')
-                           ->willReturn($captchaForm);
+        $formElementManager = $this->prophesize('Zend\Form\FormElementManager');
+        $captchaForm = $this->prophesize('LearnZF2Captcha\Form\CaptchaForm');
+        $formElementManager->get('LearnZF2Captcha\Form\CaptchaForm')->willReturn($captchaForm);
 
-        $this->serviceLocator->expects($this->once())
-                       ->method('get')
-                       ->with('FormElementManager')
-                       ->willReturn($formElementManager);
+        $this->serviceLocator->get('FormElementManager')->willReturn($formElementManager);
 
-        $result = $this->factory->createService($this->controllerManager);
+        $result = $this->factory->createService($this->controllerManager->reveal());
         $this->assertInstanceOf('LearnZF2Captcha\Controller\CaptchaController', $result);
     }
 }

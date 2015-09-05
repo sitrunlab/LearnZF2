@@ -36,17 +36,12 @@ class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        /** @var ControllerManager $controllerManager */
-        $controllerManager = $this->getMock('Zend\Mvc\Controller\ControllerManager');
-        $this->controllerManager = $controllerManager;
+        $this->controllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
+        ;
+        $this->serviceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
+        ;
 
-        /** @var ServiceLocatorInterface $serviceLocator */
-        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
-        $this->serviceLocator = $serviceLocator;
-
-        $controllerManager->expects($this->any())
-                          ->method('getServiceLocator')
-                          ->willReturn($serviceLocator);
+        $this->controllerManager->getServiceLocator()->willReturn($this->serviceLocator);
 
         $factory = new IndexControllerFactory();
         $this->factory = $factory;
@@ -54,18 +49,12 @@ class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
 
     public function testCreateService()
     {
-        $mockFormElementManager = $this->getMock('Zend\Form\FormElementManager');
-        $this->serviceLocator->expects($this->at(0))
-                             ->method('get')
-                             ->with('FormElementManager')
-                             ->willReturn($mockFormElementManager);
-        $mockLogForm = $this->getMock('LearnZF2Log\Form\LogForm');
-        $mockFormElementManager->expects($this->at(0))
-                               ->method('get')
-                               ->with('LearnZF2Log\Form\LogForm')
-                               ->willReturn($mockLogForm);
+        $mockFormElementManager = $this->prophesize('Zend\Form\FormElementManager');
+        $this->serviceLocator->get('FormElementManager')->willReturn($mockFormElementManager);
+        $mockLogForm = $this->prophesize('LearnZF2Log\Form\LogForm');
+        $mockFormElementManager->get('LearnZF2Log\Form\LogForm')->willReturn($mockLogForm);
 
-        $result = $this->factory->createService($this->controllerManager);
+        $result = $this->factory->createService($this->controllerManager->reveal());
         $this->assertInstanceOf('LearnZF2Log\Controller\IndexController', $result);
     }
 }

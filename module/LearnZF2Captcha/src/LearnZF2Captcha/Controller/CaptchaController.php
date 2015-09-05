@@ -40,8 +40,23 @@ class CaptchaController extends AbstractActionController
 
     public function indexAction()
     {
+        $form = $this->captchaForm;
+        $request = $this->getRequest();
+
+        $isValid = false;
+        if ($request->isPost()) {
+            $form->setAttribute('method', 'post');
+
+            $form->setData($request->getPost());
+            $isValid = $form->isValid();
+
+            $form->setAttribute('method', 'get');
+        }
+
         return new ViewModel([
-            'form' => $this->captchaForm,
+            'form' => $form,
+            'isValid' => $isValid,
+            'isPost' => $request->isPost(),
         ]);
     }
 }
