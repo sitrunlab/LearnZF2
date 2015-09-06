@@ -32,13 +32,13 @@ return [
         ],
     ],
     'controllers' => [
-        'invokables' => [
-            'LearnZF2AjaxImageGallery\Controller\Index' => 'LearnZF2AjaxImageGallery\Controller\IndexController',
+        'factories' => [
+            'LearnZF2AjaxImageGallery\Controller\Index' => 'LearnZF2AjaxImageGallery\Factory\Controller\IndexControllerFactory',
         ],
     ],
-    'view_manager' => [
-        'invokables' => [
-            'LearnZF2AjaxImageGallery\Controller\Index' => 'LearnZF2AjaxImageGallery\Controller\IndexController',
+    'form_elements' => [
+        'factories' => [
+            'LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm' => 'LearnZF2AjaxImageGallery\Factory\Form\AjaxImageUploadFormFactory',
         ],
     ],
 

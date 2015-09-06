@@ -29,9 +29,6 @@
 
             ajaxImageUpload.abourtXHR(request);
 
-            /**
-             * AJAX image upload
-             */
             $("#imgajax").on("change", function (event) {
                 event.preventDefault();
                 $("#upload").submit();
@@ -68,8 +65,8 @@
                 /**
                  * Callback for error response
                  */
-                request.fail(function (jqXHR, status, error) {
-                    console.error(status, error); //TODO must create a dialog popup
+                request.fail(function (error, textStatus, errorThrown) {
+                    console.error(textStatus, errorThrown); //TODO must create a dialog popup
                 });
             });
         },
@@ -115,7 +112,7 @@
          * Gallery view
          */
         showFiles: function () {
-            $(".large-image").attr("src", "/img/default.png");
+            $(".large-image").attr("src", "img/default.png");
             $(".uploader-inline, .large-image").hide();
             $(".gallery-view").find("figure.centered").not(".large-image").remove();
             $(".gallery-view, .ajax-loader").show();
@@ -125,11 +122,13 @@
             request = $.get("/learn-zf2-ajax-image-gallery/index/files", function (files) {
                 $(".ajax-loader").hide();
                 $(".large-image").show();
-                $.each(files["files"], function (key, imgFile) {
-                    $("div.image-grid").append("<figure class='centered'><i class='glyphicon glyphicon-remove deleteimg'></i><img aria-checked='false' aria-label='"+imgFile["filename"]+"' src='"+imgFile["filelink"]+"' class='thumbnail' alt='"+imgFile["filename"]+"' title='"+imgFile["filename"]+"' /></figure>");
-                });
-                ajaxImageUpload.viewImage();
-                ajaxImageUpload.deleteImage();
+                if (files["files"]) {
+                    $.each(files["files"], function (key, imgFile) {
+                        $("div.image-grid").append("<figure class='centered'><i class='glyphicon glyphicon-remove deleteimg'></i><img aria-checked='false' aria-label='"+imgFile["filename"]+"' src='"+imgFile["filelink"]+"' class='thumbnail' alt='"+imgFile["filename"]+"' title='"+imgFile["filename"]+"' /></figure>");
+                    });
+                    ajaxImageUpload.viewImage();
+                    ajaxImageUpload.deleteImage();
+                }
             });
         },
 
@@ -154,7 +153,6 @@
             ajaxImageUpload.abourtXHR(request);
 
             $(".deleteimg").on("click", function (event) {
-                event.preventDefault();
                 request = $.post("/learn-zf2-ajax-image-gallery/index/deleteimage", {"img": $(this).next("img").attr("src")}, function() {
                     ajaxImageUpload.showFiles();
                 });

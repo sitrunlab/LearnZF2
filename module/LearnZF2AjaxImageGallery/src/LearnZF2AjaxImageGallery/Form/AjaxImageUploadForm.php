@@ -3,7 +3,6 @@
 namespace LearnZF2AjaxImageGallery\Form;
 
 use Zend\Form\Form;
-<<<<<<< HEAD
 use Zend\InputFilter\InputFilterProviderInterface;
 
 class AjaxImageUploadForm extends Form implements InputFilterProviderInterface
@@ -16,15 +15,6 @@ class AjaxImageUploadForm extends Form implements InputFilterProviderInterface
     public function init()
     {
         $this->setAttribute('action', "/learn-zf2-ajax-image-gallery/index/upload");
-=======
-use Zend\Form\Element;
-
-class AjaxImageUploadForm extends Form
-{
-    public function __construct()
-    {
-        parent::__construct("content");
->>>>>>> initial commit of ajax image gallery
         $this->setAttribute('method', 'post');
 
         $this->add([
@@ -37,7 +27,6 @@ class AjaxImageUploadForm extends Form
             ],
         ]);
     }
-<<<<<<< HEAD
 
     public function getInputFilterSpecification()
     {
@@ -48,6 +37,5 @@ class AjaxImageUploadForm extends Form
             ],
         ];
     }
-=======
->>>>>>> initial commit of ajax image gallery
+
 }
