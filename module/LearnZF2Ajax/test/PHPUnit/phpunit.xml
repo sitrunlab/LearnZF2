@@ -1,6 +1,6 @@
 <phpunit bootstrap="Bootstrap.php" colors="true">
     <testsuite name="LearnZF2Ajax" >
-        <directory>./LearnZF2AjaxImageGalleryTest</directory>
+        <directory>./LearnZF2AjaxTest</directory>
     </testsuite>
     <filter>
         <whitelist>

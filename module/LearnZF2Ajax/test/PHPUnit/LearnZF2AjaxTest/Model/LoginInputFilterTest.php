@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LearnZF2AjaxImageGalleryTest\Model;
+namespace LearnZF2AjaxTest\Model;
 
 use LearnZF2Ajax\Model\LoginInputFilter;
 use PHPUnit_Framework_TestCase;

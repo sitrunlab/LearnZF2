@@ -16,7 +16,7 @@
  * and is licensed under the MIT license.
  */
 
-namespace LearnZF2AjaxImageGalleryTest\Controller;
+namespace LearnZF2AjaxTest\Controller;
 
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
