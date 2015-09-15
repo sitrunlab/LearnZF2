@@ -53,22 +53,19 @@ class ModuleTest extends TestCase
     public function setUp()
     {
         $this->module = new Module();
-        $this->app = $this->getMockBuilder('Zend\Mvc\Application')->disableOriginalConstructor()->getMock();
+        $app = $this->prophesize('Zend\Mvc\Application');
 
         $sm = new ServiceManager(new Config([
             'services' => [
                 'translator' => Translator::factory(['locale' => 'id_ID']),
             ],
         ]));
-        $this->app->expects($this->any())
-                  ->method('getServiceManager')
-                  ->willReturn($sm);
+        $app->getServiceManager()->willReturn($sm);
 
         $em = new EventManager();
         $em->setSharedManager(new SharedEventManager());
-        $this->app->expects($this->any())
-                  ->method('getEventManager')
-                  ->willReturn($em);
+        $app->getEventManager()->willReturn($em);
+        $this->app = $app->reveal();
     }
 
     public function testGetConfig()
