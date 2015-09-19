@@ -25,13 +25,13 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
 {
-    /** @var CaptchaControllerFactory */
+    /** @var IndexaControllerFactory */
     protected $factory;
 
-    /** @var ControllerManager */
+    /** @var Prophecy\Prophecy\ObjectProphecy */
     protected $controllerManager;
 
-    /** @var ServiceLocatorInterface */
+    /** @var Prophecy\Prophecy\ObjectProphecy */
     protected $serviceLocator;
 
     public function setUp()
@@ -45,12 +45,15 @@ class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
         $this->factory = $factory;
     }
 
-    public function test__invoke()
+    public function testReturnIndexControllerFromFactory()
     {
         $formElementManager = $this->prophesize('Zend\Form\FormElementManager');
-        $ajaxImageUploadFormFactory = $this->prophesize('LearnZF2AjaxImageGallery\Form\AjaxImageUploadFormFactory');
-        $formElementManager->get('LearnZF2AjaxImageGallery\Form\AjaxImageUploadFormFactory')->willReturn($ajaxImageUploadFormFactory);
+        $ajaxImageUploadForm = $this->prophesize('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm');
+        $formElementManager->get('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm')->willReturn($ajaxImageUploadForm);
 
         $this->serviceLocator->get('FormElementManager')->willReturn($formElementManager);
+
+        $controller = $this->factory->__invoke($this->controllerManager->reveal());
+        $this->assertInstanceOf('LearnZF2AjaxImageGallery\Controller\IndexController', $controller);
     }
 }

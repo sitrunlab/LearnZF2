@@ -83,22 +83,19 @@ class IndexController extends AbstractActionController
     protected function uploadAction()
     {
         $request = $this->getRequest();
+        $json = null;
 
-        if ($request->isPost()) {
-            $this->ajaxForm->setInputFilter($this->ajaxForm->getInputFilter());
-
-            if ($request->isXmlHttpRequest()) {
-                /**
-                 * Silly hack, but I can't fix it.
-                 *
-                 * @var JsonModel $hack
-                 */
-               $hack = $this->prepareImages();
-               echo Json::encode($hack->getVariables());
-               die;
-            }
+        if (!$request->isPost()) {
+            return $json;
         }
-        return null;
+
+        $this->ajaxForm->setInputFilter($this->ajaxForm->getInputFilter());
+
+        if ($request->isXmlHttpRequest()) {
+           $json = Json::encode($this->prepareImages()->getVariables());
+        }
+
+        return $json;
     }
 
     /**
@@ -111,15 +108,17 @@ class IndexController extends AbstractActionController
     protected function deleteimageAction()
     {
         $request = $this->getRequest();
+        $status = false;
+
         if ($request->isPost()) {
             $data = $request->getPost()->toArray();
 
             if ($request->isXmlHttpRequest() && is_file("public".$data["img"])) {
                 unlink("public".$data["img"]);
-                return true;
+                $status = true;
             }
         }
-        return false;
+        return $status;
     }
 
     /**
@@ -131,9 +130,7 @@ class IndexController extends AbstractActionController
     protected function filesAction()
     {
         chdir(getcwd()."/public/");
-        if (!is_dir('userfiles/images/')) {
-            mkdir('userfiles/images/', 0750, true);
-        }
+        // mkdir('userfiles/images/', 0750, true);
 
         $dir = new \RecursiveDirectoryIterator('userfiles/', \FilesystemIterator::SKIP_DOTS);
         $it  = new \RecursiveIteratorIterator($dir, \RecursiveIteratorIterator::SELF_FIRST);
@@ -167,9 +164,7 @@ class IndexController extends AbstractActionController
 
         $adapter->setValidators([$size, new IsImage(), $extension]);
 
-        if (!is_dir('public/userfiles/images/')) {
-            mkdir('public/userfiles/images/', 0750, true);
-        }
+        // mkdir('public/userfiles/images/', 0750, true);
 
         $adapter->setDestination('public/userfiles/images/');
         return $this->uploadFiles($adapter);
@@ -199,7 +194,6 @@ class IndexController extends AbstractActionController
         }
 
         $this->view->setTerminal(true);
-        $this->getResponse()->getHeaders()->addHeaderLine('Accept', 'application/json; charset=utf-8');
         $model = new JsonModel($uploadStatus);
         $model->setTerminal(true);
         return $model;

@@ -19,19 +19,19 @@
 namespace LearnZF2AjaxImageGalleryTest\Factory\Form;
 
 use PHPUnit_Framework_TestCase;
-use LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm;
+use LearnZF2AjaxImageGallery\Factory\Form\AjaxImageUploadFormFactory;
 use Zend\Form\FormElementManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 class AjaxImageUploadFormFactoryTest extends PHPUnit_Framework_TestCase
 {
-    /** @var CaptchaFormFactory */
+    /** @var AjaxImageUploadFormFactory */
     protected $factory;
 
-    /** @var FormElementManager */
+    /** @var Prophecy\Prophecy\ObjectProphecy */
     protected $formElementManager;
 
-    /** @var ServiceLocatorInterface */
+    /** @var Prophecy\Prophecy\ObjectProphecy */
     protected $serviceLocator;
 
     public function setUp()
@@ -41,11 +41,11 @@ class AjaxImageUploadFormFactoryTest extends PHPUnit_Framework_TestCase
 
         $this->formElementManager->getServiceLocator()->willReturn($this->serviceLocator);
 
-        $factory = new AjaxImageUploadForm();
+        $factory = new AjaxImageUploadFormFactory();
         $this->factory = $factory;
     }
 
-    public function test__invoke()
+    public function testReturnsAjaxImageUploadFormFromFactory()
     {
         $application = $this->prophesize('Zend\Mvc\Application');
         $mvcEvent    = $this->prophesize('Zend\Mvc\MvcEvent');
@@ -53,7 +53,8 @@ class AjaxImageUploadFormFactoryTest extends PHPUnit_Framework_TestCase
  
         $this->serviceLocator->get('Application')->willReturn($application);
 
-        $this->assertInstanceOf('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm', $this->factory);
+        $form = $this->factory->createService($this->formElementManager->reveal());
+        $this->assertInstanceOf('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm', $form);
     }
 
 }

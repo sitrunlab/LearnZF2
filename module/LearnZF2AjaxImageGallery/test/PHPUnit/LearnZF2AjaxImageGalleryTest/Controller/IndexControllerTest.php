@@ -19,7 +19,6 @@
 namespace LearnZF2AjaxImageGalleryTest\Controller;
 
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
-use Zend\Stdlib\Parameters;
 use Zend\Validator\File\IsImage;
 use Zend\Validator\File\Size;
 use Zend\Validator\File\Extension;
@@ -113,5 +112,45 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
     {
         $this->dispatch('/learn-zf2-ajax-image-gallery/index/upload');
         $this->assertContains('test1.jpg', $this->adapter->getFileName());
+    }
+
+    public function testPostValidDataWithAjax()
+    {
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/index', 'POST', $_FILES, true);
+        $request = $this->getRequest();
+        $this->assertTrue($request->isXmlHttpRequest());
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/upload'); 
+        $this->assertTrue($request->isPost());
+    }
+
+    public function testUploadUrlMethodIsNotPost()
+    {
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/upload', "GET"); 
+        $request = $this->getRequest();
+        $this->assertFalse($request->isPost());
+    }
+
+    public function testAjaxFilesAction()
+    {
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/files', "GET", [], true); 
+        $request = $this->getRequest();
+        $this->assertTrue($request->isXmlHttpRequest());
+        $this->assertFalse($request->isPost());
+    }
+
+    public function testAjaxDeleteImageAction()
+    {
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', "POST", ["/userfiles/images/test1.jpg"], true); 
+        $request = $this->getRequest();
+        $this->assertTrue($request->isXmlHttpRequest());
+        $this->assertTrue($request->isPost());
+    }
+
+    public function testAjaxDeleteImageMethodNotPost()
+    {
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', "GET", ["/userfiles/images/test1.jpg"], true); 
+        $request = $this->getRequest();
+        $this->assertTrue($request->isXmlHttpRequest());
+        $this->assertFalse($request->isPost());
     }
 }
