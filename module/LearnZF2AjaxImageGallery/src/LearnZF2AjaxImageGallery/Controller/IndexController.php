@@ -1,4 +1,20 @@
 <?php
+/**
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
+ */
 
 namespace LearnZF2AjaxImageGallery\Controller;
 
@@ -7,6 +23,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 use Zend\Json\Json;
+use Zend\Mvc\MvcEvent;
 use Zend\File\Transfer\Adapter\Http;
 use Zend\Validator\File\IsImage;
 use Zend\Validator\File\Size;
@@ -35,7 +52,7 @@ class IndexController extends AbstractActionController
     /**
      * @param AjaxImageUploadForm $form
      */
-    public function __construct(AjaxImageUploadForm $form = null)
+    public function __construct(AjaxImageUploadForm $form)
     {
         $this->view = new ViewModel();
         $this->ajaxForm = $form;
@@ -44,7 +61,7 @@ class IndexController extends AbstractActionController
     /**
      * @param MvcEvent $e
      */
-    public function onDispatch(\Zend\Mvc\MvcEvent $e)
+    public function onDispatch(MvcEvent $e)
     {
         parent::onDispatch($e);
     }
@@ -61,7 +78,7 @@ class IndexController extends AbstractActionController
     }
 
     /**
-     * @return Zend\Json\Json|null
+     * @return Json|null
      */
     protected function uploadAction()
     {
@@ -71,12 +88,26 @@ class IndexController extends AbstractActionController
             $this->ajaxForm->setInputFilter($this->ajaxForm->getInputFilter());
 
             if ($request->isXmlHttpRequest()) {
-                return $this->prepareImages();
+                /**
+                 * Silly hack, but I can't fix it.
+                 *
+                 * @var JsonModel $hack
+                 */
+               $hack = $this->prepareImages();
+               echo Json::encode($hack->getVariables());
+               die;
             }
         }
         return null;
     }
 
+    /**
+     * Deleted image with from a given src
+     *
+     * @method deleteimageAction
+     *
+     * @return bool
+     */
     protected function deleteimageAction()
     {
         $request = $this->getRequest();
@@ -93,6 +124,9 @@ class IndexController extends AbstractActionController
 
     /**
      * Get all files from all folders and list them in the gallery
+     * getcwd() is there to make the work with images path easier
+     * 
+     * @return JsonModel
      */
     protected function filesAction()
     {
@@ -100,6 +134,7 @@ class IndexController extends AbstractActionController
         if (!is_dir('userfiles/images/')) {
             mkdir('userfiles/images/', 0750, true);
         }
+
         $dir = new \RecursiveDirectoryIterator('userfiles/', \FilesystemIterator::SKIP_DOTS);
         $it  = new \RecursiveIteratorIterator($dir, \RecursiveIteratorIterator::SELF_FIRST);
         $it->setMaxDepth(50);
@@ -142,30 +177,31 @@ class IndexController extends AbstractActionController
 
     /**
      * @param  Http $adapter
-     * @return Json
+     * @return JsonModel
      */
-    private function uploadFiles(Http $adapter = null)
+    private function uploadFiles(Http $adapter)
     {
         $uploadStatus = [];
 
         foreach ($adapter->getFileInfo() as $key => $file) {
-            if ($key != "preview") {
-                if ($adapter->isValid($file["name"])) {
-                    $adapter->receive($file["name"]);
-                    if ($adapter->isReceived($file["name"]) && $adapter->isUploaded($file["name"])) {
-                        $uploadStatus["successFiles"][] = $file["name"]." was successfully uploaded";
-                    } else {
-                        $uploadStatus["errorFiles"][] = $file["name"]." was not uploaded";
-                    }
+            if ($adapter->isValid($file["name"])) {
+                $adapter->receive($file["name"]);
+                if ($adapter->isReceived($file["name"]) && $adapter->isUploaded($file["name"])) {
+                    $uploadStatus["successFiles"][] = $file["name"]." was successfully uploaded";
                 } else {
-                    foreach ($adapter->getMessages() as $key => $msg) {
-                        $uploadStatus["errorFiles"][] = $file["name"]." ".strtolower($msg);
-                    }
+                    $uploadStatus["errorFiles"][] = $file["name"]." was not uploaded";
+                }
+            } else {
+                foreach ($adapter->getMessages() as $key => $msg) {
+                    $uploadStatus["errorFiles"][] = $file["name"]." ".strtolower($msg);
                 }
             }
         }
-        // JsonModel doesn't work... It returns the page html even file upload s successful
-        echo Json::encode($uploadStatus);
-        exit;
+
+        $this->view->setTerminal(true);
+        $this->getResponse()->getHeaders()->addHeaderLine('Accept', 'application/json; charset=utf-8');
+        $model = new JsonModel($uploadStatus);
+        $model->setTerminal(true);
+        return $model;
     }
 }

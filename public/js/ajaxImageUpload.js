@@ -153,7 +153,7 @@
             ajaxImageUpload.abourtXHR(request);
 
             $(".deleteimg").on("click", function (event) {
-                request = $.post("/learn-zf2-ajax-image-gallery/index/deleteimage", {"img": $(this).next("img").attr("src")}, function() {
+                request = $.post("/learn-zf2-ajax-image-gallery/index/deleteimage", {"img": $(this).next("img").attr("src")}, function () {
                     ajaxImageUpload.showFiles();
                 });
             });
@@ -164,7 +164,7 @@
          * The method will abort on both client and server sides.
          */
         abourtXHR: function (xhr) {
-            if (xhr && xhr.readystate != 4) {
+            if (xhr && xhr.readyState !== 4) {
                 xhr.abort();
                 xhr = null;
             }

@@ -15,7 +15,7 @@ class IndexControllerFactory
         $serviceLocator = $controllerManager->getServiceLocator();
 
         $controller = new IndexController(
-           (object) $serviceLocator->get('FormElementManager')->get('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm')
+            (object) $serviceLocator->get('FormElementManager')->get('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm')
         );
 
         return $controller;

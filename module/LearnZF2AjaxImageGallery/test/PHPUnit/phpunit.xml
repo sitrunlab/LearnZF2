@@ -14,7 +14,7 @@
         </blacklist>
     </filter>
     <logging>
-        <log type="coverage-html" target="./../../../../data/test-html-report/learnzf2ajax/" charset="UTF-8" yui="true" />
-        <log type="coverage-php" target="./../../../../build/coverage/coverage-learnzf2ajax.cov"/>
+        <log type="coverage-html" target="./../../../../data/test-html-report/learnzf2ajaximagegallery/" charset="UTF-8" yui="true" />
+        <log type="coverage-php" target="./../../../../build/coverage/coverage-learnzf2ajaximagegallery.cov"/>
     </logging>
 </phpunit>
