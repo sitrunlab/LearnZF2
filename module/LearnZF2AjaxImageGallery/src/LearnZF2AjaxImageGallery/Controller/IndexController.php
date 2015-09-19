@@ -130,7 +130,6 @@ class IndexController extends AbstractActionController
     protected function filesAction()
     {
         chdir(getcwd()."/public/");
-        // mkdir('userfiles/images/', 0750, true);
 
         $dir = new \RecursiveDirectoryIterator('userfiles/', \FilesystemIterator::SKIP_DOTS);
         $it  = new \RecursiveIteratorIterator($dir, \RecursiveIteratorIterator::SELF_FIRST);
@@ -163,8 +162,6 @@ class IndexController extends AbstractActionController
         $extension = new Extension(['jpg','gif','png','jpeg','bmp','webp','svg'], true);
 
         $adapter->setValidators([$size, new IsImage(), $extension]);
-
-        // mkdir('public/userfiles/images/', 0750, true);
 
         $adapter->setDestination('public/userfiles/images/');
         return $this->uploadFiles($adapter);

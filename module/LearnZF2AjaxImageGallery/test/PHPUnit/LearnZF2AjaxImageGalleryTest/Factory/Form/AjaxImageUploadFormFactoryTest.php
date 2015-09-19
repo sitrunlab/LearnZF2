@@ -28,10 +28,10 @@ class AjaxImageUploadFormFactoryTest extends PHPUnit_Framework_TestCase
     /** @var AjaxImageUploadFormFactory */
     protected $factory;
 
-    /** @var Prophecy\Prophecy\ObjectProphecy */
+    /** @var \Prophecy\Prophecy\ObjectProphecy */
     protected $formElementManager;
 
-    /** @var Prophecy\Prophecy\ObjectProphecy */
+    /** @var \Prophecy\Prophecy\ObjectProphecy */
     protected $serviceLocator;
 
     public function setUp()
@@ -56,5 +56,4 @@ class AjaxImageUploadFormFactoryTest extends PHPUnit_Framework_TestCase
         $form = $this->factory->createService($this->formElementManager->reveal());
         $this->assertInstanceOf('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm', $form);
     }
-
 }

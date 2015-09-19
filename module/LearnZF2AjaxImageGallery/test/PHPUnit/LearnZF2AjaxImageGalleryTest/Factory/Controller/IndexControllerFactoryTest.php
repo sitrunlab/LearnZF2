@@ -25,13 +25,13 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
 {
-    /** @var IndexaControllerFactory */
+    /** @var IndexControllerFactory */
     protected $factory;
 
-    /** @var Prophecy\Prophecy\ObjectProphecy */
+    /** @var \Prophecy\Prophecy\ObjectProphecy */
     protected $controllerManager;
 
-    /** @var Prophecy\Prophecy\ObjectProphecy */
+    /** @var \Prophecy\Prophecy\ObjectProphecy */
     protected $serviceLocator;
 
     public function setUp()
