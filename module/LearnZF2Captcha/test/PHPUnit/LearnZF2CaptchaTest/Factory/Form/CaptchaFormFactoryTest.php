@@ -16,7 +16,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-namespace LearnZF2CaptchaTest\Factory\Controller;
+namespace LearnZF2CaptchaTest\Factory\Form;
 
 use PHPUnit_Framework_TestCase;
 use LearnZF2Captcha\Factory\Form\CaptchaFormFactory;
@@ -37,9 +37,7 @@ class CaptchaFormFactoryTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->formElementManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
-        ;
         $this->serviceLocator     = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
-        ;
 
         $this->formElementManager->getServiceLocator()->willReturn($this->serviceLocator);
 
