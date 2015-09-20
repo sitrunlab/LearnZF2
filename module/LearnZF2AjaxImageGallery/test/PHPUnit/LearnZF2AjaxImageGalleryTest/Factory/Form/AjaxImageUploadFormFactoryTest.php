@@ -26,34 +26,32 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class AjaxImageUploadFormFactoryTest extends PHPUnit_Framework_TestCase
 {
     /** @var AjaxImageUploadFormFactory */
-    protected $factory;
+    protected $ajaxImageUploadFormFactory;
 
     /** @var \Prophecy\Prophecy\ObjectProphecy */
-    protected $formElementManager;
+    protected $controllerManager;
 
     /** @var \Prophecy\Prophecy\ObjectProphecy */
-    protected $serviceLocator;
+    protected $locator;
 
     public function setUp()
     {
-        $this->formElementManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
-        $this->serviceLocator     = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
+        $this->controllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
+        $this->locator     = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
+        $this->controllerManager->getServiceLocator()->willReturn($this->locator);
 
-        $this->formElementManager->getServiceLocator()->willReturn($this->serviceLocator);
-
-        $factory = new AjaxImageUploadFormFactory();
-        $this->factory = $factory;
+        $ajaxImageUploadFormFactory = new AjaxImageUploadFormFactory();
+        $this->ajaxImageUploadFormFactory = $ajaxImageUploadFormFactory;
     }
 
-    public function testReturnsAjaxImageUploadFormFromFactory()
+    public function testAjaxImageUploadForm()
     {
-        $application = $this->prophesize('Zend\Mvc\Application');
-        $mvcEvent    = $this->prophesize('Zend\Mvc\MvcEvent');
-        $application->getMvcEvent()->willReturn($mvcEvent);
+        $app = $this->prophesize('Zend\Mvc\Application');
+        $app->getMvcEvent()->willReturn($this->prophesize('Zend\Mvc\MvcEvent'));
  
-        $this->serviceLocator->get('Application')->willReturn($application);
+        $this->locator->get('Application')->willReturn($app);
 
-        $form = $this->factory->createService($this->formElementManager->reveal());
+        $form = $this->ajaxImageUploadFormFactory->createService($this->controllerManager->reveal());
         $this->assertInstanceOf('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm', $form);
     }
 }

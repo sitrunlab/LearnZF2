@@ -26,23 +26,22 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
 {
     /** @var IndexControllerFactory */
-    protected $factory;
+    protected $indexControllerFactory;
 
     /** @var \Prophecy\Prophecy\ObjectProphecy */
-    protected $controllerManager;
+    protected $indexControllerManager;
 
     /** @var \Prophecy\Prophecy\ObjectProphecy */
     protected $serviceLocator;
 
     public function setUp()
     {
-        $this->controllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
+        $this->indexControllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
         $this->serviceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
-
-        $this->controllerManager->getServiceLocator()->willReturn($this->serviceLocator);
+        $this->indexControllerManager->getServiceLocator()->willReturn($this->serviceLocator);
     
-        $factory = new IndexControllerFactory();
-        $this->factory = $factory;
+        $indexControllerFactory = new IndexControllerFactory();
+        $this->indexControllerFactory = $indexControllerFactory;
     }
 
     public function testReturnIndexControllerFromFactory()
@@ -50,10 +49,9 @@ class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
         $formElementManager = $this->prophesize('Zend\Form\FormElementManager');
         $ajaxImageUploadForm = $this->prophesize('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm');
         $formElementManager->get('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm')->willReturn($ajaxImageUploadForm);
-
         $this->serviceLocator->get('FormElementManager')->willReturn($formElementManager);
 
-        $controller = $this->factory->__invoke($this->controllerManager->reveal());
+        $controller = $this->indexControllerFactory->__invoke($this->indexControllerManager->reveal());
         $this->assertInstanceOf('LearnZF2AjaxImageGallery\Controller\IndexController', $controller);
     }
 }
