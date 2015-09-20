@@ -22,7 +22,6 @@ use LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
-use Zend\Json\Json;
 use Zend\Mvc\MvcEvent;
 use Zend\File\Transfer\Adapter\Http;
 use Zend\Validator\File\IsImage;
@@ -45,7 +44,7 @@ class IndexController extends AbstractActionController
     private $ajaxForm = null;
 
     /**
-     * @var ViewModel|JsonModel
+     * @var ViewModel
      */
     private $view;
 
@@ -67,7 +66,7 @@ class IndexController extends AbstractActionController
     }
 
     /**
-     * @return Zend\View\Model\ViewModel
+     * @return ViewModel
      */
     public function indexAction()
     {
@@ -78,24 +77,18 @@ class IndexController extends AbstractActionController
     }
 
     /**
-     * @return Json|null
+     * @return JsonModel
      */
     protected function uploadAction()
     {
         $request = $this->getRequest();
-        $json = null;
-
-        if (!$request->isPost()) {
-            return $json;
-        }
-
-        $this->ajaxForm->setInputFilter($this->ajaxForm->getInputFilter());
-
+        $data = [];
+        
         if ($request->isXmlHttpRequest()) {
-           $json = Json::encode($this->prepareImages()->getVariables());
+            $data = $this->prepareImages();
         }
 
-        return $json;
+        return new JsonModel($data);
     }
 
     /**
@@ -113,9 +106,11 @@ class IndexController extends AbstractActionController
         if ($request->isPost()) {
             $data = $request->getPost()->toArray();
 
-            if ($request->isXmlHttpRequest() && is_file("public".$data["img"])) {
-                unlink("public".$data["img"]);
-                $status = true;
+            if ($request->isXmlHttpRequest()) {
+                if (is_file("public".$data["img"])) {
+                    unlink("public".$data["img"]);
+                    $status = true;
+                }
             }
         }
         return $status;
@@ -151,13 +146,11 @@ class IndexController extends AbstractActionController
 
     /**
      * Upload all images async
+     * @return array
      */
     private function prepareImages()
     {
         $adapter = new Http();
-        /**
-         * If validators are in the form, the adapter error messages won't be showed to the client
-         */
         $size = new Size(['min'=>'10kB', 'max'=>'5MB','useByteString' => true]);
         $extension = new Extension(['jpg','gif','png','jpeg','bmp','webp','svg'], true);
 
@@ -169,30 +162,25 @@ class IndexController extends AbstractActionController
 
     /**
      * @param  Http $adapter
-     * @return JsonModel
+     * @return array
      */
     private function uploadFiles(Http $adapter)
     {
         $uploadStatus = [];
 
         foreach ($adapter->getFileInfo() as $key => $file) {
-            if ($adapter->isValid($file["name"])) {
-                $adapter->receive($file["name"]);
-                if ($adapter->isReceived($file["name"]) && $adapter->isUploaded($file["name"])) {
-                    $uploadStatus["successFiles"][] = $file["name"]." was successfully uploaded";
-                } else {
-                    $uploadStatus["errorFiles"][] = $file["name"]." was not uploaded";
-                }
-            } else {
+            if (!$adapter->isValid($file["name"])) {
                 foreach ($adapter->getMessages() as $key => $msg) {
                     $uploadStatus["errorFiles"][] = $file["name"]." ".strtolower($msg);
                 }
             }
+            
+            if (!$adapter->receive($file["name"])) {
+                $uploadStatus["errorFiles"][] = $file["name"]." was not uploaded";
+            } else {
+                $uploadStatus["successFiles"][] = $file["name"]." was successfully uploaded";
+            }
         }
-
-        $this->view->setTerminal(true);
-        $model = new JsonModel($uploadStatus);
-        $model->setTerminal(true);
-        return $model;
+        return $uploadStatus;
     }
 }

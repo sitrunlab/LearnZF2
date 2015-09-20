@@ -35,10 +35,14 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function setUp()
     {
+        $_SERVER['CONTENT_LENGTH'] = 10;
         $this->setApplicationConfig(
             include dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/config/application.config.php'
         );
 
+        /**
+         * This will always throw "file was illegally uploaded. This could be a possible attack"
+         */
         $_FILES = [
             'imageUpload' => [
                 "name" => __DIR__ . DIRECTORY_SEPARATOR . "_files" . DIRECTORY_SEPARATOR . "test1.jpg",
@@ -119,8 +123,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->dispatch('/learn-zf2-ajax-image-gallery/index/index', 'POST', $_FILES, true);
         $request = $this->getRequest();
         $this->assertTrue($request->isXmlHttpRequest());
-        $this->dispatch('/learn-zf2-ajax-image-gallery/index/upload'); 
-        $this->assertTrue($request->isPost());
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/upload');
     }
 
     public function testUploadUrlMethodIsNotPost()
@@ -140,7 +143,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testAjaxDeleteImageAction()
     {
-        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', "POST", ["/userfiles/images/test1.jpg"], true); 
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', "POST", ["img" => "/userfiles/images/test1.jpg"], true); 
         $request = $this->getRequest();
         $this->assertTrue($request->isXmlHttpRequest());
         $this->assertTrue($request->isPost());
@@ -148,7 +151,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testAjaxDeleteImageMethodNotPost()
     {
-        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', "GET", ["/userfiles/images/test1.jpg"], true); 
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', "GET", ["img" => "/userfiles/images/test1.jpg"], true); 
         $request = $this->getRequest();
         $this->assertTrue($request->isXmlHttpRequest());
         $this->assertFalse($request->isPost());
