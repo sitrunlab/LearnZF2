@@ -76,7 +76,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->assertModuleName('LearnZF2AjaxImageGallery');
         $this->assertControllerName('LearnZF2AjaxImageGallery\Controller\Index');
         $this->assertControllerClass('IndexController');
-        $this->assertMatchedRouteName('learnzf2ajaximagegallery');
+        $this->assertMatchedRouteName('learn-zf2-ajax-image-gallery');
     }
 
     public function testIndexActionHasForm()
