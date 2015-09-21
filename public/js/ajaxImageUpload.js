@@ -25,6 +25,10 @@
     'use strict';
 
     var request,
+        /**
+         * @namespace
+         * @return {Object}
+         */
         ajaxImageUpload = {
 
         /**
@@ -35,6 +39,7 @@
              * Listen for click event and show the upload button
              *
              * @param  {Object} event
+             * @function  {Object} event.preventDefault()
              *
              * @return {void}
              */
@@ -48,6 +53,7 @@
              * Listen for click event and show uploaded images
              *
              * @param  {Object} event
+             * @function  {Object} event.preventDefault()
              *
              * @return {void}
              */
@@ -60,6 +66,7 @@
              * Listen for click event and show the upload form
              *
              * @param  {Object} event
+             * @function  {Object} event.preventDefault
              *
              * @return {void}
              */
@@ -74,6 +81,7 @@
              * Listen for change event and submit the form
              *
              * @param  {Object} event
+             * @function  {Object} event.preventDefault
              *
              * @return {void}
              */
@@ -92,6 +100,7 @@
              * Listen for submit event and prevent the request from refreshing the page
              *
              * @param  {Object} event
+             * @function  {Object} event.preventDefault
              *
              * @return {void}
              */
@@ -149,9 +158,9 @@
          * @method showMessages
          *
          * @param  {String} text
-         * @param  {String} elementCreate
-         * @param  {String} elementAppend
-         * @param  {String} className
+         * @param  {String} elementCreate - element that will hold the text
+         * @param  {String} elementAppend - element which will serve as a container for all elements from elementCreate
+         * @param  {String} className - csss class for the element
          *
          * @return {void}
          */
@@ -177,8 +186,8 @@
          * @method setAjaxResponse
          *
          * @param  {Object} response
-         * @param  {String} elementCreate
-         * @param  {String} elementAppend
+         * @param  {String} elementCreate - element that will hold the text
+         * @param  {String} elementAppend - the element for which to append elementCreate
          *
          * @return {void}
          */
@@ -226,7 +235,7 @@
         },
 
         /**
-         * The big image on the right, next to thumbnails
+         * The big image on the right
          *
          * @method viewImage
          * 
@@ -260,11 +269,6 @@
             });
         },
 
-        /**
-         * Abort every previous AJAX request if new is made.
-         * The method will abort on both client and server sides.
-         */
-        
         /**
          * Abort every previous AJAX request if new is made.
          * The method will abort on both client and server sides.

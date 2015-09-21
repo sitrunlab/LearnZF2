@@ -28,6 +28,9 @@ use Zend\Validator\File\IsImage;
 use Zend\Validator\File\Size;
 use Zend\Validator\File\Extension;
 
+/**
+ * @author  Stanimir Dimitrov <stanimirdim92@gmail.com>
+ */
 class IndexController extends AbstractActionController
 {
     /**
@@ -175,11 +178,13 @@ class IndexController extends AbstractActionController
                 }
             }
             
+            // @codeCoverageIgnoreStart
             if (!$adapter->receive($file["name"])) {
                 $uploadStatus["errorFiles"][] = $file["name"]." was not uploaded";
             } else {
                 $uploadStatus["successFiles"][] = $file["name"]." was successfully uploaded";
             }
+            // @codeCoverageIgnoreEnd
         }
         return $uploadStatus;
     }
