@@ -21,6 +21,7 @@ return [
         'LearnZF2I18n',
         'LearnZF2Authentication',
         'LearnZF2Captcha',
+        'LearnZF2AjaxImageGallery',
     ],
     'module_listener_options' => [
         'module_paths' => [
