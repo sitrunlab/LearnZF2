@@ -1,0 +1,778 @@
+<div class="col-lg-9">
+
+    <h1>Ajax Image upload example with Zend Framework 2</h1>
+
+    <div class="demo-box">
+        <div class="col-lg-4">
+            <button type="button" class="button modal-toggle"><i class="fa fa-upload"></i>Upload images</button>
+            <?php
+             $this->headScript()->prependFile($this->basePath('/js/ajaxImageUpload.js'));
+
+             /**
+              * @var $form AjaxImageUploadForm
+              */
+            $form = $this->form;
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            echo $this->partial("/imgupload.phtml");
+            echo $this->form()->closeTag();
+            ?>
+        </div>
+    </div>
+
+    <p>This demo will show you how to create simple image galleryusing AJAX and <code>Zend\File\Transfer\Adapter\Http</code>
+    Current features are:
+        <ul>
+            <li>Mimetype validation</li>
+            <li>File size validation</li>
+            <li>Is file an actual image validation</li>
+            <li>Success messages for uploaded files</li>
+            <li>Error messages for not uploaded files and the exact error</li>
+            <li>Image deletion</li>
+            <li>Image grid view with a bigger view of the selected image</li>
+            <li>Multiple files upload</li>
+        </ul>
+    </p>
+
+<code>LearnZF2AjaxImageGallery\Controller\IndexController</code>
+
+<pre><code class="language-php">
+/**
+ * @return JsonModel
+ */
+protected function uploadAction()
+{
+    $request = $this->getRequest();
+    $data = [];
+    
+    if ($request->isXmlHttpRequest()) {
+        $data = $this->prepareImages();
+    }
+
+    return new JsonModel($data);
+}
+
+/**
+ * Deleted image with from a given src
+ *
+ * @method deleteimageAction
+ *
+ * @return bool
+ */
+protected function deleteimageAction()
+{
+    $request = $this->getRequest();
+    $status = false;
+
+    if ($request->isPost()) {
+        $data = $request->getPost()->toArray();
+
+        if ($request->isXmlHttpRequest()) {
+            if (is_file("public".$data["img"])) {
+                unlink("public".$data["img"]);
+                $status = true;
+            }
+        }
+    }
+    return $status;
+}
+
+/**
+ * Get all files from all folders and list them in the gallery
+ * getcwd() is there to make the work with images path easier
+ * 
+ * @return JsonModel
+ */
+protected function filesAction()
+{
+    /**
+     * It's easier to work without /public in the image path.
+     */
+    chdir(getcwd()."/public/");
+
+    $dir = new \RecursiveDirectoryIterator('userfiles/', \FilesystemIterator::SKIP_DOTS);
+    $it  = new \RecursiveIteratorIterator($dir, \RecursiveIteratorIterator::SELF_FIRST);
+    $it->setMaxDepth(50);
+    $files = [];
+    $i = 0;
+    foreach ($it as $file) {
+        if ($file->isFile()) {
+            $files[$i]["filelink"] = DIRECTORY_SEPARATOR.$file->getPath().DIRECTORY_SEPARATOR.$file->getFilename();
+            $files[$i]["filename"] = $file->getFilename();
+            $i++;
+        }
+    }
+    chdir(dirname(getcwd()));
+    $model = new JsonModel();
+    $model->setVariables(["files" => $files]);
+    return $model;
+}
+
+/**
+ * Upload all images async
+ * @return array
+ */
+private function prepareImages()
+{
+    $adapter = new Http();
+    $size = new Size(['min'=>'10kB', 'max'=>'5MB','useByteString' => true]);
+    $extension = new Extension(['jpg','gif','png','jpeg','bmp','webp','svg'], true);
+
+    $adapter->setValidators([$size, new IsImage(), $extension]);
+
+    $adapter->setDestination('public/userfiles/images/');
+    return $this->uploadFiles($adapter);
+}
+
+/**
+ * @param  Http $adapter
+ * @return array
+ */
+private function uploadFiles(Http $adapter)
+{
+    $uploadStatus = [];
+
+    foreach ($adapter->getFileInfo() as $key => $file) {
+        if (!$adapter->isValid($file["name"])) {
+            foreach ($adapter->getMessages() as $key => $msg) {
+                $uploadStatus["errorFiles"][] = $file["name"]." ".strtolower($msg);
+            }
+        }
+        
+        if (!$adapter->receive($file["name"])) {
+            $uploadStatus["errorFiles"][] = $file["name"]." was not uploaded";
+        } else {
+            $uploadStatus["successFiles"][] = $file["name"]." was successfully uploaded";
+        }
+    }
+    return $uploadStatus;
+}
+    </code>
+</pre>
+
+<code>LearnZF2AjaxImageGallery\Factory\Controller\IndexControllerFactory</code>
+
+<pre><code class="language-php">
+public function __invoke(ControllerManager $controllerManager)
+{
+    $serviceLocator = $controllerManager->getServiceLocator();
+
+    $controller = new IndexController(
+        (object) $serviceLocator->get('FormElementManager')->get('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm')
+    );
+
+    return $controller;
+}
+    </code>
+</pre>
+
+<code>LearnZF2AjaxImageGallery\Factory\Form\AjaxImageUploadFormFactory</code>
+
+<pre><code class="language-php">
+/**
+ * @{inheritDoc}
+ */
+public function createService(ServiceLocatorInterface $serviceLocator)
+{
+    $form = new AjaxImageUploadForm();
+
+    return $form;
+}
+    </code>
+</pre>
+
+<code>LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm</code>
+
+<pre><code class="language-php">
+public function __construct()
+{
+    parent::__construct("upload");
+}
+
+public function init()
+{
+    $this->setAttribute('action', "/learn-zf2-ajax-image-gallery/index/upload");
+    $this->setAttribute('method', 'post');
+
+    $this->add([
+        'name' => 'imageUpload',
+        'type'  => 'File',
+        'attributes' => [
+            'class' => 'imgupload',
+            'id' => 'imgajax',
+            'multiple' => true,
+        ],
+    ]);
+}
+
+public function getInputFilterSpecification()
+{
+    return [
+        [
+            "name"=>"imageUpload",
+            "required" => false,
+        ],
+    ];
+}
+    </code>
+</pre>
+
+<code>style.css</code>
+
+<pre><code class="language-css">
+.dinamicly-div-append-wrapper {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 160001;
+}
+.view-large-image {
+    float: right;
+    max-width: 46%;
+    width: auto;
+    margin: 0 20px;
+}
+.large-image {
+    max-width: 100%;
+    height: auto;
+}
+.image-grid{
+    float: left;
+    max-width: 46%;
+    width: auto;
+    margin: 0 20px;
+}
+.image-upload-message {
+    border-radius: 4px;
+    top: 10px;
+    right: 10px;
+    width: auto;
+    padding: 9px;
+    position: relative;
+    margin: 5px;
+}
+.image-border {
+    box-shadow: 1px 1px 11px #4A4A4A;
+    -webkit-transition: .3s cubic-bezier(0.04, -0.01, 0.25, 1);
+    -moz-transition: .3s cubic-bezier(0.04, -0.01, 0.25, 1);
+    -o-transition: .3s cubic-bezier(0.04, -0.01, 0.25, 1);
+    -ms-transition: .3s cubic-bezier(0.04, -0.01, 0.25, 1);
+    transition: .3s cubic-bezier(0.04, -0.01, 0.25, 1);
+}
+.successFiles, .success, .active {
+    color: #FFF;
+    background: #2ECC71;
+}
+.errorFiles, .error, .deactivated {
+    color: #FFF;
+    background: #C0392B;
+}
+#modal-imgupload {
+    display: none;
+}
+.modal-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.ajax-loader {
+    background: url("../img/ajax-loader.gif");
+    width: 18px;
+    height: 15px;
+    text-align: center;
+    margin: 0 50% 0 48%;
+}
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    border: none;
+    z-index: 1000;
+    -webkit-transition: color .1s ease-in-out;
+    -o-transition: color .1s ease-in-out;
+    -moz-transition: color .1s ease-in-out;
+    -ms-transition: color .1s ease-in-out;
+    transition: color .1s ease-in-out;
+    color: #575757;
+}
+.modal-window {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    z-index: 160000;
+}
+.file-upload-label {
+    padding: 12px 30px;
+    background: #FDFDFD;
+    border: 1px solid #E4E4E4;
+    border-radius: 5px;
+    width: 266px;
+    color: #8C8C8C;
+    margin: 5% auto;
+    display: block;
+    cursor: pointer;
+}
+#imgajax {
+    padding: 11px;
+    position: fixed;
+    top: -1000px;
+}
+.button {
+    padding: 12px 30px;
+    background: #FDFDFD;
+    border: 1px solid #E4E4E4;
+    border-radius: 5px;
+    color: #8C8C8C;
+}
+.uploader-inline {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.buttons-frame {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 36px;
+    z-index: 200;
+}
+.content-window {
+    position: absolute;
+    top: 84px;
+    left: 0;
+    right: 0;
+    bottom: 61px;
+    height: auto;
+    width: auto;
+    margin: 0;
+    overflow: auto;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.media-router {
+    position: relative;
+    padding: 0 6px;
+    margin: 0;
+    clear: both;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.media-frame {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.modal-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    min-height: 300px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.7);
+    background: #fcfcfc;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+.centered {
+    position: relative;
+    float: left;
+    padding: 0;
+    margin: 10px;
+    color: #464646;
+    cursor: pointer;
+    list-style: none;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+.thumbnail {
+    width: 150px;
+    height: 100px;
+}
+.gallery-view {
+    display: none;
+    width: auto;
+}
+    </code>
+</pre>
+
+<code>LearnZF2AjaxImageGallery/view/learn-zf2-ajax-image-gallery/imgupload.phtml</code>
+
+<pre><code class="language-php"><?php echo htmlentities('<div id="modal-imgupload">
+    <div class="modal-window">
+        <button type="button" class="modal-toggle modal-close glyphicon glyphicon-remove"></button>
+        <div class="modal-content">
+            <div class="menu-frame">
+                <div class="buttons-frame">
+                    <div class="media-router">
+                        <button type="button" class="upload button">Upload files</button>
+                        <button type="button" class="gallery button">Image gallery</button>
+                    </div>
+                </div>
+                <div class="content-window">
+                    <div class="uploader-inline">
+                        <label for="imgajax" class="file-upload-label">
+                            Select files for upload
+                            <?php
+                                echo $this->formFile($form->get("imageUpload"));
+                            ?>
+                        </label>
+                    </div>
+                    <div class="gallery-view">
+                        <div class="ajax-loader"></div>
+                        <div class="view-large-image">
+                            <img src="img/default.png" class="large-image">
+                        </div>
+                        <div class="image-grid">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>');
+    ?>
+</code></pre>
+
+<code>ajaxImageUpload.js</code>
+
+<pre><code class="language-php">
+<?php
+echo htmlentities("/*!
+ * AJAX Image upload gallery
+ *
+ * Copyright 2015 Stanimir Dimitrov - stanimirdim92@gmail.com
+ * Released under the MIT license
+ *
+ * More tutorials at http://learnzf2.sitrun-tech.com/
+ */
+
+/**
+ * This will create a local scope for all objects defined in this script.
+ * 
+ * @param  {Object} win
+ * @param  {Object} doc
+ * @param  {Object} $
+ * @param  {Undefined} undefined
+ *
+ * @return {Object}
+ */
+;(function (win, doc, $, undefined) {
+    /**
+     * use strict doesn't play nice with IIS/.NET
+     * http://bugs.jquery.com/ticket/13335
+     */
+    'use strict';
+
+        /**
+         * @namespace
+         * @return {Object}
+         */
+    var ajaxImageUpload,
+        request = {
+
+        /**
+         * Attach event listeners
+         */
+        init: function () {
+            /**
+             * Listen for click event and show the upload button
+             *
+             * @param  {Object} event
+             * @function  {Object} event.preventDefault()
+             *
+             * @return {void}
+             */
+            $(\"button.upload\").on(\"click\", function (event) {
+                event.preventDefault();
+                $(\".uploader-inline\").show();
+                $(\".gallery-view\").hide().find(\"figure.centered\").remove();
+            });
+
+            /**
+             * Listen for click event and show uploaded images
+             *
+             * @param  {Object} event
+             * @function  {Object} event.preventDefault()
+             *
+             * @return {void}
+             */
+            $(\".gallery\").on(\"click\", function (event) {
+                event.preventDefault();
+                ajaxImageUpload.showFiles();
+            });
+
+            /**
+             * Listen for click event and show the upload form
+             *
+             * @param  {Object} event
+             * @function  {Object} event.preventDefault
+             *
+             * @return {void}
+             */
+            $(\"button.modal-toggle\").on(\"click\", function (event) {
+                event.preventDefault();
+                $(\"#modal-imgupload\").fadeToggle(850);
+            });
+
+            ajaxImageUpload.abourtXHR(request);
+
+            /**
+             * Listen for change event and submit the form
+             *
+             * @param  {Object} event
+             * @function  {Object} event.preventDefault
+             *
+             * @return {void}
+             */
+            $(\"#imgajax\").on(\"change\", function (event) {
+                event.preventDefault();
+                $(\"#upload\").submit();
+
+                /**
+                 * Clear file input
+                 */
+                $(\"#imgajax\").replaceWith($(\"#imgajax\").val('').clone(true));
+
+            });
+
+            /**
+             * Listen for submit event and prevent the request from refreshing the page
+             *
+             * @param  {Object} event
+             * @function  {Object} event.preventDefault
+             *
+             * @return {void}
+             */
+            $(\"#upload\").on(\"submit\", function (event) {
+                event.preventDefault();
+
+                /**
+                 * Performe AJAX POST request 
+                 */
+                request = $.ajax({
+                    url: $(this).attr(\"action\"),
+                    type: \"POST\",
+                    data: new FormData($(this)[0]),
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                });
+
+                /**
+                 * Callback for success response
+                 *
+                 * @method $.ajax.done
+                 *
+                 * @param  {Object} result
+                 * @param  {Mixed} request
+                 * @param  {Mixed} headers
+                 *
+                 * @return {Object}
+                 */
+                request.done(function (result, request, headers) {
+                    ajaxImageUpload.showFiles();
+                    ajaxImageUpload.setAjaxResponse(result, \"p\", \"div.col-lg-9\");
+                });
+                
+                /**
+                 * Callback for error response
+                 *
+                 * @method $.ajax.fail
+                 *
+                 * @param  {String} error 
+                 * @param  {Mixed} textStatus 
+                 * @param  {Mixed} errorThrown             } 
+                 *
+                 * @return {Mixed} 
+                 */
+                request.fail(function (error, textStatus, errorThrown) {
+                    console.error(error, textStatus, errorThrown); //TODO must create a dialog popup
+                });
+            });
+        },
+
+        /**
+         * Create DOM nodes with text, class and appends them to elementAppend
+         *
+         * @method showMessages
+         *
+         * @param  {String} text
+         * @param  {String} elementCreate - element that will hold the text
+         * @param  {String} elementAppend - element which will serve as a container for all elements from elementCreate
+         * @param  {String} className - csss class for the element
+         *
+         * @return {void}
+         */
+        showMessages: function (text, elementCreate, elementAppend, className) {
+            var el = doc.createElement(elementCreate);
+            el.className += className;
+            el.innerHTML = text;
+
+            $(elementAppend).append(el).slideDown(1000, function (event) {
+                setTimeout(function() {
+                    $(elementCreate).slideUp(1000, function () {
+                        $(this).fadeOut(\"slow\", function () {
+                            $(this).remove();
+                         });
+                    });
+                }, 6000);
+            });
+        },
+
+        /**
+         * Show AJAX reponse
+         *
+         * @method setAjaxResponse
+         *
+         * @param  {Object} response
+         * @param  {String} elementCreate - element that will hold the text
+         * @param  {String} elementAppend - the element for which to append elementCreate
+         *
+         * @return {void}
+         */
+        setAjaxResponse: function (response, elementCreate, elementAppend) {
+            if (typeof response !== \"undefined\" && typeof response !== undefined) {
+                $(elementAppend).append($(\"<div class='dinamicly-div-append-wrapper'></div>\"));
+                $.each(response, function (className, text) {
+                    if (text.length > 1) {
+                        $.each(text, function (i, t) {
+                            ajaxImageUpload.showMessages(t, elementCreate, 'div.dinamicly-div-append-wrapper', \"image-upload-message \" + className);
+                        });
+                    } else {
+                        ajaxImageUpload.showMessages(text, elementCreate, 'div.dinamicly-div-append-wrapper', \"image-upload-message \" + className);
+                    }
+                });
+            }
+        },
+        
+        /**
+         * Gallery view
+         *
+         * @method showFiles
+         *
+         * @return {Object}
+         */
+        showFiles: function () {
+            $(\".large-image\").attr(\"src\", \"img/default.png\");
+            $(\".uploader-inline, .large-image\").hide();
+            $(\".gallery-view\").find(\"figure.centered\").not(\".large-image\").remove();
+            $(\".gallery-view, .ajax-loader\").show();
+
+            ajaxImageUpload.abourtXHR(request);
+
+            request = $.get(\"/learn-zf2-ajax-image-gallery/index/files\", function (files) {
+                $(\".ajax-loader\").hide();
+                $(\".large-image\").show();
+                if (files[\"files\"]) {
+                    $.each(files[\"files\"], function (key, imgFile) {
+                        $(\"div.image-grid\").append(\"<figure class='centered'><i class='glyphicon glyphicon-remove deleteimg'></i><img aria-checked='false' aria-label='\"+imgFile[\"filename\"]+\"' src='\"+imgFile[\"filelink\"]+\"' class='thumbnail' alt='\"+imgFile[\"filename\"]+\"' title='\"+imgFile[\"filename\"]+\"' /></figure>\");
+                    });
+                    ajaxImageUpload.viewImage();
+                    ajaxImageUpload.deleteImage();
+                }
+            });
+        },
+
+        /**
+         * The big image on the right
+         *
+         * @method viewImage
+         * 
+         * @return {void}
+         */
+        viewImage: function () {
+            $(\".thumbnail\").on(\"click\", function (event) {
+                event.preventDefault();
+                $(\".thumbnail\").removeClass('image-border').attr(\"aria-checked\", false);
+                $(this).addClass('image-border').attr(\"aria-checked\", true);
+                $(\".large-image\").attr(\"src\", $(this).attr(\"src\"));
+            });
+            $(\".large-image\").attr(\"src\", $(\".thumbnail\").first().attr(\"src\"));
+        },
+
+        /**
+         * Send a request to the server, where the script will check to see if the image exists
+         * and if it does it will be deleted
+         *
+         * @method deleteImage
+         *
+         * @return {Bool}
+         */
+        deleteImage: function () {
+            ajaxImageUpload.abourtXHR(request);
+
+            $(\".deleteimg\").on(\"click\", function (event) {
+                request = $.post(\"/learn-zf2-ajax-image-gallery/index/deleteimage\", {\"img\": $(this).next(\"img\").attr(\"src\")}, function () {
+                    ajaxImageUpload.showFiles();
+                });
+            });
+        },
+
+        /**
+         * Abort every previous AJAX request if new is made.
+         * The method will abort on both client and server sides.
+         *
+         * @method abourtXHR
+         *
+         * @param  {Object} xhr
+         *
+         * @return {void}
+         */
+        abourtXHR: function (xhr) {
+            if (xhr && xhr.readyState !== 4) {
+                xhr.abort();
+                xhr = null;
+            }
+        }
+    };
+
+    /**
+     * Init everyhing
+     *
+     * @method $.ready()
+     *
+     * @param  {Object} $
+     *
+     * @return {void}
+     */
+    $(doc).ready(function ($) {
+        'use strict';
+        ajaxImageUpload.init();
+    });
+})(this, document, jQuery);
+");
+?>
+</code></pre>
+
+<p>I'm planning to extend this module with other features like:
+    <ul>
+        <li><a href="https://github.com/Stanimirdim92/Image/tree/develop">Image manipulation</a></li>
+        <li>File progress</li>
+        <li>Live edit of images with the features from Image module</li>
+    </ul>
+</p>
+
+    <p>
+        By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
+    </p>
+</div>
