@@ -1,0 +1,34 @@
+<div id="modal-imgupload">
+    <div class="modal-window">
+        <button type="button" class="modal-toggle modal-close glyphicon glyphicon-remove"></button>
+        <div class="modal-content">
+            <div class="menu-frame">
+                <div class="buttons-frame">
+                    <div class="media-router">
+                        <button type="button" class="upload button">Upload files</button>
+                        <button type="button" class="gallery button">Image gallery</button>
+                    </div>
+                </div>
+                <div class="content-window">
+                    <div class="uploader-inline">
+                        <label for="imgajax" class="file-upload-label">
+                            Select files for upload
+                            <?php
+                                echo $this->formFile($form->get("imageUpload"));
+                            ?>
+                        </label>
+                    </div>
+                    <div class="gallery-view">
+                        <div class="ajax-loader"></div>
+                        <div class="view-large-image">
+                            <img src="img/default.png" class="large-image">
+                        </div>
+                        <div class="image-grid">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
