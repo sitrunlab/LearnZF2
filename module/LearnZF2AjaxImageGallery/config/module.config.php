@@ -3,7 +3,7 @@
 return [
     'router' => [
         'routes' => [
-            'LearnZF2AjaxImageGallery' => [
+            'learn-zf2-ajax-image-gallery' => [
                 'type'    => 'Literal',
                 'options' => [
                     'route'    => '/learn-zf2-ajax-image-gallery',

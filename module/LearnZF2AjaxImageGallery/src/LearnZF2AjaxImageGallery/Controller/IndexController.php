@@ -85,13 +85,10 @@ class IndexController extends AbstractActionController
     protected function uploadAction()
     {
         $request = $this->getRequest();
-        $data = [];
         
         if ($request->isXmlHttpRequest()) {
-            $data = $this->prepareImages();
+            return new JsonModel($this->prepareImages());
         }
-
-        return new JsonModel($data);
     }
 
     /**
@@ -154,6 +151,7 @@ class IndexController extends AbstractActionController
     private function prepareImages()
     {
         $adapter = new Http();
+
         $size = new Size(['min'=>'10kB', 'max'=>'5MB','useByteString' => true]);
         $extension = new Extension(['jpg','gif','png','jpeg','bmp','webp','svg'], true);
 
