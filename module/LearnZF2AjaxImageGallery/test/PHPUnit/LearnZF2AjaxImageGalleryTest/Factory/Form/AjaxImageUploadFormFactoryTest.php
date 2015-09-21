@@ -20,8 +20,6 @@ namespace LearnZF2AjaxImageGalleryTest\Factory\Form;
 
 use PHPUnit_Framework_TestCase;
 use LearnZF2AjaxImageGallery\Factory\Form\AjaxImageUploadFormFactory;
-use Zend\Form\FormElementManager;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 class AjaxImageUploadFormFactoryTest extends PHPUnit_Framework_TestCase
 {

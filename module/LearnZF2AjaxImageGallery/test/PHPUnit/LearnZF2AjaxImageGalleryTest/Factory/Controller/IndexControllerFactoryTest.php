@@ -20,8 +20,6 @@ namespace LearnZF2AjaxImageGalleryTest\Factory\Controller;
 
 use PHPUnit_Framework_TestCase;
 use LearnZF2AjaxImageGallery\Factory\Controller\IndexControllerFactory;
-use Zend\Mvc\Controller\ControllerManager;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
 {
