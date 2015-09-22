@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -53,11 +54,11 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
      */
     public function testPostData($priority, $priorityDesc)
     {
-        $postData = [
+        $postData = array(
             'logmessage' => 'a log message',
             'logformat' => 'xml',
             'logpriority' => $priority,
-        ];
+        );
         $this->dispatch('/learn-zf2-log', 'POST', $postData);
         $response = $this->getResponse();
 
@@ -66,11 +67,11 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testInvalidPostData()
     {
-        $postData = [
+        $postData = array(
             'logmessage' => 'foo',
             'logformat' => 'notvalidformat',
             'logpriority' => 100,
-        ];
+        );
         $this->dispatch('/learn-zf2-log', 'POST', $postData);
         $response = $this->getResponse();
 

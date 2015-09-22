@@ -16,10 +16,11 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2CaptchaTest\Factory\Form;
 
-use PHPUnit_Framework_TestCase;
 use LearnZF2Captcha\Factory\Form\CaptchaFormFactory;
+use PHPUnit_Framework_TestCase;
 use Zend\Form\FormElementManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -37,7 +38,7 @@ class CaptchaFormFactoryTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->formElementManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
-        $this->serviceLocator     = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
+        $this->serviceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
 
         $this->formElementManager->getServiceLocator()->willReturn($this->serviceLocator);
 
@@ -47,11 +48,11 @@ class CaptchaFormFactoryTest extends PHPUnit_Framework_TestCase
 
     public function provideCaptchaAdapterKeys()
     {
-        return [
-            [0],
-            [1],
-            [2],
-        ];
+        return array(
+            array(0),
+            array(1),
+            array(2),
+        );
     }
 
     /**
@@ -59,14 +60,14 @@ class CaptchaFormFactoryTest extends PHPUnit_Framework_TestCase
      */
     public function testCreateService($captchaAdapterKey)
     {
-        $config =  include __DIR__ . '/../../../../../config/captcha.config.php';
+        $config = include __DIR__.'/../../../../../config/captcha.config.php';
         $this->serviceLocator->get('Config')
                              ->willReturn($config);
 
         $application = $this->prophesize('Zend\Mvc\Application');
-        $mvcEvent    = $this->prophesize('Zend\Mvc\MvcEvent');
+        $mvcEvent = $this->prophesize('Zend\Mvc\MvcEvent');
         $application->getMvcEvent()->willReturn($mvcEvent);
-        $request     =  $this->prophesize('Zend\Http\PhpEnvironment\Request');
+        $request = $this->prophesize('Zend\Http\PhpEnvironment\Request');
         $request->getQuery('captcha_adapter', 0)->willReturn($captchaAdapterKey);
         $mvcEvent->getRequest()->willReturn($request);
 

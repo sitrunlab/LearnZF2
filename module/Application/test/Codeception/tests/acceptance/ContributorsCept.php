@@ -1,4 +1,5 @@
 <?php
+
 $I = new AcceptanceTester($scenario);
 $I->wantTo('get contributors page');
 $I->amOnPage('/contributors');

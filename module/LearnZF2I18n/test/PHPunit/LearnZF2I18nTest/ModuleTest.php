@@ -21,10 +21,10 @@ namespace LearnZF2I18nTest;
 
 use LearnZF2I18n\Module;
 use PHPUnit_Framework_TestCase as TestCase;
+use Zend\Console;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\SharedEventManager;
 use Zend\Http;
-use Zend\Console;
 use Zend\I18n\Translator\Translator;
 use Zend\Loader\StandardAutoloader;
 use Zend\Mvc\Application;
@@ -55,11 +55,11 @@ class ModuleTest extends TestCase
         $this->module = new Module();
         $app = $this->prophesize('Zend\Mvc\Application');
 
-        $sm = new ServiceManager(new Config([
-            'services' => [
-                'translator' => Translator::factory(['locale' => 'id_ID']),
-            ],
-        ]));
+        $sm = new ServiceManager(new Config(array(
+            'services' => array(
+                'translator' => Translator::factory(array('locale' => 'id_ID')),
+            ),
+        )));
         $app->getServiceManager()->willReturn($sm);
 
         $em = new EventManager();
@@ -76,13 +76,13 @@ class ModuleTest extends TestCase
 
     public function testGetAutoloaderConfig()
     {
-        $expected = [
-            'Zend\Loader\StandardAutoloader' => [
-                StandardAutoloader::LOAD_NS => [
+        $expected = array(
+            'Zend\Loader\StandardAutoloader' => array(
+                StandardAutoloader::LOAD_NS => array(
                     'LearnZF2I18n' => realpath(__DIR__.'/../../../src/LearnZF2I18n'),
-                ],
-            ],
-        ];
+                ),
+            ),
+        );
         $this->assertEquals($expected, $this->module->getAutoloaderConfig());
     }
 
@@ -147,7 +147,7 @@ class ModuleTest extends TestCase
         $e->setViewModel(new ViewModel());
         $request = new Http\Request();
         if (isset($lang)) {
-            $request->setQuery(new Parameters(['lang' => $lang]));
+            $request->setQuery(new Parameters(array('lang' => $lang)));
         }
         $e->setRequest($request);
 

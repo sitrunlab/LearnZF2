@@ -1,4 +1,5 @@
 <?php
+
 namespace LearnZF2PaginationTest\Factory\Controller;
 
 use LearnZF2Pagination\Factory\Controller\IndexControllerFactory;
@@ -21,7 +22,7 @@ class IndexControllerFactoryTest extends TestCase
 
     public function testCreateServiceWithData()
     {
-        $controller = $this->factory->createService($this->createServiceLocator(['pagination_data' => []]));
+        $controller = $this->factory->createService($this->createServiceLocator(array('pagination_data' => array())));
         $this->assertInstanceOf('LearnZF2Pagination\Controller\IndexController', $controller);
     }
 
@@ -32,11 +33,11 @@ class IndexControllerFactoryTest extends TestCase
     }
 
     /**
-     * @return ServiceLocatorInterface
-     *
      * @param array $data
+     *
+     * @return ServiceLocatorInterface
      */
-    private function createServiceLocator(array $data = [])
+    private function createServiceLocator(array $data = array())
     {
         $controllerManager = new ControllerManager();
         $sm = new ServiceManager();

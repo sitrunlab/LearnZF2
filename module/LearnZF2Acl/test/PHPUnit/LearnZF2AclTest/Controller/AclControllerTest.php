@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -46,11 +47,11 @@ class AclControllerTest extends AbstractHttpControllerTestCase
      */
     public function provideValidRole()
     {
-        return [
-            [0, '"RegisterUser"'],
-            [1, 'EditUser"'],
-            [2, '"AddUser"'],
-        ];
+        return array(
+            array(0, '"RegisterUser"'),
+            array(1, 'EditUser"'),
+            array(2, '"AddUser"'),
+        );
     }
 
     /**
@@ -58,9 +59,9 @@ class AclControllerTest extends AbstractHttpControllerTestCase
      */
     public function testPostData($roleId, $responseJson)
     {
-        $postData = [
+        $postData = array(
             'roleId' => $roleId,
-        ];
+        );
         $this->dispatch('/learn-zf2-acl/listresourcesandrights', 'POST', $postData);
         $response = $this->getResponse();
 

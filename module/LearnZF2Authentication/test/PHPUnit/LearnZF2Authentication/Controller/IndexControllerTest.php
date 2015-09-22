@@ -19,8 +19,8 @@
 
 namespace LearnZF2AuthenticationTest\Controller;
 
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use test\Bootstrap;
+use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class IndexControllerTest extends AbstractHttpControllerTestCase
 {
@@ -71,8 +71,8 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
     {
         $this->getRequest()->getHeaders()->addHeaderLine('Authorization', 'Basic YmFzaWM6c3Ryb25ncGFzc3dvcmQ=');
         $basicSuccess = $this->basicAuthAdapter();
-        $this->assertArrayHasKey("username", $basicSuccess->getIdentity());
-        $this->assertArrayHasKey("realm", $basicSuccess->getIdentity());
+        $this->assertArrayHasKey('username', $basicSuccess->getIdentity());
+        $this->assertArrayHasKey('realm', $basicSuccess->getIdentity());
     }
 
     public function testErrorBasicAction()

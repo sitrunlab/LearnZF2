@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -25,12 +26,12 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class DownloadControllerFactory implements FactoryInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $services = $serviceLocator->getServiceLocator();
-        $moduleList = [];
+        $moduleList = array();
         foreach ($services->get('Doctrine\ORM\EntityManager')
                                ->getRepository('Application\Entity\ModuleList')
                                ->findAll() as $module) {

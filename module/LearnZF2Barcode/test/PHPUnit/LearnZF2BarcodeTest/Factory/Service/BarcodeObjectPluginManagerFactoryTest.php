@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -40,8 +41,8 @@ class BarcodeObjectPluginManagerFactoryTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->services = new ServiceManager();
-        $this->services->setService('Config', []);
-        $this->factory  = new BarcodeObjectPluginManagerFactory();
+        $this->services->setService('Config', array());
+        $this->factory = new BarcodeObjectPluginManagerFactory();
     }
 
     public function testInstanceOfObjectPluginManager()

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -28,32 +29,32 @@ class AjaxImageUploadForm extends Form implements InputFilterProviderInterface
 {
     public function __construct()
     {
-        parent::__construct("upload");
+        parent::__construct('upload');
     }
 
     public function init()
     {
-        $this->setAttribute('action', "/learn-zf2-ajax-image-gallery/index/upload");
+        $this->setAttribute('action', '/learn-zf2-ajax-image-gallery/index/upload');
         $this->setAttribute('method', 'post');
 
-        $this->add([
+        $this->add(array(
             'name' => 'imageUpload',
-            'type'  => 'File',
-            'attributes' => [
+            'type' => 'File',
+            'attributes' => array(
                 'class' => 'imgupload',
                 'id' => 'imgajax',
                 'multiple' => true,
-            ],
-        ]);
+            ),
+        ));
     }
 
     public function getInputFilterSpecification()
     {
-        return [
-            [
-                "name"=>"imageUpload",
-                "required" => false,
-            ],
-        ];
+        return array(
+            array(
+                'name' => 'imageUpload',
+                'required' => false,
+            ),
+        );
     }
 }

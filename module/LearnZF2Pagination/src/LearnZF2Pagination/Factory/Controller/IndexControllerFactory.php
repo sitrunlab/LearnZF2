@@ -1,4 +1,5 @@
 <?php
+
 namespace LearnZF2Pagination\Factory\Controller;
 
 use LearnZF2Pagination\Controller\IndexController;
@@ -18,6 +19,6 @@ class IndexControllerFactory implements FactoryInterface
     {
         $config = $serviceLocator->getServiceLocator()->get('Config');
 
-        return new IndexController(isset($config['pagination_data']) ? $config['pagination_data'] : []);
+        return new IndexController(isset($config['pagination_data']) ? $config['pagination_data'] : array());
     }
 }

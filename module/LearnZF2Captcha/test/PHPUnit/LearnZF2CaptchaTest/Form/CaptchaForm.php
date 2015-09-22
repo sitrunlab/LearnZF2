@@ -16,6 +16,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2CaptchaTest\Form;
 
 use PHPUnit_Framework_TestCase;
@@ -30,7 +31,7 @@ class CaptchaForm extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->form = new CaptchaForm();
+        $this->form = new self();
     }
 
     public function testInit()

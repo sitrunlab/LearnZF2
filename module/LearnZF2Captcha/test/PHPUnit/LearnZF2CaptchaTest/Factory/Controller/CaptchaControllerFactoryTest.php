@@ -16,10 +16,11 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2CaptchaTest\Factory\Controller;
 
-use PHPUnit_Framework_TestCase;
 use LearnZF2Captcha\Factory\Controller\CaptchaControllerFactory;
+use PHPUnit_Framework_TestCase;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

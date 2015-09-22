@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -43,36 +44,36 @@ class FormControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostValidData()
     {
-        $postData = [
+        $postData = array(
             'id' => null,
             'name' => 'ikhsan',
             'gender' => 2,
-            'hobby' => [
+            'hobby' => array(
                 0 => 1,
-            ],
+            ),
             'email' => 'foo@bar.com',
             'birth' => '2008-10-01',
             'address' => 'jalan jalan',
             'direction' => 1,
-        ];
+        );
         $this->dispatch('/learn-zf2-form-usage', 'POST', $postData);
         $this->assertQueryContentContains('h3', 'Success!');
     }
 
     public function testPostInValidData()
     {
-        $postData = [
+        $postData = array(
             'id' => null,
             'name' => null,
             'gender' => 2,
-            'hobby' => [
+            'hobby' => array(
                 0 => 1,
-            ],
+            ),
             'email' => 'foo@bar.com',
             'birth' => '2008-10-01',
             'address' => 'jalan jalan',
             'direction' => 1,
-        ];
+        );
         $this->dispatch('/learn-zf2-form-usage', 'POST', $postData);
         $this->assertQueryContentContains('li', 'Value is required and can\'t be empty');
     }

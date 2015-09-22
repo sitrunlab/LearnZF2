@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,8 +19,8 @@
 
 namespace LearnZF2AjaxImageGalleryTest\Form;
 
-use PHPUnit_Framework_TestCase;
 use LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm;
+use PHPUnit_Framework_TestCase;
 
 /**
  * @author Stanimir Dimitrov <stanimirdim92@gmail.com>

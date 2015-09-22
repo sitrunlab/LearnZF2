@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -28,22 +29,22 @@ class LogForm extends Form implements InputFilterProviderInterface
 {
     public function init()
     {
-        $this->add([
+        $this->add(array(
             'name' => 'logmessage',
             'type' => 'Textarea',
-            'options' => [
+            'options' => array(
                 'label' => 'Log message',
-            ],
-            'attributes' => [
+            ),
+            'attributes' => array(
                 'value' => 'this is log message',
-            ],
-        ]);
+            ),
+        ));
 
-        $this->add([
+        $this->add(array(
             'name' => 'logpriority',
             'type' => 'Select',
-            'options' => [
-                'value_options' => [
+            'options' => array(
+                'value_options' => array(
                     0 => 'EMERG',
                     1 => 'ALERT',
                     2 => 'CRIT',
@@ -52,51 +53,51 @@ class LogForm extends Form implements InputFilterProviderInterface
                     5 => 'NOTICE',
                     6 => 'INFO',
                     7 => 'DEBUG',
-                ],
+                ),
                 'label' => 'Log priority',
-            ],
-        ]);
+            ),
+        ));
 
-        $this->add([
+        $this->add(array(
             'name' => 'logformat',
             'type' => 'Select',
-            'options' => [
-                'value_options' => [
+            'options' => array(
+                'value_options' => array(
                     'simple' => 'Simple',
                     'xml' => 'Xml',
-                ],
+                ),
                 'label' => 'Log format',
-            ],
-        ]);
+            ),
+        ));
 
-        $this->add([
+        $this->add(array(
             'name' => 'submit',
-            'attributes' => [
+            'attributes' => array(
                 'class' => 'form-control btn-primary',
-                'type'  => 'submit',
+                'type' => 'submit',
                 'value' => 'Submit log data',
                 'id' => 'submitbutton',
-            ],
-        ]);
+            ),
+        ));
     }
 
     public function getInputFilterSpecification()
     {
-        return [
-            [
-                'name'     => 'logmessage',
+        return array(
+            array(
+                'name' => 'logmessage',
                 'required' => true,
-                'validators' => [
-                    [
-                        'name'    => 'StringLength',
-                        'options' => [
+                'validators' => array(
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 255,
-                        ],
-                    ],
-                ],
-            ],
-        ];
+                            'min' => 1,
+                            'max' => 255,
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
 }

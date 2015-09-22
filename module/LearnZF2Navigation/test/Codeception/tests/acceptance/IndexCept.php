@@ -1,4 +1,5 @@
 <?php
+
 $I = new AcceptanceTester($scenario);
 $I->wantTo('Get the navigation start age');
 $I->amOnPage('/learn-zf2-navigation');

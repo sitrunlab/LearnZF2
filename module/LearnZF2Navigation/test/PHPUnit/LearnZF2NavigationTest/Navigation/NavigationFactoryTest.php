@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -47,15 +48,15 @@ class NavigationFactoryTest extends TestCase
 
     public function testCreateService()
     {
-        $sm = new ServiceManager(new Config([
-            'services' => [
+        $sm = new ServiceManager(new Config(array(
+            'services' => array(
                 'config' => include __DIR__.'/../../../../config/module.config.php',
                 'eventmanager' => new EventManager(),
                 'router' => new TreeRouteStack(),
                 'request' => new Request(),
-                'routematch' => new RouteMatch([]),
-            ],
-        ]));
+                'routematch' => new RouteMatch(array()),
+            ),
+        )));
 
         $event = new MvcEvent();
         $event->setRequest($sm->get('request'))
