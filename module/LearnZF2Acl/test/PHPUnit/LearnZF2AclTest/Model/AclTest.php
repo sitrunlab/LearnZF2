@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,8 +19,8 @@
 
 namespace LearnZF2AclTest\Model;
 
-use PHPUnit_Framework_TestCase;
 use LearnZF2Acl\Model\Acl;
+use PHPUnit_Framework_TestCase;
 
 class AclTest extends PHPUnit_Framework_TestCase
 {
@@ -36,12 +37,12 @@ class AclTest extends PHPUnit_Framework_TestCase
      */
     public function provideRoleRights()
     {
-        return [
-            [null, ['ViewHome', 'ViewUser', 'RegisterUser', 'EditUser', 'DeleteUser', 'AddUser']],
-            [0, ['ViewHome', 'ViewUser', 'RegisterUser']],
-            [1, ['ViewHome', 'ViewUser', 'EditUser']],
-            [2, ['ViewHome', 'ViewUser', 'EditUser', 'DeleteUser', 'AddUser']],
-        ];
+        return array(
+            array(null, array('ViewHome', 'ViewUser', 'RegisterUser', 'EditUser', 'DeleteUser', 'AddUser')),
+            array(0, array('ViewHome', 'ViewUser', 'RegisterUser')),
+            array(1, array('ViewHome', 'ViewUser', 'EditUser')),
+            array(2, array('ViewHome', 'ViewUser', 'EditUser', 'DeleteUser', 'AddUser')),
+        );
     }
 
     /**
@@ -57,11 +58,11 @@ class AclTest extends PHPUnit_Framework_TestCase
      */
     public function provideRoleResources()
     {
-        return [
-            [0, ['HomeController', 'UserController']],
-            [1, ['HomeController', 'UserController']],
-            [2, ['HomeController', 'UserController', 'AdminController']],
-        ];
+        return array(
+            array(0, array('HomeController', 'UserController')),
+            array(1, array('HomeController', 'UserController')),
+            array(2, array('HomeController', 'UserController', 'AdminController')),
+        );
     }
 
     /**

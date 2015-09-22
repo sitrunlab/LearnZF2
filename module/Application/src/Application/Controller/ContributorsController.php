@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -40,8 +41,8 @@ class ContributorsController extends AbstractActionController
     {
         $this->layout()->setVariable('skipWelcome', true);
 
-        return new ViewModel([
+        return new ViewModel(array(
             'contributors' => $this->contributors,
-        ]);
+        ));
     }
 }

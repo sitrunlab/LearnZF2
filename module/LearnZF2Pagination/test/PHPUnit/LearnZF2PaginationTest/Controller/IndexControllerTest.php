@@ -1,4 +1,5 @@
 <?php
+
 namespace LearnZF2PaginationTest\Controller;
 
 use LearnZF2Pagination\Controller\IndexController;
@@ -21,13 +22,13 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->assertQueryCount('tbody > tr', IndexController::ITEM_PER_PAGE);
 
         // Last page has only 2 results
-        $this->dispatchRoute('GET', ['page' => 50]);
+        $this->dispatchRoute('GET', array('page' => 50));
         $this->assertQueryCount('tbody > tr', 2);
     }
 
     public function testDispatchWithCategory()
     {
-        $this->dispatchRoute('GET', ['category' => 'music']);
+        $this->dispatchRoute('GET', array('category' => 'music'));
         $body = $this->getResponse()->getContent();
         // Assert there is a selected option
         $this->assertGreaterThan(0, strpos($body, 'selected'));
@@ -35,11 +36,11 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testDispatchWithNoResults()
     {
-        $this->dispatchRoute('GET', ['keyword' => 'QWERTYASDF123456789']);
+        $this->dispatchRoute('GET', array('keyword' => 'QWERTYASDF123456789'));
         $this->assertQuery('.alert-warning');
     }
 
-    private function dispatchRoute($method = null, $params = [], $isXmlHttpRequest = false)
+    private function dispatchRoute($method = null, $params = array(), $isXmlHttpRequest = false)
     {
         $this->dispatch('/learn-zf2-pagination', $method, $params, $isXmlHttpRequest);
     }

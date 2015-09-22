@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -31,22 +32,22 @@ class IndexController extends AbstractActionController
     /**
      * @var array
      */
-    protected $loggerConfig = [
-        'writers' => [
-            [
+    protected $loggerConfig = array(
+        'writers' => array(
+            array(
                 'name' => 'stream',
-                'options' => [
+                'options' => array(
                     'stream' => 'php://output',
-                    'formatter' => [
+                    'formatter' => array(
                         'name' => 'simple',
-                        'options' => [
+                        'options' => array(
                             'format' => '%timestamp% %priorityName% (%priority%): %message%',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ];
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    );
 
     /**
      * @var int
@@ -70,7 +71,7 @@ class IndexController extends AbstractActionController
         $logContent = '';
 
         // initialize when no submit anymore
-        $data = [];
+        $data = array();
         $data['logmessage'] = $this->form->get('logmessage')->getValue();
         if ($request->isPost()) {
             $this->form->setData($request->getPost());
@@ -78,7 +79,7 @@ class IndexController extends AbstractActionController
                 $data = $this->form->getData();
 
                 $this->loggerPriority = $data['logpriority'];
-                if ($data['logformat'] != 'simple') {
+                if ($data['logformat'] !== 'simple') {
                     $this->loggerConfig['writers'][0]['options']['formatter']['name'] = $data['logformat'];
                     unset($this->loggerConfig['writers'][0]['options']['formatter']['options']);
                 }
@@ -92,9 +93,9 @@ class IndexController extends AbstractActionController
         $logger->log((int) $this->loggerPriority, $data['logmessage']);
         $logContent = ob_get_clean();
 
-        return new ViewModel([
+        return new ViewModel(array(
             'form' => $this->form,
             'logContent' => $logContent,
-        ]);
+        ));
     }
 }

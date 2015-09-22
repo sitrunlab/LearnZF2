@@ -1,4 +1,5 @@
 <?php
+
 namespace LearnZF2FormUsage;
 
 class Module
@@ -10,12 +11,12 @@ class Module
 
     public function getAutoloaderConfig()
     {
-        return [
-            'Zend\Loader\StandardAutoloader' => [
-                'namespaces' => [
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
                     __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
-                ],
-            ],
-        ];
+                ),
+            ),
+        );
     }
 }

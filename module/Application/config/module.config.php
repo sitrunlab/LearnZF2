@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,138 +28,138 @@
  * Modified by Abdul Malik Ikhsan <samsonasik@gmail.com> as part of LearnZF2 project.
  */
 
-return [
-    'router' => [
-        'routes' => [
-            'home' => [
+return array(
+    'router' => array(
+        'routes' => array(
+            'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => [
-                    'route'    => '/',
-                    'defaults' => [
+                'options' => array(
+                    'route' => '/',
+                    'defaults' => array(
                         'controller' => 'Application\Controller\Index',
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
-            'download' => [
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'download' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
-                'options' => [
-                    'route'    => '/download[/:module][/:compress]',
-                    'defaults' => [
+                'options' => array(
+                    'route' => '/download[/:module][/:compress]',
+                    'defaults' => array(
                         'controller' => 'Application\Controller\Download',
-                        'action'     => 'learnmodule',
-                    ],
-                ],
-            ],
-            'credits' => [
+                        'action' => 'learnmodule',
+                    ),
+                ),
+            ),
+            'credits' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
-                'options' => [
-                    'route'    => '/credits',
-                    'defaults' => [
+                'options' => array(
+                    'route' => '/credits',
+                    'defaults' => array(
                         'controller' => 'Application\Controller\Credits',
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
-            'contributors' => [
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'contributors' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
-                'options' => [
-                    'route'    => '/contributors',
-                    'defaults' => [
+                'options' => array(
+                    'route' => '/contributors',
+                    'defaults' => array(
                         'controller' => 'Application\Controller\Contributors',
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
-            'sitemapxml' => [
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'sitemapxml' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
-                'options' => [
-                    'route'    => '/sitemapxml',
-                    'defaults' => [
+                'options' => array(
+                    'route' => '/sitemapxml',
+                    'defaults' => array(
                         'controller' => 'Application\Controller\Sitemap',
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
-        ],
-    ],
-    'service_manager' => [
-        'abstract_factories' => [
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+        ),
+    ),
+    'service_manager' => array(
+        'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
-        ],
-        'factories' => [
+        ),
+        'factories' => array(
             'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
-        ],
-    ],
-    'controllers' => [
-        'factories' => [
+        ),
+    ),
+    'controllers' => array(
+        'factories' => array(
             'Application\Controller\Download' => 'Application\Factory\Controller\DownloadControllerFactory',
             'Application\Controller\Index' => 'Application\Factory\Controller\IndexControllerFactory',
             'Application\Controller\Contributors' => 'Application\Factory\Controller\ContributorsControllerFactory',
             'Application\Controller\Console' => 'Application\Factory\Controller\ConsoleControllerFactory',
-        ],
-        'invokables' => [
+        ),
+        'invokables' => array(
             'Application\Controller\Sitemap' => 'Application\Controller\SitemapController',
             'Application\Controller\Credits' => 'Application\Controller\CreditsController',
-        ],
-    ],
-    'view_helpers' => [
-        'factories' => [
+        ),
+    ),
+    'view_helpers' => array(
+        'factories' => array(
             'downloadbuttonlink' => 'Application\Factory\View\Helper\DownloadButtonLinkFactory',
-        ],
-    ],
-    'view_manager' => [
+        ),
+    ),
+    'view_manager' => array(
         'display_not_found_reason' => true,
-        'display_exceptions'       => true,
-        'doctype'                  => 'HTML5',
-        'not_found_template'       => 'error/404',
-        'exception_template'       => 'error/index',
-        'template_map' => [
-            'layout/layout'           => __DIR__.'/../view/layout/layout.phtml',
+        'display_exceptions' => true,
+        'doctype' => 'HTML5',
+        'not_found_template' => 'error/404',
+        'exception_template' => 'error/index',
+        'template_map' => array(
+            'layout/layout' => __DIR__.'/../view/layout/layout.phtml',
             'application/index/index' => __DIR__.'/../view/application/index/index.phtml',
-            'error/404'               => __DIR__.'/../view/error/404.phtml',
-            'error/index'             => __DIR__.'/../view/error/index.phtml',
-        ],
-        'template_path_stack' => [
+            'error/404' => __DIR__.'/../view/error/404.phtml',
+            'error/index' => __DIR__.'/../view/error/index.phtml',
+        ),
+        'template_path_stack' => array(
             __DIR__.'/../view',
-        ],
-    ],
-    'console' => [
-        'contributors' => [
+        ),
+    ),
+    'console' => array(
+        'contributors' => array(
             'output' => 'data/contributors/contributors.pson',
-        ],
-        'router' => [
-            'routes' => [
-                'contributors' => [
+        ),
+        'router' => array(
+            'routes' => array(
+                'contributors' => array(
                     'type' => 'Simple',
-                    'options' => [
+                    'options' => array(
                         'route' => 'get contributors',
-                        'defaults' => [
+                        'defaults' => array(
                             'controller' => 'Application\Controller\Console',
-                            'action'     => 'getcontributors',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ],
+                            'action' => 'getcontributors',
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
 
-    'doctrine' => [
-        'driver' => [
-            'Application_driver' => [
+    'doctrine' => array(
+        'driver' => array(
+            'Application_driver' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => [
+                'paths' => array(
                     __DIR__.'/../src/Application/Entity',
-                ],
-            ],
-            'orm_default' => [
-                'drivers' => [
-                    'Application\Entity' =>  'Application_driver',
-                ],
-            ],
-        ],
-    ],
+                ),
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    'Application\Entity' => 'Application_driver',
+                ),
+            ),
+        ),
+    ),
 
-];
+);

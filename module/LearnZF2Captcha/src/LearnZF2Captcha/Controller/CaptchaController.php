@@ -16,10 +16,11 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2Captcha\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use LearnZF2Captcha\Form\CaptchaForm;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 /*
@@ -53,10 +54,10 @@ class CaptchaController extends AbstractActionController
             $form->setAttribute('method', 'get');
         }
 
-        return new ViewModel([
+        return new ViewModel(array(
             'form' => $form,
             'isValid' => $isValid,
             'isPost' => $request->isPost(),
-        ]);
+        ));
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace LearnZF2PaginationTest\Factory\View\Helper;
 
 use LearnZF2Pagination\Factory\View\Helper\QueryUrlFactory;
@@ -35,7 +36,7 @@ class QueryUrlFactoryTest extends TestCase
     public function testCreateServiceWithRouteMatch()
     {
         $e = new MvcEvent();
-        $e->setRouteMatch(new RouteMatch([]));
+        $e->setRouteMatch(new RouteMatch(array()));
         $helper = $this->factory->createService($this->createServiceLocator());
         $this->assertInstanceOf('LearnZF2Pagination\View\Helper\QueryUrl', $helper);
     }
@@ -49,7 +50,7 @@ class QueryUrlFactoryTest extends TestCase
         $sm->setService('Request', new Request());
         $sm->setService('Response', new Response());
         $sm->setService('EventManager', new EventManager());
-        $sm->setService('Router', TreeRouteStack::factory(['routes' => []]));
+        $sm->setService('Router', TreeRouteStack::factory(array('routes' => array())));
 
         $e = $e ?: new MvcEvent();
         $app = $this->prophesize('Zend\Mvc\Application');

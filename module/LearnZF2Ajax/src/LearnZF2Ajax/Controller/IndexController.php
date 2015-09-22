@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: mockie
@@ -17,10 +18,10 @@ use Zend\View\Model\JsonModel;
 
 class IndexController extends AbstractActionController
 {
-    protected $acceptCriteria = [
-        'Zend\View\Model\JsonModel' => ['application/json'],
-        'Zend\View\Model\ViewModel' => ['text/html'],
-    ];
+    protected $acceptCriteria = array(
+        'Zend\View\Model\JsonModel' => array('application/json'),
+        'Zend\View\Model\ViewModel' => array('text/html'),
+    );
 
     /**
      * @var FormInterface
@@ -34,7 +35,7 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        $result = ['result' => false,'message' => ''];
+        $result = array('result' => false,'message' => '');
         $viewModel = $this->acceptableviewmodelselector($this->acceptCriteria);
 
         $request = $this->getRequest();
@@ -44,9 +45,9 @@ class IndexController extends AbstractActionController
             $this->loginForm->setData($request->getPost());
 
             if ($this->loginForm->isValid()) {
-                $result = ['result' => true,'message' => 'Ajax request success'];
+                $result = array('result' => true,'message' => 'Ajax request success');
             } else {
-                $result = ['result' => false,'message' => $this->loginForm->getMessages()];
+                $result = array('result' => false,'message' => $this->loginForm->getMessages());
             }
         }
 
@@ -54,7 +55,7 @@ class IndexController extends AbstractActionController
             $viewModel = new JsonModel();
         }
 
-        $viewModel->setVariables(['form' => $this->loginForm, 'data' => $result]);
+        $viewModel->setVariables(array('form' => $this->loginForm, 'data' => $result));
 
         return $viewModel;
     }

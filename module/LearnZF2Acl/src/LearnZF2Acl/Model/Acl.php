@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -15,11 +16,12 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2Acl\Model;
 
 use Zend\Permissions\Acl\Acl as BaseAcl;
-use Zend\Permissions\Acl\Role\GenericRole as Role;
 use Zend\Permissions\Acl\Resource\GenericResource as Resource;
+use Zend\Permissions\Acl\Role\GenericRole as Role;
 
 /**
  * Acl model.
@@ -35,7 +37,7 @@ class Acl extends BaseAcl
     public function __construct()
     {
         $this->addRole(new Role('Guest'));
-        $this->addRole(new Role('User'),  'Guest');
+        $this->addRole(new Role('User'), 'Guest');
         $this->addRole(new Role('Admin'), 'User');
 
         $this->addResource(new Resource('HomeController'));
@@ -43,12 +45,12 @@ class Acl extends BaseAcl
         $this->addResource(new Resource('AdminController'));
 
         $this->allow('Guest', 'HomeController', 'ViewHome');
-        $this->allow('Guest', 'UserController', ['ViewUser', 'RegisterUser']);
+        $this->allow('Guest', 'UserController', array('ViewUser', 'RegisterUser'));
 
         $this->allow('User', 'UserController', 'EditUser');
         $this->deny('User', 'UserController', 'RegisterUser');
 
-        $this->allow('Admin', 'AdminController', ['DeleteUser', 'AddUser']);
+        $this->allow('Admin', 'AdminController', array('DeleteUser', 'AddUser'));
     }
 
     /**
@@ -60,18 +62,18 @@ class Acl extends BaseAcl
      */
     public function getRightLists($roleId = null)
     {
-        $rules = [];
+        $rules = array();
         $currentRole = 'All';
         foreach ($this->getResources() as $resource) {
             foreach ($this->getRoles() as $roleKey => $role) {
-                $rules[]    = $this->getRules(new Resource($resource), new Role($role));
-                if ($roleId == $roleKey) {
+                $rules[] = $this->getRules(new Resource($resource), new Role($role));
+                if ($roleId === $roleKey) {
                     $currentRole = $role;
                 }
             }
         }
 
-        $rights = [];
+        $rights = array();
         foreach ($rules as $rule) {
             if (is_array($rule)) {
                 foreach ($rule['byPrivilegeId'] as $right => $typeAndAssert) {
@@ -86,10 +88,10 @@ class Acl extends BaseAcl
             return $rights;
         }
 
-        $rightList = [];
+        $rightList = array();
         foreach ($this->getResources() as $resource) {
             foreach ($rights as $key => $right) {
-                if ($currentRole != 'All') {
+                if ($currentRole !== 'All') {
                     if ($this->isAllowed($currentRole, $resource, $right) && !in_array($right, $rightList)) {
                         $rightList[] = $right;
                     }
@@ -111,13 +113,13 @@ class Acl extends BaseAcl
     {
         $selectedRole = 'Guest';
         foreach ($this->getRoles() as $key => $role) {
-            if ($roleId == $key) {
+            if ($roleId === $key) {
                 $selectedRole = $role;
                 break;
             }
         }
 
-        $resources = [];
+        $resources = array();
         foreach ($this->getResources() as $resource) {
             foreach ($this->getRightLists() as $right) {
                 if ($this->isAllowed($selectedRole, $resource, $right)) {

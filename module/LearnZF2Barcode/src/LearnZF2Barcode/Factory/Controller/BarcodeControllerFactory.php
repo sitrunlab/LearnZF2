@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -19,13 +20,13 @@
 namespace LearnZF2Barcode\Factory\Controller;
 
 use LearnZF2Barcode\Controller\BarcodeController;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class BarcodeControllerFactory implements FactoryInterface
 {
     /**
-     * @{inheritDoc}
+     * {@inheritdoc}
      */
     public function createService(ServiceLocatorInterface $sl)
     {

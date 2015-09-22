@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -42,7 +43,7 @@ class FormController extends AbstractActionController
     public function indexAction()
     {
         $request = $this->getRequest();
-        $formMessages = [];
+        $formMessages = array();
         $isPost = false;
 
         if ($request->isPost()) {
@@ -52,10 +53,10 @@ class FormController extends AbstractActionController
             $isPost = true;
         }
 
-        return new ViewModel([
+        return new ViewModel(array(
             'form' => $this->form,
             'formMessages' => $formMessages,
             'isPost' => $isPost,
-        ]);
+        ));
     }
 }
