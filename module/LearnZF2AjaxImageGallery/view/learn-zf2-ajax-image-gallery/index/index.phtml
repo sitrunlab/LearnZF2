@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <p>This demo will show you how to create simple image galleryusing AJAX and <code>Zend\File\Transfer\Adapter\Http</code>
+    <p>This demo will show you how to create simple image galleryusing AJAX and <code>Zend\File\Transfer\Adapter\Http</code>.<br>
     Current features are:
         <ul>
             <li>Mimetype validation</li>
@@ -28,9 +28,18 @@
             <li>Is file an actual image validation</li>
             <li>Success messages for uploaded files</li>
             <li>Error messages for not uploaded files and the exact error</li>
-            <li>Image deletion</li>
+            <li>AJAX image deletion</li>
             <li>Image grid view with a bigger view of the selected image</li>
             <li>Multiple files upload</li>
+        </ul>
+    </p>
+
+    <p>Configuration:
+        <ul>
+            <li>Mininum upload size: 10kb</li>
+            <li>Maximum upload size: 5MB</li>
+            <li>Allowed extensions: jpg, gif, png, jpeg, bmp, webp, svg</li>
+            <li>Is case sensitive: Yes - JPEG !== jpeg</li>
         </ul>
     </p>
 
@@ -216,6 +225,21 @@ public function getInputFilterSpecification()
 }
     </code>
 </pre>
+
+<code>module.config.php</code>
+
+<pre><code class="language-php">
+'controllers' => [
+    'factories' => [
+        'LearnZF2AjaxImageGallery\Controller\Index' => 'LearnZF2AjaxImageGallery\Factory\Controller\IndexControllerFactory',
+    ],
+],
+'form_elements' => [
+    'factories' => [
+        'LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm' => 'LearnZF2AjaxImageGallery\Factory\Form\AjaxImageUploadFormFactory',
+    ],
+],
+</code></pre>
 
 <code>style.css</code>
 
