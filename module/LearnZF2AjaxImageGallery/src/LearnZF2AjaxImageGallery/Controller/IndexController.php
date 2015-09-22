@@ -85,10 +85,13 @@ class IndexController extends AbstractActionController
     protected function uploadAction()
     {
         $request = $this->getRequest();
+        $data = [];
         
         if ($request->isXmlHttpRequest()) {
-            return new JsonModel($this->prepareImages());
+            $data = $this->prepareImages();
         }
+        
+        return new JsonModel($data);
     }
 
     /**
