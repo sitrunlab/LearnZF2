@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -56,9 +57,9 @@ class ModuleTest extends PHPUnit_Framework_TestCase
 
     public function testGetConsoleUsage()
     {
-        $expected = [
+        $expected = array(
             'get contributors' => 'get contributors list',
-        ];
+        );
         $consoleAdapter = Console::detectBestAdapter();
         $this->assertEquals($expected, $this->module->getConsoleUsage(new $consoleAdapter()));
     }
@@ -68,16 +69,16 @@ class ModuleTest extends PHPUnit_Framework_TestCase
         // Create MvcEvent
         $e = new MvcEvent();
         $e->setViewModel(new ViewModel());
-        $rm = new RouteMatch([]);
+        $rm = new RouteMatch(array());
         $rm->setParam('controller', 'Application\Controller\Download');
         $e->setRouteMatch($rm);
-        $e->setTarget(new DownloadController([]));
+        $e->setTarget(new DownloadController(array()));
 
         // Create EntityManager and EntityRepository
         $moduleDetail = new ModuleList();
         $moduleDetail->setModuleDesc('Pretty description');
         $repo = $this->prophesize('Doctrine\ORM\EntityRepository');
-        $repo->findOneBy(['moduleName' => 'Application'])->willReturn($moduleDetail);
+        $repo->findOneBy(array('moduleName' => 'Application'))->willReturn($moduleDetail);
         $em = $this->prophesize('Doctrine\ORM\EntityManager');
         $em->getRepository('Application\Entity\ModuleList')->willReturn($repo);
         $this->sm->setService('Doctrine\ORM\EntityManager', $em->reveal());

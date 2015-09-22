@@ -21,33 +21,33 @@
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-return [
-    'learnzf2_captcha_config' => [
-        0 => [
+return array(
+    'learnzf2_captcha_config' => array(
+        0 => array(
             'adapter_name' => 'Dumb',
-            'options' => [
+            'options' => array(
                 'wordLen' => 5,
                 'label' => 'Please type this word BACKWARDS',
-            ],
-        ],
-        1 => [
+            ),
+        ),
+        1 => array(
             'adapter_name' => 'Figlet',
-            'options' => [
+            'options' => array(
                 'outputWidth' => 80,
                 'wordLen' => 7,
                 'label' => 'Please verify you are a human',
-            ],
-        ],
-        2 => [
+            ),
+        ),
+        2 => array(
             'adapter_name' => 'Image',
-            'options' => [
+            'options' => array(
                 'font' => __DIR__.'/../assets/fonts/arial.ttf',
                 'width' => 200,
                 'height' => 100,
                 'dotNoiseLevel' => 40,
                 'lineNoiseLevel' => 3,
                 'label' => 'Please verify you are a human',
-            ],
-        ],
-    ],
-];
+            ),
+        ),
+    ),
+);

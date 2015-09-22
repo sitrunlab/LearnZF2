@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,10 +28,10 @@ class LoginInputFilterTest extends PHPUnit_Framework_TestCase
     public function testHasFilters()
     {
         $loginInputFilter = new LoginInputFilter();
-        $loginInputFilter->exchangeArray([
+        $loginInputFilter->exchangeArray(array(
             'username' => 'admin',
             'password' => 'admin',
-        ]);
+        ));
         $this->assertSame(2, $loginInputFilter->getInputFilter()->count());
         $this->assertTrue($loginInputFilter->getInputFilter()->has('username'));
         $this->assertTrue($loginInputFilter->getInputFilter()->has('password'));

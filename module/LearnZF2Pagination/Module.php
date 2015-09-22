@@ -1,4 +1,5 @@
 <?php
+
 namespace LearnZF2Pagination;
 
 use Zend\Loader\StandardAutoloader;
@@ -26,12 +27,12 @@ class Module implements
      */
     public function getAutoloaderConfig()
     {
-        return [
-            'Zend\Loader\StandardAutoloader' => [
-                StandardAutoloader::LOAD_NS => [
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                StandardAutoloader::LOAD_NS => array(
                     __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
-                ],
-            ],
-        ];
+                ),
+            ),
+        );
     }
 }

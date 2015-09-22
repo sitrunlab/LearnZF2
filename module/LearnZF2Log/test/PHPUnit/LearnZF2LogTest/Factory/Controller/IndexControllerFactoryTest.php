@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,8 +19,8 @@
 
 namespace LearnZF2LogTest\Factory\Controller;
 
-use PHPUnit_Framework_TestCase;
 use LearnZF2Log\Factory\Controller\IndexControllerFactory;
+use PHPUnit_Framework_TestCase;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -37,9 +38,7 @@ class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->controllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
-        ;
         $this->serviceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
-        ;
 
         $this->controllerManager->getServiceLocator()->willReturn($this->serviceLocator);
 

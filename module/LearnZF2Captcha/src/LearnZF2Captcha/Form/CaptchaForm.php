@@ -16,6 +16,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2Captcha\Form;
 
 use Zend\Form\Form;
@@ -54,7 +55,7 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
      */
     private function collectValueOptions()
     {
-        $options = [];
+        $options = array();
         foreach ($this->captchaConfig as $key => $config) {
             $options[$key] = $config['adapter_name'];
         }
@@ -70,39 +71,39 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
         $this->setAttribute('id', 'captchaForm');
         $this->setAttribute('method', 'get');
 
-        $this->add([
+        $this->add(array(
             'type' => 'Zend\Form\Element\Select',
             'name' => 'captcha_adapter',
-            'options' => [
+            'options' => array(
                 'label' => 'Choose Captcha Adapter',
                 'value_options' => $this->collectValueOptions(),
-            ],
-            'attributes' => [
+            ),
+            'attributes' => array(
                 'class' => 'form-control',
                 'value' => $this->captchaAdapterKey,
-            ],
-        ]);
+            ),
+        ));
 
-        $this->add([
+        $this->add(array(
             'type' => 'Zend\Form\Element\Captcha',
             'name' => 'captcha',
-            'options' => [
+            'options' => array(
                 'label' => $this->captchaConfig[$this->captchaAdapterKey]['options']['label'],
-                'captcha' => [
+                'captcha' => array(
                     'class' => $this->collectValueOptions()[$this->captchaAdapterKey],
                     'options' => $this->captchaConfig[$this->captchaAdapterKey]['options'],
-                ],
-            ],
-        ]);
+                ),
+            ),
+        ));
 
-        $this->add([
+        $this->add(array(
             'type' => 'Zend\Form\Element\Submit',
             'name' => 'submitCaptcha',
-            'attributes' => [
+            'attributes' => array(
                 'value' => 'Submit',
                 'class' => 'submit',
-            ],
-        ]);
+            ),
+        ));
     }
 
     /**
@@ -110,8 +111,8 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
      */
     public function getInputFilterSpecification()
     {
-        return [
+        return array(
 
-        ];
+        );
     }
 }

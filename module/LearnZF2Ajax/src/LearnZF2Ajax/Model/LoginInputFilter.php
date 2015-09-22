@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: mockie
@@ -22,69 +23,69 @@ class LoginInputFilter implements InputFilterAwareInterface
     public function exchangeArray($data)
     {
         $this->username = (isset($data['username'])) ? $data['username'] : null;
-        $this->password  = (isset($data['password']))  ? $data['password']  : null;
+        $this->password = (isset($data['password']))  ? $data['password']  : null;
     }
 
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
-        throw new \Exception("Not used");
+        throw new \Exception('Not used');
     }
 
     public function getInputFilter()
     {
         if (!$this->inputFilter) {
             $inputFilter = new InputFilter();
-            $factory     = new InputFactory();
+            $factory = new InputFactory();
 
-            $inputFilter->add($factory->createInput([
-                'name'     => 'username',
+            $inputFilter->add($factory->createInput(array(
+                'name' => 'username',
                 'required' => true,
-                'filters'  => [
-                    ['name' => 'StripTags'],
-                    ['name' => 'StringTrim'],
-                ],
-                'validators' => [
-                    [
-                        'name'    => 'StringLength',
-                        'options' => [
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 4,
-                            'max'      => 10,
-                        ],
-                    ],
-                    [
+                            'min' => 4,
+                            'max' => 10,
+                        ),
+                    ),
+                    array(
                         'name' => 'Regex',
-                        'options' => [
+                        'options' => array(
                             'pattern' => '/admin/',
-                        ],
-                    ],
-                ],
-            ]));
+                        ),
+                    ),
+                ),
+            )));
 
-            $inputFilter->add($factory->createInput([
-                'name'     => 'password',
+            $inputFilter->add($factory->createInput(array(
+                'name' => 'password',
                 'required' => true,
-                'filters'  => [
-                    ['name' => 'StripTags'],
-                    ['name' => 'StringTrim'],
-                ],
-                'validators' => [
-                    [
-                        'name'    => 'StringLength',
-                        'options' => [
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 4,
-                            'max'      => 10,
-                        ],
-                    ],
-                    [
+                            'min' => 4,
+                            'max' => 10,
+                        ),
+                    ),
+                    array(
                         'name' => 'Regex',
-                        'options' => [
+                        'options' => array(
                             'pattern' => '/admin/',
-                        ],
-                    ],
-                ],
-            ]));
+                        ),
+                    ),
+                ),
+            )));
 
             $this->inputFilter = $inputFilter;
         }
