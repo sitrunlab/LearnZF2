@@ -11,7 +11,6 @@
         "doctrine/migrations": "dev-master"
     },
     "require-dev": {
-        "fabpot/php-cs-fixer": "1.*",
         "phpunit/PHPUnit": "4.*",
         "satooshi/php-coveralls": "dev-master",
         "codeception/codeception": "2.0.0",
