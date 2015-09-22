@@ -37,7 +37,7 @@ class Module implements
     BootstrapListenerInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getConfig()
     {
@@ -45,27 +45,27 @@ class Module implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAutoloaderConfig()
     {
-        return [
-            'Zend\Loader\StandardAutoloader' => [
-                StandardAutoloader::LOAD_NS => [
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                StandardAutoloader::LOAD_NS => array(
                     __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
-                ],
-            ],
-        ];
+                ),
+            ),
+        );
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function onBootstrap(EventInterface $e)
     {
         /* @var MvcEvent $e */
         $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
-        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initAuthtentication'], 100);
+        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, array($this, 'initAuthtentication'), 100);
     }
 
     public function initAuthtentication(MvcEvent $e)
@@ -73,7 +73,7 @@ class Module implements
         /*
          * @var MvcEvent $e
          */
-        $request  = $e->getRequest();
+        $request = $e->getRequest();
         $response = $e->getResponse();
         $view = $e->getApplication()->getMvcEvent()->getViewModel();
         $sm = $e->getApplication()->getServiceManager();
@@ -82,13 +82,13 @@ class Module implements
         /*
          * Call the factory class and try to authenticate
          */
-        if ($e->getRouteMatch()->getParam('action') == 'digest') {
+        if ($e->getRouteMatch()->getParam('action') === 'digest') {
             $authAdapter = $sm->get('LearnZF2Authentication\DigestAuthenticationAdapter');
         }
         $authAdapter->setRequest($request);
         $authAdapter->setResponse($response);
 
-        if ($e->getRouteMatch()->getParam('action') == 'basic' || $e->getRouteMatch()->getParam('action') == 'digest') {
+        if ($e->getRouteMatch()->getParam('action') === 'basic' || $e->getRouteMatch()->getParam('action') === 'digest') {
             $result = $authAdapter->authenticate();
 
             /*
@@ -102,8 +102,10 @@ class Module implements
                 foreach ($result->getMessages() as $msg) {
                     $view->authProblem = $msg;
                 }
+
                 return $view->authProblem;
             }
+
             return $view->identity = $result->getIdentity();
         }
     }

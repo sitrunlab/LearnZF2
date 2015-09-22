@@ -1,4 +1,5 @@
 <?php
+
 $I = new AcceptanceTester($scenario);
 $I->wantTo('get home page and click links');
 $I->amOnPage('/');

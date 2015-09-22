@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -19,8 +20,8 @@
 namespace LearnZF2Acl\Factory\Controller;
 
 use LearnZF2Acl\Controller\AclController;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Factory class for AclController creation.
@@ -30,11 +31,11 @@ use Zend\ServiceManager\FactoryInterface;
 class AclControllerFactory implements FactoryInterface
 {
     /**
-     * @{inheritDoc}
+     * {@inheritdoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $services   = $serviceLocator->getServiceLocator();
+        $services = $serviceLocator->getServiceLocator();
         $controller = new AclController($services->get('aclmodel'));
 
         return $controller;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -59,9 +60,9 @@ class BarcodeController extends AbstractActionController
 
         imagegif($barcode->draw(), './data/barcode.gif');
 
-        return new ViewModel([
+        return new ViewModel(array(
             'form' => $this->form,
-        ]);
+        ));
     }
 
     /**

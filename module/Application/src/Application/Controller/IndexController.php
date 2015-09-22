@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -19,9 +20,9 @@
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\ArrayAdapter;
+use Zend\Paginator\Paginator;
+use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
@@ -49,8 +50,8 @@ class IndexController extends AbstractActionController
         $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
         $paginator->setItemCountPerPage(10);
 
-        return new ViewModel([
+        return new ViewModel(array(
             'paginator' => $paginator,
-        ]);
+        ));
     }
 }

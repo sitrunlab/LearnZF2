@@ -1,4 +1,5 @@
 <?php
+
 namespace LearnZF2Pagination\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -29,7 +30,7 @@ class IndexController extends AbstractActionController
         $paginator->setCurrentPageNumber($page)
                   ->setItemCountPerPage(self::ITEM_PER_PAGE);
 
-        return new ViewModel(array_merge($this->params()->fromQuery(), ['paginator' => $paginator]));
+        return new ViewModel(array_merge($this->params()->fromQuery(), array('paginator' => $paginator)));
     }
 
     /**
@@ -53,7 +54,7 @@ class IndexController extends AbstractActionController
 
         // Remove those elements which doesn't accomplish the keyword condition
         foreach ($data as $key => $element) {
-            if (! $this->isKeywordInTitle($keyword, $element['title'])) {
+            if (!$this->isKeywordInTitle($keyword, $element['title'])) {
                 unset($data[$key]);
             }
         }

@@ -16,6 +16,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
+
 namespace LearnZF2CaptchaTest\Controller;
 
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
@@ -43,12 +44,12 @@ class CaptchaControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostData()
     {
-        $postData = [
+        $postData = array(
             'captcha_adapter' => '1',
             'captcha[id]' => 'Som3Rand0M',
             'captcha[input]' => 'OOFXY',
             'submitCaptcha' => 'submit',
-        ];
+        );
 
         $this->dispatch('/learn-zf2-captcha', 'POST', $postData);
     }

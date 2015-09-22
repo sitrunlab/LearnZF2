@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -48,12 +49,12 @@ class Module implements
      */
     public function getAutoloaderConfig()
     {
-        return [
-            'Zend\Loader\StandardAutoloader' => [
-                StandardAutoloader::LOAD_NS => [
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                StandardAutoloader::LOAD_NS => array(
                     __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
-                ],
-            ],
-        ];
+                ),
+            ),
+        );
     }
 }
