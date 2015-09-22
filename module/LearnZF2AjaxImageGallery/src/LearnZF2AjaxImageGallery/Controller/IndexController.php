@@ -85,10 +85,13 @@ class IndexController extends AbstractActionController
     protected function uploadAction()
     {
         $request = $this->getRequest();
+        $data = [];
         
         if ($request->isXmlHttpRequest()) {
-            return new JsonModel($this->prepareImages());
+            $data = $this->prepareImages();
         }
+        
+        return new JsonModel($data);
     }
 
     /**
@@ -107,10 +110,12 @@ class IndexController extends AbstractActionController
             $data = $request->getPost()->toArray();
 
             if ($request->isXmlHttpRequest()) {
+                // @codeCoverageIgnoreStart
                 if (is_file("public".$data["img"])) {
                     unlink("public".$data["img"]);
                     $status = true;
                 }
+                // @codeCoverageIgnoreEnd
             }
         }
         return $status;
