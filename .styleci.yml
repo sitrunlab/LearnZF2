@@ -10,6 +10,7 @@ enabled:
 disabled:
   - align_double_arrow
   - short_array_syntax
+  - header_comment
 
 finder:
   exclude:
@@ -18,4 +19,3 @@ finder:
     - "*.php"
   path:
     - "module"
-
