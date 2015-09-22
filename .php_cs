@@ -4,6 +4,7 @@ $config = Symfony\CS\Config\Config::create();
 $config->level(null);
 $config->fixers(
     array(
+        'linefeed',
         'indentation',
         'linefeed',
         'trailing_spaces',
