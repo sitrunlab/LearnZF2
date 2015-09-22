@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -22,10 +23,10 @@
 
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractConsoleController;
 use Zend\Console\Adapter\AdapterInterface as Console;
 use Zend\Console\ColorInterface as Color;
 use Zend\Http\Client as HttpClient;
+use Zend\Mvc\Controller\AbstractConsoleController;
 
 /**
  * Console controller to get contributor list.
@@ -53,7 +54,7 @@ class ConsoleController extends AbstractConsoleController
     public function __construct(Console $console, array $config, HttpClient $httpClient)
     {
         $this->console = $console;
-        $this->config  = $config;
+        $this->config = $config;
 
         $this->httpClient = $httpClient;
     }
@@ -103,7 +104,7 @@ class ConsoleController extends AbstractConsoleController
                 $error = $response->getStatusCode().': '.$response->getReasonPhrase();
                 $this->reportError($width, strlen($message), $error);
             }
-            $body     = $response->getBody();
+            $body = $response->getBody();
             $userInfo = json_decode($body, 1);
             $contributors[$i]['user_info'] = $userInfo;
             $this->reportSuccess($width, strlen($message));
@@ -129,9 +130,9 @@ class ConsoleController extends AbstractConsoleController
             return;
         }
 
-        $body         = $response->getBody();
+        $body = $response->getBody();
         $contributors = json_decode($body, true);
-        $total        = count($contributors);
+        $total = count($contributors);
 
         $contributors = $this->collectContributorsInfo($contributors, $total, $width);
 

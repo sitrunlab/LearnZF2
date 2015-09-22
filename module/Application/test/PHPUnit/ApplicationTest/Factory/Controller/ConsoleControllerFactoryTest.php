@@ -1,4 +1,5 @@
 <?php
+
 namespace ApplicationTest\Factory\Controller;
 
 use Application\Factory\Controller\ConsoleControllerFactory;
@@ -23,7 +24,7 @@ class ConsoleControllerFactoryTest extends TestCase
     {
         $sm = new ServiceManager();
         $sm->setService('Console', new Posix());
-        $sm->setService('Config', []);
+        $sm->setService('Config', array());
         $cm = new ControllerManager();
         $cm->setServiceLocator($sm);
 

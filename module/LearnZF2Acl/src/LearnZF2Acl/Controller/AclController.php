@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,8 +19,8 @@
 
 namespace LearnZF2Acl\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use LearnZF2Acl\Model\Acl;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
@@ -49,31 +50,31 @@ class AclController extends AbstractActionController
     {
         $defaultSelectedRoleId = 0;
 
-        return new ViewModel([
+        return new ViewModel(array(
             'defaultSelectedRoleId' => $defaultSelectedRoleId,
-            'roles'     => $this->aclmodel->getRoles(),
+            'roles' => $this->aclmodel->getRoles(),
             'resources' => $this->aclmodel->getResources(),
-            'rights'     => $this->aclmodel->getRightLists(),
+            'rights' => $this->aclmodel->getRightLists(),
             'resourcesSelected' => $this->aclmodel->getResourceByRole($defaultSelectedRoleId),
             'rightsSelected' => $this->aclmodel->getRightLists($defaultSelectedRoleId),
-        ]);
+        ));
     }
 
     public function listresourcesandrightsAction()
     {
-        $resources = [];
-        $rights    = [];
+        $resources = array();
+        $rights = array();
 
         if ($this->request->isPost()) {
             $roleId = $this->request->getPost('roleId', 0);
 
             $resources = $this->aclmodel->getResourceByRole($roleId);
-            $rights    = $this->aclmodel->getRightLists($roleId);
+            $rights = $this->aclmodel->getRightLists($roleId);
         }
 
-        return new JsonModel([
+        return new JsonModel(array(
             'resources' => $resources,
-            'rights'    => $rights,
-        ]);
+            'rights' => $rights,
+        ));
     }
 }

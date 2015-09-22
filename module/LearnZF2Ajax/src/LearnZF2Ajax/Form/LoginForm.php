@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: mockie
@@ -18,28 +19,28 @@ class LoginForm extends Form
         parent::__construct('login');
         $this->setAttribute('method', 'post');
 
-        $this->add([
+        $this->add(array(
             'name' => 'username',
-            'type'  => 'Text',
-            'attributes' => [
+            'type' => 'Text',
+            'attributes' => array(
                 'class' => 'form-control',
                 'placeholder' => 'Username is admin',
-            ],
-            'options' => [
+            ),
+            'options' => array(
                 'label' => 'Username',
-            ],
-        ]);
+            ),
+        ));
 
-        $this->add([
+        $this->add(array(
             'name' => 'password',
-            'type'  => 'Password',
-            'attributes' => [
+            'type' => 'Password',
+            'attributes' => array(
                 'class' => 'form-control',
                 'placeholder' => 'Password is admin',
-            ],
-            'options' => [
+            ),
+            'options' => array(
                 'label' => 'Password',
-            ],
-        ]);
+            ),
+        ));
     }
 }

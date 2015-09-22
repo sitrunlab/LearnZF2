@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,8 +19,8 @@
 
 namespace LearnZF2AjaxImageGalleryTest\Factory\Form;
 
-use PHPUnit_Framework_TestCase;
 use LearnZF2AjaxImageGallery\Factory\Form\AjaxImageUploadFormFactory;
+use PHPUnit_Framework_TestCase;
 
 class AjaxImageUploadFormFactoryTest extends PHPUnit_Framework_TestCase
 {
@@ -35,7 +36,7 @@ class AjaxImageUploadFormFactoryTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->controllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
-        $this->locator     = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
+        $this->locator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
         $this->controllerManager->getServiceLocator()->willReturn($this->locator);
 
         $ajaxImageUploadFormFactory = new AjaxImageUploadFormFactory();
@@ -46,7 +47,7 @@ class AjaxImageUploadFormFactoryTest extends PHPUnit_Framework_TestCase
     {
         $app = $this->prophesize('Zend\Mvc\Application');
         $app->getMvcEvent()->willReturn($this->prophesize('Zend\Mvc\MvcEvent'));
- 
+
         $this->locator->get('Application')->willReturn($app);
 
         $form = $this->ajaxImageUploadFormFactory->createService($this->controllerManager->reveal());

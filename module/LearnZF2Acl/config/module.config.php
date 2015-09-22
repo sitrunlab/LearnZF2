@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -20,54 +21,54 @@
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-return [
-    'router' => [
-        'routes' => [
+return array(
+    'router' => array(
+        'routes' => array(
 
-            'learn-zf2-acl' => [
-                'type'    => 'Literal',
-                'options' => [
-                    'route'    => '/learn-zf2-acl',
-                    'defaults' => [
+            'learn-zf2-acl' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/learn-zf2-acl',
+                    'defaults' => array(
                         '__NAMESPACE__' => 'LearnZF2Acl\Controller',
-                        'controller'    => 'Acl',
-                        'action'        => 'index',
-                    ],
-                ],
+                        'controller' => 'Acl',
+                        'action' => 'index',
+                    ),
+                ),
                 'may_terminate' => true,
-                'child_routes' => [
-                    'listresourcesandrights' => [
-                        'type'    => 'Literal',
-                        'options' => [
-                            'route'    => '/listresourcesandrights',
-                            'defaults' => [
+                'child_routes' => array(
+                    'listresourcesandrights' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/listresourcesandrights',
+                            'defaults' => array(
                                 'action' => 'listresourcesandrights',
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
 
-    'controllers' => [
-        'factories' => [
+    'controllers' => array(
+        'factories' => array(
             'LearnZF2Acl\Controller\Acl' => 'LearnZF2Acl\Factory\Controller\AclControllerFactory',
-        ],
-    ],
+        ),
+    ),
 
-    'service_manager' => [
-        'invokables' => [
+    'service_manager' => array(
+        'invokables' => array(
             'aclmodel' => 'LearnZF2Acl\Model\Acl',
-        ],
-    ],
+        ),
+    ),
 
-    'view_manager' => [
-        'template_path_stack' => [
+    'view_manager' => array(
+        'template_path_stack' => array(
             'learn-zf2-acl' => __DIR__.'/../view',
-        ],
-        'strategies' => [
+        ),
+        'strategies' => array(
             'ViewJsonStrategy',
-        ],
-    ],
-];
+        ),
+    ),
+);

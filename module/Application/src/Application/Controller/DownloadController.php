@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,9 +19,9 @@
 
 namespace Application\Controller;
 
+use Zend\Filter\Compress;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Zend\Filter\Compress;
 
 class DownloadController extends AbstractActionController
 {
@@ -53,14 +54,14 @@ class DownloadController extends AbstractActionController
         if (in_array($module, $this->modulesList)) {
             $currDateTime = date('Y-m-dHis');
 
-            $fileToArchive  = $module.'.'.(($compress == 'zip') ? 'zip' : 'bz2');
-            $archive        = $fileToArchive.'-'.$currDateTime;
-            $filter     = new Compress([
-                'adapter' => ($compress == 'zip') ? 'Zip' : 'Bz2',
-                'options' => [
-                    'archive' =>  './data/'.$archive,
-                ],
-            ]);
+            $fileToArchive = $module.'.'.(($compress === 'zip') ? 'zip' : 'bz2');
+            $archive = $fileToArchive.'-'.$currDateTime;
+            $filter = new Compress(array(
+                'adapter' => ($compress === 'zip') ? 'Zip' : 'Bz2',
+                'options' => array(
+                    'archive' => './data/'.$archive,
+                ),
+            ));
             $compressed = $filter->filter('./module/'.$module);
 
             //setting response header....

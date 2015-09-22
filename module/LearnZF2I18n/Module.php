@@ -20,13 +20,13 @@
 namespace LearnZF2I18n;
 
 use Zend\EventManager\EventInterface;
+use Zend\Http;
 use Zend\I18n\Translator\Translator;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\MvcEvent;
-use Zend\Http;
 
 /**
  * Class Module.
@@ -39,7 +39,7 @@ class Module implements
     BootstrapListenerInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getConfig()
     {
@@ -47,33 +47,33 @@ class Module implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAutoloaderConfig()
     {
-        return [
-            'Zend\Loader\StandardAutoloader' => [
-                StandardAutoloader::LOAD_NS => [
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                StandardAutoloader::LOAD_NS => array(
                     __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
-                ],
-            ],
-        ];
+                ),
+            ),
+        );
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function onBootstrap(EventInterface $e)
     {
         /* @var MvcEvent $e */
         $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
-        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initCurrentLocale'], 10);
+        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, array($this, 'initCurrentLocale'), 10);
     }
 
     public function initCurrentLocale(MvcEvent $e)
     {
         $request = $e->getRequest();
-        if (! $request instanceof Http\Request) {
+        if (!$request instanceof Http\Request) {
             return;
         }
 

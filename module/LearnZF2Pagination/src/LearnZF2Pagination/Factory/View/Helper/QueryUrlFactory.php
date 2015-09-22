@@ -1,4 +1,5 @@
 <?php
+
 namespace LearnZF2Pagination\Factory\View\Helper;
 
 use LearnZF2Pagination\View\Helper\QueryUrl;

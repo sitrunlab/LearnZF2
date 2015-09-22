@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -35,6 +36,7 @@ class Module  implements
      * @var \Zend\ServiceManager\ServiceManager
      */
     protected $services;
+
     /**
      * {@inheritdoc}
      */
@@ -42,9 +44,9 @@ class Module  implements
     {
         $this->services = $e->getApplication()->getServiceManager();
 
-        $eventManager        = $e->getApplication()->getEventManager();
-        $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch']);
-        $eventManager->attach(MvcEvent::EVENT_RENDER, [$this, 'onRender']);
+        $eventManager = $e->getApplication()->getEventManager();
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'onDispatch'));
+        $eventManager->attach(MvcEvent::EVENT_RENDER, array($this, 'onRender'));
 
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
@@ -60,11 +62,11 @@ class Module  implements
         $routeMatch = $e->getRouteMatch();
         $activeController = $routeMatch->getParam('controller');
 
-        $listController1Columns = [
+        $listController1Columns = array(
             'Application\Controller\Index',
             'Application\Controller\Credits',
             'Application\Controller\Contributors',
-        ];
+        );
 
         $controller = $e->getTarget();
         if (!$e->getViewModel()->terminate()) {
@@ -72,17 +74,17 @@ class Module  implements
                 $controllerClass = get_class($controller);
                 $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
 
-                $fbMeta['title']       = 'Real Live Learn ZF2';
+                $fbMeta['title'] = 'Real Live Learn ZF2';
                 $fbMeta['description'] = '';
 
                 // set title prepend of module desc...
-                $moduleDetail = $this->services->get('Doctrine\ORM\EntityManager')->getRepository('Application\Entity\ModuleList')->findOneBy([
+                $moduleDetail = $this->services->get('Doctrine\ORM\EntityManager')->getRepository('Application\Entity\ModuleList')->findOneBy(array(
                     'moduleName' => $moduleNamespace,
-                ]);
+                ));
 
                 if ($moduleDetail) {
                     $this->services->get('ViewHelperManager')->get('headTitle')->prepend($moduleDetail->getModuleDesc());
-                    $title       = $moduleDetail->getModuleDesc();
+                    $title = $moduleDetail->getModuleDesc();
                     $description = $moduleDetail->getModuleDesc();
 
                     $fbMeta['title'] = $title.'-'.$fbMeta['title'];
@@ -118,9 +120,9 @@ class Module  implements
      */
     public function getConsoleUsage(Console $console)
     {
-        return [
+        return array(
             'get contributors' => 'get contributors list',
-        ];
+        );
     }
 
     /**
@@ -136,12 +138,12 @@ class Module  implements
      */
     public function getAutoloaderConfig()
     {
-        return [
-            'Zend\Loader\StandardAutoloader' => [
-                'namespaces' => [
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
                     __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
-                ],
-            ],
-        ];
+                ),
+            ),
+        );
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,8 +19,8 @@
 
 namespace LearnZF2AjaxImageGalleryTest\Factory\Controller;
 
-use PHPUnit_Framework_TestCase;
 use LearnZF2AjaxImageGallery\Factory\Controller\IndexControllerFactory;
+use PHPUnit_Framework_TestCase;
 
 class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
 {
@@ -37,7 +38,7 @@ class IndexControllerFactoryTest extends PHPUnit_Framework_TestCase
         $this->indexControllerManager = $this->prophesize('Zend\Mvc\Controller\ControllerManager');
         $this->serviceLocator = $this->prophesize('Zend\ServiceManager\ServiceLocatorInterface');
         $this->indexControllerManager->getServiceLocator()->willReturn($this->serviceLocator);
-    
+
         $indexControllerFactory = new IndexControllerFactory();
         $this->indexControllerFactory = $indexControllerFactory;
     }

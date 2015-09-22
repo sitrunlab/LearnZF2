@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -18,16 +19,16 @@
 
 namespace LearnZF2AjaxImageGalleryTest\Controller;
 
+use Zend\File\Transfer\Adapter\Http;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Zend\Validator\File\Extension;
 use Zend\Validator\File\IsImage;
 use Zend\Validator\File\Size;
-use Zend\Validator\File\Extension;
-use Zend\File\Transfer\Adapter\Http;
 
 class IndexControllerTest extends AbstractHttpControllerTestCase
 {
     /**
-     * Creates instanse of Http adapter used to validated files
+     * Creates instanse of Http adapter used to validated files.
      *
      * @var Http
      */
@@ -39,18 +40,18 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
             include dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))).'/config/application.config.php'
         );
 
-        /**
+        /*
          * This will always throw "file was illegally uploaded. This could be a possible attack"
          */
-        $_FILES = [
-            'imageUpload' => [
-                "name" => __DIR__ . DIRECTORY_SEPARATOR . "_files" . DIRECTORY_SEPARATOR . "test1.jpg",
-                "type" => "image/jpeg",
-                "tmp_name" => __DIR__ . DIRECTORY_SEPARATOR . "_files" . DIRECTORY_SEPARATOR . "test1.jpg",
-                "error" => 0,
-                "size" => 746663,
-            ],
-        ];
+        $_FILES = array(
+            'imageUpload' => array(
+                'name' => __DIR__.DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'test1.jpg',
+                'type' => 'image/jpeg',
+                'tmp_name' => __DIR__.DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'test1.jpg',
+                'error' => 0,
+                'size' => 746663,
+            ),
+        );
 
         $this->adapter = new Http();
 
@@ -58,7 +59,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
     }
 
     /**
-     * Called after every test
+     * Called after every test.
      *
      * @method tearDown
      *
@@ -87,10 +88,10 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testAdapterHasValidators()
     {
-        $size = new Size(['min'=>'10kB', 'max'=>'5MB','useByteString' => true]);
-        $extension = new Extension(['jpg','gif','png','jpeg','bmp','webp','svg'], true);
+        $size = new Size(array('min' => '10kB', 'max' => '5MB','useByteString' => true));
+        $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
 
-        $this->adapter->setValidators([$size, new IsImage(), $extension]);
+        $this->adapter->setValidators(array($size, new IsImage(), $extension));
 
         $testExtension = $this->adapter->getValidator('Extension');
         $testIsImage = $this->adapter->getValidator('IsImage');
@@ -126,20 +127,20 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testUploadUrlMethodIsNotPost()
     {
-        $this->dispatch('/learn-zf2-ajax-image-gallery/index/upload', "GET");
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/upload', 'GET');
         $this->assertFalse($this->getRequest()->isPost());
     }
 
     public function testAjaxFilesAction()
     {
-        $this->dispatch('/learn-zf2-ajax-image-gallery/index/files', "GET", [], true);
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/files', 'GET', array(), true);
         $this->assertTrue($this->getRequest()->isXmlHttpRequest());
         $this->assertFalse($this->getRequest()->isPost());
     }
 
     public function testAjaxDeleteImageAction()
     {
-        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', "POST", ["img" => "/userfiles/images/test1.jpg"], true);
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', 'POST', array('img' => '/userfiles/images/test1.jpg'), true);
         $request = $this->getRequest();
         $this->assertTrue($request->isXmlHttpRequest());
         $this->assertTrue($request->isPost());

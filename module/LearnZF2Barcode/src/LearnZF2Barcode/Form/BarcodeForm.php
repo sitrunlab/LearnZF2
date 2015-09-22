@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -38,83 +39,83 @@ class BarcodeForm extends Form implements InputFilterProviderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function init()
     {
-        $this->add([
+        $this->add(array(
             'type' => 'Zend\Form\Element\Select',
             'name' => 'barcode-object-select',
-            'options' => [
+            'options' => array(
                 'label' => 'Barcode Objects',
-                'value_options' =>  $this->objectSelectValues,
-            ],
-            'attributes' => [
+                'value_options' => $this->objectSelectValues,
+            ),
+            'attributes' => array(
                 'class' => 'form-control',
-            ],
-        ]);
+            ),
+        ));
 
-        $this->add([
+        $this->add(array(
             'type' => 'Zend\Form\Element\Text',
             'name' => 'barcode-object-text',
-            'options' => [
-                'value_options' =>  [],
-            ],
-            'attributes' => [
+            'options' => array(
+                'value_options' => array(),
+            ),
+            'attributes' => array(
                 'value' => '123456789',
-            ],
-        ]);
+            ),
+        ));
 
-        $this->add([
+        $this->add(array(
             'name' => 'submit',
-            'attributes' => [
+            'attributes' => array(
                 'class' => 'form-control',
-                'type'  => 'submit',
+                'type' => 'submit',
                 'value' => 'Go',
                 'id' => 'submitbutton',
-            ],
-        ]);
+            ),
+        ));
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getInputFilterSpecification()
     {
-        return [
+        return array(
 
-            [
-                'name'     => 'barcode-object-select',
-                'validators' => [
-                    [
-                        'name'    => 'InArray',
-                        'options' => [
+            array(
+                'name' => 'barcode-object-select',
+                'validators' => array(
+                    array(
+                        'name' => 'InArray',
+                        'options' => array(
                             'haystack' => array_keys($this->objectSelectValues),
-                            'messages' => [
+                            'messages' => array(
                                 'notInArray' => 'Please select the object select !',
-                            ],
-                        ],
-                    ],
-                ],
-            ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
 
-            [
-                'name'     => 'barcode-object-text',
+            array(
+                'name' => 'barcode-object-text',
                 'required' => true,
-                'filters'  => [
-                    ['name' => 'StripTags'],
-                    ['name' => 'StringTrim'],
-                ],
-                'validators' => [
-                    [
-                        'name'    => 'StringLength',
-                        'options' => [
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
-                        ],
-                    ],
-                ],
-            ],
-        ];
+                            'min' => 1,
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
 }

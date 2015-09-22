@@ -2,10 +2,10 @@
 
 namespace LearnZF2Authentication\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Authentication\Adapter\Http as HttpAdapter;
 use Zend\Authentication\Adapter\Http\FileResolver;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class DigestAuthenticationAdapterFactory implements FactoryInterface
 {
@@ -21,7 +21,7 @@ class DigestAuthenticationAdapterFactory implements FactoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function createService(ServiceLocatorInterface $digestServiceLocator)
     {

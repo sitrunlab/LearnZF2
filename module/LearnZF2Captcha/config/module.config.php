@@ -21,39 +21,39 @@
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-return [
-    'router' => [
-        'routes' => [
+return array(
+    'router' => array(
+        'routes' => array(
 
-            'learn-zf2-captcha' => [
+            'learn-zf2-captcha' => array(
                 'type' => 'Literal',
-                'options' => [
+                'options' => array(
                     'route' => '/learn-zf2-captcha',
-                    'defaults' => [
+                    'defaults' => array(
                         '__NAMESPACE__' => 'LearnZF2Captcha\Controller',
                         'controller' => 'Captcha',
                         'action' => 'index',
-                    ],
-                ],
-            ],
-        ],
-    ],
+                    ),
+                ),
+            ),
+        ),
+    ),
 
-    'controllers' => [
-        'factories' => [
+    'controllers' => array(
+        'factories' => array(
             'LearnZF2Captcha\Controller\Captcha' => 'LearnZF2Captcha\Factory\Controller\CaptchaControllerFactory',
-        ],
-    ],
+        ),
+    ),
 
-    'form_elements' => [
-        'factories' => [
+    'form_elements' => array(
+        'factories' => array(
             'LearnZF2Captcha\Form\CaptchaForm' => 'LearnZF2Captcha\Factory\Form\CaptchaFormFactory',
-        ],
-    ],
+        ),
+    ),
 
-    'view_manager' => [
-        'template_path_stack' => [
+    'view_manager' => array(
+        'template_path_stack' => array(
             'learn-zf2-captcha' => __DIR__.'/../view',
-        ],
-    ],
-];
+        ),
+    ),
+);

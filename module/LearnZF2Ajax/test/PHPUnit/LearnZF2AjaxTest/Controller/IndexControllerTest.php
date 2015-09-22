@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -39,20 +40,20 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostDataWithoutAjax()
     {
-        $postData = [
+        $postData = array(
             'username' => 'user',
             'password' => 'user123',
-        ];
+        );
         $this->dispatch('/learn-zf2-ajax', 'POST', $postData);
         $this->assertQuery('html > head');
     }
 
     public function testPostInvalidDataWithAjax()
     {
-        $postData = [
+        $postData = array(
             'username' => 'user',
             'password' => 'user123',
-        ];
+        );
         $this->dispatch('/learn-zf2-ajax', 'POST', $postData, true);
         $request = $this->getRequest();
 
@@ -64,10 +65,10 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostValidDataWithAjax()
     {
-        $postData = [
+        $postData = array(
             'username' => 'admin',
             'password' => 'admin',
-        ];
+        );
         $this->dispatch('/learn-zf2-ajax', 'POST', $postData, true);
         $request = $this->getRequest();
 
