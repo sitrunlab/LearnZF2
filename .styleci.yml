@@ -1,4 +1,4 @@
-preset: recommended
+preset: PSR2
 
 linting: true
 
@@ -10,7 +10,6 @@ enabled:
 disabled:
   - align_double_arrow
   - short_array_syntax
-  - blankline_after_open_tag
 
 finder:
   name:
