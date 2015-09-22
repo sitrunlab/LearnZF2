@@ -143,5 +143,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $request = $this->getRequest();
         $this->assertTrue($request->isXmlHttpRequest());
         $this->assertTrue($request->isPost());
+
+        copy("public/userfiles/test1.jpg", "public/userfiles/images/test1.jpg");
     }
 }
