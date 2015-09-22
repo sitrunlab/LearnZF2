@@ -139,9 +139,11 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testAjaxDeleteImageAction()
     {
-        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', "POST", ["img" => "/userfiles/test1.jpg"], true);
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', "POST", ["img" => "/userfiles/images/test1.jpg"], true);
         $request = $this->getRequest();
         $this->assertTrue($request->isXmlHttpRequest());
         $this->assertTrue($request->isPost());
+
+        copy("public/userfiles/test1.jpg", "public/userfiles/images/test1.jpg");
     }
 }

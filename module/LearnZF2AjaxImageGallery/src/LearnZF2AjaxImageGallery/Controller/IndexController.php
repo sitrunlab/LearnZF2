@@ -110,12 +110,10 @@ class IndexController extends AbstractActionController
             $data = $request->getPost()->toArray();
 
             if ($request->isXmlHttpRequest()) {
-                // @codeCoverageIgnoreStart
                 if (is_file("public".$data["img"])) {
                     unlink("public".$data["img"]);
                     $status = true;
                 }
-                // @codeCoverageIgnoreEnd
             }
         }
         return $status;
