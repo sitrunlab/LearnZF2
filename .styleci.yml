@@ -10,11 +10,9 @@ enabled:
 disabled:
   - align_double_arrow
   - short_array_syntax
-  - header_comment
+  - phpdoc_separation
 
 finder:
-  exclude:
-    - "module/*/test"
   name:
     - "*.php"
   path:
