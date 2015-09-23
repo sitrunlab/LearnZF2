@@ -14,7 +14,7 @@
             $form = $this->form;
             $form->prepare();
             echo $this->form()->openTag($form);
-            echo $this->partial("/imgupload.phtml");
+            include __DIR__."/imgupload.phtml";
             echo $this->form()->closeTag();
             ?>
         </div>
