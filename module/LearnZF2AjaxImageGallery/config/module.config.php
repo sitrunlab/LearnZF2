@@ -47,7 +47,7 @@ return array(
             'ViewJsonStrategy',
         ),
         'template_path_stack' => array(
-            __DIR__.'/../view',
+            'learn-zf2-ajax-image-gallery' => __DIR__.'/../view',
         ),
     ),
 );

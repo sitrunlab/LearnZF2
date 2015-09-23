@@ -14,7 +14,7 @@
             $form = $this->form;
             $form->prepare();
             echo $this->form()->openTag($form);
-            echo $this->partial("/imgupload.phtml");
+            echo $this->render('learn-zf2-ajax-image-gallery/index/imgupload');
             echo $this->form()->closeTag();
             ?>
         </div>
@@ -53,7 +53,7 @@ protected function uploadAction()
 {
     $request = $this->getRequest();
     $data = [];
-    
+
     if ($request->isXmlHttpRequest()) {
         $data = $this->prepareImages();
     }
@@ -89,7 +89,7 @@ protected function deleteimageAction()
 /**
  * Get all files from all folders and list them in the gallery
  * getcwd() is there to make the work with images path easier
- * 
+ *
  * @return JsonModel
  */
 protected function filesAction()
@@ -147,7 +147,7 @@ private function uploadFiles(Http $adapter)
                 $uploadStatus["errorFiles"][] = $file["name"]." ".strtolower($msg);
             }
         }
-        
+
         if (!$adapter->receive($file["name"])) {
             $uploadStatus["errorFiles"][] = $file["name"]." was not uploaded";
         } else {
@@ -492,7 +492,7 @@ echo htmlentities("/*!
 
 /**
  * This will create a local scope for all objects defined in this script.
- * 
+ *
  * @param  {Object} win
  * @param  {Object} doc
  * @param  {Object} $
@@ -591,7 +591,7 @@ echo htmlentities("/*!
                 event.preventDefault();
 
                 /**
-                 * Performe AJAX POST request 
+                 * Performe AJAX POST request
                  */
                 request = $.ajax({
                     url: $(this).attr(\"action\"),
@@ -617,17 +617,17 @@ echo htmlentities("/*!
                     ajaxImageUpload.showFiles();
                     ajaxImageUpload.setAjaxResponse(result, \"p\", \"div.col-lg-9\");
                 });
-                
+
                 /**
                  * Callback for error response
                  *
                  * @method $.ajax.fail
                  *
-                 * @param  {String} error 
-                 * @param  {Mixed} textStatus 
-                 * @param  {Mixed} errorThrown             } 
+                 * @param  {String} error
+                 * @param  {Mixed} textStatus
+                 * @param  {Mixed} errorThrown             }
                  *
-                 * @return {Mixed} 
+                 * @return {Mixed}
                  */
                 request.fail(function (error, textStatus, errorThrown) {
                     console.error(error, textStatus, errorThrown); //TODO must create a dialog popup
@@ -688,7 +688,7 @@ echo htmlentities("/*!
                 });
             }
         },
-        
+
         /**
          * Gallery view
          *
@@ -721,7 +721,7 @@ echo htmlentities("/*!
          * The big image on the right
          *
          * @method viewImage
-         * 
+         *
          * @return {void}
          */
         viewImage: function () {
