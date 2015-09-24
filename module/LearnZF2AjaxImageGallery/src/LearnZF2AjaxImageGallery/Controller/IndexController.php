@@ -161,13 +161,13 @@ class IndexController extends AbstractActionController
         $adapter = new Http();
 
         $size = new Size(array('min' => '10kB', 'max' => '5MB','useByteString' => true));
+        $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
 
         if (extension_loaded("fileinfo")) {
-            $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
-            $adapter->setValidators(array($extension));
+            $adapter->setValidators(array(new IsImage()));
         }
 
-        $adapter->setValidators(array($size, new IsImage()));
+        $adapter->setValidators(array($size, $extension));
 
         $adapter->setDestination('public/userfiles/images/');
 
