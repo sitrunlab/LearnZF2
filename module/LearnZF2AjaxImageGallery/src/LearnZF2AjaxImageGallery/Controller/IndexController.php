@@ -163,7 +163,7 @@ class IndexController extends AbstractActionController
         $size = new Size(array('min' => '10kB', 'max' => '5MB','useByteString' => true));
         $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
 
-        if (extension_loaded("fileinfo")) {
+        if (extension_loaded('fileinfo')) {
             $adapter->setValidators(array(new IsImage()));
         }
 
