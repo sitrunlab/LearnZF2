@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <p>This demo will show you how to create simple image galleryusing AJAX and <code>Zend\File\Transfer\Adapter\Http</code>.<br>
+    <div>This demo will show you how to create simple image galleryusing AJAX and <code>Zend\File\Transfer\Adapter\Http</code>.<br><br>
     Current features are:
         <ul>
             <li>Mimetype validation</li>
@@ -28,20 +28,25 @@
             <li>Is file an actual image validation</li>
             <li>Success messages for uploaded files</li>
             <li>Error messages for not uploaded files and the exact error</li>
-            <li>AJAX image deletion</li>
+            <li>AJAX image deletion and upload</li>
             <li>Image grid view with a bigger view of the selected image</li>
             <li>Multiple files upload</li>
         </ul>
-    </p>
+    </div>
 
-    <p>Configuration:
+    <div>Configuration:
         <ul>
             <li>Mininum upload size: 10kb</li>
             <li>Maximum upload size: 5MB</li>
             <li>Allowed extensions: jpg, gif, png, jpeg, bmp, webp, svg</li>
             <li>Is case sensitive: Yes - JPEG !== jpeg</li>
+            <li>fileinfo extension for mimetype validation</li>
         </ul>
-    </p>
+    </div>
+
+    <div>
+        <p>The form will not function in IE9 or less.</p>
+    </div>
 
 <code>LearnZF2AjaxImageGallery\Controller\IndexController</code>
 
@@ -118,18 +123,25 @@ protected function filesAction()
 }
 
 /**
- * Upload all images async
+ * Upload all images async.
+ *
  * @return array
  */
 private function prepareImages()
 {
     $adapter = new Http();
-    $size = new Size(['min'=>'10kB', 'max'=>'5MB','useByteString' => true]);
-    $extension = new Extension(['jpg','gif','png','jpeg','bmp','webp','svg'], true);
 
-    $adapter->setValidators([$size, new IsImage(), $extension]);
+    $size = new Size(array('min' => '10kB', 'max' => '5MB','useByteString' => true));
+
+    if (extension_loaded("fileinfo")) {
+        $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
+        $adapter->setValidators([$extension]);
+    }
+
+    $adapter->setValidators([$size, new IsImage()]);
 
     $adapter->setDestination('public/userfiles/images/');
+
     return $this->uploadFiles($adapter);
 }
 
@@ -440,7 +452,7 @@ public function getInputFilterSpecification()
 
 <code>LearnZF2AjaxImageGallery/view/learn-zf2-ajax-image-gallery/imgupload.phtml</code>
 
-<pre><code class="language-php"><?php echo htmlentities('<div id="modal-imgupload">
+<pre><code class="language-js"><?php echo htmlentities('<div id="modal-imgupload">
     <div class="modal-window">
         <button type="button" class="modal-toggle modal-close glyphicon glyphicon-remove"></button>
         <div class="modal-content">
@@ -511,8 +523,8 @@ echo htmlentities("/*!
          * @namespace
          * @return {Object}
          */
-    var ajaxImageUpload,
-        request = {
+    var request,
+        ajaxImageUpload = {
 
         /**
          * Attach event listeners
