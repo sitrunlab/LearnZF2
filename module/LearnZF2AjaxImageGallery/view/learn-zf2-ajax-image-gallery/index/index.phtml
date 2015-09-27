@@ -132,13 +132,13 @@ private function prepareImages()
     $adapter = new Http();
 
     $size = new Size(array('min' => '10kB', 'max' => '5MB','useByteString' => true));
+    $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
 
-    if (extension_loaded("fileinfo")) {
-        $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
-        $adapter->setValidators([$extension]);
+    if (extension_loaded('fileinfo')) {
+        $adapter->setValidators(array(new IsImage()));
     }
 
-    $adapter->setValidators([$size, new IsImage()]);
+    $adapter->setValidators(array($size, $extension));
 
     $adapter->setDestination('public/userfiles/images/');
 
