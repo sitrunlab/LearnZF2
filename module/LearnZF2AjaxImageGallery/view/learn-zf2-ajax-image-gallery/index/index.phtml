@@ -135,10 +135,10 @@ private function prepareImages()
     $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
 
     if (extension_loaded('fileinfo')) {
-        $adapter->setValidators(array(new IsImage()));
+        $adapter->setValidators([new IsImage()]);
     }
 
-    $adapter->setValidators(array($size, $extension));
+    $adapter->setValidators([$size, $extension]);
 
     $adapter->setDestination('public/userfiles/images/');
 
