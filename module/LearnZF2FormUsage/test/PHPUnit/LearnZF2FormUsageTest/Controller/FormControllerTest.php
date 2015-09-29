@@ -44,36 +44,36 @@ class FormControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostValidData()
     {
-        $postData = array(
+        $postData = [
             'id' => null,
             'name' => 'ikhsan',
             'gender' => 2,
-            'hobby' => array(
+            'hobby' => [
                 0 => 1,
-            ),
+            ],
             'email' => 'foo@bar.com',
             'birth' => '2008-10-01',
             'address' => 'jalan jalan',
             'direction' => 1,
-        );
+        ];
         $this->dispatch('/learn-zf2-form-usage', 'POST', $postData);
         $this->assertQueryContentContains('h3', 'Success!');
     }
 
     public function testPostInValidData()
     {
-        $postData = array(
+        $postData = [
             'id' => null,
             'name' => null,
             'gender' => 2,
-            'hobby' => array(
+            'hobby' => [
                 0 => 1,
-            ),
+            ],
             'email' => 'foo@bar.com',
             'birth' => '2008-10-01',
             'address' => 'jalan jalan',
             'direction' => 1,
-        );
+        ];
         $this->dispatch('/learn-zf2-form-usage', 'POST', $postData);
         $this->assertQueryContentContains('li', 'Value is required and can\'t be empty');
     }

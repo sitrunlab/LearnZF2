@@ -41,7 +41,7 @@ class BarcodeObjectPluginManagerFactoryTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->services = new ServiceManager();
-        $this->services->setService('Config', array());
+        $this->services->setService('Config', []);
         $this->factory = new BarcodeObjectPluginManagerFactory();
     }
 

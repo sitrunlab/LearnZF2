@@ -1,69 +1,69 @@
 <?php
 
-return array(
-    'router' => array(
-        'routes' => array(
-            'learn-zf2-authentication' => array(
+return [
+    'router' => [
+        'routes' => [
+            'learn-zf2-authentication' => [
                 'type' => 'Literal',
-                'options' => array(
+                'options' => [
                     'route' => '/learn-zf2-authentication',
-                    'defaults' => array(
+                    'defaults' => [
                         'controller' => 'LearnZF2Authentication\Controller\Index',
                         'action' => 'index',
-                    ),
-                ),
+                    ],
+                ],
                 'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
+                'child_routes' => [
+                    'default' => [
                         'type' => 'Segment',
-                        'options' => array(
+                        'options' => [
                             'route' => '[/:action]',
-                            'constraints' => array(
+                            'constraints' => [
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'authentication_basic' => array(
-        'adapter' => array(
-            'config' => array(
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'authentication_basic' => [
+        'adapter' => [
+            'config' => [
                 'accept_schemes' => 'basic',
                 'realm' => 'authentication',
                 'nonce_timeout' => 3600,
-            ),
+            ],
             'basic' => __DIR__.'/auth/basic.txt',
-        ),
-    ),
-    'authentication_digest' => array(
-        'adapter' => array(
-            'config' => array(
+        ],
+    ],
+    'authentication_digest' => [
+        'adapter' => [
+            'config' => [
                 'accept_schemes' => 'digest',
                 'realm' => 'authentication',
                 'digest_domains' => '/learn-zf2-authentication/digest',
                 'nonce_timeout' => 3600,
-            ),
+            ],
             'digest' => __DIR__.'/auth/digest.txt',
-        ),
-    ),
-    'service_manager' => array(
-        'factories' => array(
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
             'LearnZF2Authentication\BasicAuthenticationAdapter' => 'LearnZF2Authentication\Factory\BasicAuthenticationAdapterFactory',
             'LearnZF2Authentication\DigestAuthenticationAdapter' => 'LearnZF2Authentication\Factory\DigestAuthenticationAdapterFactory',
-        ),
-    ),
+        ],
+    ],
 
-    'controllers' => array(
-        'invokables' => array(
+    'controllers' => [
+        'invokables' => [
             'LearnZF2Authentication\Controller\Index' => 'LearnZF2Authentication\Controller\IndexController',
-        ),
-    ),
+        ],
+    ],
 
-    'view_manager' => array(
-        'template_path_stack' => array(
+    'view_manager' => [
+        'template_path_stack' => [
             __DIR__.'/../view',
-        ),
-    ),
-);
+        ],
+    ],
+];

@@ -55,7 +55,7 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
      */
     private function collectValueOptions()
     {
-        $options = array();
+        $options = [];
         foreach ($this->captchaConfig as $key => $config) {
             $options[$key] = $config['adapter_name'];
         }
@@ -71,39 +71,39 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
         $this->setAttribute('id', 'captchaForm');
         $this->setAttribute('method', 'get');
 
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\Select',
             'name' => 'captcha_adapter',
-            'options' => array(
+            'options' => [
                 'label' => 'Choose Captcha Adapter',
                 'value_options' => $this->collectValueOptions(),
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'class' => 'form-control',
                 'value' => $this->captchaAdapterKey,
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\Captcha',
             'name' => 'captcha',
-            'options' => array(
+            'options' => [
                 'label' => $this->captchaConfig[$this->captchaAdapterKey]['options']['label'],
-                'captcha' => array(
+                'captcha' => [
                     'class' => $this->collectValueOptions()[$this->captchaAdapterKey],
                     'options' => $this->captchaConfig[$this->captchaAdapterKey]['options'],
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\Submit',
             'name' => 'submitCaptcha',
-            'attributes' => array(
+            'attributes' => [
                 'value' => 'Submit',
                 'class' => 'submit',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -111,8 +111,8 @@ class CaptchaForm extends Form implements InputFilterProviderInterface
      */
     public function getInputFilterSpecification()
     {
-        return array(
+        return [
 
-        );
+        ];
     }
 }

@@ -13,12 +13,12 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class BasicAuthenticationAdapterFactory implements FactoryInterface
 {
     /** @var array|object|string $basicConfig */
-    private $basicConfig = array();
+    private $basicConfig = [];
 
     /**
      * @param array|object|string $basicConfig
      */
-    public function __construct(array $basicConfig = array())
+    public function __construct(array $basicConfig = [])
     {
         $this->basicConfig = $basicConfig;
     }

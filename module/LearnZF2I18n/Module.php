@@ -51,13 +51,13 @@ class Module implements
      */
     public function getAutoloaderConfig()
     {
-        return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                StandardAutoloader::LOAD_NS => array(
+        return [
+            'Zend\Loader\StandardAutoloader' => [
+                StandardAutoloader::LOAD_NS => [
                     __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -67,7 +67,7 @@ class Module implements
     {
         /* @var MvcEvent $e */
         $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
-        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, array($this, 'initCurrentLocale'), 10);
+        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initCurrentLocale'], 10);
     }
 
     public function initCurrentLocale(MvcEvent $e)

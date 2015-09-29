@@ -31,7 +31,7 @@ class DownloadControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $services = $serviceLocator->getServiceLocator();
-        $moduleList = array();
+        $moduleList = [];
         foreach ($services->get('Doctrine\ORM\EntityManager')
                                ->getRepository('Application\Entity\ModuleList')
                                ->findAll() as $module) {

@@ -37,16 +37,16 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
      */
     public function provideValidDataPriority()
     {
-        return array(
-            array(0, 'EMERG'),
-            array(1, 'ALERT'),
-            array(2, 'CRIT'),
-            array(3, 'ERR'),
-            array(4, 'WARN'),
-            array(5, 'NOTICE'),
-            array(6, 'INFO'),
-            array(7, 'DEBUG'),
-        );
+        return [
+            [0, 'EMERG'],
+            [1, 'ALERT'],
+            [2, 'CRIT'],
+            [3, 'ERR'],
+            [4, 'WARN'],
+            [5, 'NOTICE'],
+            [6, 'INFO'],
+            [7, 'DEBUG'],
+        ];
     }
 
     /**
@@ -54,11 +54,11 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
      */
     public function testPostData($priority, $priorityDesc)
     {
-        $postData = array(
+        $postData = [
             'logmessage' => 'a log message',
             'logformat' => 'xml',
             'logpriority' => $priority,
-        );
+        ];
         $this->dispatch('/learn-zf2-log', 'POST', $postData);
         $response = $this->getResponse();
 
@@ -67,11 +67,11 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testInvalidPostData()
     {
-        $postData = array(
+        $postData = [
             'logmessage' => 'foo',
             'logformat' => 'notvalidformat',
             'logpriority' => 100,
-        );
+        ];
         $this->dispatch('/learn-zf2-log', 'POST', $postData);
         $response = $this->getResponse();
 

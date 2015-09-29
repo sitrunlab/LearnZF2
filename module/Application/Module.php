@@ -45,8 +45,8 @@ class Module  implements
         $this->services = $e->getApplication()->getServiceManager();
 
         $eventManager = $e->getApplication()->getEventManager();
-        $eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'onDispatch'));
-        $eventManager->attach(MvcEvent::EVENT_RENDER, array($this, 'onRender'));
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'onDispatch']);
+        $eventManager->attach(MvcEvent::EVENT_RENDER, [$this, 'onRender']);
 
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
@@ -62,11 +62,11 @@ class Module  implements
         $routeMatch = $e->getRouteMatch();
         $activeController = $routeMatch->getParam('controller');
 
-        $listController1Columns = array(
+        $listController1Columns = [
             'Application\Controller\Index',
             'Application\Controller\Credits',
             'Application\Controller\Contributors',
-        );
+        ];
 
         $controller = $e->getTarget();
         if (!$e->getViewModel()->terminate()) {
@@ -78,9 +78,9 @@ class Module  implements
                 $fbMeta['description'] = '';
 
                 // set title prepend of module desc...
-                $moduleDetail = $this->services->get('Doctrine\ORM\EntityManager')->getRepository('Application\Entity\ModuleList')->findOneBy(array(
+                $moduleDetail = $this->services->get('Doctrine\ORM\EntityManager')->getRepository('Application\Entity\ModuleList')->findOneBy([
                     'moduleName' => $moduleNamespace,
-                ));
+                ]);
 
                 if ($moduleDetail) {
                     $this->services->get('ViewHelperManager')->get('headTitle')->prepend($moduleDetail->getModuleDesc());
@@ -120,9 +120,9 @@ class Module  implements
      */
     public function getConsoleUsage(Console $console)
     {
-        return array(
+        return [
             'get contributors' => 'get contributors list',
-        );
+        ];
     }
 
     /**
@@ -138,12 +138,12 @@ class Module  implements
      */
     public function getAutoloaderConfig()
     {
-        return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
+        return [
+            'Zend\Loader\StandardAutoloader' => [
+                'namespaces' => [
                     __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 }

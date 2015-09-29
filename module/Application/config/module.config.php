@@ -28,138 +28,138 @@
  * Modified by Abdul Malik Ikhsan <samsonasik@gmail.com> as part of LearnZF2 project.
  */
 
-return array(
-    'router' => array(
-        'routes' => array(
-            'home' => array(
+return [
+    'router' => [
+        'routes' => [
+            'home' => [
                 'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
+                'options' => [
                     'route' => '/',
-                    'defaults' => array(
+                    'defaults' => [
                         'controller' => 'Application\Controller\Index',
                         'action' => 'index',
-                    ),
-                ),
-            ),
-            'download' => array(
+                    ],
+                ],
+            ],
+            'download' => [
                 'type' => 'Zend\Mvc\Router\Http\Segment',
-                'options' => array(
+                'options' => [
                     'route' => '/download[/:module][/:compress]',
-                    'defaults' => array(
+                    'defaults' => [
                         'controller' => 'Application\Controller\Download',
                         'action' => 'learnmodule',
-                    ),
-                ),
-            ),
-            'credits' => array(
+                    ],
+                ],
+            ],
+            'credits' => [
                 'type' => 'Zend\Mvc\Router\Http\Segment',
-                'options' => array(
+                'options' => [
                     'route' => '/credits',
-                    'defaults' => array(
+                    'defaults' => [
                         'controller' => 'Application\Controller\Credits',
                         'action' => 'index',
-                    ),
-                ),
-            ),
-            'contributors' => array(
+                    ],
+                ],
+            ],
+            'contributors' => [
                 'type' => 'Zend\Mvc\Router\Http\Segment',
-                'options' => array(
+                'options' => [
                     'route' => '/contributors',
-                    'defaults' => array(
+                    'defaults' => [
                         'controller' => 'Application\Controller\Contributors',
                         'action' => 'index',
-                    ),
-                ),
-            ),
-            'sitemapxml' => array(
+                    ],
+                ],
+            ],
+            'sitemapxml' => [
                 'type' => 'Zend\Mvc\Router\Http\Segment',
-                'options' => array(
+                'options' => [
                     'route' => '/sitemapxml',
-                    'defaults' => array(
+                    'defaults' => [
                         'controller' => 'Application\Controller\Sitemap',
                         'action' => 'index',
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'service_manager' => array(
-        'abstract_factories' => array(
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'service_manager' => [
+        'abstract_factories' => [
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
-        ),
-        'factories' => array(
+        ],
+        'factories' => [
             'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
-        ),
-    ),
-    'controllers' => array(
-        'factories' => array(
+        ],
+    ],
+    'controllers' => [
+        'factories' => [
             'Application\Controller\Download' => 'Application\Factory\Controller\DownloadControllerFactory',
             'Application\Controller\Index' => 'Application\Factory\Controller\IndexControllerFactory',
             'Application\Controller\Contributors' => 'Application\Factory\Controller\ContributorsControllerFactory',
             'Application\Controller\Console' => 'Application\Factory\Controller\ConsoleControllerFactory',
-        ),
-        'invokables' => array(
+        ],
+        'invokables' => [
             'Application\Controller\Sitemap' => 'Application\Controller\SitemapController',
             'Application\Controller\Credits' => 'Application\Controller\CreditsController',
-        ),
-    ),
-    'view_helpers' => array(
-        'factories' => array(
+        ],
+    ],
+    'view_helpers' => [
+        'factories' => [
             'downloadbuttonlink' => 'Application\Factory\View\Helper\DownloadButtonLinkFactory',
-        ),
-    ),
-    'view_manager' => array(
+        ],
+    ],
+    'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions' => true,
         'doctype' => 'HTML5',
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
-        'template_map' => array(
+        'template_map' => [
             'layout/layout' => __DIR__.'/../view/layout/layout.phtml',
             'application/index/index' => __DIR__.'/../view/application/index/index.phtml',
             'error/404' => __DIR__.'/../view/error/404.phtml',
             'error/index' => __DIR__.'/../view/error/index.phtml',
-        ),
-        'template_path_stack' => array(
+        ],
+        'template_path_stack' => [
             __DIR__.'/../view',
-        ),
-    ),
-    'console' => array(
-        'contributors' => array(
+        ],
+    ],
+    'console' => [
+        'contributors' => [
             'output' => 'data/contributors/contributors.pson',
-        ),
-        'router' => array(
-            'routes' => array(
-                'contributors' => array(
+        ],
+        'router' => [
+            'routes' => [
+                'contributors' => [
                     'type' => 'Simple',
-                    'options' => array(
+                    'options' => [
                         'route' => 'get contributors',
-                        'defaults' => array(
+                        'defaults' => [
                             'controller' => 'Application\Controller\Console',
                             'action' => 'getcontributors',
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
 
-    'doctrine' => array(
-        'driver' => array(
-            'Application_driver' => array(
+    'doctrine' => [
+        'driver' => [
+            'Application_driver' => [
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(
+                'paths' => [
                     __DIR__.'/../src/Application/Entity',
-                ),
-            ),
-            'orm_default' => array(
-                'drivers' => array(
+                ],
+            ],
+            'orm_default' => [
+                'drivers' => [
                     'Application\Entity' => 'Application_driver',
-                ),
-            ),
-        ),
-    ),
+                ],
+            ],
+        ],
+    ],
 
-);
+];

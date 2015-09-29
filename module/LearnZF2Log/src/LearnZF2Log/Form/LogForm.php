@@ -29,22 +29,22 @@ class LogForm extends Form implements InputFilterProviderInterface
 {
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'name' => 'logmessage',
             'type' => 'Textarea',
-            'options' => array(
+            'options' => [
                 'label' => 'Log message',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'value' => 'this is log message',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'logpriority',
             'type' => 'Select',
-            'options' => array(
-                'value_options' => array(
+            'options' => [
+                'value_options' => [
                     0 => 'EMERG',
                     1 => 'ALERT',
                     2 => 'CRIT',
@@ -53,51 +53,51 @@ class LogForm extends Form implements InputFilterProviderInterface
                     5 => 'NOTICE',
                     6 => 'INFO',
                     7 => 'DEBUG',
-                ),
+                ],
                 'label' => 'Log priority',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'logformat',
             'type' => 'Select',
-            'options' => array(
-                'value_options' => array(
+            'options' => [
+                'value_options' => [
                     'simple' => 'Simple',
                     'xml' => 'Xml',
-                ),
+                ],
                 'label' => 'Log format',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'class' => 'form-control btn-primary',
                 'type' => 'submit',
                 'value' => 'Submit log data',
                 'id' => 'submitbutton',
-            ),
-        ));
+            ],
+        ]);
     }
 
     public function getInputFilterSpecification()
     {
-        return array(
-            array(
+        return [
+            [
                 'name' => 'logmessage',
                 'required' => true,
-                'validators' => array(
-                    array(
+                'validators' => [
+                    [
                         'name' => 'StringLength',
-                        'options' => array(
+                        'options' => [
                             'encoding' => 'UTF-8',
                             'min' => 1,
                             'max' => 255,
-                        ),
-                    ),
-                ),
-            ),
-        );
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 }

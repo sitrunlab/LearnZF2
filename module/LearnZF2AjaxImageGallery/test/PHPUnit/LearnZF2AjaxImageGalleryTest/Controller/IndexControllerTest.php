@@ -43,15 +43,15 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         /*
          * This will always throw "file was illegally uploaded. This could be a possible attack"
          */
-        $_FILES = array(
-            'imageUpload' => array(
+        $_FILES = [
+            'imageUpload' => [
                 'name' => __DIR__.DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'test1.jpg',
                 'type' => 'image/jpeg',
                 'tmp_name' => __DIR__.DIRECTORY_SEPARATOR.'_files'.DIRECTORY_SEPARATOR.'test1.jpg',
                 'error' => 0,
                 'size' => 746663,
-            ),
-        );
+            ],
+        ];
 
         $this->adapter = new Http();
 
@@ -88,10 +88,10 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testAdapterHasValidators()
     {
-        $size = new Size(array('min' => '10kB', 'max' => '5MB','useByteString' => true));
-        $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
+        $size = new Size(['min' => '10kB', 'max' => '5MB','useByteString' => true]);
+        $extension = new Extension(['jpg','gif','png','jpeg','bmp','webp','svg'], true);
 
-        $this->adapter->setValidators(array($size, new IsImage(), $extension));
+        $this->adapter->setValidators([$size, new IsImage(), $extension]);
 
         $testExtension = $this->adapter->getValidator('Extension');
         $testIsImage = $this->adapter->getValidator('IsImage');
@@ -133,14 +133,14 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testAjaxFilesAction()
     {
-        $this->dispatch('/learn-zf2-ajax-image-gallery/index/files', 'GET', array(), true);
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/files', 'GET', [], true);
         $this->assertTrue($this->getRequest()->isXmlHttpRequest());
         $this->assertFalse($this->getRequest()->isPost());
     }
 
     public function testAjaxDeleteImageAction()
     {
-        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', 'POST', array('img' => '/userfiles/images/test1.jpg'), true);
+        $this->dispatch('/learn-zf2-ajax-image-gallery/index/deleteimage', 'POST', ['img' => '/userfiles/images/test1.jpg'], true);
         $request = $this->getRequest();
         $this->assertTrue($request->isXmlHttpRequest());
         $this->assertTrue($request->isPost());

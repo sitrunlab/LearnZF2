@@ -48,11 +48,11 @@ class CaptchaFormFactoryTest extends PHPUnit_Framework_TestCase
 
     public function provideCaptchaAdapterKeys()
     {
-        return array(
-            array(0),
-            array(1),
-            array(2),
-        );
+        return [
+            [0],
+            [1],
+            [2],
+        ];
     }
 
     /**

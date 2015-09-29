@@ -49,13 +49,13 @@ class Module implements
      */
     public function getAutoloaderConfig()
     {
-        return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                StandardAutoloader::LOAD_NS => array(
+        return [
+            'Zend\Loader\StandardAutoloader' => [
+                StandardAutoloader::LOAD_NS => [
                     __NAMESPACE__ => __DIR__.'/src/'.__NAMESPACE__,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -65,7 +65,7 @@ class Module implements
     {
         /* @var MvcEvent $e */
         $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
-        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, array($this, 'initAuthtentication'), 100);
+        $sharedManager->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'initAuthtentication'], 100);
     }
 
     public function initAuthtentication(MvcEvent $e)
