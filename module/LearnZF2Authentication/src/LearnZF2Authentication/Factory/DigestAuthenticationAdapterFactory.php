@@ -10,12 +10,12 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class DigestAuthenticationAdapterFactory implements FactoryInterface
 {
     /** @var array|object|string $digestConfig */
-    private $digestConfig = array();
+    private $digestConfig = [];
 
     /**
      * @param array|object|string $digestConfig
      */
-    public function __construct(array $digestConfig = array())
+    public function __construct(array $digestConfig = [])
     {
         $this->digestConfig = $digestConfig;
     }

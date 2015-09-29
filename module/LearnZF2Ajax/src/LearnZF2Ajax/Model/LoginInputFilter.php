@@ -37,55 +37,55 @@ class LoginInputFilter implements InputFilterAwareInterface
             $inputFilter = new InputFilter();
             $factory = new InputFactory();
 
-            $inputFilter->add($factory->createInput(array(
+            $inputFilter->add($factory->createInput([
                 'name' => 'username',
                 'required' => true,
-                'filters' => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+                'validators' => [
+                    [
                         'name' => 'StringLength',
-                        'options' => array(
+                        'options' => [
                             'encoding' => 'UTF-8',
                             'min' => 4,
                             'max' => 10,
-                        ),
-                    ),
-                    array(
+                        ],
+                    ],
+                    [
                         'name' => 'Regex',
-                        'options' => array(
+                        'options' => [
                             'pattern' => '/admin/',
-                        ),
-                    ),
-                ),
-            )));
+                        ],
+                    ],
+                ],
+            ]));
 
-            $inputFilter->add($factory->createInput(array(
+            $inputFilter->add($factory->createInput([
                 'name' => 'password',
                 'required' => true,
-                'filters' => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+                'validators' => [
+                    [
                         'name' => 'StringLength',
-                        'options' => array(
+                        'options' => [
                             'encoding' => 'UTF-8',
                             'min' => 4,
                             'max' => 10,
-                        ),
-                    ),
-                    array(
+                        ],
+                    ],
+                    [
                         'name' => 'Regex',
-                        'options' => array(
+                        'options' => [
                             'pattern' => '/admin/',
-                        ),
-                    ),
-                ),
-            )));
+                        ],
+                    ],
+                ],
+            ]));
 
             $this->inputFilter = $inputFilter;
         }

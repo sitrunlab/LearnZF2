@@ -29,37 +29,37 @@ class QueryUrlTest extends TestCase
     {
         $this->request = new Request();
         $this->helper = new QueryUrl($this->request);
-        $this->router = TreeRouteStack::factory(array(
-            'routes' => array(
+        $this->router = TreeRouteStack::factory([
+            'routes' => [
                 'route-name' => new Literal('/foo/bar'),
-            ),
-        ));
+            ],
+        ]);
         $this->helper->setRouter($this->router);
     }
 
     public function testProvidedQueryParamsAreUsed()
     {
-        $route = $this->helper->__invoke('route-name', array(), array('query' => array('one' => 'foo', 'another' => 'bar')));
+        $route = $this->helper->__invoke('route-name', [], ['query' => ['one' => 'foo', 'another' => 'bar']]);
         $this->assertEquals('/foo/bar?one=foo&another=bar', $route);
     }
 
     public function testRequestQueryParamsAreInherited()
     {
-        $this->request->setQuery(new Parameters(array(
+        $this->request->setQuery(new Parameters([
             'one' => 'foo',
             'another' => 'bar',
-        )));
-        $route = $this->helper->__invoke('route-name', array(), true);
+        ]));
+        $route = $this->helper->__invoke('route-name', [], true);
         $this->assertEquals('/foo/bar?one=foo&another=bar', $route);
     }
 
     public function testRequestQueryParamsCanBeOverriden()
     {
-        $this->request->setQuery(new Parameters(array(
+        $this->request->setQuery(new Parameters([
             'one' => 'foo',
             'another' => 'bar',
-        )));
-        $route = $this->helper->__invoke('route-name', array(), array('query' => array('another' => 'overriden')), true);
+        ]));
+        $route = $this->helper->__invoke('route-name', [], ['query' => ['another' => 'overriden']], true);
         $this->assertEquals('/foo/bar?one=foo&another=overriden', $route);
     }
 

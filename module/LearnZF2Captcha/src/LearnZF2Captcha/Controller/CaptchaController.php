@@ -54,10 +54,10 @@ class CaptchaController extends AbstractActionController
             $form->setAttribute('method', 'get');
         }
 
-        return new ViewModel(array(
+        return new ViewModel([
             'form' => $form,
             'isValid' => $isValid,
             'isPost' => $request->isPost(),
-        ));
+        ]);
     }
 }

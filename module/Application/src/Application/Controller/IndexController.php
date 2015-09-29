@@ -50,8 +50,8 @@ class IndexController extends AbstractActionController
         $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
         $paginator->setItemCountPerPage(10);
 
-        return new ViewModel(array(
+        return new ViewModel([
             'paginator' => $paginator,
-        ));
+        ]);
     }
 }

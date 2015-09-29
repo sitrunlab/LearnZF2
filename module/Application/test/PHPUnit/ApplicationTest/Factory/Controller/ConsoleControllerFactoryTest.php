@@ -24,7 +24,7 @@ class ConsoleControllerFactoryTest extends TestCase
     {
         $sm = new ServiceManager();
         $sm->setService('Console', new Posix());
-        $sm->setService('Config', array());
+        $sm->setService('Config', []);
         $cm = new ControllerManager();
         $cm->setServiceLocator($sm);
 

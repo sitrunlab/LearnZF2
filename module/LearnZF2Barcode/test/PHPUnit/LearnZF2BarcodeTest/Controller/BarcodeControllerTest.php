@@ -40,10 +40,10 @@ class BarcodeControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostData()
     {
-        $postData = array(
+        $postData = [
             'barcode-object-text' => '123456789',
             'barcode-object-select' => 'codabar',
-        );
+        ];
         $this->dispatch('/learn-zf2-barcode', 'POST', $postData);
 
         $this->assertFileExists('./data/barcode.gif');
@@ -59,10 +59,10 @@ class BarcodeControllerTest extends AbstractHttpControllerTestCase
 
     public function testAccessBarcodeImageWithccessFormBefore()
     {
-        $postData = array(
+        $postData = [
             'barcode-object-text' => '123456789',
             'barcode-object-select' => 'codabar',
-        );
+        ];
         $this->dispatch('/learn-zf2-barcode', 'POST', $postData);
 
         $this->dispatch('/learn-zf2-barcode/getbarcodeimage');

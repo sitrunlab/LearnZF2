@@ -48,15 +48,15 @@ class NavigationFactoryTest extends TestCase
 
     public function testCreateService()
     {
-        $sm = new ServiceManager(new Config(array(
-            'services' => array(
+        $sm = new ServiceManager(new Config([
+            'services' => [
                 'config' => include __DIR__.'/../../../../config/module.config.php',
                 'eventmanager' => new EventManager(),
                 'router' => new TreeRouteStack(),
                 'request' => new Request(),
-                'routematch' => new RouteMatch(array()),
-            ),
-        )));
+                'routematch' => new RouteMatch([]),
+            ],
+        ]));
 
         $event = new MvcEvent();
         $event->setRequest($sm->get('request'))

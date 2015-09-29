@@ -40,20 +40,20 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostDataWithoutAjax()
     {
-        $postData = array(
+        $postData = [
             'username' => 'user',
             'password' => 'user123',
-        );
+        ];
         $this->dispatch('/learn-zf2-ajax', 'POST', $postData);
         $this->assertQuery('html > head');
     }
 
     public function testPostInvalidDataWithAjax()
     {
-        $postData = array(
+        $postData = [
             'username' => 'user',
             'password' => 'user123',
-        );
+        ];
         $this->dispatch('/learn-zf2-ajax', 'POST', $postData, true);
         $request = $this->getRequest();
 
@@ -65,10 +65,10 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostValidDataWithAjax()
     {
-        $postData = array(
+        $postData = [
             'username' => 'admin',
             'password' => 'admin',
-        );
+        ];
         $this->dispatch('/learn-zf2-ajax', 'POST', $postData, true);
         $request = $this->getRequest();
 

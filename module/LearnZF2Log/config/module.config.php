@@ -16,30 +16,30 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-return array(
-    'router' => array(
-        'routes' => array(
-            'learn-zf2-log' => array(
+return [
+    'router' => [
+        'routes' => [
+            'learn-zf2-log' => [
                 'type' => 'Literal',
-                'options' => array(
+                'options' => [
                     'route' => '/learn-zf2-log',
-                    'defaults' => array(
+                    'defaults' => [
                         '__NAMESPACE__' => 'LearnZF2Log\Controller',
                         'controller' => 'Index',
                         'action' => 'index',
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'controllers' => array(
-        'factories' => array(
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'controllers' => [
+        'factories' => [
             'LearnZF2Log\Controller\Index' => 'LearnZF2Log\Factory\Controller\IndexControllerFactory',
-        ),
-    ),
-    'view_manager' => array(
-        'template_path_stack' => array(
+        ],
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
             'learnzf2log' => __DIR__.'/../view',
-        ),
-    ),
-);
+        ],
+    ],
+];

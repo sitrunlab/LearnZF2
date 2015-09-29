@@ -1,58 +1,58 @@
 <?php
 
-return array(
-    'router' => array(
-        'routes' => array(
+return [
+    'router' => [
+        'routes' => [
 
-            'learn-zf2-barcode-usage' => array(
+            'learn-zf2-barcode-usage' => [
                 'type' => 'Literal',
-                'options' => array(
+                'options' => [
                     'route' => '/learn-zf2-barcode',
-                    'defaults' => array(
+                    'defaults' => [
                         '__NAMESPACE__' => 'LearnZF2Barcode\Controller',
                         'controller' => 'Barcode',
                         'action' => 'index',
-                    ),
-                ),
+                    ],
+                ],
                 'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
+                'child_routes' => [
+                    'default' => [
                         'type' => 'Segment',
-                        'options' => array(
+                        'options' => [
                             'route' => '[/:action]',
-                            'constraints' => array(
+                            'constraints' => [
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
+                            ],
+                            'defaults' => [
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
 
-    'controllers' => array(
-        'factories' => array(
+    'controllers' => [
+        'factories' => [
             'LearnZF2Barcode\Controller\Barcode' => 'LearnZF2Barcode\Factory\Controller\BarcodeControllerFactory',
-        ),
-    ),
+        ],
+    ],
 
-    'service_manager' => array(
-        'factories' => array(
+    'service_manager' => [
+        'factories' => [
             'BarcodeObjectPluginManager' => 'LearnZF2Barcode\Factory\Service\BarcodeObjectPluginManagerFactory',
-        ),
-    ),
+        ],
+    ],
 
-    'form_elements' => array(
-        'factories' => array(
+    'form_elements' => [
+        'factories' => [
             'LearnZF2Barcode\Form\BarcodeForm' => 'LearnZF2Barcode\Factory\Form\BarcodeFormFactory',
-        ),
-    ),
+        ],
+    ],
 
-    'view_manager' => array(
-        'template_path_stack' => array(
+    'view_manager' => [
+        'template_path_stack' => [
             'learn-zf2-barcode' => __DIR__.'/../view',
-        ),
-    ),
-);
+        ],
+    ],
+];

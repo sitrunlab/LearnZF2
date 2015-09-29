@@ -37,12 +37,12 @@ class AclTest extends PHPUnit_Framework_TestCase
      */
     public function provideRoleRights()
     {
-        return array(
-            array(null, array('ViewHome', 'ViewUser', 'RegisterUser', 'EditUser', 'DeleteUser', 'AddUser')),
-            array(0, array('ViewHome', 'ViewUser', 'RegisterUser')),
-            array(1, array('ViewHome', 'ViewUser', 'EditUser')),
-            array(2, array('ViewHome', 'ViewUser', 'EditUser', 'DeleteUser', 'AddUser')),
-        );
+        return [
+            [null, ['ViewHome', 'ViewUser', 'RegisterUser', 'EditUser', 'DeleteUser', 'AddUser']],
+            [0, ['ViewHome', 'ViewUser', 'RegisterUser']],
+            [1, ['ViewHome', 'ViewUser', 'EditUser']],
+            [2, ['ViewHome', 'ViewUser', 'EditUser', 'DeleteUser', 'AddUser']],
+        ];
     }
 
     /**
@@ -58,11 +58,11 @@ class AclTest extends PHPUnit_Framework_TestCase
      */
     public function provideRoleResources()
     {
-        return array(
-            array(0, array('HomeController', 'UserController')),
-            array(1, array('HomeController', 'UserController')),
-            array(2, array('HomeController', 'UserController', 'AdminController')),
-        );
+        return [
+            [0, ['HomeController', 'UserController']],
+            [1, ['HomeController', 'UserController']],
+            [2, ['HomeController', 'UserController', 'AdminController']],
+        ];
     }
 
     /**

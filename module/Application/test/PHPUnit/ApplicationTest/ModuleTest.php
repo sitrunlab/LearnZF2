@@ -57,9 +57,9 @@ class ModuleTest extends PHPUnit_Framework_TestCase
 
     public function testGetConsoleUsage()
     {
-        $expected = array(
+        $expected = [
             'get contributors' => 'get contributors list',
-        );
+        ];
         $consoleAdapter = Console::detectBestAdapter();
         $this->assertEquals($expected, $this->module->getConsoleUsage(new $consoleAdapter()));
     }
@@ -69,16 +69,16 @@ class ModuleTest extends PHPUnit_Framework_TestCase
         // Create MvcEvent
         $e = new MvcEvent();
         $e->setViewModel(new ViewModel());
-        $rm = new RouteMatch(array());
+        $rm = new RouteMatch([]);
         $rm->setParam('controller', 'Application\Controller\Download');
         $e->setRouteMatch($rm);
-        $e->setTarget(new DownloadController(array()));
+        $e->setTarget(new DownloadController([]));
 
         // Create EntityManager and EntityRepository
         $moduleDetail = new ModuleList();
         $moduleDetail->setModuleDesc('Pretty description');
         $repo = $this->prophesize('Doctrine\ORM\EntityRepository');
-        $repo->findOneBy(array('moduleName' => 'Application'))->willReturn($moduleDetail);
+        $repo->findOneBy(['moduleName' => 'Application'])->willReturn($moduleDetail);
         $em = $this->prophesize('Doctrine\ORM\EntityManager');
         $em->getRepository('Application\Entity\ModuleList')->willReturn($repo);
         $this->sm->setService('Doctrine\ORM\EntityManager', $em->reveal());

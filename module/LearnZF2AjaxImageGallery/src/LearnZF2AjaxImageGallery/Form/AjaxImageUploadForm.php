@@ -37,24 +37,24 @@ class AjaxImageUploadForm extends Form implements InputFilterProviderInterface
         $this->setAttribute('action', '/learn-zf2-ajax-image-gallery/index/upload');
         $this->setAttribute('method', 'post');
 
-        $this->add(array(
+        $this->add([
             'name' => 'imageUpload',
             'type' => 'File',
-            'attributes' => array(
+            'attributes' => [
                 'class' => 'imgupload',
                 'id' => 'imgajax',
                 'multiple' => true,
-            ),
-        ));
+            ],
+        ]);
     }
 
     public function getInputFilterSpecification()
     {
-        return array(
-            array(
+        return [
+            [
                 'name' => 'imageUpload',
                 'required' => false,
-            ),
-        );
+            ],
+        ];
     }
 }
