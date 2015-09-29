@@ -125,7 +125,7 @@ class IndexController extends AbstractActionController
     /**
      * Get all files from all folders and list them in the gallery
      * getcwd() is there to make the work with images path easier.
-     * 
+     *
      * @return JsonModel
      */
     protected function filesAction()
@@ -164,10 +164,10 @@ class IndexController extends AbstractActionController
         $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
 
         if (extension_loaded('fileinfo')) {
-            $adapter->setValidators(array(new IsImage()));
+            $adapter->setValidators([new IsImage()]);
         }
 
-        $adapter->setValidators(array($size, $extension));
+        $adapter->setValidators([$size, $extension]);
 
         $adapter->setDestination('public/userfiles/images/');
 
