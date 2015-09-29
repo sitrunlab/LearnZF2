@@ -21,54 +21,54 @@
  *
  * @author Abdul Malik Ikhsan <samsonasik@gmail.com>
  */
-return array(
-    'router' => array(
-        'routes' => array(
+return [
+    'router' => [
+        'routes' => [
 
-            'learn-zf2-acl' => array(
+            'learn-zf2-acl' => [
                 'type' => 'Literal',
-                'options' => array(
+                'options' => [
                     'route' => '/learn-zf2-acl',
-                    'defaults' => array(
+                    'defaults' => [
                         '__NAMESPACE__' => 'LearnZF2Acl\Controller',
                         'controller' => 'Acl',
                         'action' => 'index',
-                    ),
-                ),
+                    ],
+                ],
                 'may_terminate' => true,
-                'child_routes' => array(
-                    'listresourcesandrights' => array(
+                'child_routes' => [
+                    'listresourcesandrights' => [
                         'type' => 'Literal',
-                        'options' => array(
+                        'options' => [
                             'route' => '/listresourcesandrights',
-                            'defaults' => array(
+                            'defaults' => [
                                 'action' => 'listresourcesandrights',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
 
-    'controllers' => array(
-        'factories' => array(
+    'controllers' => [
+        'factories' => [
             'LearnZF2Acl\Controller\Acl' => 'LearnZF2Acl\Factory\Controller\AclControllerFactory',
-        ),
-    ),
+        ],
+    ],
 
-    'service_manager' => array(
-        'invokables' => array(
+    'service_manager' => [
+        'invokables' => [
             'aclmodel' => 'LearnZF2Acl\Model\Acl',
-        ),
-    ),
+        ],
+    ],
 
-    'view_manager' => array(
-        'template_path_stack' => array(
+    'view_manager' => [
+        'template_path_stack' => [
             'learn-zf2-acl' => __DIR__.'/../view',
-        ),
-        'strategies' => array(
+        ],
+        'strategies' => [
             'ViewJsonStrategy',
-        ),
-    ),
-);
+        ],
+    ],
+];

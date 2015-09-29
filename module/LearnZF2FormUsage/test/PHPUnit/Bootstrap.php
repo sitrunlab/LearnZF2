@@ -36,7 +36,7 @@ class Bootstrap
 
     public static function init()
     {
-        $zf2ModulePaths = array(dirname(dirname(__DIR__)));
+        $zf2ModulePaths = [dirname(dirname(__DIR__))];
         if (($path = static::findParentPath('vendor'))) {
             $zf2ModulePaths[] = $path;
         }
@@ -47,14 +47,14 @@ class Bootstrap
         static::initAutoloader();
 
         // use ModuleManager to load this module and it's dependencies
-        $config = array(
-            'module_listener_options' => array(
+        $config = [
+            'module_listener_options' => [
                 'module_paths' => $zf2ModulePaths,
-            ),
-            'modules' => array(
+            ],
+            'modules' => [
                 'LearnZF2FormUsage',
-            ),
-        );
+            ],
+        ];
 
         $serviceManager = new ServiceManager(new ServiceManagerConfig());
         $serviceManager->setService('ApplicationConfig', $config);
@@ -87,14 +87,14 @@ class Bootstrap
             );
         }
 
-        AutoloaderFactory::factory(array(
-            'Zend\Loader\StandardAutoloader' => array(
+        AutoloaderFactory::factory([
+            'Zend\Loader\StandardAutoloader' => [
                 'autoregister_zf' => true,
-                    'namespaces' => array(
+                    'namespaces' => [
                         __NAMESPACE__ => __DIR__.'/'.__NAMESPACE__,
-                    ),
-                ),
-        ));
+                    ],
+                ],
+        ]);
     }
 
     protected static function findParentPath($path)

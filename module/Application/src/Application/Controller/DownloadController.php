@@ -56,12 +56,12 @@ class DownloadController extends AbstractActionController
 
             $fileToArchive = $module.'.'.(($compress === 'zip') ? 'zip' : 'bz2');
             $archive = $fileToArchive.'-'.$currDateTime;
-            $filter = new Compress(array(
+            $filter = new Compress([
                 'adapter' => ($compress === 'zip') ? 'Zip' : 'Bz2',
-                'options' => array(
+                'options' => [
                     'archive' => './data/'.$archive,
-                ),
-            ));
+                ],
+            ]);
             $compressed = $filter->filter('./module/'.$module);
 
             //setting response header....

@@ -1,53 +1,53 @@
 <?php
 
-return array(
-    'router' => array(
-        'routes' => array(
-            'learn-zf2-ajax-image-gallery' => array(
+return [
+    'router' => [
+        'routes' => [
+            'learn-zf2-ajax-image-gallery' => [
                 'type' => 'Literal',
-                'options' => array(
+                'options' => [
                     'route' => '/learn-zf2-ajax-image-gallery',
-                    'defaults' => array(
+                    'defaults' => [
                         '__NAMESPACE__' => 'LearnZF2AjaxImageGallery\Controller',
                         'controller' => 'Index',
                         'action' => 'index',
-                    ),
-                ),
+                    ],
+                ],
                 'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
+                'child_routes' => [
+                    'default' => [
                         'type' => 'Segment',
-                        'options' => array(
+                        'options' => [
                             'route' => '/[:controller[/:action]]',
-                            'constraints' => array(
+                            'constraints' => [
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'controllers' => array(
-        'factories' => array(
+                            ],
+                            'defaults' => [
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'controllers' => [
+        'factories' => [
             'LearnZF2AjaxImageGallery\Controller\Index' => 'LearnZF2AjaxImageGallery\Factory\Controller\IndexControllerFactory',
-        ),
-    ),
-    'form_elements' => array(
-        'factories' => array(
+        ],
+    ],
+    'form_elements' => [
+        'factories' => [
             'LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm' => 'LearnZF2AjaxImageGallery\Factory\Form\AjaxImageUploadFormFactory',
-        ),
-    ),
+        ],
+    ],
 
-    'view_manager' => array(
-        'strategies' => array(
+    'view_manager' => [
+        'strategies' => [
             'ViewJsonStrategy',
-        ),
-        'template_path_stack' => array(
+        ],
+        'template_path_stack' => [
             'learn-zf2-ajax-image-gallery' => __DIR__.'/../view',
-        ),
-    ),
-);
+        ],
+    ],
+];

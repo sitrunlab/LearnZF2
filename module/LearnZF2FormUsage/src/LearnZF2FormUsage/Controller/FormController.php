@@ -43,7 +43,7 @@ class FormController extends AbstractActionController
     public function indexAction()
     {
         $request = $this->getRequest();
-        $formMessages = array();
+        $formMessages = [];
         $isPost = false;
 
         if ($request->isPost()) {
@@ -53,10 +53,10 @@ class FormController extends AbstractActionController
             $isPost = true;
         }
 
-        return new ViewModel(array(
+        return new ViewModel([
             'form' => $this->form,
             'formMessages' => $formMessages,
             'isPost' => $isPost,
-        ));
+        ]);
     }
 }

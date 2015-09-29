@@ -28,10 +28,10 @@ class LoginInputFilterTest extends PHPUnit_Framework_TestCase
     public function testHasFilters()
     {
         $loginInputFilter = new LoginInputFilter();
-        $loginInputFilter->exchangeArray(array(
+        $loginInputFilter->exchangeArray([
             'username' => 'admin',
             'password' => 'admin',
-        ));
+        ]);
         $this->assertSame(2, $loginInputFilter->getInputFilter()->count());
         $this->assertTrue($loginInputFilter->getInputFilter()->has('username'));
         $this->assertTrue($loginInputFilter->getInputFilter()->has('password'));

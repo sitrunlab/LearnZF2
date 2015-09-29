@@ -22,7 +22,7 @@ class IndexControllerFactoryTest extends TestCase
 
     public function testCreateServiceWithData()
     {
-        $controller = $this->factory->createService($this->createServiceLocator(array('pagination_data' => array())));
+        $controller = $this->factory->createService($this->createServiceLocator(['pagination_data' => []]));
         $this->assertInstanceOf('LearnZF2Pagination\Controller\IndexController', $controller);
     }
 
@@ -37,7 +37,7 @@ class IndexControllerFactoryTest extends TestCase
      *
      * @return ServiceLocatorInterface
      */
-    private function createServiceLocator(array $data = array())
+    private function createServiceLocator(array $data = [])
     {
         $controllerManager = new ControllerManager();
         $sm = new ServiceManager();

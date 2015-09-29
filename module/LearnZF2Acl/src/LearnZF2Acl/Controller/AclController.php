@@ -50,20 +50,20 @@ class AclController extends AbstractActionController
     {
         $defaultSelectedRoleId = 0;
 
-        return new ViewModel(array(
+        return new ViewModel([
             'defaultSelectedRoleId' => $defaultSelectedRoleId,
             'roles' => $this->aclmodel->getRoles(),
             'resources' => $this->aclmodel->getResources(),
             'rights' => $this->aclmodel->getRightLists(),
             'resourcesSelected' => $this->aclmodel->getResourceByRole($defaultSelectedRoleId),
             'rightsSelected' => $this->aclmodel->getRightLists($defaultSelectedRoleId),
-        ));
+        ]);
     }
 
     public function listresourcesandrightsAction()
     {
-        $resources = array();
-        $rights = array();
+        $resources = [];
+        $rights = [];
 
         if ($this->request->isPost()) {
             $roleId = $this->request->getPost('roleId', 0);
@@ -72,9 +72,9 @@ class AclController extends AbstractActionController
             $rights = $this->aclmodel->getRightLists($roleId);
         }
 
-        return new JsonModel(array(
+        return new JsonModel([
             'resources' => $resources,
             'rights' => $rights,
-        ));
+        ]);
     }
 }

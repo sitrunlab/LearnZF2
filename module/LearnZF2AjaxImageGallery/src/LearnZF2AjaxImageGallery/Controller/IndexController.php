@@ -37,10 +37,10 @@ class IndexController extends AbstractActionController
     /**
      * @var array
      */
-    protected $acceptCriteria = array(
-        'Zend\View\Model\JsonModel' => array('application/json'),
-        'Zend\View\Model\ViewModel' => array('text/html'),
-    );
+    protected $acceptCriteria = [
+        'Zend\View\Model\JsonModel' => ['application/json'],
+        'Zend\View\Model\ViewModel' => ['text/html'],
+    ];
 
     /**
      * @var AjaxImageUploadForm
@@ -87,7 +87,7 @@ class IndexController extends AbstractActionController
     protected function uploadAction()
     {
         $request = $this->getRequest();
-        $data = array();
+        $data = [];
 
         if ($request->isXmlHttpRequest()) {
             $data = $this->prepareImages();
@@ -135,7 +135,7 @@ class IndexController extends AbstractActionController
         $dir = new \RecursiveDirectoryIterator('userfiles/', \FilesystemIterator::SKIP_DOTS);
         $it = new \RecursiveIteratorIterator($dir, \RecursiveIteratorIterator::SELF_FIRST);
         $it->setMaxDepth(50);
-        $files = array();
+        $files = [];
         $i = 0;
         foreach ($it as $file) {
             if ($file->isFile()) {
@@ -146,7 +146,7 @@ class IndexController extends AbstractActionController
         }
         chdir(dirname(getcwd()));
         $model = new JsonModel();
-        $model->setVariables(array('files' => $files));
+        $model->setVariables(['files' => $files]);
 
         return $model;
     }
@@ -160,8 +160,8 @@ class IndexController extends AbstractActionController
     {
         $adapter = new Http();
 
-        $size = new Size(array('min' => '10kB', 'max' => '5MB','useByteString' => true));
-        $extension = new Extension(array('jpg','gif','png','jpeg','bmp','webp','svg'), true);
+        $size = new Size(['min' => '10kB', 'max' => '5MB','useByteString' => true]);
+        $extension = new Extension(['jpg','gif','png','jpeg','bmp','webp','svg'], true);
 
         if (extension_loaded('fileinfo')) {
             $adapter->setValidators([new IsImage()]);
@@ -181,7 +181,7 @@ class IndexController extends AbstractActionController
      */
     private function uploadFiles(Http $adapter)
     {
-        $uploadStatus = array();
+        $uploadStatus = [];
 
         foreach ($adapter->getFileInfo() as $key => $file) {
             if (!$adapter->isValid($file['name'])) {

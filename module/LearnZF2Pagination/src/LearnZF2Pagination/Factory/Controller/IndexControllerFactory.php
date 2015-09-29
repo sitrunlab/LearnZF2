@@ -19,6 +19,6 @@ class IndexControllerFactory implements FactoryInterface
     {
         $config = $serviceLocator->getServiceLocator()->get('Config');
 
-        return new IndexController(isset($config['pagination_data']) ? $config['pagination_data'] : array());
+        return new IndexController(isset($config['pagination_data']) ? $config['pagination_data'] : []);
     }
 }

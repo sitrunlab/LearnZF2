@@ -19,28 +19,28 @@ class LoginForm extends Form
         parent::__construct('login');
         $this->setAttribute('method', 'post');
 
-        $this->add(array(
+        $this->add([
             'name' => 'username',
             'type' => 'Text',
-            'attributes' => array(
+            'attributes' => [
                 'class' => 'form-control',
                 'placeholder' => 'Username is admin',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Username',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'password',
             'type' => 'Password',
-            'attributes' => array(
+            'attributes' => [
                 'class' => 'form-control',
                 'placeholder' => 'Password is admin',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Password',
-            ),
-        ));
+            ],
+        ]);
     }
 }

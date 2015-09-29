@@ -47,22 +47,22 @@ class BarcodeController extends AbstractActionController
         $request = $this->getRequest();
 
         //default value without post parameter
-        $barcodeOptions = array('text' => '123456789');
+        $barcodeOptions = ['text' => '123456789'];
         $barcode = Barcode::factory('codabar', 'image', $barcodeOptions);
 
         if ($request->isPost()) {
             $this->form->setData($request->getPost());
             if ($this->form->isValid()) {
-                $barcodeOptions = array('text' => $this->form->getData()['barcode-object-text']);
+                $barcodeOptions = ['text' => $this->form->getData()['barcode-object-text']];
                 $barcode = Barcode::factory($this->form->getData()['barcode-object-select'], 'image', $barcodeOptions);
             }
         }
 
         imagegif($barcode->draw(), './data/barcode.gif');
 
-        return new ViewModel(array(
+        return new ViewModel([
             'form' => $this->form,
-        ));
+        ]);
     }
 
     /**

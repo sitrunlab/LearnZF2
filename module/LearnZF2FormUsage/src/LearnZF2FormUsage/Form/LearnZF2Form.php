@@ -33,207 +33,207 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
     {
         $this->setAttribute('method', 'post');
 
-        $this->add(array(
+        $this->add([
             'name' => 'id',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'hidden',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'name',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'text',
                 'class' => 'form-control',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Name',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\Select',
             'name' => 'gender',
-            'options' => array(
+            'options' => [
                 'label' => 'Gender',
-                'value_options' => array(
+                'value_options' => [
                     '1' => 'Select your gender',
                     '2' => 'Female',
                     '3' => 'Male',
-                ),
-            ),
-            'attributes' => array(
+                ],
+            ],
+            'attributes' => [
                 'class' => 'form-control',
                 'value' => '1', //set selected to '1'
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\MultiCheckbox',
             'name' => 'hobby',
-            'options' => array(
+            'options' => [
                 'label' => 'Please choose one/more of the hobbies',
-                'value_options' => array(
+                'value_options' => [
                     '1' => 'Cooking',
                     '2' => 'Writing',
                     '3' => 'Others',
-                ),
-            ),
-            'attributes' => array(
+                ],
+            ],
+            'attributes' => [
                 'class' => 'form-control',
                 'value' => '1', //set checked to '1'
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\Email',
             'name' => 'email',
-            'options' => array(
+            'options' => [
                 'label' => 'Email',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'placeholder' => 'you@domain.com',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\Date',
             'name' => 'birth',
-            'options' => array(
+            'options' => [
                 'label' => 'Birth ( Y/m/d )',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'class' => 'form-control',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'address',
-            'attributes' => array(
+            'attributes' => [
                 'class' => 'form-control',
                 'type' => 'textarea',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Address',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\Radio',
             'name' => 'direction',
-            'options' => array(
+            'options' => [
                 'label' => 'Please choose one of the directions',
-                'value_options' => array(
+                'value_options' => [
                     '1' => 'Programming',
                     '2' => 'Design',
-                ),
-            ),
-            'attributes' => array(
+                ],
+            ],
+            'attributes' => [
                 'class' => 'form-control',
                 'value' => '1', //set checked to '1'
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'class' => 'form-control',
                 'type' => 'submit',
                 'value' => 'Go',
                 'id' => 'submitbutton',
-            ),
-        ));
+            ],
+        ]);
     }
 
     public function getInputFilterSpecification()
     {
-        return array(
-            array(
+        return [
+            [
                 'name' => 'id',
                 'required' => false,
                 'allow_empty' => true,
-                'filters' => array(
-                    array('name' => 'Int'),
-                ),
-            ),
-            array(
+                'filters' => [
+                    ['name' => 'Int'],
+                ],
+            ],
+            [
                 'name' => 'name',
                 'required' => true,
-                'filters' => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+                'validators' => [
+                    [
                         'name' => 'StringLength',
-                        'options' => array(
+                        'options' => [
                             'encoding' => 'UTF-8',
                             'min' => 5,
                             'max' => 255,
-                        ),
-                    ),
-                ),
-            ),
-            array(
+                        ],
+                    ],
+                ],
+            ],
+            [
                 'name' => 'gender',
-                'validators' => array(
-                    array(
+                'validators' => [
+                    [
                         'name' => 'InArray',
-                        'options' => array(
-                            'haystack' => array(2,3),
-                            'messages' => array(
+                        'options' => [
+                            'haystack' => [2,3],
+                            'messages' => [
                                 'notInArray' => 'Please select your gender !',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            array(
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            [
                 'name' => 'hobby',
                 'required' => true,
-            ),
-            array(
+            ],
+            [
                 'name' => 'email',
-                'validators' => array(
-                    array(
+                'validators' => [
+                    [
                         'name' => 'EmailAddress',
-                    ),
-                ),
-            ),
-            array(
+                    ],
+                ],
+            ],
+            [
                 'name' => 'birth',
-                'validators' => array(
-                    array(
+                'validators' => [
+                    [
                         'name' => 'Between',
-                        'options' => array(
+                        'options' => [
                             'min' => '1970-01-01',
                             'max' => date('Y-m-d'),
-                        ),
-                    ),
-                ),
-            ),
-            array(
+                        ],
+                    ],
+                ],
+            ],
+            [
                 'name' => 'address',
                 'required' => true,
-                'filters' => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+                'validators' => [
+                    [
                         'name' => 'StringLength',
-                        'options' => array(
+                        'options' => [
                             'encoding' => 'UTF-8',
                             'min' => 5,
                             'max' => 255,
-                        ),
-                    ),
-                ),
-            ),
-            array(
+                        ],
+                    ],
+                ],
+            ],
+            [
                 'name' => 'direction',
                 'required' => true,
-            ),
-        );
+            ],
+        ];
     }
 }

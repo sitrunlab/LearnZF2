@@ -44,12 +44,12 @@ class CaptchaControllerTest extends AbstractHttpControllerTestCase
 
     public function testPostData()
     {
-        $postData = array(
+        $postData = [
             'captcha_adapter' => '1',
             'captcha[id]' => 'Som3Rand0M',
             'captcha[input]' => 'OOFXY',
             'submitCaptcha' => 'submit',
-        );
+        ];
 
         $this->dispatch('/learn-zf2-captcha', 'POST', $postData);
     }

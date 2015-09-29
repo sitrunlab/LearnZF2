@@ -47,11 +47,11 @@ class AclControllerTest extends AbstractHttpControllerTestCase
      */
     public function provideValidRole()
     {
-        return array(
-            array(0, '"RegisterUser"'),
-            array(1, 'EditUser"'),
-            array(2, '"AddUser"'),
-        );
+        return [
+            [0, '"RegisterUser"'],
+            [1, 'EditUser"'],
+            [2, '"AddUser"'],
+        ];
     }
 
     /**
@@ -59,9 +59,9 @@ class AclControllerTest extends AbstractHttpControllerTestCase
      */
     public function testPostData($roleId, $responseJson)
     {
-        $postData = array(
+        $postData = [
             'roleId' => $roleId,
-        );
+        ];
         $this->dispatch('/learn-zf2-acl/listresourcesandrights', 'POST', $postData);
         $response = $this->getResponse();
 

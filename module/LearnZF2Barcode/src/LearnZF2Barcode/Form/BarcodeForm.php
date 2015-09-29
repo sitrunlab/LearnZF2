@@ -43,38 +43,38 @@ class BarcodeForm extends Form implements InputFilterProviderInterface
      */
     public function init()
     {
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\Select',
             'name' => 'barcode-object-select',
-            'options' => array(
+            'options' => [
                 'label' => 'Barcode Objects',
                 'value_options' => $this->objectSelectValues,
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'class' => 'form-control',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\Text',
             'name' => 'barcode-object-text',
-            'options' => array(
-                'value_options' => array(),
-            ),
-            'attributes' => array(
+            'options' => [
+                'value_options' => [],
+            ],
+            'attributes' => [
                 'value' => '123456789',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'class' => 'form-control',
                 'type' => 'submit',
                 'value' => 'Go',
                 'id' => 'submitbutton',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -82,40 +82,40 @@ class BarcodeForm extends Form implements InputFilterProviderInterface
      */
     public function getInputFilterSpecification()
     {
-        return array(
+        return [
 
-            array(
+            [
                 'name' => 'barcode-object-select',
-                'validators' => array(
-                    array(
+                'validators' => [
+                    [
                         'name' => 'InArray',
-                        'options' => array(
+                        'options' => [
                             'haystack' => array_keys($this->objectSelectValues),
-                            'messages' => array(
+                            'messages' => [
                                 'notInArray' => 'Please select the object select !',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
+                            ],
+                        ],
+                    ],
+                ],
+            ],
 
-            array(
+            [
                 'name' => 'barcode-object-text',
                 'required' => true,
-                'filters' => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
+                'filters' => [
+                    ['name' => 'StripTags'],
+                    ['name' => 'StringTrim'],
+                ],
+                'validators' => [
+                    [
                         'name' => 'StringLength',
-                        'options' => array(
+                        'options' => [
                             'encoding' => 'UTF-8',
                             'min' => 1,
-                        ),
-                    ),
-                ),
-            ),
-        );
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 }

@@ -32,22 +32,22 @@ class IndexController extends AbstractActionController
     /**
      * @var array
      */
-    protected $loggerConfig = array(
-        'writers' => array(
-            array(
+    protected $loggerConfig = [
+        'writers' => [
+            [
                 'name' => 'stream',
-                'options' => array(
+                'options' => [
                     'stream' => 'php://output',
-                    'formatter' => array(
+                    'formatter' => [
                         'name' => 'simple',
-                        'options' => array(
+                        'options' => [
                             'format' => '%timestamp% %priorityName% (%priority%): %message%',
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    );
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ];
 
     /**
      * @var int
@@ -71,7 +71,7 @@ class IndexController extends AbstractActionController
         $logContent = '';
 
         // initialize when no submit anymore
-        $data = array();
+        $data = [];
         $data['logmessage'] = $this->form->get('logmessage')->getValue();
         if ($request->isPost()) {
             $this->form->setData($request->getPost());
@@ -93,9 +93,9 @@ class IndexController extends AbstractActionController
         $logger->log((int) $this->loggerPriority, $data['logmessage']);
         $logContent = ob_get_clean();
 
-        return new ViewModel(array(
+        return new ViewModel([
             'form' => $this->form,
             'logContent' => $logContent,
-        ));
+        ]);
     }
 }

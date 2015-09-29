@@ -13,5 +13,5 @@ $I->amOnPage('/learn-zf2-i18n?lang=es_ES');
 $I->see('Messages in current language (es_ES)');
 
 $I->amOnPage('/learn-zf2-i18n');
-$I->submitForm('#changeLanguageForm', array('lang' => 'id_ID'));
+$I->submitForm('#changeLanguageForm', ['lang' => 'id_ID']);
 $I->see('Messages in current language (id_ID)');

@@ -45,12 +45,12 @@ class Acl extends BaseAcl
         $this->addResource(new Resource('AdminController'));
 
         $this->allow('Guest', 'HomeController', 'ViewHome');
-        $this->allow('Guest', 'UserController', array('ViewUser', 'RegisterUser'));
+        $this->allow('Guest', 'UserController', ['ViewUser', 'RegisterUser']);
 
         $this->allow('User', 'UserController', 'EditUser');
         $this->deny('User', 'UserController', 'RegisterUser');
 
-        $this->allow('Admin', 'AdminController', array('DeleteUser', 'AddUser'));
+        $this->allow('Admin', 'AdminController', ['DeleteUser', 'AddUser']);
     }
 
     /**
@@ -62,7 +62,7 @@ class Acl extends BaseAcl
      */
     public function getRightLists($roleId = null)
     {
-        $rules = array();
+        $rules = [];
         $currentRole = 'All';
         foreach ($this->getResources() as $resource) {
             foreach ($this->getRoles() as $roleKey => $role) {
@@ -73,7 +73,7 @@ class Acl extends BaseAcl
             }
         }
 
-        $rights = array();
+        $rights = [];
         foreach ($rules as $rule) {
             if (is_array($rule)) {
                 foreach ($rule['byPrivilegeId'] as $right => $typeAndAssert) {
@@ -88,7 +88,7 @@ class Acl extends BaseAcl
             return $rights;
         }
 
-        $rightList = array();
+        $rightList = [];
         foreach ($this->getResources() as $resource) {
             foreach ($rights as $key => $right) {
                 if ($currentRole !== 'All') {
@@ -119,7 +119,7 @@ class Acl extends BaseAcl
             }
         }
 
-        $resources = array();
+        $resources = [];
         foreach ($this->getResources() as $resource) {
             foreach ($this->getRightLists() as $right) {
                 if ($this->isAllowed($selectedRole, $resource, $right)) {

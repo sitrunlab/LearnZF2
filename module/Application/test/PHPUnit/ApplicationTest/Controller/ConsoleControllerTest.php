@@ -52,13 +52,13 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
 
         $controller = new ConsoleController(
             $consoleAdapter,
-            array(
-                'console' => array(
-                    'contributors' => array(
+            [
+                'console' => [
+                    'contributors' => [
                         'output' => 'foo.pson',
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             $this->httpClient
         );
 
@@ -78,13 +78,13 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
 
         $controller = new ConsoleController(
             $consoleAdapter,
-            array(
-                'console' => array(
-                    'contributors' => array(
+            [
+                'console' => [
+                    'contributors' => [
                         'output' => 'foo.pson',
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             $this->httpClient
         );
 
@@ -98,13 +98,13 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
 
         $controller = new ConsoleController(
             $consoleAdapter,
-            array(
-                'console' => array(
-                    'contributors' => array(
+            [
+                'console' => [
+                    'contributors' => [
                         'output' => 'foo.pson',
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             $this->httpClient
         );
 
@@ -112,7 +112,7 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
         $method = $class->getMethod('reportError');
         $method->setAccessible(true);
 
-        $method->invokeArgs($controller, array(10, 3, ''));
+        $method->invokeArgs($controller, [10, 3, '']);
     }
 
     public function testExceptionPassedInReportError()
@@ -122,13 +122,13 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
 
         $controller = new ConsoleController(
             $consoleAdapter,
-            array(
-                'console' => array(
-                    'contributors' => array(
+            [
+                'console' => [
+                    'contributors' => [
                         'output' => 'foo.pson',
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             $this->httpClient
         );
 
@@ -138,7 +138,7 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
 
         ob_start();
         $e = new \Exception('foo');
-        $method->invokeArgs($controller, array(100, 1, '', $e));
+        $method->invokeArgs($controller, [100, 1, '', $e]);
         ob_get_clean();
     }
 
@@ -149,13 +149,13 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
 
         $controller = new ConsoleController(
             $consoleAdapter,
-            array(
-                'console' => array(
-                    'contributors' => array(
+            [
+                'console' => [
+                    'contributors' => [
                         'output' => 'foo.pson',
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             $this->httpClient
         );
 
@@ -163,7 +163,7 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
         $method = $class->getMethod('reportSuccess');
         $method->setAccessible(true);
 
-        $method->invokeArgs($controller, array(10, 3, ''));
+        $method->invokeArgs($controller, [10, 3, '']);
     }
 
     public function testCollectContributorsInfoFailed()
@@ -173,13 +173,13 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
 
         $controller = new ConsoleController(
             $consoleAdapter,
-            array(
-                'console' => array(
-                    'contributors' => array(
+            [
+                'console' => [
+                    'contributors' => [
                         'output' => 'foo.pson',
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             $this->httpClient
         );
 
@@ -187,12 +187,12 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
         $method = $class->getMethod('collectContributorsInfo');
         $method->setAccessible(true);
 
-        $contributors = array(
-            0 => array(
+        $contributors = [
+            0 => [
                 'login' => '*samsonasik*',
-            ),
-        );
+            ],
+        ];
 
-        $method->invokeArgs($controller, array($contributors, 3, 100));
+        $method->invokeArgs($controller, [$contributors, 3, 100]);
     }
 }

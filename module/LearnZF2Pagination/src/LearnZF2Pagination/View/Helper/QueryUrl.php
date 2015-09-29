@@ -38,7 +38,7 @@ class QueryUrl extends Url
         $this->request = $request;
     }
 
-    public function __invoke($name = null, $params = array(), $options = array(), $reuseMatchedParams = false)
+    public function __invoke($name = null, $params = [], $options = [], $reuseMatchedParams = false)
     {
         if (null === $this->router) {
             throw new Exception\RuntimeException('No RouteStackInterface instance provided');
@@ -46,12 +46,12 @@ class QueryUrl extends Url
 
         if (3 === func_num_args() && is_bool($options)) {
             $reuseMatchedParams = $options;
-            $options = array();
+            $options = [];
         }
 
         // Inherit query parameters
         if ($reuseMatchedParams) {
-            $providedQueryParams = isset($options['query']) ? $options['query'] : array();
+            $providedQueryParams = isset($options['query']) ? $options['query'] : [];
             $currentQueryParams = $this->request->getQuery()->toArray();
             $options['query'] = array_merge($currentQueryParams, $providedQueryParams);
         }
