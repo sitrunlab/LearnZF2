@@ -8,7 +8,7 @@
         "zendframework/zendframework": "~2.5.0",
         "zendframework/zftool": "dev-master",
         "doctrine/doctrine-orm-module": "~0.9.0",
-        "doctrine/migrations": "dev-master"
+        "doctrine/migrations": "~1.1"
     },
     "require-dev": {
         "phpunit/PHPUnit": "4.*",
