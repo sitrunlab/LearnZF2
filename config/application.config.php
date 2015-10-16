@@ -8,6 +8,7 @@
 return [
     'modules' => [
         'Application',
+        'Themes',
         'DoctrineModule',
         'DoctrineORMModule',
         'LearnZF2Ajax',
@@ -22,6 +23,7 @@ return [
         'LearnZF2Authentication',
         'LearnZF2Captcha',
         'LearnZF2AjaxImageGallery',
+        'LearnZF2Themes',
     ],
     'module_listener_options' => [
         'module_paths' => [

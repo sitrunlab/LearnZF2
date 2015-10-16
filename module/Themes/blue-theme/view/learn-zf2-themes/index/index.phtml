@@ -1,0 +1,34 @@
+<div class="col-lg-9">
+    <h1>Themes switcher example with Zend Framework 2</h1>
+    <h2> Blue theme</h2>
+
+    <div class="demo-box">
+        <div class="col-lg-4">
+        </div>
+    </div>
+    <p>
+        By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
+    </p>
+</div>
+<?php $themes = $this->themes; ?>
+<section>
+    <div class="table-style">
+<?php
+        foreach ($themes["themes"] as $key => $theme) {
+?>
+            <ul class="table-row theme">
+                <!-- <img src="/themes/<?=$key."/".$theme["screenshot"]?>"> -->
+                <li class="table-cell theme-item"><b>Title:</b>&nbsp;<?=$theme["title"]?></li>
+                <li class="table-cell theme-item"><b>Author:</b>&nbsp;<?=$theme["author"]?></li>
+                <li class="table-cell theme-item"><b>Description:</b>&nbsp;<?=$theme["description"]?></li>
+
+                <form class="table-cell" role="form" method="post" name="<?=$key?>" action="&#x2F;learn-zf2-themes" id="<?=$key?>">
+                    <input type="hidden" name="themeName" class="btn blue" value="<?=$key?>">
+                    <input type="submit" name="submit" class="btn blue" value="Activate">
+                </form>
+            </ul>
+<?php
+        }
+?>
+    </div>
+</section>
