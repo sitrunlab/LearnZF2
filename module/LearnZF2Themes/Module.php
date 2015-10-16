@@ -19,11 +19,11 @@
 
 namespace LearnZF2Themes;
 
+use DirectoryIterator;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use DirectoryIterator;
 
 class Module implements AutoloaderProviderInterface, BootstrapListenerInterface, ConfigProviderInterface
 {
@@ -51,7 +51,7 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
 
     public function getConfig()
     {
-        $config =  include __DIR__.'/config/module.config.php';
+        $config = include __DIR__.'/config/module.config.php';
         $dir = new DirectoryIterator(__DIR__.'/themes');
 
         foreach ($dir as $file) {
