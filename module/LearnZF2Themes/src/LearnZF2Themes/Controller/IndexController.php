@@ -22,6 +22,7 @@ namespace LearnZF2Themes\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\View\Model\ViewModel;
+use DirectoryIterator;
 
 /**
  * @author Stanimir Dimitrov <stanimirdim92@gmail.com>
@@ -72,12 +73,12 @@ class IndexController extends AbstractActionController
          */
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $filename = "module/LearnZF2Themes/config/module.config.php";
+            $filename = 'module/LearnZF2Themes/config/module.config.php';
             $settings = include $filename;
-            $settings["theme"]["name"] = $request->getPost()["themeName"];
+            $settings['theme']['name'] = $request->getPost()['themeName'];
 
             file_put_contents($filename, '<?php return '.var_export($settings, true).';');
-            $this->redirect()->toUrl("/learn-zf2-themes");
+            $this->redirect()->toUrl('/learn-zf2-themes');
         }
 
         return $this->view;
@@ -92,16 +93,16 @@ class IndexController extends AbstractActionController
      */
     private function getThemesFromDir()
     {
-        $path = "module/Themes/";
-        $dir = new \DirectoryIterator($path);
+        $path = 'module/LearnZF2Themes/themes/';
+        $dir = new DirectoryIterator($path);
         $themesConfig = [];
 
         foreach ($dir as $file) {
             if ($file->isDir() && !$file->isDot()) {
-                $hasConfig = $path.$file->getBasename()."/config/module.config.php";
+                $hasConfig = $path.$file->getBasename().'/config/module.config.php';
 
                 if (is_file($hasConfig)) {
-                    $themesConfig["themes"][$file->getBasename()] = include $hasConfig;
+                    $themesConfig['themes'][$file->getBasename()] = include $hasConfig;
                 }
             }
         }
