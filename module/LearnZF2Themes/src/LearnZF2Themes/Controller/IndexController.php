@@ -19,10 +19,10 @@
 
 namespace LearnZF2Themes\Controller;
 
+use DirectoryIterator;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\View\Model\ViewModel;
-use DirectoryIterator;
 
 /**
  * @author Stanimir Dimitrov <stanimirdim92@gmail.com>
@@ -34,22 +34,9 @@ class IndexController extends AbstractActionController
      */
     private $view = null;
 
-    /**
-     * Holds current theme information.
-     *
-     * @var array
-     */
-    private $themeInfo = [];
-
-    /**
-     * @method __construct
-     *
-     * @param array $themeInfo
-     */
-    public function __construct(array $themeInfo = [])
+    public function __construct()
     {
         $this->view = new ViewModel();
-        $this->themeInfo = $themeInfo;
     }
 
     /**
