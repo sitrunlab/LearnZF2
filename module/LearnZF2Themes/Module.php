@@ -20,11 +20,12 @@
 namespace LearnZF2Themes;
 
 use Zend\EventManager\EventInterface;
-use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use DirectoryIterator;
 
-class Module implements AutoloaderProviderInterface, ConfigProviderInterface, BootstrapListenerInterface
+class Module implements AutoloaderProviderInterface, BootstrapListenerInterface, ConfigProviderInterface
 {
     /**
      * Listen to the bootstrap event.
@@ -35,7 +36,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface, Bo
     {
         $app = $event->getApplication();
         $eventManager = $app->getEventManager();
-        $eventManager->attach("render", [$this,'loadTheme'], 100);
+        $eventManager->attach('render', [$this,'loadTheme'], 100);
     }
 
     /**
@@ -50,7 +51,20 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface, Bo
 
     public function getConfig()
     {
-        return include __DIR__.'/config/module.config.php';
+        $config =  include __DIR__.'/config/module.config.php';
+        $dir = new DirectoryIterator(__DIR__.'/themes');
+
+        foreach ($dir as $file) {
+            if ($file->isDir() && !$file->isDot()) {
+                $hasConfig = __DIR__.DIRECTORY_SEPARATOR.'themes'.DIRECTORY_SEPARATOR.$file->getBasename().'/config/module.config.php';
+
+                if (is_file($hasConfig)) {
+                    $config['themes'][$file->getBasename()] = include $hasConfig;
+                }
+            }
+        }
+
+        return $config;
     }
 
     public function getAutoloaderConfig()

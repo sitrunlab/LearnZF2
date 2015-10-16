@@ -8,7 +8,6 @@
 return [
     'modules' => [
         'Application',
-        'Themes',
         'DoctrineModule',
         'DoctrineORMModule',
         'LearnZF2Ajax',

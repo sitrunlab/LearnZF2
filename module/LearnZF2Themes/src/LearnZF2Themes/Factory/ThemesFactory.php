@@ -1,12 +1,20 @@
 <?php
 
 /**
- * @copyright  2015 (c) Stanimir Dimitrov.
- * @license    http://www.opensource.org/licenses/mit-license.php  MIT License
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @version    0.0.18
- *
- * @link       TBA
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
  */
 
 namespace LearnZF2Themes\Factory;
@@ -16,15 +24,15 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 final class ThemesFactory
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function __invoke(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->get('Config');
-        $headScript = $serviceLocator->get("ViewHelperManager")->get("HeadScript");
-        $headLink = $serviceLocator->get("ViewHelperManager")->get("headLink");
-        $themeName = $config["theme"]["name"]; // current theme name
-        $dir = "/themes/".$themeName.DIRECTORY_SEPARATOR;
+        $headScript = $serviceLocator->get('ViewHelperManager')->get('HeadScript');
+        $headLink = $serviceLocator->get('ViewHelperManager')->get('headLink');
+        $themeName = $config['theme']['name']; // current theme name
+        $dir = '/themes/'.$themeName.DIRECTORY_SEPARATOR;
 
         /*
          * Get theme name from config and load it.
@@ -34,10 +42,10 @@ final class ThemesFactory
          * inside our themes array. If there is such theme, the system will select it
          * and append its files, else it will call the default theme.
          */
-        if (isset($config["themes"][$themeName])) {
-            $themes = $config["themes"][$themeName];
+        if (isset($config['themes'][$themeName])) {
+            $themes = $config['themes'][$themeName];
         } else {
-            $themes = $config["themes"]['default']; // default them by default
+            $themes = $config['themes']['default']; // default them by default
         }
 
         if (isset($themes['template_map'])) {

@@ -1,18 +1,18 @@
 <?php
 
 return [
-    /**
-     * These are mandatory, but if anyone who doesn't want to put text, just leave them empty: => ''
+    /*
+     * These are mandatory, but if anyone who doesn't want to put text, just leave them empty: => ''.
      */
-    'description' => 'LearnZF2 blue theme',
-    'title' => 'Blue theme',
-    'screenshot' => 'blue-theme.png',
+    'description' => 'LearnZF2 red theme',
+    'title' => 'red theme',
+    'screenshot' => 'red-theme.png',
     'author' => 'Stanimir Dimitrov',
     'version' => '1.0',
     'date' => '16.10.2015',
     'website' => 'http://learnzf2.sitrun-tech.com/',
 
-    /**
+    /*
      * The only path structure that is a must and must stay this way is /public/themes/THEME_NAME/ and /module/Themes/THEME_NAME/.
      *
      * Every file structure inside /public/themes/THEME_NAME/ can be orginized according to the users needs,
@@ -40,11 +40,11 @@ return [
         '/js/nameDoesntMatter.js',
     ],
 
-    /**
+    /*
      * template_map is not necessary, but it's good for performance.
      */
     // 'template_map' => include __DIR__.'/../template_map.php',
     'template_path_stack' => [
-        'blue-theme' => __DIR__.'/../view',
+        'red-theme' => __DIR__.'/../view',
     ],
 ];
