@@ -1,4 +1,6 @@
-<?php return  [
+<?php
+
+return [
     'router' => [
         'routes' => [
             'learn-zf2-themes' => [
@@ -34,7 +36,7 @@
             'LearnZF2Themes\Controller\Index' => 'LearnZF2Themes\Factory\Controller\IndexControllerFactory',
         ],
     ],
-    'service_manager' =>  [
+    'service_manager' => [
         'factories' => [
             'initThemes' => 'LearnZF2Themes\Factory\ThemesFactory',
             'getThemesFromDir' => 'LearnZF2Themes\Factory\GetThemesFromDir',
@@ -42,10 +44,10 @@
     ],
     'view_manager' => [
         'strategies' => [
-            0 => 'ViewJsonStrategy',
+           'ViewJsonStrategy',
         ],
     ],
    'theme' => [
-        'name' => 'default',
+        'name' => 'red-theme',
     ],
 ];

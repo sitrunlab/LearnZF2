@@ -19,7 +19,6 @@
 
 namespace LearnZF2Themes;
 
-use DirectoryIterator;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;

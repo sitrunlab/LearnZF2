@@ -20,7 +20,6 @@
 namespace LearnZF2Themes\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\MvcEvent;
 use Zend\View\Model\ViewModel;
 
 /**
@@ -54,7 +53,7 @@ class IndexController extends AbstractActionController
     {
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $filename = 'module/LearnZF2Themes/config/module.config.php';
+            $filename = __DIR__.'/../../../config/module.config.php';
             $settings = include $filename;
             $settings['theme']['name'] = $request->getPost()['themeName'];
 

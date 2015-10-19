@@ -43,7 +43,7 @@ return [
     /*
      * template_map is not necessary, but it's good for performance.
      */
-    // 'template_map' => include __DIR__.'/../template_map.php',
+    'template_map' => include __DIR__.'/../template_map.php',
     'template_path_stack' => [
         'red-theme' => __DIR__.'/../view',
     ],
