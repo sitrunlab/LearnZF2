@@ -17,15 +17,15 @@
  * and is licensed under the MIT license.
  */
 
-namespace LearnZF2AjaxImageGallery\Factory\Controller;
+namespace LearnZF2Themes\Factory\Controller;
 
-use LearnZF2AjaxImageGallery\Controller\IndexController;
+use LearnZF2Themes\Controller\IndexController;
 use Zend\Mvc\Controller\ControllerManager;
 
 /**
  * @author Stanimir Dimitrov <stanimirdim92@gmail.com>
  */
-class IndexControllerFactory
+final class IndexControllerFactory
 {
     /**
      * {@inheritdoc}
@@ -33,10 +33,8 @@ class IndexControllerFactory
     public function __invoke(ControllerManager $controllerManager)
     {
         $serviceLocator = $controllerManager->getServiceLocator();
-
-        $controller = new IndexController(
-            (object) $serviceLocator->get('FormElementManager')->get('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm')
-        );
+        $themesConfig = $serviceLocator->get('getThemesFromDir');
+        $controller = new IndexController($themesConfig);
 
         return $controller;
     }
