@@ -51,20 +51,7 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
 
     public function getConfig()
     {
-        $config = include __DIR__.'/config/module.config.php';
-        $dir = new DirectoryIterator(__DIR__.'/themes');
-
-        foreach ($dir as $file) {
-            if ($file->isDir() && !$file->isDot()) {
-                $hasConfig = __DIR__.DIRECTORY_SEPARATOR.'themes'.DIRECTORY_SEPARATOR.$file->getBasename().'/config/module.config.php';
-
-                if (is_file($hasConfig)) {
-                    $config['themes'][$file->getBasename()] = include $hasConfig;
-                }
-            }
-        }
-
-        return $config;
+        return include __DIR__.'/config/module.config.php';
     }
 
     public function getAutoloaderConfig()

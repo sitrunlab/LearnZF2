@@ -19,7 +19,6 @@
 
 namespace LearnZF2Themes\Controller;
 
-use DirectoryIterator;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 use Zend\View\Model\ViewModel;
@@ -30,34 +29,29 @@ use Zend\View\Model\ViewModel;
 class IndexController extends AbstractActionController
 {
     /**
-     * @var ViewModel
+     * @var array
      */
-    private $view = null;
+    private $themesConfig = [];
 
-    public function __construct()
+    /**
+     * @method __construct
+     *
+     * @param array $themesConfig Holds array with information about every theme
+     */
+    public function __construct(array $themesConfig = [])
     {
-        $this->view = new ViewModel();
+        $this->themesConfig = $themesConfig;
     }
 
     /**
-     * @param MvcEvent $event
-     */
-    public function onDispatch(MvcEvent $event)
-    {
-        parent::onDispatch($event);
-    }
-    /**
-     * This action shows the list of all contents.
+     * This action shows the list of all themes.
+     *
+     * @method indexAction
      *
      * @return ViewModel
      */
     public function indexAction()
     {
-        $this->view->themes = $this->getThemesFromDir();
-
-        /*
-         * Load theme name in settings.
-         */
         $request = $this->getRequest();
         if ($request->isPost()) {
             $filename = 'module/LearnZF2Themes/config/module.config.php';
@@ -68,32 +62,8 @@ class IndexController extends AbstractActionController
             $this->redirect()->toUrl('/learn-zf2-themes');
         }
 
-        return $this->view;
-    }
-
-    /**
-     * Look into Themes module and get all aviable themes.
-     *
-     * @method getThemesFromDir
-     *
-     * @return array containg all themes configurations
-     */
-    private function getThemesFromDir()
-    {
-        $path = 'module/LearnZF2Themes/themes/';
-        $dir = new DirectoryIterator($path);
-        $themesConfig = [];
-
-        foreach ($dir as $file) {
-            if ($file->isDir() && !$file->isDot()) {
-                $hasConfig = $path.$file->getBasename().'/config/module.config.php';
-
-                if (is_file($hasConfig)) {
-                    $themesConfig['themes'][$file->getBasename()] = include $hasConfig;
-                }
-            }
-        }
-
-        return $themesConfig;
+        return new ViewModel([
+            'themes' => $this->themesConfig,
+        ]);
     }
 }
