@@ -3,9 +3,6 @@ if (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
    $_SERVER['HTTP_AUTHORIZATION'] = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
 }
 
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
-
 /**
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.
