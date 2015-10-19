@@ -31,12 +31,12 @@ final class GetThemesFromDir
      */
     public function __invoke()
     {
-        $path = 'module/LearnZF2Themes/themes/';
+        $path = __DIR__.'/../../../themes/';
         $dir = new DirectoryIterator($path);
         $themesConfig = [];
 
         foreach ($dir as $file) {
-            if ($file->isDir() && !$file->isDot()) {
+            if (!$file->isDot()) {
                 $hasConfig = $path.$file->getBasename().'/config/module.config.php';
 
                 if (is_file($hasConfig)) {
@@ -44,6 +44,7 @@ final class GetThemesFromDir
                 }
             }
         }
+
         return $themesConfig;
     }
 }
