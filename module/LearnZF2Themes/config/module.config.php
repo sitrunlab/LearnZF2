@@ -44,10 +44,10 @@ return [
     ],
     'view_manager' => [
         'strategies' => [
-           'ViewJsonStrategy',
+          'ViewJsonStrategy',
         ],
     ],
    'theme' => [
-        'name' => 'red-theme',
+        'name' => 'blue-theme',
     ],
 ];
