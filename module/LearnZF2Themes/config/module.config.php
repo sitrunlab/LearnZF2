@@ -42,12 +42,7 @@ return [
             'getThemesFromDir' => 'LearnZF2Themes\Factory\GetThemesFromDir',
         ],
     ],
-    'view_manager' => [
-        'strategies' => [
-            'ViewJsonStrategy',
-        ],
-    ],
    'theme' => [
-        'name' => 'blue-theme',
+        'name' => 'default',
     ],
 ];
