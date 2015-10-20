@@ -40,6 +40,12 @@ return [
         'factories' => [
             'initThemes' => 'LearnZF2Themes\Factory\ThemesFactory',
             'getThemesFromDir' => 'LearnZF2Themes\Factory\GetThemesFromDir',
+            'reloadConfig' => 'LearnZF2Themes\Factory\ReloadConfigFactory',
+        ],
+    ],
+    'view_manager' => [
+        'strategies' => [
+            'ViewJsonStrategy',
         ],
     ],
    'theme' => [

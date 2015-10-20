@@ -17,26 +17,31 @@
  * and is licensed under the MIT license.
  */
 
-namespace LearnZF2Themes\Factory\Controller;
+namespace LearnZF2Themes\Factory;
 
-use LearnZF2Themes\Controller\IndexController;
-use Zend\Mvc\Controller\ControllerManager;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * @author Stanimir Dimitrov <stanimirdim92@gmail.com>
  */
-final class IndexControllerFactory
+final class ReloadConfigFactory
 {
     /**
      * {@inheritdoc}
      */
-    public function __invoke(ControllerManager $controllerManager)
+    public function __invoke(ServiceLocatorInterface $serviceLocator)
     {
-        $serviceLocator = $controllerManager->getServiceLocator();
-        $themesConfig = $serviceLocator->get('getThemesFromDir');
-        $reloadConfig = $serviceLocator->get('reloadConfig');
-        $controller = new IndexController($themesConfig, $reloadConfig);
+        $request = $serviceLocator->get('Request');
 
-        return $controller;
+        if ($request->isPost()) {
+            $config = $serviceLocator->get('Config');
+            $themeName = $request->getPost()["themeName"];
+            $serviceLocator->setAllowOverride(true);
+            $config['theme']['name'] = $themeName;
+            $serviceLocator->setService('Config', $config);
+            $serviceLocator->setAllowOverride(false);
+        }
+
+        return $serviceLocator;
     }
 }
