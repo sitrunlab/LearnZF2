@@ -45,8 +45,8 @@ class IndexController extends AbstractActionController
     /**
      * @method __construct
      *
-     * @param array $config
-     * @param array $themesConfig
+     * @param array                               $config
+     * @param array                               $themesConfig
      * @param \Zend\ServiceManager\ServiceManager $serviceLocator
      */
     public function __construct(array $config = [], array $themesConfig = [], \Zend\ServiceManager\ServiceManager $serviceLocator)
