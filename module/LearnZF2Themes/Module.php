@@ -27,6 +27,11 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 class Module implements AutoloaderProviderInterface, BootstrapListenerInterface, ConfigProviderInterface
 {
     /**
+     * @var \Zend\getServiceManager\ServiceManager
+     */
+    private $service = null;
+
+    /**
      * Listen to the bootstrap event.
      *
      * @param EventInterface $event
@@ -34,6 +39,7 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
     public function onBootstrap(EventInterface $event)
     {
         $app = $event->getApplication();
+        $this->service = $app->getServiceManager();
         $eventManager = $app->getEventManager();
         $eventManager->attach('render', [$this,'loadTheme'], 100);
     }
@@ -45,7 +51,7 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
      */
     public function loadTheme(EventInterface $event)
     {
-        return $event->getApplication()->getServiceManager()->get('initThemes');
+        return $this->service->get('initThemes');
     }
 
     public function getConfig()

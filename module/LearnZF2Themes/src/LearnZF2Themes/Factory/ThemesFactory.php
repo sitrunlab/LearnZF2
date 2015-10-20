@@ -65,6 +65,6 @@ final class ThemesFactory
             $headScript->prependFile($publicDir.$file);
         }
 
-        return new self();
+        return $serviceLocator;
     }
 }
