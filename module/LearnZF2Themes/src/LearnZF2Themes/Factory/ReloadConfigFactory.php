@@ -35,7 +35,7 @@ final class ReloadConfigFactory
 
         if ($request->isPost()) {
             $config = $serviceLocator->get('Config');
-            $themeName = $request->getPost()["themeName"];
+            $themeName = $request->getPost()['themeName'];
             $serviceLocator->setAllowOverride(true);
             $config['theme']['name'] = $themeName;
             $serviceLocator->setService('Config', $config);

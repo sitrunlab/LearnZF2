@@ -178,6 +178,7 @@ final class IndexControllerFactory
         "factories" => [
             "initThemes" => "LearnZF2Themes\Factory\ThemesFactory",
             "getThemesFromDir" => "LearnZF2Themes\Factory\GetThemesFromDir",
+            "reloadConfig" => "LearnZF2Themes\Factory\ReloadConfigFactory",
         ],
     ],
    "theme" => [
@@ -192,30 +193,23 @@ class IndexController extends AbstractActionController
     /**
      * @var array
      */
-    private $config = [];
-
-    /**
-     * @var array
-     */
     private $themesConfig = [];
 
     /**
-     * @var \Zend\ServiceManager\ServiceManager
+     * @var mixed
      */
-    protected $serviceLocator = null;
+    private $reloadConfig = null;
 
     /**
      * @method __construct
      *
-     * @param array                               $config
-     * @param array                               $themesConfig
-     * @param \Zend\ServiceManager\ServiceManager $serviceLocator
+     * @param array $themesConfig
+     * @param mixed $reloadConfig
      */
-    public function __construct(array $config = [], array $themesConfig = [], \Zend\ServiceManager\ServiceManager $serviceLocator)
+    public function __construct(array $themesConfig = [], $reloadConfig)
     {
-        $this->config = $config;
         $this->themesConfig = $themesConfig;
-        $this->serviceLocator = $serviceLocator;
+        $this->reloadConfig = $reloadConfig;
     }
 
     /**
@@ -231,12 +225,10 @@ class IndexController extends AbstractActionController
         if ($request->isPost()) {
             $filename = __DIR__."/../../../config/module.config.php";
             $settings = include $filename;
-            $this->serviceLocator->setAllowOverride(true);
-            $this->config["theme"]["name"] = $request->getPost()["themeName"];
-            $settings["theme"]["name"] = $request->getPost()["themeName"];
+            $themeName = $request->getPost()["themeName"];
+            $settings["theme"]["name"] = $themeName;
             file_put_contents($filename, "<?php return ".var_export($settings, true).";");
-            $this->serviceLocator->setService("Config", $this->config);
-            $this->serviceLocator->setAllowOverride(false);
+            $this->reloadConfig;
         }
 
         return new ViewModel([
