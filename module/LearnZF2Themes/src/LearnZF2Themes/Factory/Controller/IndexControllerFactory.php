@@ -33,8 +33,9 @@ final class IndexControllerFactory
     public function __invoke(ControllerManager $controllerManager)
     {
         $serviceLocator = $controllerManager->getServiceLocator();
+        $config = $serviceLocator->get('Config');
         $themesConfig = $serviceLocator->get('getThemesFromDir');
-        $controller = new IndexController($themesConfig);
+        $controller = new IndexController($config, $themesConfig, $serviceLocator);
 
         return $controller;
     }
