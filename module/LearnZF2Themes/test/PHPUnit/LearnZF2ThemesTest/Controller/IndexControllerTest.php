@@ -50,7 +50,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         ];
 
         $this->dispatch('/learn-zf2-themes', 'POST', $postData);
-        $this->assertQueryContentContains('div.col-lg-9 > h2', "Default theme");
+        $this->assertQueryContentContains('div.col-lg-9 > h2', 'Default theme');
     }
 
     public function testActivateThemeWithNameBlueTheme()
@@ -60,7 +60,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         ];
 
         $this->dispatch('/learn-zf2-themes', 'POST', $postData);
-        $this->assertQueryContentContains('div.col-lg-9 > h2', "Blue theme");
+        $this->assertQueryContentContains('div.col-lg-9 > h2', 'Blue theme');
     }
 
     public function testActivateThemeWithNameRedTheme()
@@ -70,6 +70,6 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         ];
 
         $this->dispatch('/learn-zf2-themes', 'POST', $postData);
-        $this->assertQueryContentContains('div.col-lg-9 > h2', "Red theme");
+        $this->assertQueryContentContains('div.col-lg-9 > h2', 'Red theme');
     }
 }
