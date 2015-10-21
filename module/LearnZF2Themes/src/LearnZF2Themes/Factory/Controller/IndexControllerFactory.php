@@ -34,8 +34,8 @@ final class IndexControllerFactory
     {
         $serviceLocator = $controllerManager->getServiceLocator();
         $themesConfig = $serviceLocator->get('getThemesFromDir');
-        $reloadConfig = $serviceLocator->get('reloadConfig');
-        $controller = new IndexController($themesConfig, $reloadConfig);
+        $reloadService = $serviceLocator->get('reloadService');
+        $controller = new IndexController($themesConfig, $reloadService);
 
         return $controller;
     }

@@ -35,18 +35,18 @@ class IndexController extends AbstractActionController
     /**
      * @var mixed
      */
-    private $reloadConfig = null;
+    private $reloadService = null;
 
     /**
      * @method __construct
      *
      * @param array $themesConfig
-     * @param mixed $reloadConfig
+     * @param mixed $reloadService
      */
-    public function __construct(array $themesConfig = [], $reloadConfig)
+    public function __construct(array $themesConfig = [], $reloadService)
     {
         $this->themesConfig = $themesConfig;
-        $this->reloadConfig = $reloadConfig;
+        $this->reloadService = $reloadService;
     }
 
     /**
@@ -65,7 +65,7 @@ class IndexController extends AbstractActionController
             $themeName = $request->getPost()['themeName'];
             $settings['theme']['name'] = $themeName;
             file_put_contents($filename, '<?php return '.var_export($settings, true).';');
-            $this->reloadConfig;
+            $this->reloadService->reload();
         }
 
         return new ViewModel([

@@ -23,8 +23,6 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * @author Stanimir Dimitrov <stanimirdim92@gmail.com>
- *
- * This is the class where all the magic happens!!!
  */
 final class ThemesFactory
 {
@@ -45,16 +43,16 @@ final class ThemesFactory
          * At this point the user has already been selected the new theme he wants to use
          * from indexAction.
          */
+        $viewTemplate = $serviceLocator->get('ViewTemplatePathStack');
         $themes = $themesConfig['themes'][$config['theme']['name']];
 
-        if (isset($themes['template_map'])) {
-            $map = $serviceLocator->get('ViewTemplateMapResolver');
-            $map->merge($themes['template_map']);
+        if (isset($themes['template_path_stack'])) {
+            $viewTemplate->addPaths($themes['template_path_stack']);
         }
 
-        if (isset($themes['template_path_stack'])) {
-            $stack = $serviceLocator->get('ViewTemplatePathStack');
-            $stack->addPaths($themes['template_path_stack']);
+        if (isset($themes['template_map'])) {
+            $viewTemplate = $serviceLocator->get('ViewTemplateMapResolver');
+            $viewTemplate->merge($themes['template_map']);
         }
 
         foreach ($themes['css'] as $key => $file) {
@@ -65,6 +63,6 @@ final class ThemesFactory
             $headScript->prependFile($publicDir.$file);
         }
 
-        return $serviceLocator;
+        return $viewTemplate;
     }
 }

@@ -17,31 +17,19 @@
  * and is licensed under the MIT license.
  */
 
-namespace LearnZF2Themes\Factory;
+namespace LearnZF2Themes\Service;
 
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\EventManager\EventManager;
+use Zend\EventManager\EventManagerAwareInterface;
+use Zend\EventManager\EventManagerInterface;
+use Zend\EventManager\EventManagerAwareTrait;
 
-/**
- * @author Stanimir Dimitrov <stanimirdim92@gmail.com>
- */
-final class ReloadConfigFactory
+final class ReloadService implements EventManagerAwareInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function __invoke(ServiceLocatorInterface $serviceLocator)
-    {
-        $request = $serviceLocator->get('Request');
+   use EventManagerAwareTrait;
 
-        if ($request->isPost()) {
-            $config = $serviceLocator->get('Config');
-            $themeName = $request->getPost()['themeName'];
-            $serviceLocator->setAllowOverride(true);
-            $config['theme']['name'] = $themeName;
-            $serviceLocator->setService('Config', $config);
-            $serviceLocator->setAllowOverride(false);
-        }
-
-        return $serviceLocator;
+   public function reload()
+   {
+        $this->getEventManager()->trigger(__FUNCTION__, $this);
     }
 }
