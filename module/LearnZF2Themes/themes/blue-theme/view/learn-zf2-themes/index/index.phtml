@@ -11,6 +11,12 @@
     <h2>Blue theme</h2>
 
     <div class="demo-box">
+        <p>Please, select any of the themes bellow and see the magic happens.</p>
+        <ul>
+            Notes:
+            <li>All css, js, images files should go into <code>public\themes\THEME_NAME</code></li>
+            <li>All view and config files should go into <code>LearnZF2Themes\themes\THEME_NAME</code></li>
+        </ul>
         <div class="col-lg-12">
 <?php
         foreach ($themes["themes"] as $key => $theme) {
@@ -75,7 +81,7 @@ final class ThemesFactory
             $headScript->prependFile($publicDir.$file);
         }
 
-        return new self();
+        return $serviceLocator;
     }
 }');?></code></pre>
 
