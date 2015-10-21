@@ -23,6 +23,7 @@ use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use LearnZF2Themes\Service\ReloadService;
 
 class Module implements AutoloaderProviderInterface, BootstrapListenerInterface, ConfigProviderInterface
 {
@@ -41,7 +42,27 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
         $app = $event->getApplication();
         $this->service = $app->getServiceManager();
         $eventManager = $app->getEventManager();
+        $sharedEventManager = $app->getEventManager()->getSharedManager();
+
         $eventManager->attach('render', [$this,'loadTheme'], 100);
+        $sharedEventManager->attach(ReloadService::class, 'reload', [$this, 'reloadConfig'], 100);
+    }
+
+    /**
+     * Listen for theme change and override Config.
+     */
+    public function reloadConfig()
+    {
+        $request = $this->service->get('Request');
+
+        if ($request->isPost()) {
+            $config = $this->service->get('Config');
+            $themeName = $request->getPost()['themeName'];
+            $this->service->setAllowOverride(true);
+            $config['theme']['name'] = $themeName;
+            $this->service->setService('Config', $config);
+            $this->service->setAllowOverride(false);
+        }
     }
 
     /**

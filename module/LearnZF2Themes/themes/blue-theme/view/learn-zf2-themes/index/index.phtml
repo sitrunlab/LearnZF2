@@ -31,15 +31,15 @@
                 <li class="theme-item"><b>Website:</b>&nbsp;<a href="<?=$theme["website"]?>"><?=$theme["website"]?></a></li>
 
                 <form class="form" role="form" method="post" name="<?=$key?>" action="&#x2F;learn-zf2-themes" id="<?=$key?>">
-                    <input type="hidden" name="themeName" class="btn blue" value="<?=$key?>">
-                    <input type="submit" name="submit" class="btn btn-primary" value="Activate">
+                    <input type="hidden" name="themeName" value="<?=$key?>">
+                    <input type="submit" name="submit" class="btn btn-primery" value="Activate">
                 </form>
             </ul>
 <?php
         }
 ?>
         </div>
-        <p>This is where all the magic happens. The system retrieves the theme name from the Config
+        <p>This is where all the magic happens. The system retrives the theme name from the Config
         and searches inside themes config for a key with this theme name. After that it checks for its configuration from module.config.php and loads it.<code>LearnZF2Themes\Factory\ThemesFactory</code>
 <pre><code class="language-php"><?php echo htmlentities('
 final class ThemesFactory
@@ -59,18 +59,18 @@ final class ThemesFactory
          * Get theme name from config and load it.
          *
          * At this point the user has already been selected the new theme he wants to use
-         * from indexAction. Idea taken from here: https://github.com/slaff/learnzf2-theme/blob/master/Module.php#L35
+         * from indexAction.
          */
+        $viewTemplate = $serviceLocator->get("ViewTemplatePathStack");
         $themes = $themesConfig["themes"][$config["theme"]["name"]];
 
-        if (isset($themes["template_map"])) {
-            $map = $serviceLocator->get("ViewTemplateMapResolver");
-            $map->merge($themes["template_map"]);
+        if (isset($themes["template_path_stack"])) {
+            $viewTemplate->addPaths($themes["template_path_stack"]);
         }
 
-        if (isset($themes["template_path_stack"])) {
-            $stack = $serviceLocator->get("ViewTemplatePathStack");
-            $stack->addPaths($themes["template_path_stack"]);
+        if (isset($themes["template_map"])) {
+            $viewTemplate = $serviceLocator->get("ViewTemplateMapResolver");
+            $viewTemplate->merge($themes["template_map"]);
         }
 
         foreach ($themes["css"] as $key => $file) {
@@ -81,9 +81,10 @@ final class ThemesFactory
             $headScript->prependFile($publicDir.$file);
         }
 
-        return $serviceLocator;
+        return $viewTemplate;
     }
-}');?></code></pre>
+}
+');?></code></pre>
 
 <p>This factory <code>LearnZF2Themes\Factory\GetThemesFromDir</code> will iterate over <code>module\LearnZF2Themes\themes</code> and load every theme and its configuration in the global Config.</p>
 <pre><code class="language-php"><?php echo htmlentities('
@@ -123,16 +124,16 @@ final class IndexControllerFactory
     public function __invoke(ControllerManager $controllerManager)
     {
         $serviceLocator = $controllerManager->getServiceLocator();
-        $config = $serviceLocator->get("Config");
         $themesConfig = $serviceLocator->get("getThemesFromDir");
-        $controller = new IndexController($config, $themesConfig, $serviceLocator);
+        $reloadService = $serviceLocator->get("reloadService");
+        $controller = new IndexController($themesConfig, $reloadService);
 
         return $controller;
     }
 }
 ');?></code></pre>
 
-<p>We need to attach an event listener before the real rendering of the view files in <code>LearnZF2Themes\Module.php</code>.</p>
+<p>We need to attach two event listeners before the real rendering of the view files in <code>LearnZF2Themes\Module.php</code>. The first listener listens for the render event, which renders the current them. The second listener is a custom listener, which is appended to the SharedEventManager and reloads the Config, after a different theme has been selected.</p>
 <pre><code class="language-php"><?php echo htmlentities('
     // ...code
 
@@ -151,7 +152,27 @@ final class IndexControllerFactory
         $app = $event->getApplication();
         $this->service = $app->getServiceManager();
         $eventManager = $app->getEventManager();
+        $sharedEventManager = $app->getEventManager()->getSharedManager();
+
         $eventManager->attach("render", [$this,"loadTheme"], 100);
+        $sharedEventManager->attach(ReloadService::class, "reload", [$this, "reloadConfig"], 100);
+    }
+
+    /**
+     * Listen for theme change and override Config.
+     */
+    public function reloadConfig()
+    {
+        $request = $this->service->get("Request");
+
+        if ($request->isPost()) {
+            $config = $this->service->get("Config");
+            $themeName = $request->getPost()["themeName"];
+            $this->service->setAllowOverride(true);
+            $config["theme"]["name"] = $themeName;
+            $this->service->setService("Config", $config);
+            $this->service->setAllowOverride(false);
+        }
     }
 
     /**
@@ -167,7 +188,21 @@ final class IndexControllerFactory
     // ...code
 ');?></code></pre>
 
-<p>LearnZF2Themes\config\<code>module.config.php</code>
+<p><code>LearnZF2Themes\Service\ReloadService</code> is a simple service that is being called inside the controller.
+Its function is used to trigger the custom reload event listener, which calls reloadConfig inside Module.php and reloads the Config.
+<pre><code class="language-php"><?php echo htmlentities('
+final class ReloadService implements EventManagerAwareInterface
+{
+   use EventManagerAwareTrait;
+
+   public function reload()
+   {
+        $this->getEventManager()->trigger(__FUNCTION__, $this);
+    }
+}
+');?></code></pre>
+
+<p>LearnZF2Themes\config\<code>module.config.php</code></p>
 <pre><code class="language-php"><?php echo htmlentities('
     "controllers" => [
         "factories" => [
@@ -178,7 +213,9 @@ final class IndexControllerFactory
         "factories" => [
             "initThemes" => "LearnZF2Themes\Factory\ThemesFactory",
             "getThemesFromDir" => "LearnZF2Themes\Factory\GetThemesFromDir",
-            "reloadConfig" => "LearnZF2Themes\Factory\ReloadConfigFactory",
+        ],
+        "invokables" => [
+            "reloadService" => "LearnZF2Themes\Service\ReloadService",
         ],
     ],
    "theme" => [
@@ -198,18 +235,18 @@ class IndexController extends AbstractActionController
     /**
      * @var mixed
      */
-    private $reloadConfig = null;
+    private $reloadService = null;
 
     /**
      * @method __construct
      *
      * @param array $themesConfig
-     * @param mixed $reloadConfig
+     * @param mixed $reloadService
      */
-    public function __construct(array $themesConfig = [], $reloadConfig)
+    public function __construct(array $themesConfig = [], $reloadService)
     {
         $this->themesConfig = $themesConfig;
-        $this->reloadConfig = $reloadConfig;
+        $this->reloadService = $reloadService;
     }
 
     /**
@@ -228,7 +265,7 @@ class IndexController extends AbstractActionController
             $themeName = $request->getPost()["themeName"];
             $settings["theme"]["name"] = $themeName;
             file_put_contents($filename, "<?php return ".var_export($settings, true).";");
-            $this->reloadConfig;
+            $this->reloadService->reload();
         }
 
         return new ViewModel([
