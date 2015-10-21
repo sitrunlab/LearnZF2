@@ -23,12 +23,13 @@ use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\EventManagerAwareTrait;
-use EventManagerAwareTrait;
 
 final class ReloadService implements EventManagerAwareInterface
 {
-   public function reload()
-   {
+    use EventManagerAwareTrait;
+
+    public function reload()
+    {
         $this->getEventManager()->trigger(__FUNCTION__, $this);
     }
 }
