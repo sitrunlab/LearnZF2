@@ -19,11 +19,11 @@
 
 namespace LearnZF2Themes;
 
+use LearnZF2Themes\Service\ReloadService;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use LearnZF2Themes\Service\ReloadService;
 
 class Module implements AutoloaderProviderInterface, BootstrapListenerInterface, ConfigProviderInterface
 {
