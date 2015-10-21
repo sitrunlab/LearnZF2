@@ -19,9 +19,7 @@
 
 namespace LearnZF2Themes\Service;
 
-use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\EventManagerAwareTrait;
 
 final class ReloadService implements EventManagerAwareInterface
