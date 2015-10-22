@@ -64,14 +64,15 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
 
     /**
      * Setup theme.
-     *
-     * @param EventInterface $event
      */
-    public function loadTheme(EventInterface $event)
+    public function loadTheme()
     {
         return $this->service->get('initThemes');
     }
 
+    /**
+     * @return array|\Traversable
+     */
     public function getConfig()
     {
         return include __DIR__.'/config/module.config.php';
