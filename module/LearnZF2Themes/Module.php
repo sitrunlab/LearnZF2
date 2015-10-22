@@ -42,7 +42,7 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
         $app = $event->getApplication();
         $this->service = $app->getServiceManager();
         $eventManager = $app->getEventManager();
-        $sharedEventManager = $app->getEventManager()->getSharedManager();
+        $sharedEventManager = $eventManager->getSharedManager();
 
         $eventManager->attach('render', [$this,'loadTheme'], 100);
         $sharedEventManager->attach(ReloadService::class, 'reload', [$this, 'reloadConfig'], 100);
@@ -55,14 +55,11 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
     {
         $request = $this->service->get('Request');
 
-        if ($request->isPost()) {
-            $config = $this->service->get('Config');
-            $themeName = $request->getPost()['themeName'];
-            $this->service->setAllowOverride(true);
-            $config['theme']['name'] = $themeName;
-            $this->service->setService('Config', $config);
-            $this->service->setAllowOverride(false);
-        }
+        $config = $this->service->get('Config');
+        $this->service->setAllowOverride(true);
+        $config['theme']['name'] = $request->getPost()['themeName'];
+        $this->service->setService('Config', $config);
+        $this->service->setAllowOverride(false);
     }
 
     /**

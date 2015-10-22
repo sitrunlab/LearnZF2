@@ -16,6 +16,7 @@
             Notes:
             <li>All css, js, images files should go into <code>public\themes\THEME_NAME</code></li>
             <li>All view and config files should go into <code>LearnZF2Themes\themes\THEME_NAME</code></li>
+            <li>If you want to change the theme for a specific module for example Application module, just add a new folder inside LearnZF2Themes\themes\THEME_NAME\view\application.</li>
         </ul>
         <div class="col-lg-12">
 <?php
@@ -114,7 +115,7 @@ final class GetThemesFromDir
 }
 ');?></code></pre>
 
-<p>After both factories have been executed we need to pass their configs into the IndexController, where the system will show all available themes and their information. This is done via a 3rd factory <code>LearnZF2Themes\Factory\Controller\IndexControllerFactory</code> <u>NOTE: I know that passing the ServiceManager like that is a bad practice, but I couldn't find a proper way to dinamicly reload the theme without asking the user to make a manual page reload.</u></p>
+<p>After both factories have been executed we need to pass their configs into the IndexController, where the system will show all available themes and their information. This is done via a 3rd factory <code>LearnZF2Themes\Factory\Controller\IndexControllerFactory</code></p>
 <pre><code class="language-php"><?php echo htmlentities('
 final class IndexControllerFactory
 {
