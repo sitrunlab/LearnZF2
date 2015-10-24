@@ -91,10 +91,10 @@ class Acl extends BaseAcl
         $rightList = [];
         foreach ($this->getResources() as $resource) {
             foreach ($rights as $key => $right) {
-                if ($currentRole !== 'All') {
-                    if ($this->isAllowed($currentRole, $resource, $right) && !in_array($right, $rightList)) {
-                        $rightList[] = $right;
-                    }
+                if ($currentRole !== 'All'
+                    && $this->isAllowed($currentRole, $resource, $right) && !in_array($right, $rightList)
+                ) {
+                    $rightList[] = $right;
                 }
             }
         }
@@ -122,10 +122,10 @@ class Acl extends BaseAcl
         $resources = [];
         foreach ($this->getResources() as $resource) {
             foreach ($this->getRightLists() as $right) {
-                if ($this->isAllowed($selectedRole, $resource, $right)) {
-                    if (!in_array($resource, $resources)) {
-                        $resources[] = $resource;
-                    }
+                if ($this->isAllowed($selectedRole, $resource, $right)
+                    && !in_array($resource, $resources)
+                ) {
+                    $resources[] = $resource;
                 }
             }
         }
