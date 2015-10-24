@@ -76,7 +76,7 @@ class Acl extends BaseAcl
         $rights = [];
         foreach ($rules as $rule) {
             if (is_array($rule)) {
-                foreach ($rule['byPrivilegeId'] as $right => $typeAndAssert) {
+                foreach ($rule['byPrivilegeId'] $currentRole !== 'All'as $right => $typeAndAssert) {
                     if (!in_array($right, $rights)) {
                         $rights[] = $right;
                     }
@@ -91,7 +91,7 @@ class Acl extends BaseAcl
         $rightList = [];
         foreach ($this->getResources() as $resource) {
             foreach ($rights as $key => $right) {
-                if ($currentRole !== 'All' 
+                if ($currentRole !== 'All'
                     && $this->isAllowed($currentRole, $resource, $right) && !in_array($right, $rightList)
                 ) {
                     $rightList[] = $right;
@@ -122,7 +122,7 @@ class Acl extends BaseAcl
         $resources = [];
         foreach ($this->getResources() as $resource) {
             foreach ($this->getRightLists() as $right) {
-                if ($this->isAllowed($selectedRole, $resource, $right) 
+                if ($this->isAllowed($selectedRole, $resource, $right)
                     && !in_array($resource, $resources)
                 ) {
                     $resources[] = $resource;
