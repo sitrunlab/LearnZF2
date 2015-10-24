@@ -76,7 +76,7 @@ class Acl extends BaseAcl
         $rights = [];
         foreach ($rules as $rule) {
             if (is_array($rule)) {
-                foreach ($rule['byPrivilegeId'] $currentRole !== 'All'as $right => $typeAndAssert) {
+                foreach ($rule['byPrivilegeId'] as $right => $typeAndAssert) {
                     if (!in_array($right, $rights)) {
                         $rights[] = $right;
                     }
