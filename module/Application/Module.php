@@ -111,7 +111,7 @@ class Module  implements
         if (!$e->getViewModel()->terminate()) {
             $entityManager = $this->services->get('Doctrine\ORM\EntityManager');
             $e->getViewModel()
-              ->setVariable('modules_list', $entityManager->getRepository('Application\Entity\ModuleList')->findAll());
+              ->setVariable('modules_list', $entityManager->getRepository('Application\Entity\ModuleList')->findBy([], ['id' => 'DESC']));
         }
     }
 
