@@ -16,7 +16,10 @@ class Version20151023012800 extends AbstractMigration
     public function up(Schema $schema)
     {
         // this up() migration is auto-generated, please modify it to your needs
-
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->addSql("
+            INSERT INTO `module_list` (`module_name`, `module_desc`, `module_route`) VALUES
+            ('LearnZF2Themes', 'Learn Themes switcher with Zend Framework 2', 'learn-zf2-themes');");
     }
 
     /**
@@ -25,6 +28,8 @@ class Version20151023012800 extends AbstractMigration
     public function down(Schema $schema)
     {
         // this down() migration is auto-generated, please modify it to your needs
-
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->addSql("
+            DELETE FROM `module_list` where `module_name` = 'LearnZF2Themes'");
     }
 }
