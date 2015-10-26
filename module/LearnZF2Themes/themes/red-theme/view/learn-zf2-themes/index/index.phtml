@@ -1,0 +1,283 @@
+<?php
+    /**
+     * Holds themes information
+     *
+     * @var array
+     */
+    $themes = $this->themes;
+?>
+<div class="col-lg-9">
+    <h1>Themes switcher example with Zend Framework 2</h1>
+    <h2>Red theme</h2>
+
+    <div class="demo-box">
+        <p>Please, select any of the themes bellow and see the magic happens.</p>
+        <ul>
+            Notes:
+            <li>All css, js, images files should go into <code>public\themes\THEME_NAME</code></li>
+            <li>All view and config files should go into <code>LearnZF2Themes\themes\THEME_NAME</code></li>
+            <li>If you want to change the theme for a specific module for example Application module, just add a new folder inside LearnZF2Themes\themes\THEME_NAME\view\application.</li>
+        </ul>
+        <div class="col-lg-12">
+<?php
+        foreach ($themes["themes"] as $key => $theme) {
+?>
+            <ul class="theme">
+                <img width="349" height="230" src="/themes/<?=$key."/".$theme["screenshot"]?>">
+                <li class="theme-item"><b>Title:</b>&nbsp;<?=$theme["title"]?></li>
+                <li class="theme-item"><b>Author:</b>&nbsp;<?=$theme["author"]?></li>
+                <li class="theme-item"><b>Description:</b>&nbsp;<?=$theme["description"]?></li>
+                <li class="theme-item"><b>Version:</b>&nbsp;<?=$theme["version"]?></li>
+                <li class="theme-item"><b>Created on:</b>&nbsp;<?=$theme["date"]?></li>
+                <li class="theme-item"><b>Website:</b>&nbsp;<a href="<?=$theme["website"]?>"><?=$theme["website"]?></a></li>
+
+                <form class="form" role="form" method="post" name="<?=$key?>" action="&#x2F;learn-zf2-themes" id="<?=$key?>">
+                    <input type="hidden" name="themeName" value="<?=$key?>">
+                    <input type="submit" name="submit" class="btn btn-danger" value="Activate">
+                </form>
+            </ul>
+<?php
+        }
+?>
+        </div>
+        <p>This is where all the magic happens. The system retrives the theme name from the Config
+        and searches inside themes config for a key with this theme name. After that it checks for its configuration from module.config.php and loads it.<code>LearnZF2Themes\Factory\ThemesFactory</code>
+<pre><code class="language-php"><?php echo htmlentities('
+final class ThemesFactory
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function __invoke(ServiceLocatorInterface $serviceLocator)
+    {
+        $themesConfig = $serviceLocator->get("getThemesFromDir");
+        $config = $serviceLocator->get("Config");
+        $headScript = $serviceLocator->get("ViewHelperManager")->get("HeadScript");
+        $headLink = $serviceLocator->get("ViewHelperManager")->get("headLink");
+        $publicDir = "/themes/".$config["theme"]["name"].DIRECTORY_SEPARATOR;
+
+        /*
+         * Get theme name from config and load it.
+         *
+         * At this point the user has already been selected the new theme he wants to use
+         * from indexAction.
+         */
+        $viewTemplate = $serviceLocator->get("ViewTemplatePathStack");
+        $themes = $themesConfig["themes"][$config["theme"]["name"]];
+
+        if (isset($themes["template_path_stack"])) {
+            $viewTemplate->addPaths($themes["template_path_stack"]);
+        }
+
+        if (isset($themes["template_map"])) {
+            $viewTemplate = $serviceLocator->get("ViewTemplateMapResolver");
+            $viewTemplate->merge($themes["template_map"]);
+        }
+
+        foreach ($themes["css"] as $key => $file) {
+            $headLink->prependStylesheet($publicDir.$file);
+        }
+
+        foreach ($themes["js"] as $key => $file) {
+            $headScript->prependFile($publicDir.$file);
+        }
+
+        return $viewTemplate;
+    }
+}
+');?></code></pre>
+
+<p>This factory <code>LearnZF2Themes\Factory\GetThemesFromDir</code> will iterate over <code>module\LearnZF2Themes\themes</code> and load every theme and its configuration in the global Config.</p>
+<pre><code class="language-php"><?php echo htmlentities('
+final class GetThemesFromDir
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function __invoke()
+    {
+        $path = __DIR__."/../../../themes/";
+        $dir = new DirectoryIterator($path);
+        $themesConfig = [];
+
+        foreach ($dir as $file) {
+            if (!$file->isDot()) {
+                $hasConfig = $path.$file->getBasename()."/config/module.config.php";
+
+                if (is_file($hasConfig)) {
+                    $themesConfig["themes"][$file->getBasename()] = include $hasConfig;
+                }
+            }
+        }
+
+        return $themesConfig;
+    }
+}
+');?></code></pre>
+
+<p>After both factories have been executed we need to pass their configs into the IndexController, where the system will show all available themes and their information. This is done via a 3rd factory <code>LearnZF2Themes\Factory\Controller\IndexControllerFactory</code></p>
+<pre><code class="language-php"><?php echo htmlentities('
+final class IndexControllerFactory
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function __invoke(ControllerManager $controllerManager)
+    {
+        $serviceLocator = $controllerManager->getServiceLocator();
+        $themesConfig = $serviceLocator->get("getThemesFromDir");
+        $reloadService = $serviceLocator->get("reloadService");
+        $controller = new IndexController($themesConfig, $reloadService);
+
+        return $controller;
+    }
+}
+');?></code></pre>
+
+<p>We need to attach two event listeners before the real rendering of the view files in <code>LearnZF2Themes\Module.php</code>. The first listener listens for the render event, which renders the current them. The second listener is a custom listener, which is appended to the SharedEventManager and reloads the Config, after a different theme has been selected.</p>
+<pre><code class="language-php"><?php echo htmlentities('
+    // ...code
+
+    /**
+     * @var \Zend\getServiceManager\ServiceManager
+     */
+    private $service = null;
+
+    /**
+     * Listen to the bootstrap event.
+     *
+     * @param EventInterface $event
+     */
+    public function onBootstrap(EventInterface $event)
+    {
+        $app = $event->getApplication();
+        $this->service = $app->getServiceManager();
+        $eventManager = $app->getEventManager();
+        $sharedEventManager = $app->getEventManager()->getSharedManager();
+
+        $eventManager->attach("render", [$this,"loadTheme"], 100);
+        $sharedEventManager->attach(ReloadService::class, "reload", [$this, "reloadConfig"], 100);
+    }
+
+    /**
+     * Listen for theme change and override Config.
+     */
+    public function reloadConfig()
+    {
+        $request = $this->service->get("Request");
+
+        if ($request->isPost()) {
+            $config = $this->service->get("Config");
+            $themeName = $request->getPost()["themeName"];
+            $this->service->setAllowOverride(true);
+            $config["theme"]["name"] = $themeName;
+            $this->service->setService("Config", $config);
+            $this->service->setAllowOverride(false);
+        }
+    }
+
+    /**
+     * Setup theme.
+     *
+     * @param EventInterface $event
+     */
+    public function loadTheme(EventInterface $event)
+    {
+        return $this->service->get("initThemes");
+    }
+
+    // ...code
+');?></code></pre>
+
+<p><code>LearnZF2Themes\Service\ReloadService</code> is a simple service that is being called inside the controller.
+Its function is used to trigger the custom reload event listener, which calls reloadConfig inside Module.php and reloads the Config.
+<pre><code class="language-php"><?php echo htmlentities('
+final class ReloadService implements EventManagerAwareInterface
+{
+   use EventManagerAwareTrait;
+
+   public function reload()
+   {
+        $this->getEventManager()->trigger(__FUNCTION__, $this);
+    }
+}
+');?></code></pre>
+
+<p>LearnZF2Themes\config\<code>module.config.php</code></p>
+<pre><code class="language-php"><?php echo htmlentities('
+    "controllers" => [
+        "factories" => [
+            "LearnZF2Themes\Controller\Index" => "LearnZF2Themes\Factory\Controller\IndexControllerFactory",
+        ],
+    ],
+    "service_manager" => [
+        "factories" => [
+            "initThemes" => "LearnZF2Themes\Factory\ThemesFactory",
+            "getThemesFromDir" => "LearnZF2Themes\Factory\GetThemesFromDir",
+        ],
+        "invokables" => [
+            "reloadService" => "LearnZF2Themes\Service\ReloadService",
+        ],
+    ],
+   "theme" => [
+        "name" => "default",
+    ],
+');?></code></pre>
+
+<p>The controller has only 1 action, which is needed to change the theme. <code>LearnZF2Themes\Controller\IndexController</code></p>
+<pre><code class="language-php"><?php echo htmlentities('
+class IndexController extends AbstractActionController
+{
+    /**
+     * @var array
+     */
+    private $themesConfig = [];
+
+    /**
+     * @var mixed
+     */
+    private $reloadService = null;
+
+    /**
+     * @method __construct
+     *
+     * @param array $themesConfig
+     * @param mixed $reloadService
+     */
+    public function __construct(array $themesConfig = [], $reloadService)
+    {
+        $this->themesConfig = $themesConfig;
+        $this->reloadService = $reloadService;
+    }
+
+    /**
+     * This action shows the list of all themes.
+     *
+     * @method indexAction
+     *
+     * @return ViewModel
+     */
+    public function indexAction()
+    {
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $filename = __DIR__."/../../../config/module.config.php";
+            $settings = include $filename;
+            $themeName = $request->getPost()["themeName"];
+            $settings["theme"]["name"] = $themeName;
+            file_put_contents($filename, "<?php return ".var_export($settings, true).";");
+            $this->reloadService->reload();
+        }
+
+        return new ViewModel([
+            "themes" => $this->themesConfig,
+        ]);
+    }
+}
+');?></code></pre>
+    </div>
+    <p>
+        By the way, you can find <a href="<?php echo $this->url('home') ?>">other examples using Zend Framework 2</a> in our home page :)
+    </p>
+</div>
+
