@@ -17,27 +17,17 @@
  * and is licensed under the MIT license.
  */
 
-namespace LearnZF2AjaxImageGallery\Factory\Controller;
+namespace LearnZF2Themes\Service;
 
-use LearnZF2AjaxImageGallery\Controller\IndexController;
-use Zend\Mvc\Controller\ControllerManager;
+use Zend\EventManager\EventManagerAwareInterface;
+use Zend\EventManager\EventManagerAwareTrait;
 
-/**
- * @author Stanimir Dimitrov <stanimirdim92@gmail.com>
- */
-class IndexControllerFactory
+final class ReloadService implements EventManagerAwareInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function __invoke(ControllerManager $controllerManager)
+    use EventManagerAwareTrait;
+
+    public function reload()
     {
-        $serviceLocator = $controllerManager->getServiceLocator();
-
-        $controller = new IndexController(
-            (object) $serviceLocator->get('FormElementManager')->get('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm')
-        );
-
-        return $controller;
+        $this->getEventManager()->trigger(__FUNCTION__, $this);
     }
 }

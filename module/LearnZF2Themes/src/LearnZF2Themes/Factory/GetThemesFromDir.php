@@ -17,27 +17,34 @@
  * and is licensed under the MIT license.
  */
 
-namespace LearnZF2AjaxImageGallery\Factory\Controller;
+namespace LearnZF2Themes\Factory;
 
-use LearnZF2AjaxImageGallery\Controller\IndexController;
-use Zend\Mvc\Controller\ControllerManager;
+use DirectoryIterator;
 
 /**
  * @author Stanimir Dimitrov <stanimirdim92@gmail.com>
  */
-class IndexControllerFactory
+final class GetThemesFromDir
 {
     /**
      * {@inheritdoc}
      */
-    public function __invoke(ControllerManager $controllerManager)
+    public function __invoke()
     {
-        $serviceLocator = $controllerManager->getServiceLocator();
+        $path = __DIR__.'/../../../themes/';
+        $dir = new DirectoryIterator($path);
+        $themesConfig = [];
 
-        $controller = new IndexController(
-            (object) $serviceLocator->get('FormElementManager')->get('LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm')
-        );
+        foreach ($dir as $file) {
+            if (!$file->isDot()) {
+                $hasConfig = $path.$file->getBasename().'/config/module.config.php';
 
-        return $controller;
+                if (is_file($hasConfig)) {
+                    $themesConfig['themes'][$file->getBasename()] = include $hasConfig;
+                }
+            }
+        }
+
+        return $themesConfig;
     }
 }
