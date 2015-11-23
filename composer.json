@@ -1,6 +1,7 @@
 {
     "name": "sitrunlab/learnzf2",
-    "description": "Sitrun Lab",
+    "description": "Learn ZF2 website",
+    "type": "project",
     "license": "MIT",
     "homepage": "http://learnzf2.sitrun-tech.com/",
     "require": {
