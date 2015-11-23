@@ -20,7 +20,6 @@
 /**
  * This modified only, comes from https://github.com/zendframework/zf-web/blob/master/module/Application/src/Application/Controller/ConsoleController.php.
  */
-
 namespace Application\Controller;
 
 use Zend\Console\Adapter\AdapterInterface as Console;
