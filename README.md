@@ -13,14 +13,20 @@ This is a repository for the "Learning Zend Framework" website and contains live
 
 Installation
 ------------
- 1.Use Bower to install asset dependencies. Install NodeJs dan run :
+ 1.Use Composer:
+
+```bash
+$ composer create project sitrunlab/learnzf2
+```
+
+ 2.Use Bower to install asset dependencies. Install NodeJs dan run :
 
 ```
 sudo npm install -g bower
 bower install
 ```
 
- 2.This is the output of the Bower installation process.
+ 3.This is the output of the Bower installation process.
 
 ```
 bower install
@@ -66,19 +72,12 @@ bower -version
 sudo apt-get install nodejs-legacy
 ```
 
- 3.run composer update
+ 4.Copy <code>config/autoload/doctrine.local.php.dist</code> to <code>config/autoload/doctrine.local.php</code> and configure it with your current environment.
 
-```
-php composer.phar self-update && php composer.phar install
-```
-
- 4.Run doctrine migrations
+ 5.Run doctrine migrations
 ```
 vendor/bin/doctrine-module migrations:migrate
 ```
-
- 5.Copy <code>config/autoload/doctrine.local.php.dist</code> to <code>config/autoload/doctrine.local.php</code> and configure it with your current environment.
-
 
 
 
