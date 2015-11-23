@@ -16,7 +16,7 @@ Installation
  1.Use Composer:
 
 ```bash
-$ composer create project sitrunlab/learnzf2
+$ composer create-project sitrunlab/learnzf2
 ```
 
  2.Use Bower to install asset dependencies. Install NodeJs dan run :
