@@ -42,7 +42,7 @@ class IndexControllerFactoryTest extends TestCase
         $controllerManager = $this->prophesize(ControllerManager::class);
         $sm = new ServiceManager();
         $sm->setService('Config', $data);
-        $controllerManager->setServiceLocator($sm)->shouldBeCalled();
+        $controllerManager->getServiceLocator()->willReturn($sm)->shouldBeCalled();
 
         return $controllerManager->reveal();
     }
