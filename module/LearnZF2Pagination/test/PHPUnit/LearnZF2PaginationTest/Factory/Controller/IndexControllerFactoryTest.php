@@ -39,11 +39,11 @@ class IndexControllerFactoryTest extends TestCase
      */
     private function createServiceLocator(array $data = [])
     {
-        $controllerManager = new ControllerManager();
+        $controllerManager = $this->prophesize(ControllerManager::class);
         $sm = new ServiceManager();
         $sm->setService('Config', $data);
-        $controllerManager->setServiceLocator($sm);
+        $controllerManager->setServiceLocator($sm)->shouldBeCalled();
 
-        return $controllerManager;
+        return $controllerManager->reveal();
     }
 }

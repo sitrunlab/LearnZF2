@@ -26,7 +26,7 @@ class ConsoleControllerFactoryTest extends TestCase
         $sm->setService('Console', new Posix());
         $sm->setService('Config', []);
         $cm = $this->prophesize(ControllerManager::class);
-        $cm->setServiceLocator($sm->reveal());
+        $cm->setServiceLocator($sm->reveal())->shouldBeCalled();
 
         $controller = $this->factory->createService($cm->reveal());
         $this->assertInstanceOf('Application\Controller\ConsoleController', $controller);
