@@ -16,7 +16,7 @@
         "sebastian/finder-facade": "~1.1",
         "satooshi/php-coveralls": "^1.0",
         "codeception/codeception": "2.0.0",
-        "jonnyw/php-phantomjs": "3.*"
+        "jonnyw/php-phantomjs": "4.*"
     },
     "scripts": {
         "post-install-cmd": [
