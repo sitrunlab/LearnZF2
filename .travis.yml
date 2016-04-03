@@ -28,6 +28,7 @@ script:
   - ls -d module/*/test/PHPUnit | parallel --gnu --keep-order 'echo "Running {} tests"; ./vendor/bin/phpunit -c {}/phpunit.xml;' || exit 1
   - cd module && for i in $(ls -d *); do ./../vendor/bin/codecept --config=${i%%/}/test/Codeception/codeception.yml run acceptance; done
   - cd ..
+  - git checkout module
 
 after_script:
   - php coverage-report.php
