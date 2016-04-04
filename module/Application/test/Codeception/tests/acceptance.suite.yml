@@ -8,7 +8,7 @@ class_name: AcceptanceTester
 modules:
     enabled:
         - WebDriver
-        - AcceptanceHelper
+        - \Helper\Acceptance
     config:
         WebDriver:
             url: 'http://localhost:8000/'

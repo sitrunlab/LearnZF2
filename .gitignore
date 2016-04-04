@@ -11,3 +11,5 @@ public/css/.sass-cache/
 build/
 data/barcode.gif
 data/test-html-report/
+
+module/*/test/Codeception/tests/_output/*
