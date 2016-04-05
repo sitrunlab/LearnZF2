@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "19f7ef10e1c01ecb17291921e2d4ea07",
-    "content-hash": "b270bc940f33539710de0c4e32ef1b45",
+    "hash": "bc2199f40c6050504019f72eed1ead9a",
+    "content-hash": "4a498cee771ca5cdacfb305bab1a1317",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -4928,16 +4928,16 @@
         },
         {
             "name": "zendframework/zenddiagnostics",
-            "version": "v1.0.8",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/ZendDiagnostics.git",
-                "reference": "6ffffbeec9a9d69aad394a9ceee55cf4bcdd4b2d"
+                "reference": "292653c287a9e9d811417d4cb8a0025a4c1894cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/ZendDiagnostics/zipball/6ffffbeec9a9d69aad394a9ceee55cf4bcdd4b2d",
-                "reference": "6ffffbeec9a9d69aad394a9ceee55cf4bcdd4b2d",
+                "url": "https://api.github.com/repos/zendframework/ZendDiagnostics/zipball/292653c287a9e9d811417d4cb8a0025a4c1894cf",
+                "reference": "292653c287a9e9d811417d4cb8a0025a4c1894cf",
                 "shasum": ""
             },
             "require": {
@@ -4947,6 +4947,7 @@
                 "doctrine/migrations": "~1.0@dev",
                 "guzzle/http": "3.*",
                 "guzzle/plugin-mock": "3.*",
+                "mikey179/vfsstream": "1.6.*",
                 "phpunit/phpunit": "4.7.*",
                 "predis/predis": "0.8.*",
                 "sensiolabs/security-checker": "1.3.*@dev",
@@ -4986,7 +4987,7 @@
                 "php",
                 "test"
             ],
-            "time": "2015-10-01 15:37:41"
+            "time": "2016-04-01 10:39:00"
         },
         {
             "name": "zendframework/zendframework",
@@ -5581,102 +5582,6 @@
             "time": "2016-02-18 21:54:00"
         },
         {
-            "name": "jakoch/phantomjs-installer",
-            "version": "2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jakoch/phantomjs-installer.git",
-                "reference": "b8ee2aac9b95f9a9ee30a05a4df4a0984a8a8b85"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jakoch/phantomjs-installer/zipball/b8ee2aac9b95f9a9ee30a05a4df4a0984a8a8b85",
-                "reference": "b8ee2aac9b95f9a9ee30a05a4df4a0984a8a8b85",
-                "shasum": ""
-            },
-            "require": {
-                "ext-openssl": "*"
-            },
-            "type": "custom-installer",
-            "autoload": {
-                "psr-0": {
-                    "PhantomInstaller\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jens-André Koch",
-                    "email": "jakoch@web.de"
-                }
-            ],
-            "description": "A Composer package which installs the PhantomJS binary (Linux, Windows, Mac) into `/bin` of your project.",
-            "keywords": [
-                "binaries",
-                "headless",
-                "phantomjs"
-            ],
-            "time": "2016-01-25 16:30:30"
-        },
-        {
-            "name": "jonnyw/php-phantomjs",
-            "version": "v4.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jonnnnyw/php-phantomjs.git",
-                "reference": "a0b32700c8ea980290124fa8a8058e2b28192631"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jonnnnyw/php-phantomjs/zipball/a0b32700c8ea980290124fa8a8058e2b28192631",
-                "reference": "a0b32700c8ea980290124fa8a8058e2b28192631",
-                "shasum": ""
-            },
-            "require": {
-                "jakoch/phantomjs-installer": "~2.1",
-                "php": ">=5.3.0",
-                "symfony/config": "~2.3|~3.0",
-                "symfony/dependency-injection": "~2.3|~3.0",
-                "symfony/filesystem": "~2.3|~3.0",
-                "symfony/yaml": "~2.3|~3.0",
-                "twig/twig": "~1.16"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0",
-                "zendframework/zendpdf": "~2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "JonnyW\\PhantomJs\\": "src"
-                },
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jonny Wenmoth",
-                    "email": "contact@jonnyw.me",
-                    "homepage": "http://jonnyw.me/"
-                }
-            ],
-            "description": "A PHP wrapper for loading pages through PhantomJS",
-            "keywords": [
-                "Headless Browser",
-                "phantomjs",
-                "testing"
-            ],
-            "time": "2016-03-22 09:02:33"
-        },
-        {
             "name": "satooshi/php-coveralls",
             "version": "v1.0.1",
             "source": {
@@ -5935,65 +5840,6 @@
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
             "time": "2016-03-04 07:55:57"
-        },
-        {
-            "name": "symfony/dependency-injection",
-            "version": "v3.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "6a9058101b591edced21ca3c83c80a3978f5c6b0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/6a9058101b591edced21ca3c83c80a3978f5c6b0",
-                "reference": "6a9058101b591edced21ca3c83c80a3978f5c6b0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "symfony/config": "~2.8|~3.0",
-                "symfony/expression-language": "~2.8|~3.0",
-                "symfony/yaml": "~2.8|~3.0"
-            },
-            "suggest": {
-                "symfony/config": "",
-                "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
-                "symfony/yaml": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\DependencyInjection\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony DependencyInjection Component",
-            "homepage": "https://symfony.com",
-            "time": "2016-03-30 10:41:14"
         },
         {
             "name": "symfony/dom-crawler",
@@ -6297,67 +6143,6 @@
             "description": "The classes contained within this repository extend the standard DOM to use exceptions at all occasions of errors instead of PHP warnings or notices. They also add various custom methods and shortcuts for convenience and to simplify the usage of DOM.",
             "homepage": "https://github.com/theseer/fDOMDocument",
             "time": "2015-05-27 22:58:02"
-        },
-        {
-            "name": "twig/twig",
-            "version": "v1.24.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
-                "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.7"
-            },
-            "require-dev": {
-                "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~2.7"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.24-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Twig_": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com",
-                    "role": "Project Founder"
-                },
-                {
-                    "name": "Twig Team",
-                    "homepage": "http://twig.sensiolabs.org/contributors",
-                    "role": "Contributors"
-                }
-            ],
-            "description": "Twig, the flexible, fast, and secure template language for PHP",
-            "homepage": "http://twig.sensiolabs.org",
-            "keywords": [
-                "templating"
-            ],
-            "time": "2016-01-25 21:22:18"
         }
     ],
     "aliases": [],

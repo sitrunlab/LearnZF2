@@ -21,7 +21,6 @@ before_script:
   - cp config/autoload/doctrine.local.php.dist config/autoload/doctrine.local.php
   - php vendor/bin/doctrine-module migrations:migrate --no-interaction
   - php -S localhost:8000 -t public/ &
-  - vendor/bin/phantomjs --webdriver=4444 && PID=$! &
   - sleep 1
 
 script:
