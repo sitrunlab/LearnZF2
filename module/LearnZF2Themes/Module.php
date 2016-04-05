@@ -16,7 +16,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace LearnZF2Themes;
 
 use LearnZF2Themes\Service\ReloadService;
@@ -44,7 +43,7 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
         $eventManager = $app->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
 
-        $eventManager->attach('render', [$this,'loadTheme'], 100);
+        $eventManager->attach('render', [$this, 'loadTheme'], 100);
         $sharedEventManager->attach(ReloadService::class, 'reload', [$this, 'reloadConfig'], 100);
     }
 

@@ -8,7 +8,6 @@
  * Website : http://mockie.net
  * Email : rifkimuhammad89@gmail.com.
  */
-
 namespace LearnZF2Ajax\Controller;
 
 use LearnZF2Ajax\Model\LoginInputFilter;
@@ -35,7 +34,7 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        $result = ['result' => false,'message' => ''];
+        $result = ['result' => false, 'message' => ''];
         $viewModel = $this->acceptableviewmodelselector($this->acceptCriteria);
 
         $request = $this->getRequest();
@@ -45,9 +44,9 @@ class IndexController extends AbstractActionController
             $this->loginForm->setData($request->getPost());
 
             if ($this->loginForm->isValid()) {
-                $result = ['result' => true,'message' => 'Ajax request success'];
+                $result = ['result' => true, 'message' => 'Ajax request success'];
             } else {
-                $result = ['result' => false,'message' => $this->loginForm->getMessages()];
+                $result = ['result' => false, 'message' => $this->loginForm->getMessages()];
             }
         }
 

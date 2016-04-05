@@ -16,7 +16,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace LearnZF2AjaxImageGalleryTest\Controller;
 
 use Zend\File\Transfer\Adapter\Http;
@@ -88,8 +87,8 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
 
     public function testAdapterHasValidators()
     {
-        $size = new Size(['min' => '10kB', 'max' => '5MB','useByteString' => true]);
-        $extension = new Extension(['jpg','gif','png','jpeg','bmp','webp','svg'], true);
+        $size = new Size(['min' => '10kB', 'max' => '5MB', 'useByteString' => true]);
+        $extension = new Extension(['jpg', 'gif', 'png', 'jpeg', 'bmp', 'webp', 'svg'], true);
 
         $this->adapter->setValidators([$size, new IsImage(), $extension]);
 

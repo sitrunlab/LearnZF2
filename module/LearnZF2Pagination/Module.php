@@ -6,9 +6,7 @@ use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 
-class Module implements
-    ConfigProviderInterface,
-    AutoloaderProviderInterface
+class Module implements ConfigProviderInterface, AutoloaderProviderInterface
 {
     /**
      * Returns configuration to merge with application configuration.

@@ -16,7 +16,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace LearnZF2FormUsage\Form;
 
 use Zend\Form\Form;
@@ -180,7 +179,7 @@ class LearnZF2Form extends Form implements InputFilterProviderInterface
                     [
                         'name' => 'InArray',
                         'options' => [
-                            'haystack' => [2,3],
+                            'haystack' => [2, 3],
                             'messages' => [
                                 'notInArray' => 'Please select your gender !',
                             ],
