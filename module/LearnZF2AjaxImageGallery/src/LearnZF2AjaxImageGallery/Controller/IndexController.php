@@ -16,7 +16,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace LearnZF2AjaxImageGallery\Controller;
 
 use LearnZF2AjaxImageGallery\Form\AjaxImageUploadForm;
@@ -160,8 +159,8 @@ class IndexController extends AbstractActionController
     {
         $adapter = new Http();
 
-        $size = new Size(['min' => '10kB', 'max' => '5MB','useByteString' => true]);
-        $extension = new Extension(['jpg','gif','png','jpeg','bmp','webp','svg'], true);
+        $size = new Size(['min' => '10kB', 'max' => '5MB', 'useByteString' => true]);
+        $extension = new Extension(['jpg', 'gif', 'png', 'jpeg', 'bmp', 'webp', 'svg'], true);
 
         if (extension_loaded('fileinfo')) {
             $adapter->setValidators([new IsImage()]);

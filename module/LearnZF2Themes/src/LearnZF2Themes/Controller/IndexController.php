@@ -16,7 +16,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace LearnZF2Themes\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -43,7 +42,7 @@ class IndexController extends AbstractActionController
      * @param array $themesConfig
      * @param mixed $reloadService
      */
-    public function __construct(array $themesConfig = [], $reloadService)
+    public function __construct(array $themesConfig, $reloadService)
     {
         $this->themesConfig = $themesConfig;
         $this->reloadService = $reloadService;
