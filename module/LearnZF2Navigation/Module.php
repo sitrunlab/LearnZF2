@@ -16,7 +16,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace LearnZF2Navigation;
 
 use Zend\Loader\StandardAutoloader;
@@ -28,9 +27,7 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
  *
  * @author Alejandro Celaya Alastrué <alejandro@alejandrocelaya.com>
  */
-class Module implements
-    ConfigProviderInterface,
-    AutoloaderProviderInterface
+class Module implements ConfigProviderInterface, AutoloaderProviderInterface
 {
     /**
      * Returns configuration to merge with application configuration.

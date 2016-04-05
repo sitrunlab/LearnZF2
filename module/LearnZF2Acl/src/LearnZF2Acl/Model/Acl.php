@@ -16,7 +16,6 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  */
-
 namespace LearnZF2Acl\Model;
 
 use Zend\Permissions\Acl\Acl as BaseAcl;
