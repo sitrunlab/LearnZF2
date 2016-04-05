@@ -21,13 +21,13 @@ before_script:
   - cp config/autoload/doctrine.local.php.dist config/autoload/doctrine.local.php
   - php vendor/bin/doctrine-module migrations:migrate --no-interaction
   - php -S localhost:8000 -t public/ &
-  - vendor/bin/phantomjs --webdriver=4444 && PID=$! &
   - sleep 1
 
 script:
   - ls -d module/*/test/PHPUnit | parallel --gnu --keep-order 'echo "Running {} tests"; ./vendor/bin/phpunit -c {}/phpunit.xml;' || exit 1
   - cd module && for i in $(ls -d *); do ./../vendor/bin/codecept --config=${i%%/}/test/Codeception/codeception.yml run acceptance; done
   - cd ..
+  - git checkout module
 
 after_script:
   - php coverage-report.php
